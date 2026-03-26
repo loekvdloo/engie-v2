@@ -1,0 +1,911 @@
+{
+  "board": {
+    "name": "ENGIE Allocation Processor API - 29 User Stories",
+    "description": "Trello-bord voor een API-gebaseerde allocation processor in .NET. Gebaseerd op de 29 pipeline-stappen 1A t/m 6B, zonder dashboard-scope, en aangevuld met de kolomstructuur uit het verwerkingsdiagram.",
+    "mvpFasering": {
+      "fase-1": "End-to-end",
+      "fase-2": "Validaties",
+      "fase-3": "Configuratie",
+      "fase-4": "Operations en afronding"
+    },
+    "processingArchitecture": {
+      "nodes": [
+        {
+          "id": "input",
+          "name": "Test Data / API Input",
+          "type": "source"
+        },
+        {
+          "id": "column-1",
+          "name": "Event Handler",
+          "column": 1,
+          "steps": [
+            "STEP_1A",
+            "STEP_1B",
+            "STEP_1C",
+            "STEP_1D",
+            "STEP_1E",
+            "STEP_1F"
+          ]
+        },
+        {
+          "id": "column-2-4",
+          "name": "Message Processor",
+          "column": "2+4",
+          "steps": [
+            "STEP_2A",
+            "STEP_2B",
+            "STEP_2C",
+            "STEP_2D",
+            "STEP_2E",
+            "STEP_4A",
+            "STEP_4B",
+            "STEP_4C",
+            "STEP_4D",
+            "STEP_4E"
+          ]
+        },
+        {
+          "id": "column-3",
+          "name": "Message Validator",
+          "column": 3,
+          "steps": [
+            "STEP_3A",
+            "STEP_3B",
+            "STEP_3C",
+            "STEP_3D",
+            "STEP_3E",
+            "STEP_3F",
+            "STEP_3G"
+          ]
+        },
+        {
+          "id": "column-5",
+          "name": "N-ACK Handler",
+          "column": 5,
+          "steps": [
+            "STEP_5A",
+            "STEP_5B",
+            "STEP_5C",
+            "STEP_5D"
+          ]
+        },
+        {
+          "id": "column-6",
+          "name": "Output Handler",
+          "column": 6,
+          "steps": [
+            "STEP_6A",
+            "STEP_6B"
+          ]
+        }
+      ],
+      "flows": [
+        "Test Data / API Input -> Event Handler",
+        "Event Handler -> Message Processor",
+        "Message Processor -> Message Validator",
+        "Message Validator -> Message Processor",
+        "Message Processor -> N-ACK Handler",
+        "Message Processor -> Output Handler"
+      ]
+    },
+    "masterFlow": [
+      "US-01",
+      "US-02",
+      "US-03",
+      "US-04",
+      "US-05",
+      "US-06",
+      "US-07",
+      "US-08",
+      "US-09",
+      "US-10",
+      "US-11",
+      "US-12",
+      "US-13",
+      "US-14",
+      "US-15",
+      "US-16",
+      "US-17",
+      "US-18",
+      "US-19",
+      "US-20",
+      "US-21",
+      "US-22",
+      "US-23",
+      "US-24",
+      "US-25",
+      "US-26",
+      "US-27",
+      "US-28",
+      "US-29"
+    ],
+    "lists": [
+      {
+        "name": "Architectuur",
+        "cards": [
+          {
+            "id": "ARCH-1",
+            "title": "Architectuur - Verwerkingskolommen uit schema",
+            "description": "De oplossing volgt het schema met 5 hoofdcomponenten: Event Handler (kolom 1), Message Processor (kolom 2 en 4), Message Validator (kolom 3), N-ACK Handler (kolom 5) en Output Handler (kolom 6).",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "De kolomstructuur is expliciet opgenomen in het bord.",
+              "Elke pipeline-stap 1A t/m 6B is toegewezen aan precies een kolom.",
+              "De flow tussen componenten volgt het schema: input -> Event Handler -> Message Processor -> Validator/N-ACK/Output."
+            ]
+          },
+          {
+            "id": "ARCH-2",
+            "title": "Architectuur - API-first verwerking",
+            "description": "Berichten worden ontvangen via API-endpoints en doorlopen daarna de 29-stappen pipeline. Er is geen dashboard-scope in dit bord.",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "Alle functionele scope is gericht op API's, pipeline en operations.",
+              "Dashboard-, frontend- en visualisatiekaarten zijn verwijderd.",
+              "Testdata kan via API worden geladen of opgeschoond."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "MVP Fasering",
+        "cards": [
+          {
+            "id": "MVP-1",
+            "title": "Fase 1 - End-to-end",
+            "description": "Implementeer eerst de basisverwerking van input tot eindstatus via API en pipeline.",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "API kan berichten ontvangen.",
+              "Pipeline doorloopt end-to-end de hoofdflow.",
+              "ACK/NACK en afleverstatus worden vastgelegd."
+            ]
+          },
+          {
+            "id": "MVP-2",
+            "title": "Fase 2 - Validaties",
+            "description": "Voeg de business- en technische validaties toe inclusief foutcodes.",
+            "labels": [
+              "fase-2",
+              "geel"
+            ],
+            "acceptanceCriteria": [
+              "Validatiestappen 3A t/m 3G zijn geïmplementeerd.",
+              "Foutcodes worden herleidbaar vastgelegd en teruggegeven in NACKs."
+            ]
+          },
+          {
+            "id": "MVP-3",
+            "title": "Fase 3 - Configuratie",
+            "description": "Maak prioritering, queue-routing en configureerbare regels beheersbaar via configuratie.",
+            "labels": [
+              "fase-3",
+              "oranje"
+            ],
+            "acceptanceCriteria": [
+              "Gedrag is via configuratie te beïnvloeden.",
+              "NACK-doorzetgedrag en validatieregels zijn instelbaar."
+            ]
+          },
+          {
+            "id": "MVP-4",
+            "title": "Fase 4 - Operations en afronding",
+            "description": "Voeg reprocess, parkeren, retries, statusfiltering en operations-ondersteuning toe.",
+            "labels": [
+              "fase-4",
+              "groen"
+            ],
+            "acceptanceCriteria": [
+              "Operations kan FAILED/PARKED berichten opnieuw verwerken.",
+              "Berichten zijn filterbaar en herleidbaar via API."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Event Handler (kolom 1)",
+        "cards": [
+          {
+            "id": "US-01",
+            "title": "US-01 - STEP_1A - Ontvangen marktbericht",
+            "description": "Als systeem wil ik een marktbericht ontvangen zodat verwerking kan starten.",
+            "labels": [
+              "fase-1",
+              "blauw",
+              "kolom-1"
+            ],
+            "acceptanceCriteria": [
+              "Lege payload faalt direct in stap 1A.",
+              "Gevulde payload start de pipeline met een messageUuid."
+            ]
+          },
+          {
+            "id": "US-02",
+            "title": "US-02 - STEP_1B - Technische ontvangstbevestiging",
+            "description": "Als systeem wil ik technische ontvangst bevestigen zodat ontvangst traceerbaar is.",
+            "labels": [
+              "fase-1",
+              "blauw",
+              "kolom-1"
+            ],
+            "acceptanceCriteria": [
+              "Stap krijgt COMPLETED als 1A succesvol was.",
+              "Technische receipt of acknowledgement is herleidbaar opgeslagen."
+            ]
+          },
+          {
+            "id": "US-03",
+            "title": "US-03 - STEP_1C - Technische validatie",
+            "description": "Als systeem wil ik XML technisch valideren zodat ongeldige XML wordt afgekeurd.",
+            "labels": [
+              "fase-1",
+              "blauw",
+              "kolom-1"
+            ],
+            "acceptanceCriteria": [
+              "Onparseerbare XML faalt in 1C.",
+              "Technisch ongeldige berichten worden niet als valide doorgezet."
+            ]
+          },
+          {
+            "id": "US-04",
+            "title": "US-04 - STEP_1D - Logging van ontvangsttijd",
+            "description": "Als operations wil ik ontvangsttijd loggen zodat auditing mogelijk is.",
+            "labels": [
+              "fase-1",
+              "blauw",
+              "kolom-1"
+            ],
+            "acceptanceCriteria": [
+              "Timestamp is zichtbaar in stapinformatie.",
+              "Ontvangstmoment is later herleidbaar via API."
+            ]
+          },
+          {
+            "id": "US-05",
+            "title": "US-05 - STEP_1E - Identificatie berichttype",
+            "description": "Als systeem wil ik berichttype herkennen zodat juiste route gebruikt wordt.",
+            "labels": [
+              "fase-1",
+              "blauw",
+              "kolom-1"
+            ],
+            "acceptanceCriteria": [
+              "Bekende root-elementen worden correct gemapt.",
+              "Onbekend root-element faalt in 1E."
+            ]
+          },
+          {
+            "id": "US-06",
+            "title": "US-06 - STEP_1F - Handmatige opvoer berichten",
+            "description": "Als operations wil ik handmatige invoer markeren zodat herkomst zichtbaar is.",
+            "labels": [
+              "fase-1",
+              "blauw",
+              "kolom-1"
+            ],
+            "acceptanceCriteria": [
+              "Handmatige invoer krijgt een zichtbare markering in metadata.",
+              "De markering blijft beschikbaar in vervolgstappen."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Message Processor (kolom 2 en 4)",
+        "cards": [
+          {
+            "id": "US-07",
+            "title": "US-07 - STEP_2A - Classificeer van berichttype",
+            "description": "Als systeem wil ik berichttype classificeren zodat het juiste pad wordt gebruikt.",
+            "labels": [
+              "fase-1",
+              "blauw",
+              "kolom-2-4"
+            ],
+            "acceptanceCriteria": [
+              "Classificatie is beschikbaar voor vervolgstappen.",
+              "Message Processor gebruikt deze classificatie als route-informatie."
+            ]
+          },
+          {
+            "id": "US-08",
+            "title": "US-08 - STEP_2B - Bepalen prioriteit per type",
+            "description": "Als systeem wil ik prioriteit bepalen zodat urgente berichten eerder lopen.",
+            "labels": [
+              "fase-3",
+              "oranje",
+              "kolom-2-4"
+            ],
+            "acceptanceCriteria": [
+              "Prioriteit wordt opgeslagen bij het bericht.",
+              "Prioriteit is afleidbaar uit berichttype of configuratie."
+            ]
+          },
+          {
+            "id": "US-09",
+            "title": "US-09 - STEP_2C - Plaatsen in wachtrij",
+            "description": "Als systeem wil ik queue-routing bepalen zodat event-driven verwerking mogelijk is.",
+            "labels": [
+              "fase-3",
+              "oranje",
+              "kolom-2-4"
+            ],
+            "acceptanceCriteria": [
+              "Queue of routinginformatie wordt bepaald op basis van type/prioriteit.",
+              "Stap eindigt succesvol als queuebepaling lukt."
+            ]
+          },
+          {
+            "id": "US-10",
+            "title": "US-10 - STEP_2D - Uitzondering parkeren",
+            "description": "Als operations wil ik uitzonderingen parkeren zodat ze niet onterecht doorlopen.",
+            "labels": [
+              "fase-4",
+              "groen",
+              "kolom-2-4"
+            ],
+            "acceptanceCriteria": [
+              "Geparkeerde berichten zijn herkenbaar gemarkeerd.",
+              "Parkeren voorkomt verdere normale verwerking."
+            ]
+          },
+          {
+            "id": "US-11",
+            "title": "US-11 - STEP_2E - Uitval opnieuw verwerken",
+            "description": "Als operations wil ik retry-informatie beheren zodat herverwerking beheerst gebeurt.",
+            "labels": [
+              "fase-4",
+              "groen",
+              "kolom-2-4"
+            ],
+            "acceptanceCriteria": [
+              "Eerste verwerking en herverwerking zijn onderscheidbaar.",
+              "Retry-informatie is beschikbaar voor operations."
+            ]
+          },
+          {
+            "id": "US-19",
+            "title": "US-19 - STEP_4A - Genereren ACK bij succes",
+            "description": "Als marktpartij wil ik ACK bij succes zodat acceptatie bevestigd is.",
+            "labels": [
+              "fase-1",
+              "blauw",
+              "kolom-2-4"
+            ],
+            "acceptanceCriteria": [
+              "ACK bevat referentie naar ontvangen bericht.",
+              "ACK wordt alleen gegenereerd als er geen validatiefouten zijn."
+            ]
+          },
+          {
+            "id": "US-20",
+            "title": "US-20 - STEP_4B - Genereren NACK bij fouten",
+            "description": "Als marktpartij wil ik NACK bij fouten zodat afkeur duidelijk is.",
+            "labels": [
+              "fase-2",
+              "geel",
+              "kolom-2-4"
+            ],
+            "acceptanceCriteria": [
+              "NACK bevat minimaal één foutreden.",
+              "NACK wordt alleen gegenereerd als er fouten zijn."
+            ]
+          },
+          {
+            "id": "US-21",
+            "title": "US-21 - STEP_4C - Toevoegen foutcodes bij NACK",
+            "description": "Als marktpartij wil ik foutcodes in NACK zodat gericht herstel mogelijk is.",
+            "labels": [
+              "fase-2",
+              "geel",
+              "kolom-2-4"
+            ],
+            "acceptanceCriteria": [
+              "Foutcodes zijn herleidbaar en opgeslagen.",
+              "NACK bevat de juiste foutcodes uit de validatiestappen."
+            ]
+          },
+          {
+            "id": "US-22",
+            "title": "US-22 - STEP_4D - Vastleggen validatieresultaat",
+            "description": "Als operations wil ik uitkomst opslaan zodat audit en rapportage mogelijk zijn.",
+            "labels": [
+              "fase-2",
+              "geel",
+              "kolom-2-4"
+            ],
+            "acceptanceCriteria": [
+              "Resultaat bevat status passend bij uitkomst.",
+              "Samenvatting van de validatie is beschikbaar via API."
+            ]
+          },
+          {
+            "id": "US-23",
+            "title": "US-23 - STEP_4E - NACK configuratie",
+            "description": "Als beheerder wil ik NACK-doorzetgedrag configureren zodat procesafspraken gevolgd worden.",
+            "labels": [
+              "fase-2",
+              "geel",
+              "kolom-2-4"
+            ],
+            "acceptanceCriteria": [
+              "NACK-routegedrag is configureerbaar.",
+              "Uitkomst wordt vastgelegd in stapresultaat."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Message Validator (kolom 3)",
+        "cards": [
+          {
+            "id": "US-12",
+            "title": "US-12 - STEP_3A - Operational BRP register",
+            "description": "Als systeem wil ik BRP/EAN valideren zodat alleen erkende partijen doorgaan.",
+            "labels": [
+              "fase-2",
+              "geel",
+              "kolom-3"
+            ],
+            "errorCodes": [
+              "761",
+              "765",
+              "777"
+            ],
+            "acceptanceCriteria": [
+              "Ongeldige BRP/EAN levert validatiefout op.",
+              "Controles zijn herleidbaar in het validatieresultaat."
+            ]
+          },
+          {
+            "id": "US-13",
+            "title": "US-13 - STEP_3B - Uitvoeren marktbusiness validaties",
+            "description": "Als systeem wil ik marktbusinessregels valideren zodat inhoudelijk onjuiste data stopt.",
+            "labels": [
+              "fase-2",
+              "geel",
+              "kolom-3"
+            ],
+            "errorCodes": [
+              "650",
+              "651",
+              "667",
+              "668",
+              "683",
+              "686",
+              "701",
+              "745",
+              "681",
+              "747",
+              "754",
+              "758",
+              "759",
+              "764",
+              "771",
+              "773",
+              "779",
+              "781",
+              "999"
+            ],
+            "acceptanceCriteria": [
+              "Overtredingen geven foutcodes terug.",
+              "Validatiestap ondersteunt meerdere businessregels in één bericht."
+            ]
+          },
+          {
+            "id": "US-14",
+            "title": "US-14 - STEP_3C - Controle op verplichte velden",
+            "description": "Als systeem wil ik verplichte velden controleren zodat incomplete berichten falen.",
+            "labels": [
+              "fase-2",
+              "geel",
+              "kolom-3"
+            ],
+            "errorCodes": [
+              "999"
+            ],
+            "acceptanceCriteria": [
+              "Ontbrekende velden leveren validatiefouten op.",
+              "Ontbrekende velden zijn expliciet zichtbaar in de foutmelding."
+            ]
+          },
+          {
+            "id": "US-15",
+            "title": "US-15 - STEP_3D - Validatieregels configureerbaar",
+            "description": "Als beheerder wil ik regels configureerbaar uitvoeren zodat codewijziging niet nodig is.",
+            "labels": [
+              "fase-2",
+              "geel",
+              "kolom-3"
+            ],
+            "acceptanceCriteria": [
+              "Regelovertredingen worden geregistreerd.",
+              "Regels zijn buiten de code zelf te configureren."
+            ]
+          },
+          {
+            "id": "US-16",
+            "title": "US-16 - STEP_3E - Tijdvenster-validaties",
+            "description": "Als systeem wil ik tijdvensters valideren zodat onlogische periodes worden afgekeurd.",
+            "labels": [
+              "fase-3",
+              "oranje",
+              "kolom-3"
+            ],
+            "errorCodes": [
+              "663",
+              "763",
+              "772"
+            ],
+            "acceptanceCriteria": [
+              "Start/einde-periode wordt inhoudelijk gevalideerd.",
+              "Te verre toekomstige data geeft validatiefout."
+            ]
+          },
+          {
+            "id": "US-17",
+            "title": "US-17 - STEP_3F - Controle op volgordelijkheid",
+            "description": "Als systeem wil ik sequentie van posities controleren zodat reeksen logisch zijn.",
+            "labels": [
+              "fase-3",
+              "oranje",
+              "kolom-3"
+            ],
+            "errorCodes": [
+              "671",
+              "676",
+              "782"
+            ],
+            "acceptanceCriteria": [
+              "Afwijkende volgorde geeft validatiefout.",
+              "Posities starten correct en incrementeren volgens afspraak."
+            ]
+          },
+          {
+            "id": "US-18",
+            "title": "US-18 - STEP_3G - Herbruikbare validatieregels",
+            "description": "Als systeem wil ik herbruikbare regels toepassen zodat controles consistent blijven.",
+            "labels": [
+              "fase-4",
+              "groen",
+              "kolom-3"
+            ],
+            "errorCodes": [
+              "651",
+              "669",
+              "670",
+              "704",
+              "769",
+              "774",
+              "776",
+              "780",
+              "999"
+            ],
+            "acceptanceCriteria": [
+              "Gevonden fouten worden vastgelegd als foutcodes en meldingen.",
+              "De regels zijn herbruikbaar over berichttypen heen."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "N-ACK Handler (kolom 5)",
+        "cards": [
+          {
+            "id": "US-24",
+            "title": "US-24 - STEP_5A - Versturen ACK/NACK",
+            "description": "Als systeem wil ik ACK/NACK versturen zodat marktrespons wordt afgehandeld.",
+            "labels": [
+              "fase-2",
+              "geel",
+              "kolom-5"
+            ],
+            "acceptanceCriteria": [
+              "Verzendmoment wordt vastgelegd.",
+              "ACK en NACK gebruiken hetzelfde responskanaal of contract."
+            ]
+          },
+          {
+            "id": "US-25",
+            "title": "US-25 - STEP_5B - Geconfigureerd respons versturen",
+            "description": "Als beheerder wil ik configuratie op responsverzending zodat doorzetten beheersbaar is.",
+            "labels": [
+              "fase-3",
+              "oranje",
+              "kolom-5"
+            ],
+            "acceptanceCriteria": [
+              "Resultaat van configuratiecheck is zichtbaar.",
+              "Per type respons kan doorzetgedrag worden bepaald."
+            ]
+          },
+          {
+            "id": "US-26",
+            "title": "US-26 - STEP_5C - Logging verzendtijd",
+            "description": "Als operations wil ik verzendtijd loggen zodat transport traceerbaar is.",
+            "labels": [
+              "fase-3",
+              "oranje",
+              "kolom-5"
+            ],
+            "acceptanceCriteria": [
+              "Timestamp is terug te vinden in statusinformatie.",
+              "Logging is herleidbaar per responsbericht."
+            ]
+          },
+          {
+            "id": "US-27",
+            "title": "US-27 - STEP_5D - Zelfstandig versturen",
+            "description": "Als systeem wil ik zelfstandig uitgaande berichten kunnen versturen voor toekomstige functionaliteit.",
+            "labels": [
+              "fase-4",
+              "groen",
+              "kolom-5"
+            ],
+            "acceptanceCriteria": [
+              "Huidige implementatie kan deze stap overslaan zonder fout.",
+              "De stap vormt een duidelijke extensiehaak voor latere outbox/queue-afhandeling."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Output Handler (kolom 6)",
+        "cards": [
+          {
+            "id": "US-28",
+            "title": "US-28 - STEP_6A - Doorzetten naar raw-layer",
+            "description": "Als data-platform wil ik origineel bericht in raw-layer zodat brondata behouden blijft.",
+            "labels": [
+              "fase-1",
+              "blauw",
+              "kolom-6"
+            ],
+            "acceptanceCriteria": [
+              "Pad of locatie wordt vastgelegd in resultaat.",
+              "Het originele bericht blijft ongewijzigd beschikbaar."
+            ]
+          },
+          {
+            "id": "US-29",
+            "title": "US-29 - STEP_6B - Vastleggen afleverstatus",
+            "description": "Als operations wil ik definitieve afleverstatus vastleggen zodat ketenstatus compleet is.",
+            "labels": [
+              "fase-1",
+              "blauw",
+              "kolom-6"
+            ],
+            "acceptanceCriteria": [
+              "Pipeline eindigt met actuele eindstatus.",
+              "De eindstatus is via API opvraagbaar."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "API Scope (.NET)",
+        "cards": [
+          {
+            "id": "SCOPE-1",
+            "title": "Project Infrastructure - .NET + ASP.NET Core API",
+            "description": "ASP.NET Core Web API voor intake, status, reprocess en testdata. Backend verwerkt marktberichten via de 29-stappen pipeline en biedt operations-endpoints aan. Geen dashboard-scope in dit bord.",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "De applicatie exposeert API-endpoints voor submit, status, filtering en reprocess.",
+              "Pipelineverwerking is vanuit API aanroepbaar.",
+              "Testdata-endpoints zijn aanwezig voor demo en validatie."
+            ]
+          },
+          {
+            "id": "SCOPE-2",
+            "title": "API Contract - POST /api/messages",
+            "description": "Submit JSON-bericht naar de pipeline. Response bevat UUID en initiële status.",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "JSON payload wordt geaccepteerd en gevalideerd.",
+              "Berichtstatus wordt op RECEIVED gezet en opgeslagen."
+            ]
+          },
+          {
+            "id": "SCOPE-3",
+            "title": "API Contract - POST /api/messages/xml",
+            "description": "Submit raw XML bericht naar de pipeline via convenience endpoint.",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "XML wordt veilig geparsed.",
+              "Bij succes wordt een messageUuid teruggegeven."
+            ]
+          },
+          {
+            "id": "SCOPE-4",
+            "title": "API Contract - GET /api/messages/{uuid}",
+            "description": "Haal volledige berichtstatus op met alle stapresultaten.",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "Response bevat berichtmetadata, status en 29 stapresultaten.",
+              "Niet-bestaande UUID geeft 404."
+            ]
+          },
+          {
+            "id": "SCOPE-5",
+            "title": "API Contract - GET /api/messages/status/{status}",
+            "description": "Filter berichten op status zoals RECEIVED, FAILED, PARKED of DELIVERED.",
+            "labels": [
+              "fase-2",
+              "geel"
+            ],
+            "acceptanceCriteria": [
+              "Unknown status geeft 400 Bad Request.",
+              "Filterresultaten zijn consistent met opgeslagen eindstatus."
+            ]
+          },
+          {
+            "id": "SCOPE-6",
+            "title": "API Contract - POST /api/messages/{uuid}/reprocess",
+            "description": "Retry FAILED of PARKED berichten door de pipeline opnieuw uit te voeren.",
+            "labels": [
+              "fase-2",
+              "geel"
+            ],
+            "acceptanceCriteria": [
+              "Alleen FAILED of PARKED berichten mogen worden gereprocessed.",
+              "Oude stapresultaten worden opnieuw geïnitialiseerd."
+            ]
+          },
+          {
+            "id": "SCOPE-7",
+            "title": "Reprocess Logic Implementation",
+            "description": "Reset berichtstatus, initialiseer pipeline opnieuw en verwerk transactioneel opnieuw.",
+            "labels": [
+              "fase-2",
+              "geel"
+            ],
+            "acceptanceCriteria": [
+              "Reprocess is transactioneel consistent.",
+              "Nieuwe uitvoering is onderscheidbaar van de oude."
+            ]
+          },
+          {
+            "id": "SCOPE-8",
+            "title": "Error Translation Layer",
+            "description": "Centrale exception handling met gestandaardiseerde API responses voor validation, business rule, rate limit en technische fouten.",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "Responses bevatten foutcode, message, timestamp en path.",
+              "Interne details lekken niet naar clients."
+            ]
+          },
+          {
+            "id": "SCOPE-9",
+            "title": "Security Headers Implementation",
+            "description": "Implementeer security headers en veilige defaults voor een API-only applicatie.",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "Belangrijke security headers zijn aanwezig.",
+              "Unsafe defaults zijn vermeden."
+            ]
+          },
+          {
+            "id": "SCOPE-10",
+            "title": "Rate Limiting per IP",
+            "description": "Per-IP rate limiting voor submit-, seed- en algemene endpoints.",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "Overbelasting resulteert in 429 Too Many Requests.",
+              "Responses bevatten rate-limit headers of equivalente metadata."
+            ]
+          },
+          {
+            "id": "SCOPE-11",
+            "title": "Input Validation & Sanitization",
+            "description": "Valideer UUID, EAN, payload-grootte en sanitize invoer voor opslag en verwerking.",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "Payloads boven de limiet worden afgewezen.",
+              "Control characters worden verwijderd of afgewezen volgens beleid."
+            ]
+          },
+          {
+            "id": "SCOPE-12",
+            "title": "Test Data Generatie & Opschonen",
+            "description": "Ondersteuning voor API testdata via /api/test/seed en /api/test/clear.",
+            "labels": [
+              "fase-1",
+              "blauw"
+            ],
+            "acceptanceCriteria": [
+              "Seed maakt reproduceerbare testberichten aan.",
+              "Clear verwijdert testdata voor een schone herstart."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Foutcodes referentie",
+        "cards": [
+          {
+            "id": "REF-ERR-01",
+            "title": "Officiële foutcodes (Business-Service v4.0)",
+            "description": "650 EAN-18 aansluiting niet valide; 651 EAN-18 netgebied/allocatiepunt niet valide; 663 Periode onjuist; 667 Product past niet bij productsoort; 668 Energie-eenheid past niet bij product; 669 MessageID niet uniek; 670 Kenmerk bericht niet uniek; 671 Aantal posities onjuist; 676 Eerste positie begint niet met 1; 681 ProcessTypeID past niet bij berichtinhoud; 683 Herkomst/validatie/reparatie combinatie ongeldig; 686 Negatief volume (behalve PRF-uitzondering); 701 SenderID SOAP ≠ SenderID BDH; 704 Recentere versie al ontvangen; 745 ReceiverID SOAP ≠ ReceiverID BDH; 747 ProcessTypeID past niet bij ontvanger; 754 ContentType niet in lijn met ProcessTypeID; 758 Ontbrekende of onjuiste EAN-13; 759 Ontbrekende EAN-13 van BRP; 761 BRP niet actief in netgebied; 763 Dagbericht te laat opgeleverd; 764 Aantal tijdseries past niet bij allocatiegroep; 765 BRP niet bekend/erkend; 769 Allocatierun identificatie niet uniek; 771 Vastgesteld afnametype past niet bij profielcategorie; 772 Gegevens (deels) in de toekomst; 773 Resolutie past niet bij afspraken; 774 Factor heeft onjuist aantal decimalen; 776 Volume heeft onjuist aantal decimalen; 777 Netgebied/allocatiepunt niet in landelijke administratie; 779 Aantal profielfractie-tijdseries onjuist; 780 CorrelationID BDH ≠ SOAP; 781 Status profielfracties past niet bij profielcategorie; 782 Increment van tijdserie is geen 1; 999 Generieke fout / vrij tekstveld.",
+            "labels": [
+              "fase-2",
+              "geel"
+            ],
+            "acceptanceCriteria": [
+              "Het bord bevat de officiële foutcodereferentie.",
+              "Foutcodes zijn beschikbaar voor mapping naar validatiestappen."
+            ]
+          },
+          {
+            "id": "REF-ERR-02",
+            "title": "Foutcodes per validatiestap (3A-3G)",
+            "description": "3A: 761, 765, 777. 3B: 650, 651, 667, 668, 683, 686, 701, 745, 681, 747, 754, 758, 759, 764, 771, 773, 779, 781, 999. 3C: 999. 3E: 663, 763, 772. 3F: 671, 676, 782. 3G: 651, 669, 670, 704, 769, 774, 776, 780, 999.",
+            "labels": [
+              "fase-2",
+              "geel"
+            ],
+            "acceptanceCriteria": [
+              "Per validatiestap is helder welke foutcodes verwacht worden.",
+              "Deze mapping ondersteunt ontwerp, test en API-foutafhandeling."
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Backlog",
+        "cards": []
+      },
+      {
+        "name": "To Do",
+        "cards": []
+      },
+      {
+        "name": "Doing",
+        "cards": []
+      },
+      {
+        "name": "Testing",
+        "cards": []
+      },
+      {
+        "name": "Done",
+        "cards": []
+      }
+    ]
+  }
+}

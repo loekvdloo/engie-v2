@@ -1,0 +1,433 @@
+2026-03-26 09:02:01.849 +01:00 [INF] Now listening on: http://localhost:5000
+2026-03-26 09:02:01.879 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-26 09:02:01.880 +01:00 [INF] Hosting environment: Production
+2026-03-26 09:02:01.881 +01:00 [INF] Content root path: c:\Users\loek\engie\engie-v2\src\Engie.Mca.Api
+2026-03-26 09:02:44.712 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/messages - application/json 246
+2026-03-26 09:02:44.732 +01:00 [WRN] Failed to determine the https port for redirect.
+2026-03-26 09:02:44.736 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 09:02:44.761 +01:00 [INF] Route matched with {action = "ProcessMessage", controller = "Messages"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ProcessMessage(Engie.Mca.Api.Models.ProcessMessageRequest) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 09:02:44.796 +01:00 [INF] Processing message: test-logging-valid
+2026-03-26 09:02:44.801 +01:00 [INF] [test-logging-valid] ===== PIPELINE START =====
+2026-03-26 09:02:44.803 +01:00 [INF] [test-logging-valid] Message Type: "AllocationSeries"
+2026-03-26 09:02:44.804 +01:00 [INF] [test-logging-valid] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 09:02:44.812 +01:00 [INF] [test-logging-valid]   ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 09:02:44.814 +01:00 [INF] [test-logging-valid]   ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 09:02:44.816 +01:00 [INF] [test-logging-valid]   ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 09:02:44.817 +01:00 [INF] [test-logging-valid]   ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 09:02:44.818 +01:00 [INF] [test-logging-valid]   ✓ Step 1F: Bereid verwerking voor
+2026-03-26 09:02:44.820 +01:00 [INF] [test-logging-valid] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 09:02:44.821 +01:00 [INF] [test-logging-valid]   ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 09:02:44.824 +01:00 [INF] [test-logging-valid]   ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 09:02:44.825 +01:00 [INF] [test-logging-valid]   ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 09:02:44.827 +01:00 [INF] [test-logging-valid]   ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 09:02:44.829 +01:00 [INF] [test-logging-valid]   ✓ Step 2E: Geen herversending vereist
+2026-03-26 09:02:44.830 +01:00 [INF] [test-logging-valid] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 09:02:44.835 +01:00 [INF] [test-logging-valid]   ✓ Step 3C: Controleer verplichte velden
+2026-03-26 09:02:44.836 +01:00 [INF] [test-logging-valid]   ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 09:02:44.838 +01:00 [INF] [test-logging-valid]   ✓ Step 3E: Controleer tijdvenster
+2026-03-26 09:02:44.840 +01:00 [INF] [test-logging-valid]   ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 09:02:44.841 +01:00 [INF] [test-logging-valid]   ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 09:02:44.842 +01:00 [INF] [test-logging-valid] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 09:02:44.845 +01:00 [INF] [test-logging-valid]   ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 09:02:44.846 +01:00 [INF] [test-logging-valid]   ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 09:02:44.848 +01:00 [INF] [test-logging-valid]   ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 09:02:44.849 +01:00 [INF] [test-logging-valid]   ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 09:02:44.851 +01:00 [INF] [test-logging-valid]   ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 09:02:44.852 +01:00 [INF] [test-logging-valid] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 09:02:44.853 +01:00 [INF] [test-logging-valid]   ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 09:02:44.855 +01:00 [INF] [test-logging-valid]   ✓ Step 5A: Verstuur ACK/NACK
+2026-03-26 09:02:44.856 +01:00 [INF] [test-logging-valid]   ✓ Step 5B: Geconfigureerde respons
+2026-03-26 09:02:44.858 +01:00 [INF] [test-logging-valid]   ✓ Step 5C: Logging verzendtijd
+2026-03-26 09:02:44.859 +01:00 [INF] [test-logging-valid]   ✓ Step 5D: Zelfstandige verzending
+2026-03-26 09:02:44.860 +01:00 [INF] [test-logging-valid] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 09:02:44.862 +01:00 [INF] [test-logging-valid]   ✓ Step 5B: Geconfigureerde respons
+2026-03-26 09:02:44.864 +01:00 [INF] [test-logging-valid]   ✓ Step 5C: Logging verzendtijd
+2026-03-26 09:02:44.865 +01:00 [INF] [test-logging-valid]   ✓ Step 5D: Zelfstandige verzending
+2026-03-26 09:02:44.867 +01:00 [INF] [test-logging-valid]   ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 09:02:44.868 +01:00 [INF] [test-logging-valid]   ✓ Step 6B: Registreer afleverstatus
+2026-03-26 09:02:44.870 +01:00 [INF] [test-logging-valid] ===== PIPELINE COMPLETE ===== Status: "Delivered" | Response: "Ack" | Steps: 28 | Errors: 0
+2026-03-26 09:02:44.875 +01:00 [INF] Executing OkObjectResult, writing value of type 'Engie.Mca.Api.Models.MessageResponseDto'.
+2026-03-26 09:02:44.887 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api) in 120.2065ms
+2026-03-26 09:02:44.889 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 09:02:44.892 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/messages - 200 null application/json; charset=utf-8 181.0751ms
+2026-03-26 09:02:44.909 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/messages - application/json 197
+2026-03-26 09:02:44.913 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 09:02:44.915 +01:00 [INF] Route matched with {action = "ProcessMessage", controller = "Messages"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ProcessMessage(Engie.Mca.Api.Models.ProcessMessageRequest) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 09:02:44.918 +01:00 [INF] Processing message: test-logging-invalid
+2026-03-26 09:02:44.919 +01:00 [INF] [test-logging-invalid] ===== PIPELINE START =====
+2026-03-26 09:02:44.920 +01:00 [INF] [test-logging-invalid] Message Type: "AllocationSeries"
+2026-03-26 09:02:44.922 +01:00 [INF] [test-logging-invalid] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 09:02:44.923 +01:00 [INF] [test-logging-invalid]   ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 09:02:44.926 +01:00 [INF] [test-logging-invalid]   ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 09:02:44.927 +01:00 [INF] [test-logging-invalid]   ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 09:02:44.929 +01:00 [INF] [test-logging-invalid]   ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 09:02:44.930 +01:00 [INF] [test-logging-invalid]   ✓ Step 1F: Bereid verwerking voor
+2026-03-26 09:02:44.932 +01:00 [INF] [test-logging-invalid] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 09:02:44.933 +01:00 [INF] [test-logging-invalid]   ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 09:02:44.934 +01:00 [INF] [test-logging-invalid]   ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 09:02:44.936 +01:00 [INF] [test-logging-invalid]   ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 09:02:44.937 +01:00 [INF] [test-logging-invalid]   ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 09:02:44.939 +01:00 [INF] [test-logging-invalid]   ✓ Step 2E: Geen herversending vereist
+2026-03-26 09:02:44.940 +01:00 [INF] [test-logging-invalid] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 09:02:44.942 +01:00 [INF] [test-logging-invalid]   ✓ Step 3C: Controleer verplichte velden
+2026-03-26 09:02:44.944 +01:00 [INF] [test-logging-invalid]   ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 09:02:44.945 +01:00 [INF] [test-logging-invalid]   ✓ Step 3E: Controleer tijdvenster
+2026-03-26 09:02:44.947 +01:00 [INF] [test-logging-invalid]   ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 09:02:44.948 +01:00 [INF] [test-logging-invalid]   ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 09:02:44.950 +01:00 [WRN] [test-logging-invalid]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 09:02:44.952 +01:00 [WRN] [test-logging-invalid] Column 3 validation failed with 1 errors
+2026-03-26 09:02:44.954 +01:00 [INF] [test-logging-invalid] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 09:02:44.956 +01:00 [INF] [test-logging-invalid]   ✓ Step 4A: Genereer NACK-bericht
+2026-03-26 09:02:44.957 +01:00 [INF] [test-logging-invalid]   ✓ Step 4B: Voeg foutcodes toe aan NACK
+2026-03-26 09:02:44.959 +01:00 [INF] [test-logging-invalid]   ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 09:02:44.960 +01:00 [INF] [test-logging-invalid]   ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 09:02:44.962 +01:00 [INF] [test-logging-invalid]   ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 09:02:44.964 +01:00 [WRN] [test-logging-invalid]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 09:02:44.965 +01:00 [INF] [test-logging-invalid] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 09:02:44.966 +01:00 [INF] [test-logging-invalid]   ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 09:02:44.968 +01:00 [INF] [test-logging-invalid]   ✓ Step 5A: Verstuur ACK/NACK
+2026-03-26 09:02:44.970 +01:00 [INF] [test-logging-invalid]   ✓ Step 5B: Geconfigureerde respons
+2026-03-26 09:02:44.972 +01:00 [INF] [test-logging-invalid]   ✓ Step 5C: Logging verzendtijd
+2026-03-26 09:02:44.973 +01:00 [INF] [test-logging-invalid]   ✓ Step 5D: Zelfstandige verzending
+2026-03-26 09:02:44.975 +01:00 [WRN] [test-logging-invalid]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 09:02:44.977 +01:00 [INF] [test-logging-invalid] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 09:02:44.978 +01:00 [INF] [test-logging-invalid]   ✓ Step 5B: Geconfigureerde respons
+2026-03-26 09:02:44.980 +01:00 [INF] [test-logging-invalid]   ✓ Step 5C: Logging verzendtijd
+2026-03-26 09:02:44.981 +01:00 [INF] [test-logging-invalid]   ✓ Step 5D: Zelfstandige verzending
+2026-03-26 09:02:44.983 +01:00 [INF] [test-logging-invalid]   ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 09:02:44.984 +01:00 [INF] [test-logging-invalid]   ✓ Step 6B: Registreer afleverstatus
+2026-03-26 09:02:44.986 +01:00 [WRN] [test-logging-invalid]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 09:02:44.988 +01:00 [INF] [test-logging-invalid] ===== PIPELINE COMPLETE ===== Status: "Failed" | Response: "Nack" | Steps: 29 | Errors: 1
+2026-03-26 09:02:44.991 +01:00 [INF] Executing OkObjectResult, writing value of type 'Engie.Mca.Api.Models.MessageResponseDto'.
+2026-03-26 09:02:44.992 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api) in 75.029ms
+2026-03-26 09:02:44.994 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 09:02:44.996 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/messages - 200 null application/json; charset=utf-8 86.4138ms
+2026-03-26 09:02:45.014 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/test-logging-valid/steps - null null
+2026-03-26 09:02:45.018 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 09:02:45.028 +01:00 [INF] Route matched with {action = "GetMessageSteps", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetMessageSteps(System.String) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 09:02:45.036 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`6[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType0`4[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType2`3[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-26 09:02:45.045 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api) in 13.8046ms
+2026-03-26 09:02:45.047 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 09:02:45.049 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/test-logging-valid/steps - 200 null application/json; charset=utf-8 35.1152ms
+2026-03-26 09:02:45.085 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - null null
+2026-03-26 09:02:45.088 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 09:02:45.090 +01:00 [INF] Route matched with {action = "GetStatsSummary", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatsSummary() on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 09:02:45.096 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType4`2[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-26 09:02:45.105 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api) in 12.8363ms
+2026-03-26 09:02:45.108 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 09:02:45.110 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - 200 null application/json; charset=utf-8 25.5373ms
+2026-03-26 09:50:16.655 +01:00 [INF] Now listening on: http://localhost:5000
+2026-03-26 09:50:16.687 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-26 09:50:16.689 +01:00 [INF] Hosting environment: Production
+2026-03-26 09:50:16.691 +01:00 [INF] Content root path: c:\Users\loek\engie\engie-v2\src\Engie.Mca.Api
+2026-03-26 09:51:31.238 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - null null
+2026-03-26 09:51:31.261 +01:00 [WRN] Failed to determine the https port for redirect.
+2026-03-26 09:51:31.266 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 09:51:31.285 +01:00 [INF] Route matched with {action = "GetStatsSummary", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatsSummary() on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 09:51:31.298 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType4`2[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-26 09:51:31.332 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api) in 41.772ms
+2026-03-26 09:51:31.335 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 09:51:31.337 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - 200 null application/json; charset=utf-8 102.1098ms
+2026-03-26 09:51:43.296 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - null null
+2026-03-26 09:51:43.301 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 09:51:43.303 +01:00 [INF] Route matched with {action = "GetStatsSummary", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatsSummary() on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 09:51:43.306 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType4`2[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-26 09:51:43.309 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api) in 3.8643ms
+2026-03-26 09:51:43.311 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 09:51:43.313 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - 200 null application/json; charset=utf-8 16.9146ms
+2026-03-26 09:51:54.243 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/messages - application/json 163
+2026-03-26 09:51:54.250 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 09:51:54.261 +01:00 [INF] Route matched with {action = "ProcessMessage", controller = "Messages"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ProcessMessage(Engie.Mca.Api.Models.ProcessMessageRequest) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 09:51:54.285 +01:00 [INF] Processing message: micro-e2e-001
+2026-03-26 09:51:54.290 +01:00 [INF] [micro-e2e-001] ===== ORCHESTRATION START =====
+2026-03-26 09:51:54.291 +01:00 [INF] [micro-e2e-001] Calling Event Handler Service...
+2026-03-26 09:51:54.301 +01:00 [INF] Start processing HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 09:51:54.304 +01:00 [INF] Sending HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 09:51:54.504 +01:00 [INF] Received HTTP response headers after 196.5922ms - 200
+2026-03-26 09:51:54.506 +01:00 [INF] End processing HTTP request after 206.2067ms - 200
+2026-03-26 09:51:54.510 +01:00 [INF] [micro-e2e-001] Calling Message Processor Phase 2...
+2026-03-26 09:51:54.511 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 09:51:54.513 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 09:51:54.674 +01:00 [INF] Received HTTP response headers after 158.8587ms - 200
+2026-03-26 09:51:54.676 +01:00 [INF] End processing HTTP request after 165.2691ms - 200
+2026-03-26 09:51:54.681 +01:00 [INF] [micro-e2e-001] Calling Message Validator...
+2026-03-26 09:51:54.686 +01:00 [INF] Start processing HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 09:51:54.688 +01:00 [INF] Sending HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 09:51:54.862 +01:00 [INF] Received HTTP response headers after 172.5172ms - 200
+2026-03-26 09:51:54.864 +01:00 [INF] End processing HTTP request after 178.3304ms - 200
+2026-03-26 09:51:54.868 +01:00 [INF] [micro-e2e-001] Calling Message Processor Phase 4...
+2026-03-26 09:51:54.870 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 09:51:54.871 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 09:51:55.002 +01:00 [INF] Received HTTP response headers after 129.5986ms - 200
+2026-03-26 09:51:55.005 +01:00 [INF] End processing HTTP request after 134.9982ms - 200
+2026-03-26 09:51:55.007 +01:00 [INF] [micro-e2e-001] Calling N-ACK Handler...
+2026-03-26 09:51:55.008 +01:00 [INF] Start processing HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 09:51:55.009 +01:00 [INF] Sending HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 09:51:55.129 +01:00 [INF] Received HTTP response headers after 118.9288ms - 200
+2026-03-26 09:51:55.131 +01:00 [INF] End processing HTTP request after 123.3685ms - 200
+2026-03-26 09:51:55.134 +01:00 [INF] [micro-e2e-001] Calling Output Handler...
+2026-03-26 09:51:55.136 +01:00 [INF] Start processing HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 09:51:55.137 +01:00 [INF] Sending HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 09:51:55.233 +01:00 [INF] Received HTTP response headers after 94.7342ms - 200
+2026-03-26 09:51:55.235 +01:00 [INF] End processing HTTP request after 99.6528ms - 200
+2026-03-26 09:51:55.238 +01:00 [INF] [micro-e2e-001] ===== ORCHESTRATION COMPLETE ===== Status: "Delivered" | Response: "Ack" | Steps: 29
+2026-03-26 09:51:55.244 +01:00 [INF] Executing OkObjectResult, writing value of type 'Engie.Mca.Api.Models.MessageResponseDto'.
+2026-03-26 09:51:55.248 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api) in 983.7441ms
+2026-03-26 09:51:55.250 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 09:51:55.252 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/messages - 200 null application/json; charset=utf-8 1008.6077ms
+2026-03-26 10:05:08.071 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/messages - application/json 170
+2026-03-26 10:05:08.075 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 10:05:08.076 +01:00 [INF] Route matched with {action = "ProcessMessage", controller = "Messages"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ProcessMessage(Engie.Mca.Api.Models.ProcessMessageRequest) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:05:08.080 +01:00 [INF] Processing message: micro-block-logs-001
+2026-03-26 10:05:08.081 +01:00 [INF] [micro-block-logs-001] ===== ORCHESTRATION START =====
+2026-03-26 10:05:08.082 +01:00 [INF] [micro-block-logs-001] Calling Event Handler Service...
+2026-03-26 10:05:08.083 +01:00 [INF] Start processing HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 10:05:08.085 +01:00 [INF] Sending HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 10:05:08.235 +01:00 [INF] Received HTTP response headers after 148.886ms - 200
+2026-03-26 10:05:08.237 +01:00 [INF] End processing HTTP request after 153.5268ms - 200
+2026-03-26 10:05:08.240 +01:00 [INF] [micro-block-logs-001] Calling Message Processor Phase 2...
+2026-03-26 10:05:08.242 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 10:05:08.243 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 10:05:08.415 +01:00 [INF] Received HTTP response headers after 169.9435ms - 200
+2026-03-26 10:05:08.417 +01:00 [INF] End processing HTTP request after 175.5353ms - 200
+2026-03-26 10:05:08.421 +01:00 [INF] [micro-block-logs-001] Calling Message Validator...
+2026-03-26 10:05:08.422 +01:00 [INF] Start processing HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 10:05:08.423 +01:00 [INF] Sending HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 10:05:08.598 +01:00 [INF] Received HTTP response headers after 172.9327ms - 200
+2026-03-26 10:05:08.600 +01:00 [INF] End processing HTTP request after 177.7099ms - 200
+2026-03-26 10:05:08.603 +01:00 [INF] [micro-block-logs-001] Calling Message Processor Phase 4...
+2026-03-26 10:05:08.605 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 10:05:08.606 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 10:05:08.723 +01:00 [INF] Received HTTP response headers after 116.1244ms - 200
+2026-03-26 10:05:08.725 +01:00 [INF] End processing HTTP request after 120.9923ms - 200
+2026-03-26 10:05:08.727 +01:00 [INF] [micro-block-logs-001] Calling N-ACK Handler...
+2026-03-26 10:05:08.728 +01:00 [INF] Start processing HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 10:05:08.730 +01:00 [INF] Sending HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 10:05:08.852 +01:00 [INF] Received HTTP response headers after 121.4968ms - 200
+2026-03-26 10:05:08.855 +01:00 [INF] End processing HTTP request after 127.0574ms - 200
+2026-03-26 10:05:08.858 +01:00 [INF] [micro-block-logs-001] Calling Output Handler...
+2026-03-26 10:05:08.860 +01:00 [INF] Start processing HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 10:05:08.861 +01:00 [INF] Sending HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 10:05:08.987 +01:00 [INF] Received HTTP response headers after 124.3056ms - 200
+2026-03-26 10:05:08.989 +01:00 [INF] End processing HTTP request after 128.933ms - 200
+2026-03-26 10:05:08.992 +01:00 [INF] [micro-block-logs-001] ===== ORCHESTRATION COMPLETE ===== Status: "Delivered" | Response: "Ack" | Steps: 29
+2026-03-26 10:05:08.994 +01:00 [INF] Executing OkObjectResult, writing value of type 'Engie.Mca.Api.Models.MessageResponseDto'.
+2026-03-26 10:05:08.996 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api) in 917.8456ms
+2026-03-26 10:05:08.998 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 10:05:08.999 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/messages - 200 null application/json; charset=utf-8 928.0178ms
+2026-03-26 10:07:31.120 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - null null
+2026-03-26 10:07:31.124 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 10:07:31.126 +01:00 [INF] Route matched with {action = "GetStatsSummary", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatsSummary() on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:07:31.130 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType4`2[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-26 10:07:31.133 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api) in 5.0361ms
+2026-03-26 10:07:31.135 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 10:07:31.136 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - 200 null application/json; charset=utf-8 15.5403ms
+2026-03-26 10:07:31.240 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/messages - application/json 168
+2026-03-26 10:07:31.244 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 10:07:31.245 +01:00 [INF] Route matched with {action = "ProcessMessage", controller = "Messages"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ProcessMessage(Engie.Mca.Api.Models.ProcessMessageRequest) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:07:31.247 +01:00 [INF] Processing message: run-test-valid-001
+2026-03-26 10:07:31.248 +01:00 [INF] [run-test-valid-001] ===== ORCHESTRATION START =====
+2026-03-26 10:07:31.249 +01:00 [INF] [run-test-valid-001] Calling Event Handler Service...
+2026-03-26 10:07:31.251 +01:00 [INF] Start processing HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 10:07:31.252 +01:00 [INF] Sending HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 10:07:31.389 +01:00 [INF] Received HTTP response headers after 135.1837ms - 200
+2026-03-26 10:07:31.393 +01:00 [INF] End processing HTTP request after 142.1146ms - 200
+2026-03-26 10:07:31.394 +01:00 [INF] [run-test-valid-001] Calling Message Processor Phase 2...
+2026-03-26 10:07:31.395 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 10:07:31.396 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 10:07:31.487 +01:00 [INF] Received HTTP response headers after 89.0866ms - 200
+2026-03-26 10:07:31.488 +01:00 [INF] End processing HTTP request after 93.0938ms - 200
+2026-03-26 10:07:31.490 +01:00 [INF] [run-test-valid-001] Calling Message Validator...
+2026-03-26 10:07:31.491 +01:00 [INF] Start processing HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 10:07:31.493 +01:00 [INF] Sending HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 10:07:31.629 +01:00 [INF] Received HTTP response headers after 135.0249ms - 200
+2026-03-26 10:07:31.633 +01:00 [INF] End processing HTTP request after 142.0482ms - 200
+2026-03-26 10:07:31.639 +01:00 [INF] [run-test-valid-001] Calling Message Processor Phase 4...
+2026-03-26 10:07:31.643 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 10:07:31.646 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 10:07:31.753 +01:00 [INF] Received HTTP response headers after 105.0454ms - 200
+2026-03-26 10:07:31.760 +01:00 [INF] End processing HTTP request after 116.8885ms - 200
+2026-03-26 10:07:31.767 +01:00 [INF] [run-test-valid-001] Calling N-ACK Handler...
+2026-03-26 10:07:31.771 +01:00 [INF] Start processing HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 10:07:31.775 +01:00 [INF] Sending HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 10:07:31.865 +01:00 [INF] Received HTTP response headers after 86.4644ms - 200
+2026-03-26 10:07:31.866 +01:00 [INF] End processing HTTP request after 94.8076ms - 200
+2026-03-26 10:07:31.868 +01:00 [INF] [run-test-valid-001] Calling Output Handler...
+2026-03-26 10:07:31.870 +01:00 [INF] Start processing HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 10:07:31.871 +01:00 [INF] Sending HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 10:07:31.926 +01:00 [INF] Received HTTP response headers after 53.5168ms - 200
+2026-03-26 10:07:31.927 +01:00 [INF] End processing HTTP request after 57.5109ms - 200
+2026-03-26 10:07:31.929 +01:00 [INF] [run-test-valid-001] ===== ORCHESTRATION COMPLETE ===== Status: "Delivered" | Response: "Ack" | Steps: 29
+2026-03-26 10:07:31.931 +01:00 [INF] Executing OkObjectResult, writing value of type 'Engie.Mca.Api.Models.MessageResponseDto'.
+2026-03-26 10:07:31.934 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api) in 687.1369ms
+2026-03-26 10:07:31.935 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 10:07:31.937 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/messages - 200 null application/json; charset=utf-8 696.7419ms
+2026-03-26 10:07:31.969 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/messages - application/json 158
+2026-03-26 10:07:31.974 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 10:07:31.975 +01:00 [INF] Route matched with {action = "ProcessMessage", controller = "Messages"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ProcessMessage(Engie.Mca.Api.Models.ProcessMessageRequest) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:07:31.977 +01:00 [INF] Processing message: run-test-invalid-001
+2026-03-26 10:07:31.978 +01:00 [INF] [run-test-invalid-001] ===== ORCHESTRATION START =====
+2026-03-26 10:07:31.979 +01:00 [INF] [run-test-invalid-001] Calling Event Handler Service...
+2026-03-26 10:07:31.980 +01:00 [INF] Start processing HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 10:07:31.982 +01:00 [INF] Sending HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 10:07:32.083 +01:00 [INF] Received HTTP response headers after 99.6236ms - 200
+2026-03-26 10:07:32.084 +01:00 [INF] End processing HTTP request after 103.5463ms - 200
+2026-03-26 10:07:32.085 +01:00 [INF] [run-test-invalid-001] Calling Message Processor Phase 2...
+2026-03-26 10:07:32.087 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 10:07:32.088 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 10:07:32.177 +01:00 [INF] Received HTTP response headers after 87.9279ms - 200
+2026-03-26 10:07:32.179 +01:00 [INF] End processing HTTP request after 92.387ms - 200
+2026-03-26 10:07:32.181 +01:00 [INF] [run-test-invalid-001] Calling Message Validator...
+2026-03-26 10:07:32.182 +01:00 [INF] Start processing HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 10:07:32.184 +01:00 [INF] Sending HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 10:07:32.320 +01:00 [INF] Received HTTP response headers after 134.6039ms - 200
+2026-03-26 10:07:32.322 +01:00 [INF] End processing HTTP request after 139.9612ms - 200
+2026-03-26 10:07:32.324 +01:00 [INF] [run-test-invalid-001] Calling Message Processor Phase 4...
+2026-03-26 10:07:32.325 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 10:07:32.327 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 10:07:32.443 +01:00 [INF] Received HTTP response headers after 115.2129ms - 200
+2026-03-26 10:07:32.445 +01:00 [INF] End processing HTTP request after 119.6935ms - 200
+2026-03-26 10:07:32.446 +01:00 [INF] [run-test-invalid-001] Calling N-ACK Handler...
+2026-03-26 10:07:32.447 +01:00 [INF] Start processing HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 10:07:32.449 +01:00 [INF] Sending HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 10:07:32.523 +01:00 [INF] Received HTTP response headers after 73.0653ms - 200
+2026-03-26 10:07:32.525 +01:00 [INF] End processing HTTP request after 77.3297ms - 200
+2026-03-26 10:07:32.527 +01:00 [INF] [run-test-invalid-001] Calling Output Handler...
+2026-03-26 10:07:32.528 +01:00 [INF] Start processing HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 10:07:32.529 +01:00 [INF] Sending HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 10:07:32.585 +01:00 [INF] Received HTTP response headers after 54.6631ms - 200
+2026-03-26 10:07:32.587 +01:00 [INF] End processing HTTP request after 59.2287ms - 200
+2026-03-26 10:07:32.590 +01:00 [INF] [run-test-invalid-001] ===== ORCHESTRATION COMPLETE ===== Status: "Failed" | Response: "Nack" | Steps: 29
+2026-03-26 10:07:32.592 +01:00 [INF] Executing OkObjectResult, writing value of type 'Engie.Mca.Api.Models.MessageResponseDto'.
+2026-03-26 10:07:32.595 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api) in 617.589ms
+2026-03-26 10:07:32.596 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 10:07:32.597 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/messages - 200 null application/json; charset=utf-8 628.2216ms
+2026-03-26 10:07:32.624 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/run-test-valid-001/steps - null null
+2026-03-26 10:07:32.627 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 10:07:32.630 +01:00 [INF] Route matched with {action = "GetMessageSteps", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetMessageSteps(System.String) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:07:32.636 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`6[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType0`4[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType2`3[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-26 10:07:32.642 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api) in 10.5015ms
+2026-03-26 10:07:32.644 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 10:07:32.646 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/run-test-valid-001/steps - 200 null application/json; charset=utf-8 21.937ms
+2026-03-26 10:07:32.675 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/run-test-invalid-001/steps - null null
+2026-03-26 10:07:32.679 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 10:07:32.680 +01:00 [INF] Route matched with {action = "GetMessageSteps", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetMessageSteps(System.String) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:07:32.682 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`6[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType0`4[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType2`3[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-26 10:07:32.687 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api) in 4.9836ms
+2026-03-26 10:07:32.688 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 10:07:32.689 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/run-test-invalid-001/steps - 200 null application/json; charset=utf-8 14.2493ms
+2026-03-26 10:07:32.719 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - null null
+2026-03-26 10:07:32.722 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 10:07:32.723 +01:00 [INF] Route matched with {action = "GetStatsSummary", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatsSummary() on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:07:32.725 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType4`2[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-26 10:07:32.727 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api) in 2.106ms
+2026-03-26 10:07:32.729 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 10:07:32.730 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - 200 null application/json; charset=utf-8 11.3184ms
+2026-03-26 10:08:02.838 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/messages - application/json 168
+2026-03-26 10:08:02.841 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 10:08:02.842 +01:00 [INF] Route matched with {action = "ProcessMessage", controller = "Messages"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ProcessMessage(Engie.Mca.Api.Models.ProcessMessageRequest) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:08:02.844 +01:00 [INF] Processing message: run-test-valid-001
+2026-03-26 10:08:02.845 +01:00 [INF] [run-test-valid-001] ===== ORCHESTRATION START =====
+2026-03-26 10:08:02.846 +01:00 [INF] [run-test-valid-001] Calling Event Handler Service...
+2026-03-26 10:08:02.847 +01:00 [INF] Start processing HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 10:08:02.848 +01:00 [INF] Sending HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 10:08:02.968 +01:00 [INF] Received HTTP response headers after 118.9855ms - 200
+2026-03-26 10:08:02.970 +01:00 [INF] End processing HTTP request after 122.8446ms - 200
+2026-03-26 10:08:02.971 +01:00 [INF] [run-test-valid-001] Calling Message Processor Phase 2...
+2026-03-26 10:08:02.973 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 10:08:02.974 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 10:08:03.078 +01:00 [INF] Received HTTP response headers after 103.0216ms - 200
+2026-03-26 10:08:03.081 +01:00 [INF] End processing HTTP request after 107.96ms - 200
+2026-03-26 10:08:03.082 +01:00 [INF] [run-test-valid-001] Calling Message Validator...
+2026-03-26 10:08:03.083 +01:00 [INF] Start processing HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 10:08:03.084 +01:00 [INF] Sending HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 10:08:03.204 +01:00 [INF] Received HTTP response headers after 118.7987ms - 200
+2026-03-26 10:08:03.206 +01:00 [INF] End processing HTTP request after 122.9373ms - 200
+2026-03-26 10:08:03.213 +01:00 [INF] [run-test-valid-001] Calling Message Processor Phase 4...
+2026-03-26 10:08:03.215 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 10:08:03.216 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 10:08:03.310 +01:00 [INF] Received HTTP response headers after 92.8262ms - 200
+2026-03-26 10:08:03.312 +01:00 [INF] End processing HTTP request after 97.1815ms - 200
+2026-03-26 10:08:03.314 +01:00 [INF] [run-test-valid-001] Calling N-ACK Handler...
+2026-03-26 10:08:03.315 +01:00 [INF] Start processing HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 10:08:03.316 +01:00 [INF] Sending HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 10:08:03.415 +01:00 [INF] Received HTTP response headers after 98.0434ms - 200
+2026-03-26 10:08:03.418 +01:00 [INF] End processing HTTP request after 103.1245ms - 200
+2026-03-26 10:08:03.419 +01:00 [INF] [run-test-valid-001] Calling Output Handler...
+2026-03-26 10:08:03.421 +01:00 [INF] Start processing HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 10:08:03.422 +01:00 [INF] Sending HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 10:08:03.466 +01:00 [INF] Received HTTP response headers after 42.7749ms - 200
+2026-03-26 10:08:03.467 +01:00 [INF] End processing HTTP request after 46.7536ms - 200
+2026-03-26 10:08:03.469 +01:00 [INF] [run-test-valid-001] ===== ORCHESTRATION COMPLETE ===== Status: "Delivered" | Response: "Ack" | Steps: 29
+2026-03-26 10:08:03.471 +01:00 [INF] Executing OkObjectResult, writing value of type 'Engie.Mca.Api.Models.MessageResponseDto'.
+2026-03-26 10:08:03.473 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api) in 629.0137ms
+2026-03-26 10:08:03.475 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 10:08:03.476 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/messages - 200 null application/json; charset=utf-8 638.5289ms
+2026-03-26 10:08:03.480 +01:00 [INF] Request starting HTTP/1.1 POST http://localhost:5000/api/messages - application/json 158
+2026-03-26 10:08:03.483 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 10:08:03.484 +01:00 [INF] Route matched with {action = "ProcessMessage", controller = "Messages"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ProcessMessage(Engie.Mca.Api.Models.ProcessMessageRequest) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:08:03.486 +01:00 [INF] Processing message: run-test-invalid-001
+2026-03-26 10:08:03.487 +01:00 [INF] [run-test-invalid-001] ===== ORCHESTRATION START =====
+2026-03-26 10:08:03.488 +01:00 [INF] [run-test-invalid-001] Calling Event Handler Service...
+2026-03-26 10:08:03.489 +01:00 [INF] Start processing HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 10:08:03.490 +01:00 [INF] Sending HTTP request POST http://localhost:5001/api/event/handle
+2026-03-26 10:08:03.615 +01:00 [INF] Received HTTP response headers after 123.9037ms - 200
+2026-03-26 10:08:03.616 +01:00 [INF] End processing HTTP request after 127.6966ms - 200
+2026-03-26 10:08:03.618 +01:00 [INF] [run-test-invalid-001] Calling Message Processor Phase 2...
+2026-03-26 10:08:03.620 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 10:08:03.621 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase2
+2026-03-26 10:08:03.723 +01:00 [INF] Received HTTP response headers after 100.5354ms - 200
+2026-03-26 10:08:03.725 +01:00 [INF] End processing HTTP request after 105.5851ms - 200
+2026-03-26 10:08:03.727 +01:00 [INF] [run-test-invalid-001] Calling Message Validator...
+2026-03-26 10:08:03.728 +01:00 [INF] Start processing HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 10:08:03.730 +01:00 [INF] Sending HTTP request POST http://localhost:5003/api/validator/validate
+2026-03-26 10:08:03.866 +01:00 [INF] Received HTTP response headers after 133.8201ms - 200
+2026-03-26 10:08:03.868 +01:00 [INF] End processing HTTP request after 139.5327ms - 200
+2026-03-26 10:08:03.869 +01:00 [INF] [run-test-invalid-001] Calling Message Processor Phase 4...
+2026-03-26 10:08:03.870 +01:00 [INF] Start processing HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 10:08:03.871 +01:00 [INF] Sending HTTP request POST http://localhost:5002/api/processor/phase4
+2026-03-26 10:08:03.961 +01:00 [INF] Received HTTP response headers after 88.9738ms - 200
+2026-03-26 10:08:03.963 +01:00 [INF] End processing HTTP request after 93.1084ms - 200
+2026-03-26 10:08:03.964 +01:00 [INF] [run-test-invalid-001] Calling N-ACK Handler...
+2026-03-26 10:08:03.966 +01:00 [INF] Start processing HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 10:08:03.967 +01:00 [INF] Sending HTTP request POST http://localhost:5004/api/nack/send
+2026-03-26 10:08:04.041 +01:00 [INF] Received HTTP response headers after 72.9616ms - 200
+2026-03-26 10:08:04.043 +01:00 [INF] End processing HTTP request after 77.3457ms - 200
+2026-03-26 10:08:04.044 +01:00 [INF] [run-test-invalid-001] Calling Output Handler...
+2026-03-26 10:08:04.045 +01:00 [INF] Start processing HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 10:08:04.047 +01:00 [INF] Sending HTTP request POST http://localhost:5005/api/output/finalize
+2026-03-26 10:08:04.104 +01:00 [INF] Received HTTP response headers after 55.8439ms - 200
+2026-03-26 10:08:04.105 +01:00 [INF] End processing HTTP request after 59.7743ms - 200
+2026-03-26 10:08:04.107 +01:00 [INF] [run-test-invalid-001] ===== ORCHESTRATION COMPLETE ===== Status: "Failed" | Response: "Nack" | Steps: 29
+2026-03-26 10:08:04.109 +01:00 [INF] Executing OkObjectResult, writing value of type 'Engie.Mca.Api.Models.MessageResponseDto'.
+2026-03-26 10:08:04.110 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api) in 624.8311ms
+2026-03-26 10:08:04.112 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.ProcessMessage (Engie.Mca.Api)'
+2026-03-26 10:08:04.113 +01:00 [INF] Request finished HTTP/1.1 POST http://localhost:5000/api/messages - 200 null application/json; charset=utf-8 632.6418ms
+2026-03-26 10:08:04.116 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/run-test-valid-001/steps - null null
+2026-03-26 10:08:04.118 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 10:08:04.119 +01:00 [INF] Route matched with {action = "GetMessageSteps", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetMessageSteps(System.String) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:08:04.121 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`6[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType0`4[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType2`3[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-26 10:08:04.123 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api) in 2.5188ms
+2026-03-26 10:08:04.125 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 10:08:04.126 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/run-test-valid-001/steps - 200 null application/json; charset=utf-8 10.0923ms
+2026-03-26 10:08:04.129 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/run-test-invalid-001/steps - null null
+2026-03-26 10:08:04.132 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 10:08:04.133 +01:00 [INF] Route matched with {action = "GetMessageSteps", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetMessageSteps(System.String) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:08:04.135 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType1`6[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType0`4[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Boolean, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType2`3[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-26 10:08:04.138 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api) in 2.7653ms
+2026-03-26 10:08:04.139 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 10:08:04.140 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/run-test-invalid-001/steps - 200 null application/json; charset=utf-8 11.4223ms
+2026-03-26 10:08:04.143 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - null null
+2026-03-26 10:08:04.146 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 10:08:04.147 +01:00 [INF] Route matched with {action = "GetStatsSummary", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetStatsSummary() on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:08:04.149 +01:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`8[[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Decimal, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.List`1[[<>f__AnonymousType4`2[[System.String, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Int32, System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], Engie.Mca.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=10.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2026-03-26 10:08:04.151 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api) in 2.1521ms
+2026-03-26 10:08:04.152 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetStatsSummary (Engie.Mca.Api)'
+2026-03-26 10:08:04.154 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/stats/summary - 200 null application/json; charset=utf-8 10.2144ms
+2026-03-26 10:13:19.788 +01:00 [INF] Request starting HTTP/1.1 GET http://localhost:5000/api/messages/complete-test-001/steps - null null
+2026-03-26 10:13:19.791 +01:00 [INF] Executing endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 10:13:19.794 +01:00 [INF] Route matched with {action = "GetMessageSteps", controller = "Messages"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetMessageSteps(System.String) on controller Engie.Mca.Api.Controllers.MessagesController (Engie.Mca.Api).
+2026-03-26 10:13:19.800 +01:00 [INF] Executing NotFoundObjectResult, writing value of type 'Engie.Mca.Api.Models.ErrorResponse'.
+2026-03-26 10:13:19.802 +01:00 [INF] Executed action Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api) in 4.2478ms
+2026-03-26 10:13:19.805 +01:00 [INF] Executed endpoint 'Engie.Mca.Api.Controllers.MessagesController.GetMessageSteps (Engie.Mca.Api)'
+2026-03-26 10:13:19.808 +01:00 [INF] Request finished HTTP/1.1 GET http://localhost:5000/api/messages/complete-test-001/steps - 404 null application/json; charset=utf-8 19.8328ms

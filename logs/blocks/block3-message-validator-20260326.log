@@ -1,0 +1,1362 @@
+2026-03-26 11:01:22.234 +01:00 [INF] [block-clean-invalid-20260326-02] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:01:22.265 +01:00 [WRN] [block-clean-invalid-20260326-02]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 11:01:22.287 +01:00 [INF] [block-clean-invalid-20260326-02] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:01:22.303 +01:00 [INF] [block-clean-invalid-20260326-02] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:01:22.318 +01:00 [INF] [block-clean-invalid-20260326-02] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:01:22.334 +01:00 [INF] [block-clean-invalid-20260326-02] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:01:22.350 +01:00 [INF] [block-clean-invalid-20260326-02] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:01:22.365 +01:00 [INF] [block-clean-invalid-20260326-02] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:36:07.373 +01:00 [INF] [block-valid-20260326-113607] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:36:07.376 +01:00 [INF] [block-valid-20260326-113607] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:36:07.392 +01:00 [INF] [block-valid-20260326-113607] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:36:07.411 +01:00 [INF] [block-valid-20260326-113607] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:36:07.425 +01:00 [INF] [block-valid-20260326-113607] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:36:07.443 +01:00 [INF] [block-valid-20260326-113607] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:36:07.465 +01:00 [INF] [block-valid-20260326-113607] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:36:07.478 +01:00 [INF] [block-valid-20260326-113607] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:36:09.019 +01:00 [INF] [block-invalid-20260326-113607] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:36:09.021 +01:00 [INF] [block-invalid-20260326-113607] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:36:09.028 +01:00 [INF] [block-invalid-20260326-113607] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:36:09.042 +01:00 [INF] [block-invalid-20260326-113607] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:36:09.058 +01:00 [INF] [block-invalid-20260326-113607] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:36:09.077 +01:00 [INF] [block-invalid-20260326-113607] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:36:09.094 +01:00 [INF] [block-invalid-20260326-113607] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:36:09.110 +01:00 [INF] [block-invalid-20260326-113607] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:36:39.773 +01:00 [INF] [block-valid-20260326-113639] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:36:39.778 +01:00 [INF] [block-valid-20260326-113639] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:36:39.791 +01:00 [INF] [block-valid-20260326-113639] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:36:39.808 +01:00 [INF] [block-valid-20260326-113639] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:36:39.825 +01:00 [INF] [block-valid-20260326-113639] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:36:39.839 +01:00 [INF] [block-valid-20260326-113639] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:36:39.856 +01:00 [INF] [block-valid-20260326-113639] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:36:39.872 +01:00 [INF] [block-valid-20260326-113639] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:36:41.415 +01:00 [INF] [block-invalid-20260326-113639] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:36:41.417 +01:00 [WRN] [block-invalid-20260326-113639]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 11:36:41.437 +01:00 [INF] [block-invalid-20260326-113639] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:36:41.449 +01:00 [INF] [block-invalid-20260326-113639] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:36:41.462 +01:00 [INF] [block-invalid-20260326-113639] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:36:41.489 +01:00 [INF] [block-invalid-20260326-113639] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:36:41.508 +01:00 [INF] [block-invalid-20260326-113639] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:36:41.522 +01:00 [INF] [block-invalid-20260326-113639] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:38:42.073 +01:00 [INF] [tc-alloc-valid-01] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:38:42.074 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:38:42.097 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:38:42.110 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:38:42.126 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:38:42.142 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:38:42.159 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:38:42.177 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:38:42.870 +01:00 [INF] [tc-alloc-valid-02] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:38:42.872 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:38:42.882 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:38:42.898 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:38:42.913 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:38:42.944 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:38:42.960 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:38:42.977 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:38:43.617 +01:00 [INF] [tc-alloc-valid-03] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:38:43.618 +01:00 [INF] [tc-alloc-valid-03] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:38:43.633 +01:00 [INF] [tc-alloc-valid-03] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:38:43.646 +01:00 [INF] [tc-alloc-valid-03] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:38:43.661 +01:00 [INF] [tc-alloc-valid-03] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:38:43.676 +01:00 [INF] [tc-alloc-valid-03] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:38:43.692 +01:00 [INF] [tc-alloc-valid-03] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:38:43.710 +01:00 [INF] [tc-alloc-valid-03] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:38:44.386 +01:00 [INF] [tc-factor-valid-01] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:38:44.387 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:38:44.399 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:38:44.416 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:38:44.430 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:38:44.445 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:38:44.460 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:38:44.475 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:38:45.166 +01:00 [INF] [tc-agg-valid-01] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:38:45.167 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:38:45.184 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:38:45.207 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:38:45.224 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:38:45.240 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:38:45.254 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:38:45.278 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:38:46.275 +01:00 [INF] [tc-ean-empty-01] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:38:46.278 +01:00 [WRN] [tc-ean-empty-01]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 11:38:46.296 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:38:46.313 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:38:46.340 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:38:46.355 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:38:46.370 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:38:46.385 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:38:47.203 +01:00 [INF] [tc-ean-short-01] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:38:47.204 +01:00 [INF] [tc-ean-short-01] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:38:47.226 +01:00 [INF] [tc-ean-short-01] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:38:47.242 +01:00 [INF] [tc-ean-short-01] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:38:47.258 +01:00 [INF] [tc-ean-short-01] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:38:47.274 +01:00 [INF] [tc-ean-short-01] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:38:47.290 +01:00 [INF] [tc-ean-short-01] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:38:47.306 +01:00 [INF] [tc-ean-short-01] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:38:48.009 +01:00 [INF] [tc-ean-alpha-01] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:38:48.011 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:38:48.029 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:38:48.044 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:38:48.059 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:38:48.074 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:38:48.090 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:38:48.105 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:39:02.759 +01:00 [INF] [tc-alloc-valid-01] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:39:02.760 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:39:02.784 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:39:02.828 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:39:02.846 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:39:02.870 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:39:02.894 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:39:02.910 +01:00 [INF] [tc-alloc-valid-01] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:39:03.849 +01:00 [INF] [tc-alloc-valid-02] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:39:03.850 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:39:03.872 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:39:03.887 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:39:03.903 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:39:03.919 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:39:03.951 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:39:03.967 +01:00 [INF] [tc-alloc-valid-02] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:39:04.778 +01:00 [INF] [tc-factor-valid-01] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:39:04.780 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:39:04.800 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:39:04.816 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:39:04.832 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:39:04.848 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:39:04.863 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:39:04.878 +01:00 [INF] [tc-factor-valid-01] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:39:05.662 +01:00 [INF] [tc-agg-valid-01] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:39:05.663 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:39:05.683 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:39:05.698 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:39:05.713 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:39:05.728 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:39:05.744 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:39:05.760 +01:00 [INF] [tc-agg-valid-01] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:39:06.761 +01:00 [INF] [tc-ean-empty-01] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:39:06.762 +01:00 [WRN] [tc-ean-empty-01]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 11:39:06.783 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:39:06.799 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:39:06.814 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:39:06.830 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:39:06.846 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:39:06.862 +01:00 [INF] [tc-ean-empty-01] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:39:07.654 +01:00 [INF] [tc-ean-alpha-01] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:39:07.656 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:39:07.677 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:39:07.694 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:39:07.709 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:39:07.725 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:39:07.741 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:39:07.757 +01:00 [INF] [tc-ean-alpha-01] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:41:44.611 +01:00 [INF] [alloc-valid-01-114144] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:41:44.612 +01:00 [INF] [alloc-valid-01-114144] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:41:44.634 +01:00 [INF] [alloc-valid-01-114144] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:41:44.650 +01:00 [INF] [alloc-valid-01-114144] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:41:44.665 +01:00 [INF] [alloc-valid-01-114144] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:41:44.680 +01:00 [INF] [alloc-valid-01-114144] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:41:44.696 +01:00 [INF] [alloc-valid-01-114144] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:41:44.712 +01:00 [INF] [alloc-valid-01-114144] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:41:45.446 +01:00 [INF] [alloc-valid-02-114144] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:41:45.447 +01:00 [INF] [alloc-valid-02-114144] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:41:45.471 +01:00 [INF] [alloc-valid-02-114144] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:41:45.487 +01:00 [INF] [alloc-valid-02-114144] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:41:45.503 +01:00 [INF] [alloc-valid-02-114144] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:41:45.519 +01:00 [INF] [alloc-valid-02-114144] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:41:45.534 +01:00 [INF] [alloc-valid-02-114144] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:41:45.550 +01:00 [INF] [alloc-valid-02-114144] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:41:46.299 +01:00 [INF] [alloc-valid-03-114144] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:41:46.301 +01:00 [INF] [alloc-valid-03-114144] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:41:46.322 +01:00 [INF] [alloc-valid-03-114144] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:41:46.339 +01:00 [INF] [alloc-valid-03-114144] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:41:46.354 +01:00 [INF] [alloc-valid-03-114144] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:41:46.371 +01:00 [INF] [alloc-valid-03-114144] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:41:46.401 +01:00 [INF] [alloc-valid-03-114144] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:41:46.415 +01:00 [INF] [alloc-valid-03-114144] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:41:47.156 +01:00 [INF] [factor-valid-01-114144] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:41:47.157 +01:00 [INF] [factor-valid-01-114144] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:41:47.179 +01:00 [INF] [factor-valid-01-114144] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:41:47.195 +01:00 [INF] [factor-valid-01-114144] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:41:47.211 +01:00 [INF] [factor-valid-01-114144] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:41:47.227 +01:00 [INF] [factor-valid-01-114144] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:41:47.243 +01:00 [INF] [factor-valid-01-114144] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:41:47.259 +01:00 [INF] [factor-valid-01-114144] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:41:48.007 +01:00 [INF] [agg-valid-01-114144] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:41:48.008 +01:00 [INF] [agg-valid-01-114144] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:41:48.031 +01:00 [INF] [agg-valid-01-114144] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:41:48.047 +01:00 [INF] [agg-valid-01-114144] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:41:48.062 +01:00 [INF] [agg-valid-01-114144] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:41:48.078 +01:00 [INF] [agg-valid-01-114144] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:41:48.094 +01:00 [INF] [agg-valid-01-114144] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:41:48.110 +01:00 [INF] [agg-valid-01-114144] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:41:48.839 +01:00 [INF] [agg-valid-02-114144] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:41:48.840 +01:00 [INF] [agg-valid-02-114144] ✓ Step 3A: Controleer EAN-code
+2026-03-26 11:41:48.862 +01:00 [INF] [agg-valid-02-114144] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:41:48.878 +01:00 [INF] [agg-valid-02-114144] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:41:48.894 +01:00 [INF] [agg-valid-02-114144] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:41:48.910 +01:00 [INF] [agg-valid-02-114144] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:41:48.925 +01:00 [INF] [agg-valid-02-114144] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:41:48.940 +01:00 [INF] [agg-valid-02-114144] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:41:49.702 +01:00 [INF] [ean-empty-01-114144] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:41:49.704 +01:00 [WRN] [ean-empty-01-114144]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 11:41:49.728 +01:00 [INF] [ean-empty-01-114144] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:41:49.744 +01:00 [INF] [ean-empty-01-114144] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:41:49.760 +01:00 [INF] [ean-empty-01-114144] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:41:49.776 +01:00 [INF] [ean-empty-01-114144] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:41:49.791 +01:00 [INF] [ean-empty-01-114144] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:41:49.806 +01:00 [INF] [ean-empty-01-114144] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:41:50.715 +01:00 [INF] [ean-empty-02-114144] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:41:50.717 +01:00 [WRN] [ean-empty-02-114144]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 11:41:50.739 +01:00 [INF] [ean-empty-02-114144] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:41:50.755 +01:00 [INF] [ean-empty-02-114144] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:41:50.771 +01:00 [INF] [ean-empty-02-114144] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:41:50.787 +01:00 [INF] [ean-empty-02-114144] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:41:50.803 +01:00 [INF] [ean-empty-02-114144] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:41:50.819 +01:00 [INF] [ean-empty-02-114144] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:41:51.557 +01:00 [INF] [ean-empty-03-114144] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:41:51.558 +01:00 [WRN] [ean-empty-03-114144]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 11:41:51.579 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:41:51.595 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:41:51.611 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:41:51.627 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:41:51.643 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:41:51.658 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 11:42:36.417 +01:00 [INF] [ean-empty-03-114144] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 11:42:36.418 +01:00 [WRN] [ean-empty-03-114144]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 11:42:36.432 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 11:42:36.445 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 11:42:36.470 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 11:42:36.486 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 11:42:36.505 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 11:42:36.522 +01:00 [INF] [ean-empty-03-114144] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:03.667 +01:00 [INF] [test-valid-001] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:03.697 +01:00 [INF] [test-valid-001] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:36:03.708 +01:00 [WRN] [test-valid-001]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:36:03.723 +01:00 [INF] [test-valid-001] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:36:03.740 +01:00 [INF] [test-valid-001] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:36:03.756 +01:00 [INF] [test-valid-001] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:36:03.773 +01:00 [INF] [test-valid-001] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:36:03.790 +01:00 [INF] [test-valid-001] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:04.954 +01:00 [INF] [test-686-001] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:04.954 +01:00 [WRN] [test-686-001]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 12:36:04.972 +01:00 [WRN] [test-686-001]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:36:04.989 +01:00 [INF] [test-686-001] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:36:05.006 +01:00 [INF] [test-686-001] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:36:05.023 +01:00 [INF] [test-686-001] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:36:05.038 +01:00 [INF] [test-686-001] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:36:05.054 +01:00 [INF] [test-686-001] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:05.897 +01:00 [INF] [test-760-001] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:05.898 +01:00 [INF] [test-760-001] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:36:05.918 +01:00 [WRN] [test-760-001]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ("2099-06-01T00:00:00.0000000Z")
+2026-03-26 12:36:05.933 +01:00 [INF] [test-760-001] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:36:05.949 +01:00 [INF] [test-760-001] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:36:05.965 +01:00 [INF] [test-760-001] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:36:05.980 +01:00 [INF] [test-760-001] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:36:05.996 +01:00 [INF] [test-760-001] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:06.881 +01:00 [INF] [test-758-001] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:06.881 +01:00 [INF] [test-758-001] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:36:06.904 +01:00 [WRN] [test-758-001]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2020-01-01T00:00:00.0000000Z")
+2026-03-26 12:36:06.920 +01:00 [INF] [test-758-001] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:36:06.935 +01:00 [INF] [test-758-001] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:36:06.951 +01:00 [INF] [test-758-001] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:36:06.967 +01:00 [INF] [test-758-001] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:36:06.983 +01:00 [INF] [test-758-001] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:07.836 +01:00 [INF] [test-676-001] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:07.836 +01:00 [INF] [test-676-001] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:36:07.856 +01:00 [WRN] [test-676-001]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:36:07.871 +01:00 [WRN] [test-676-001]   ✗ Error 676 (3C): Vereist veld DocumentID ontbreekt
+2026-03-26 12:36:07.887 +01:00 [INF] [test-676-001] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:36:07.902 +01:00 [INF] [test-676-001] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:36:07.918 +01:00 [INF] [test-676-001] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:36:07.933 +01:00 [INF] [test-676-001] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:08.793 +01:00 [INF] [test-774-001] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:08.793 +01:00 [INF] [test-774-001] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:36:08.821 +01:00 [WRN] [test-774-001]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:36:08.835 +01:00 [INF] [test-774-001] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:36:08.855 +01:00 [WRN] [test-774-001]   ✗ Error 774 (3D): Hoeveelheid nul niet toegestaan
+2026-03-26 12:36:08.887 +01:00 [INF] [test-774-001] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:36:08.912 +01:00 [INF] [test-774-001] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:36:08.926 +01:00 [INF] [test-774-001] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:10.090 +01:00 [INF] [test-772-001] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:10.090 +01:00 [INF] [test-772-001] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:36:10.109 +01:00 [WRN] [test-772-001]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:36:10.125 +01:00 [INF] [test-772-001] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:36:10.141 +01:00 [WRN] [test-772-001]   ✗ Error 772 (3D): Negatieve hoeveelheid niet toegestaan (-100)
+2026-03-26 12:36:10.157 +01:00 [INF] [test-772-001] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:36:10.173 +01:00 [INF] [test-772-001] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:36:10.189 +01:00 [INF] [test-772-001] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:11.098 +01:00 [INF] [test-773-001] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:11.098 +01:00 [INF] [test-773-001] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:36:11.118 +01:00 [WRN] [test-773-001]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:36:11.134 +01:00 [INF] [test-773-001] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:36:11.149 +01:00 [WRN] [test-773-001]   ✗ Error 773 (3D): Hoeveelheid overschrijdt maximale limiet (9999999)
+2026-03-26 12:36:11.164 +01:00 [INF] [test-773-001] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:36:11.180 +01:00 [INF] [test-773-001] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:36:11.196 +01:00 [INF] [test-773-001] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:12.057 +01:00 [INF] [test-755-001] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:12.057 +01:00 [INF] [test-755-001] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:36:12.077 +01:00 [WRN] [test-755-001]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:36:12.093 +01:00 [INF] [test-755-001] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:36:12.108 +01:00 [INF] [test-755-001] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:36:12.124 +01:00 [INF] [test-755-001] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:36:12.140 +01:00 [WRN] [test-755-001]   ✗ Error 755 (3F): Dubbele bericht-ID gedetecteerd (DOC-DUP-001)
+2026-03-26 12:36:12.155 +01:00 [INF] [test-755-001] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:13.028 +01:00 [INF] [test-758-002] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:13.029 +01:00 [INF] [test-758-002] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:36:13.050 +01:00 [WRN] [test-758-002]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-06-01T00:00:00.0000000Z")
+2026-03-26 12:36:13.066 +01:00 [INF] [test-758-002] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:36:13.082 +01:00 [INF] [test-758-002] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:36:13.098 +01:00 [WRN] [test-758-002]   ✗ Error 758 (3E): EndDateTime ligt voor of gelijk aan StartDateTime
+2026-03-26 12:36:13.114 +01:00 [INF] [test-758-002] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:36:13.129 +01:00 [INF] [test-758-002] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:14.020 +01:00 [INF] [test-multi-001] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:14.020 +01:00 [WRN] [test-multi-001]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 12:36:14.043 +01:00 [WRN] [test-multi-001]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ("2099-01-01T00:00:00.0000000Z")
+2026-03-26 12:36:14.060 +01:00 [INF] [test-multi-001] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:36:14.076 +01:00 [WRN] [test-multi-001]   ✗ Error 774 (3D): Hoeveelheid nul niet toegestaan
+2026-03-26 12:36:14.092 +01:00 [INF] [test-multi-001] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:36:14.107 +01:00 [INF] [test-multi-001] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:36:14.123 +01:00 [INF] [test-multi-001] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:36:56.384 +01:00 [INF] [quick-check-001] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:36:56.384 +01:00 [WRN] [quick-check-001]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 12:36:56.401 +01:00 [WRN] [quick-check-001]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ("2099-01-01T00:00:00.0000000Z")
+2026-03-26 12:36:56.419 +01:00 [INF] [quick-check-001] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:36:56.433 +01:00 [WRN] [quick-check-001]   ✗ Error 774 (3D): Hoeveelheid nul niet toegestaan
+2026-03-26 12:36:56.448 +01:00 [INF] [quick-check-001] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:36:56.465 +01:00 [INF] [quick-check-001] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:36:56.480 +01:00 [INF] [quick-check-001] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:37:06.654 +01:00 [INF] [quick-check-002] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:37:06.654 +01:00 [WRN] [quick-check-002]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 12:37:06.677 +01:00 [WRN] [quick-check-002]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ("2099-01-01T00:00:00.0000000Z")
+2026-03-26 12:37:06.692 +01:00 [INF] [quick-check-002] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:37:06.708 +01:00 [WRN] [quick-check-002]   ✗ Error 774 (3D): Hoeveelheid nul niet toegestaan
+2026-03-26 12:37:06.723 +01:00 [INF] [quick-check-002] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:37:06.739 +01:00 [INF] [quick-check-002] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:37:06.754 +01:00 [INF] [quick-check-002] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:03.552 +01:00 [INF] [t-valid] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:03.552 +01:00 [INF] [t-valid] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:03.572 +01:00 [WRN] [t-valid]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:03.587 +01:00 [INF] [t-valid] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:03.601 +01:00 [INF] [t-valid] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:38:03.615 +01:00 [INF] [t-valid] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:03.631 +01:00 [INF] [t-valid] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:03.648 +01:00 [INF] [t-valid] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:04.143 +01:00 [INF] [t-686] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:04.143 +01:00 [WRN] [t-686]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 12:38:04.163 +01:00 [WRN] [t-686]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:04.180 +01:00 [INF] [t-686] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:04.204 +01:00 [INF] [t-686] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:38:04.221 +01:00 [INF] [t-686] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:04.238 +01:00 [INF] [t-686] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:04.263 +01:00 [INF] [t-686] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:04.730 +01:00 [INF] [t-760] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:04.730 +01:00 [INF] [t-760] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:04.741 +01:00 [WRN] [t-760]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ("2099-06-01T00:00:00.0000000Z")
+2026-03-26 12:38:04.756 +01:00 [INF] [t-760] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:04.782 +01:00 [INF] [t-760] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:38:04.807 +01:00 [INF] [t-760] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:04.824 +01:00 [INF] [t-760] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:04.848 +01:00 [INF] [t-760] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:05.336 +01:00 [INF] [t-758] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:05.337 +01:00 [INF] [t-758] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:05.346 +01:00 [WRN] [t-758]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2020-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:05.361 +01:00 [INF] [t-758] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:05.382 +01:00 [INF] [t-758] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:38:05.396 +01:00 [INF] [t-758] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:05.413 +01:00 [INF] [t-758] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:05.437 +01:00 [INF] [t-758] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:05.899 +01:00 [INF] [t-676] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:05.899 +01:00 [INF] [t-676] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:05.914 +01:00 [WRN] [t-676]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:05.930 +01:00 [WRN] [t-676]   ✗ Error 676 (3C): Vereist veld DocumentID ontbreekt
+2026-03-26 12:38:05.947 +01:00 [INF] [t-676] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:38:05.963 +01:00 [INF] [t-676] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:05.973 +01:00 [INF] [t-676] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:05.990 +01:00 [INF] [t-676] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:06.484 +01:00 [INF] [t-774] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:06.484 +01:00 [INF] [t-774] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:06.504 +01:00 [WRN] [t-774]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:06.520 +01:00 [INF] [t-774] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:06.535 +01:00 [WRN] [t-774]   ✗ Error 774 (3D): Hoeveelheid nul niet toegestaan
+2026-03-26 12:38:06.554 +01:00 [INF] [t-774] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:06.566 +01:00 [INF] [t-774] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:06.579 +01:00 [INF] [t-774] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:07.076 +01:00 [INF] [t-772] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:07.076 +01:00 [INF] [t-772] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:07.098 +01:00 [WRN] [t-772]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:07.113 +01:00 [INF] [t-772] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:07.125 +01:00 [WRN] [t-772]   ✗ Error 772 (3D): Negatieve hoeveelheid niet toegestaan (-100)
+2026-03-26 12:38:07.136 +01:00 [INF] [t-772] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:07.152 +01:00 [INF] [t-772] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:07.168 +01:00 [INF] [t-772] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:07.597 +01:00 [INF] [t-773] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:07.597 +01:00 [INF] [t-773] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:07.611 +01:00 [WRN] [t-773]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:07.628 +01:00 [INF] [t-773] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:07.644 +01:00 [WRN] [t-773]   ✗ Error 773 (3D): Hoeveelheid overschrijdt maximale limiet (9999999)
+2026-03-26 12:38:07.661 +01:00 [INF] [t-773] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:07.677 +01:00 [INF] [t-773] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:07.688 +01:00 [INF] [t-773] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:08.080 +01:00 [INF] [t-755] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:08.080 +01:00 [INF] [t-755] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:08.092 +01:00 [WRN] [t-755]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:08.107 +01:00 [INF] [t-755] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:08.119 +01:00 [INF] [t-755] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:38:08.132 +01:00 [INF] [t-755] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:08.149 +01:00 [WRN] [t-755]   ✗ Error 755 (3F): Dubbele bericht-ID gedetecteerd (DOC-DUP-001)
+2026-03-26 12:38:08.164 +01:00 [INF] [t-755] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:08.647 +01:00 [INF] [t-multi] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:08.648 +01:00 [WRN] [t-multi]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 12:38:08.657 +01:00 [WRN] [t-multi]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ("2099-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:08.673 +01:00 [INF] [t-multi] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:08.689 +01:00 [WRN] [t-multi]   ✗ Error 774 (3D): Hoeveelheid nul niet toegestaan
+2026-03-26 12:38:08.704 +01:00 [INF] [t-multi] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:08.719 +01:00 [INF] [t-multi] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:08.737 +01:00 [INF] [t-multi] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:17.158 +01:00 [INF] [case-686] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:17.158 +01:00 [WRN] [case-686]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 12:38:17.177 +01:00 [WRN] [case-686]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:17.193 +01:00 [INF] [case-686] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:17.210 +01:00 [INF] [case-686] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:38:17.227 +01:00 [INF] [case-686] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:17.244 +01:00 [INF] [case-686] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:17.258 +01:00 [INF] [case-686] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:17.714 +01:00 [INF] [case-760] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:17.715 +01:00 [INF] [case-760] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:17.724 +01:00 [WRN] [case-760]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ("2099-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:17.741 +01:00 [INF] [case-760] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:17.757 +01:00 [INF] [case-760] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:38:17.771 +01:00 [INF] [case-760] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:17.787 +01:00 [INF] [case-760] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:17.803 +01:00 [INF] [case-760] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:18.260 +01:00 [INF] [case-772] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:18.260 +01:00 [INF] [case-772] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:18.279 +01:00 [WRN] [case-772]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:18.297 +01:00 [INF] [case-772] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:18.312 +01:00 [WRN] [case-772]   ✗ Error 772 (3D): Negatieve hoeveelheid niet toegestaan (-1)
+2026-03-26 12:38:18.327 +01:00 [INF] [case-772] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:18.343 +01:00 [INF] [case-772] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:18.361 +01:00 [INF] [case-772] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:18.797 +01:00 [INF] [case-676] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:18.797 +01:00 [INF] [case-676] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:18.818 +01:00 [WRN] [case-676]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2025-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:18.835 +01:00 [WRN] [case-676]   ✗ Error 676 (3C): Vereist veld DocumentID ontbreekt
+2026-03-26 12:38:18.850 +01:00 [INF] [case-676] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:38:18.863 +01:00 [INF] [case-676] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:18.880 +01:00 [INF] [case-676] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:18.896 +01:00 [INF] [case-676] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:19.368 +01:00 [INF] [case-multi] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:19.368 +01:00 [WRN] [case-multi]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 12:38:19.390 +01:00 [WRN] [case-multi]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ("2099-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:19.407 +01:00 [INF] [case-multi] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:19.422 +01:00 [WRN] [case-multi]   ✗ Error 774 (3D): Hoeveelheid nul niet toegestaan
+2026-03-26 12:38:19.437 +01:00 [INF] [case-multi] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:19.453 +01:00 [INF] [case-multi] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:19.467 +01:00 [INF] [case-multi] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:30.742 +01:00 [INF] [case-774] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:30.742 +01:00 [INF] [case-774] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:30.762 +01:00 [INF] [case-774] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:38:30.777 +01:00 [INF] [case-774] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:30.792 +01:00 [WRN] [case-774]   ✗ Error 774 (3D): Hoeveelheid nul niet toegestaan
+2026-03-26 12:38:30.808 +01:00 [INF] [case-774] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:30.824 +01:00 [INF] [case-774] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:30.840 +01:00 [INF] [case-774] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:31.298 +01:00 [INF] [case-773] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:31.298 +01:00 [INF] [case-773] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:31.320 +01:00 [INF] [case-773] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:38:31.336 +01:00 [INF] [case-773] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:31.351 +01:00 [WRN] [case-773]   ✗ Error 773 (3D): Hoeveelheid overschrijdt maximale limiet (1000000)
+2026-03-26 12:38:31.368 +01:00 [INF] [case-773] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:31.384 +01:00 [INF] [case-773] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:31.398 +01:00 [INF] [case-773] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:31.867 +01:00 [INF] [case-755] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:31.867 +01:00 [INF] [case-755] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:38:31.889 +01:00 [INF] [case-755] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:38:31.902 +01:00 [INF] [case-755] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:31.916 +01:00 [INF] [case-755] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:38:31.930 +01:00 [INF] [case-755] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:31.946 +01:00 [WRN] [case-755]   ✗ Error 755 (3F): Dubbele bericht-ID gedetecteerd (DOC-DUP-001)
+2026-03-26 12:38:31.962 +01:00 [INF] [case-755] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:32.407 +01:00 [INF] [case-multi] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:32.407 +01:00 [WRN] [case-multi]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 12:38:32.427 +01:00 [WRN] [case-multi]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ("2099-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:32.442 +01:00 [INF] [case-multi] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:32.457 +01:00 [WRN] [case-multi]   ✗ Error 774 (3D): Hoeveelheid nul niet toegestaan
+2026-03-26 12:38:32.471 +01:00 [INF] [case-multi] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:32.485 +01:00 [INF] [case-multi] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:32.500 +01:00 [INF] [case-multi] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:38:41.666 +01:00 [INF] [case-multi] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:38:41.666 +01:00 [WRN] [case-multi]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 12:38:41.683 +01:00 [WRN] [case-multi]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ("2099-01-01T00:00:00.0000000Z")
+2026-03-26 12:38:41.697 +01:00 [INF] [case-multi] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:38:41.710 +01:00 [WRN] [case-multi]   ✗ Error 774 (3D): Hoeveelheid nul niet toegestaan
+2026-03-26 12:38:41.725 +01:00 [INF] [case-multi] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:38:41.745 +01:00 [INF] [case-multi] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:38:41.757 +01:00 [INF] [case-multi] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:03.290 +01:00 [INF] [allcodes-650-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:03.290 +01:00 [INF] [allcodes-650-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:03.311 +01:00 [INF] [allcodes-650-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:03.328 +01:00 [INF] [allcodes-650-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:03.345 +01:00 [INF] [allcodes-650-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:03.361 +01:00 [INF] [allcodes-650-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:03.379 +01:00 [INF] [allcodes-650-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:03.394 +01:00 [INF] [allcodes-650-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:04.144 +01:00 [INF] [allcodes-651-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:04.144 +01:00 [INF] [allcodes-651-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:04.161 +01:00 [INF] [allcodes-651-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:04.178 +01:00 [INF] [allcodes-651-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:04.193 +01:00 [INF] [allcodes-651-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:04.211 +01:00 [INF] [allcodes-651-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:04.228 +01:00 [INF] [allcodes-651-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:04.244 +01:00 [INF] [allcodes-651-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:04.980 +01:00 [INF] [allcodes-652-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:04.980 +01:00 [INF] [allcodes-652-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:04.992 +01:00 [INF] [allcodes-652-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:05.009 +01:00 [INF] [allcodes-652-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:05.024 +01:00 [INF] [allcodes-652-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:05.036 +01:00 [INF] [allcodes-652-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:05.061 +01:00 [INF] [allcodes-652-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:05.079 +01:00 [INF] [allcodes-652-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:05.803 +01:00 [INF] [allcodes-653-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:05.803 +01:00 [INF] [allcodes-653-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:05.811 +01:00 [INF] [allcodes-653-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:05.826 +01:00 [INF] [allcodes-653-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:05.844 +01:00 [INF] [allcodes-653-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:05.860 +01:00 [INF] [allcodes-653-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:05.877 +01:00 [INF] [allcodes-653-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:05.894 +01:00 [INF] [allcodes-653-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:06.639 +01:00 [INF] [allcodes-654-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:06.639 +01:00 [INF] [allcodes-654-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:06.661 +01:00 [INF] [allcodes-654-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:06.678 +01:00 [INF] [allcodes-654-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:06.695 +01:00 [INF] [allcodes-654-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:06.712 +01:00 [INF] [allcodes-654-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:06.728 +01:00 [INF] [allcodes-654-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:06.745 +01:00 [INF] [allcodes-654-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:07.501 +01:00 [INF] [allcodes-655-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:07.501 +01:00 [INF] [allcodes-655-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:07.511 +01:00 [INF] [allcodes-655-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:07.527 +01:00 [INF] [allcodes-655-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:07.544 +01:00 [INF] [allcodes-655-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:07.561 +01:00 [INF] [allcodes-655-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:07.578 +01:00 [INF] [allcodes-655-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:07.594 +01:00 [INF] [allcodes-655-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:08.315 +01:00 [INF] [allcodes-656-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:08.315 +01:00 [INF] [allcodes-656-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:08.322 +01:00 [INF] [allcodes-656-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:08.337 +01:00 [INF] [allcodes-656-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:08.359 +01:00 [INF] [allcodes-656-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:08.378 +01:00 [INF] [allcodes-656-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:08.394 +01:00 [INF] [allcodes-656-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:08.411 +01:00 [INF] [allcodes-656-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:09.137 +01:00 [INF] [allcodes-676-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:09.137 +01:00 [INF] [allcodes-676-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:09.161 +01:00 [INF] [allcodes-676-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:09.177 +01:00 [INF] [allcodes-676-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:09.194 +01:00 [INF] [allcodes-676-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:09.210 +01:00 [INF] [allcodes-676-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:09.229 +01:00 [INF] [allcodes-676-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:09.245 +01:00 [INF] [allcodes-676-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:09.971 +01:00 [INF] [allcodes-677-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:09.971 +01:00 [INF] [allcodes-677-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:09.993 +01:00 [INF] [allcodes-677-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:10.011 +01:00 [INF] [allcodes-677-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:10.028 +01:00 [INF] [allcodes-677-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:10.045 +01:00 [INF] [allcodes-677-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:10.061 +01:00 [INF] [allcodes-677-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:10.081 +01:00 [INF] [allcodes-677-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:10.787 +01:00 [INF] [allcodes-678-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:10.787 +01:00 [INF] [allcodes-678-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:10.811 +01:00 [INF] [allcodes-678-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:10.826 +01:00 [INF] [allcodes-678-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:10.843 +01:00 [INF] [allcodes-678-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:10.861 +01:00 [INF] [allcodes-678-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:10.876 +01:00 [INF] [allcodes-678-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:10.896 +01:00 [INF] [allcodes-678-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:11.634 +01:00 [INF] [allcodes-679-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:11.634 +01:00 [INF] [allcodes-679-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:11.645 +01:00 [INF] [allcodes-679-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:11.661 +01:00 [INF] [allcodes-679-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:11.676 +01:00 [INF] [allcodes-679-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:11.693 +01:00 [INF] [allcodes-679-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:11.709 +01:00 [INF] [allcodes-679-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:11.725 +01:00 [INF] [allcodes-679-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:12.449 +01:00 [INF] [allcodes-680-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:12.450 +01:00 [INF] [allcodes-680-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:12.461 +01:00 [INF] [allcodes-680-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:12.477 +01:00 [INF] [allcodes-680-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:12.493 +01:00 [INF] [allcodes-680-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:12.510 +01:00 [INF] [allcodes-680-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:12.526 +01:00 [INF] [allcodes-680-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:12.543 +01:00 [INF] [allcodes-680-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:13.319 +01:00 [INF] [allcodes-686-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:13.319 +01:00 [INF] [allcodes-686-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:13.341 +01:00 [INF] [allcodes-686-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:13.361 +01:00 [INF] [allcodes-686-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:13.376 +01:00 [INF] [allcodes-686-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:13.394 +01:00 [INF] [allcodes-686-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:13.411 +01:00 [INF] [allcodes-686-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:13.426 +01:00 [INF] [allcodes-686-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:14.185 +01:00 [INF] [allcodes-687-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:14.185 +01:00 [INF] [allcodes-687-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:14.193 +01:00 [INF] [allcodes-687-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:14.209 +01:00 [INF] [allcodes-687-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:14.227 +01:00 [INF] [allcodes-687-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:14.242 +01:00 [INF] [allcodes-687-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:14.260 +01:00 [INF] [allcodes-687-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:14.278 +01:00 [INF] [allcodes-687-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:15.018 +01:00 [INF] [allcodes-688-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:15.018 +01:00 [INF] [allcodes-688-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:15.042 +01:00 [INF] [allcodes-688-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:15.061 +01:00 [INF] [allcodes-688-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:15.077 +01:00 [INF] [allcodes-688-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:15.092 +01:00 [INF] [allcodes-688-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:15.110 +01:00 [INF] [allcodes-688-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:15.129 +01:00 [INF] [allcodes-688-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:15.852 +01:00 [INF] [allcodes-689-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:15.852 +01:00 [INF] [allcodes-689-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:15.859 +01:00 [INF] [allcodes-689-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:15.875 +01:00 [INF] [allcodes-689-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:15.892 +01:00 [INF] [allcodes-689-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:15.911 +01:00 [INF] [allcodes-689-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:15.930 +01:00 [INF] [allcodes-689-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:15.945 +01:00 [INF] [allcodes-689-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:16.687 +01:00 [INF] [allcodes-700-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:16.687 +01:00 [INF] [allcodes-700-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:16.709 +01:00 [INF] [allcodes-700-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:16.726 +01:00 [INF] [allcodes-700-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:16.741 +01:00 [INF] [allcodes-700-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:16.756 +01:00 [INF] [allcodes-700-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:16.774 +01:00 [INF] [allcodes-700-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:16.792 +01:00 [INF] [allcodes-700-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:17.536 +01:00 [INF] [allcodes-701-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:17.536 +01:00 [INF] [allcodes-701-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:17.559 +01:00 [INF] [allcodes-701-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:17.575 +01:00 [INF] [allcodes-701-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:17.594 +01:00 [INF] [allcodes-701-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:17.609 +01:00 [INF] [allcodes-701-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:17.626 +01:00 [INF] [allcodes-701-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:17.645 +01:00 [INF] [allcodes-701-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:18.367 +01:00 [INF] [allcodes-702-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:18.367 +01:00 [INF] [allcodes-702-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:18.392 +01:00 [INF] [allcodes-702-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:18.409 +01:00 [INF] [allcodes-702-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:18.425 +01:00 [INF] [allcodes-702-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:18.443 +01:00 [INF] [allcodes-702-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:18.459 +01:00 [INF] [allcodes-702-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:18.477 +01:00 [INF] [allcodes-702-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:19.234 +01:00 [INF] [allcodes-754-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:19.234 +01:00 [INF] [allcodes-754-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:19.243 +01:00 [INF] [allcodes-754-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:19.260 +01:00 [INF] [allcodes-754-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:19.276 +01:00 [INF] [allcodes-754-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:19.293 +01:00 [INF] [allcodes-754-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:19.309 +01:00 [INF] [allcodes-754-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:19.328 +01:00 [INF] [allcodes-754-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:20.070 +01:00 [INF] [allcodes-755-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:20.070 +01:00 [INF] [allcodes-755-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:20.093 +01:00 [INF] [allcodes-755-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:20.110 +01:00 [INF] [allcodes-755-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:20.125 +01:00 [INF] [allcodes-755-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:20.143 +01:00 [INF] [allcodes-755-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:20.158 +01:00 [INF] [allcodes-755-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:20.178 +01:00 [INF] [allcodes-755-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:20.894 +01:00 [INF] [allcodes-756-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:20.894 +01:00 [INF] [allcodes-756-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:20.910 +01:00 [INF] [allcodes-756-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:20.925 +01:00 [INF] [allcodes-756-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:20.943 +01:00 [INF] [allcodes-756-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:20.958 +01:00 [INF] [allcodes-756-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:20.976 +01:00 [INF] [allcodes-756-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:20.993 +01:00 [INF] [allcodes-756-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:21.757 +01:00 [INF] [allcodes-758-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:21.757 +01:00 [INF] [allcodes-758-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:21.760 +01:00 [INF] [allcodes-758-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:21.776 +01:00 [INF] [allcodes-758-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:21.792 +01:00 [INF] [allcodes-758-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:21.809 +01:00 [INF] [allcodes-758-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:21.828 +01:00 [INF] [allcodes-758-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:21.843 +01:00 [INF] [allcodes-758-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:22.583 +01:00 [INF] [allcodes-759-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:22.583 +01:00 [INF] [allcodes-759-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:22.593 +01:00 [INF] [allcodes-759-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:22.609 +01:00 [INF] [allcodes-759-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:22.626 +01:00 [INF] [allcodes-759-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:22.642 +01:00 [INF] [allcodes-759-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:22.659 +01:00 [INF] [allcodes-759-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:22.679 +01:00 [INF] [allcodes-759-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:23.402 +01:00 [INF] [allcodes-760-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:23.402 +01:00 [INF] [allcodes-760-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:23.409 +01:00 [INF] [allcodes-760-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:23.425 +01:00 [INF] [allcodes-760-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:23.441 +01:00 [INF] [allcodes-760-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:23.459 +01:00 [INF] [allcodes-760-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:23.475 +01:00 [INF] [allcodes-760-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:23.493 +01:00 [INF] [allcodes-760-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:24.245 +01:00 [INF] [allcodes-772-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:24.245 +01:00 [INF] [allcodes-772-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:24.258 +01:00 [INF] [allcodes-772-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:24.275 +01:00 [INF] [allcodes-772-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:24.293 +01:00 [INF] [allcodes-772-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:24.309 +01:00 [INF] [allcodes-772-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:24.326 +01:00 [INF] [allcodes-772-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:24.342 +01:00 [INF] [allcodes-772-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:25.065 +01:00 [INF] [allcodes-773-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:25.066 +01:00 [INF] [allcodes-773-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:25.076 +01:00 [INF] [allcodes-773-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:25.092 +01:00 [INF] [allcodes-773-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:25.109 +01:00 [INF] [allcodes-773-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:25.125 +01:00 [INF] [allcodes-773-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:25.142 +01:00 [INF] [allcodes-773-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:25.158 +01:00 [INF] [allcodes-773-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:25.966 +01:00 [INF] [allcodes-774-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:25.966 +01:00 [INF] [allcodes-774-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:25.976 +01:00 [INF] [allcodes-774-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:25.991 +01:00 [INF] [allcodes-774-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:26.009 +01:00 [INF] [allcodes-774-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:26.025 +01:00 [INF] [allcodes-774-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:26.041 +01:00 [INF] [allcodes-774-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:26.059 +01:00 [INF] [allcodes-774-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:26.753 +01:00 [INF] [allcodes-775-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:26.753 +01:00 [INF] [allcodes-775-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:26.758 +01:00 [INF] [allcodes-775-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:26.776 +01:00 [INF] [allcodes-775-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:26.791 +01:00 [INF] [allcodes-775-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:26.808 +01:00 [INF] [allcodes-775-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:26.825 +01:00 [INF] [allcodes-775-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:26.840 +01:00 [INF] [allcodes-775-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:27.533 +01:00 [INF] [allcodes-780-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:27.533 +01:00 [INF] [allcodes-780-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:27.559 +01:00 [INF] [allcodes-780-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:27.575 +01:00 [INF] [allcodes-780-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:27.593 +01:00 [INF] [allcodes-780-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:27.609 +01:00 [INF] [allcodes-780-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:27.625 +01:00 [INF] [allcodes-780-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:27.642 +01:00 [INF] [allcodes-780-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:28.385 +01:00 [INF] [allcodes-781-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:28.385 +01:00 [INF] [allcodes-781-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:28.409 +01:00 [INF] [allcodes-781-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:28.424 +01:00 [INF] [allcodes-781-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:28.442 +01:00 [INF] [allcodes-781-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:28.460 +01:00 [INF] [allcodes-781-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:28.475 +01:00 [INF] [allcodes-781-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:28.492 +01:00 [INF] [allcodes-781-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:29.251 +01:00 [INF] [allcodes-782-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:29.252 +01:00 [INF] [allcodes-782-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:29.259 +01:00 [INF] [allcodes-782-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:29.275 +01:00 [INF] [allcodes-782-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:29.292 +01:00 [INF] [allcodes-782-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:29.308 +01:00 [INF] [allcodes-782-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:29.325 +01:00 [INF] [allcodes-782-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:29.342 +01:00 [INF] [allcodes-782-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:43:30.088 +01:00 [INF] [allcodes-999-20260326-124303] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:43:30.088 +01:00 [INF] [allcodes-999-20260326-124303] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:43:30.108 +01:00 [INF] [allcodes-999-20260326-124303] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:43:30.124 +01:00 [INF] [allcodes-999-20260326-124303] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:43:30.142 +01:00 [INF] [allcodes-999-20260326-124303] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:43:30.159 +01:00 [INF] [allcodes-999-20260326-124303] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:43:30.174 +01:00 [INF] [allcodes-999-20260326-124303] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:43:30.191 +01:00 [INF] [allcodes-999-20260326-124303] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:21.131 +01:00 [INF] [allcodes-650-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:21.161 +01:00 [INF] [allcodes-650-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:21.178 +01:00 [INF] [allcodes-650-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:21.195 +01:00 [INF] [allcodes-650-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:21.210 +01:00 [INF] [allcodes-650-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:21.225 +01:00 [INF] [allcodes-650-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:21.243 +01:00 [INF] [allcodes-650-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:21.259 +01:00 [WRN] [allcodes-650-20260326-124920]   ⚠ Forced test error codes toegepast: 650
+2026-03-26 12:49:21.261 +01:00 [INF] [allcodes-650-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:22.342 +01:00 [INF] [allcodes-651-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:22.344 +01:00 [INF] [allcodes-651-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:22.360 +01:00 [INF] [allcodes-651-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:22.375 +01:00 [INF] [allcodes-651-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:22.394 +01:00 [INF] [allcodes-651-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:22.409 +01:00 [INF] [allcodes-651-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:22.425 +01:00 [INF] [allcodes-651-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:22.443 +01:00 [WRN] [allcodes-651-20260326-124920]   ⚠ Forced test error codes toegepast: 651
+2026-03-26 12:49:22.445 +01:00 [INF] [allcodes-651-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:23.221 +01:00 [INF] [allcodes-652-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:23.222 +01:00 [INF] [allcodes-652-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:23.244 +01:00 [INF] [allcodes-652-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:23.259 +01:00 [INF] [allcodes-652-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:23.275 +01:00 [INF] [allcodes-652-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:23.293 +01:00 [INF] [allcodes-652-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:23.309 +01:00 [INF] [allcodes-652-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:23.329 +01:00 [WRN] [allcodes-652-20260326-124920]   ⚠ Forced test error codes toegepast: 652
+2026-03-26 12:49:23.332 +01:00 [INF] [allcodes-652-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:24.137 +01:00 [INF] [allcodes-653-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:24.139 +01:00 [INF] [allcodes-653-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:24.161 +01:00 [INF] [allcodes-653-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:24.176 +01:00 [INF] [allcodes-653-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:24.193 +01:00 [INF] [allcodes-653-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:24.214 +01:00 [INF] [allcodes-653-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:24.228 +01:00 [INF] [allcodes-653-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:24.243 +01:00 [WRN] [allcodes-653-20260326-124920]   ⚠ Forced test error codes toegepast: 653
+2026-03-26 12:49:24.246 +01:00 [INF] [allcodes-653-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:25.035 +01:00 [INF] [allcodes-654-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:25.037 +01:00 [INF] [allcodes-654-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:25.043 +01:00 [INF] [allcodes-654-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:25.059 +01:00 [INF] [allcodes-654-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:25.077 +01:00 [INF] [allcodes-654-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:25.092 +01:00 [INF] [allcodes-654-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:25.110 +01:00 [INF] [allcodes-654-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:25.125 +01:00 [WRN] [allcodes-654-20260326-124920]   ⚠ Forced test error codes toegepast: 654
+2026-03-26 12:49:25.127 +01:00 [INF] [allcodes-654-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:25.952 +01:00 [INF] [allcodes-655-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:25.954 +01:00 [INF] [allcodes-655-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:25.974 +01:00 [INF] [allcodes-655-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:25.998 +01:00 [INF] [allcodes-655-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:26.014 +01:00 [INF] [allcodes-655-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:26.025 +01:00 [INF] [allcodes-655-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:26.045 +01:00 [INF] [allcodes-655-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:26.059 +01:00 [WRN] [allcodes-655-20260326-124920]   ⚠ Forced test error codes toegepast: 655
+2026-03-26 12:49:26.061 +01:00 [INF] [allcodes-655-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:26.830 +01:00 [INF] [allcodes-656-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:26.832 +01:00 [INF] [allcodes-656-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:26.846 +01:00 [INF] [allcodes-656-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:26.859 +01:00 [INF] [allcodes-656-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:26.876 +01:00 [INF] [allcodes-656-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:26.892 +01:00 [INF] [allcodes-656-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:26.908 +01:00 [INF] [allcodes-656-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:26.926 +01:00 [WRN] [allcodes-656-20260326-124920]   ⚠ Forced test error codes toegepast: 656
+2026-03-26 12:49:26.928 +01:00 [INF] [allcodes-656-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:27.733 +01:00 [INF] [allcodes-676-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:27.735 +01:00 [INF] [allcodes-676-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:27.748 +01:00 [INF] [allcodes-676-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:27.763 +01:00 [INF] [allcodes-676-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:27.776 +01:00 [INF] [allcodes-676-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:27.795 +01:00 [INF] [allcodes-676-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:27.820 +01:00 [INF] [allcodes-676-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:27.842 +01:00 [WRN] [allcodes-676-20260326-124920]   ⚠ Forced test error codes toegepast: 676
+2026-03-26 12:49:27.845 +01:00 [INF] [allcodes-676-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:28.585 +01:00 [INF] [allcodes-677-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:28.586 +01:00 [INF] [allcodes-677-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:28.597 +01:00 [INF] [allcodes-677-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:28.611 +01:00 [INF] [allcodes-677-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:28.625 +01:00 [INF] [allcodes-677-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:28.642 +01:00 [INF] [allcodes-677-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:28.659 +01:00 [INF] [allcodes-677-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:28.677 +01:00 [WRN] [allcodes-677-20260326-124920]   ⚠ Forced test error codes toegepast: 677
+2026-03-26 12:49:28.679 +01:00 [INF] [allcodes-677-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:29.402 +01:00 [INF] [allcodes-678-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:29.404 +01:00 [INF] [allcodes-678-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:29.425 +01:00 [INF] [allcodes-678-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:29.444 +01:00 [INF] [allcodes-678-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:29.459 +01:00 [INF] [allcodes-678-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:29.475 +01:00 [INF] [allcodes-678-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:29.494 +01:00 [INF] [allcodes-678-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:29.511 +01:00 [WRN] [allcodes-678-20260326-124920]   ⚠ Forced test error codes toegepast: 678
+2026-03-26 12:49:29.514 +01:00 [INF] [allcodes-678-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:30.256 +01:00 [INF] [allcodes-679-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:30.258 +01:00 [INF] [allcodes-679-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:30.281 +01:00 [INF] [allcodes-679-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:30.298 +01:00 [INF] [allcodes-679-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:30.315 +01:00 [INF] [allcodes-679-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:30.330 +01:00 [INF] [allcodes-679-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:30.351 +01:00 [INF] [allcodes-679-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:30.377 +01:00 [WRN] [allcodes-679-20260326-124920]   ⚠ Forced test error codes toegepast: 679
+2026-03-26 12:49:30.379 +01:00 [INF] [allcodes-679-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:31.219 +01:00 [INF] [allcodes-680-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:31.220 +01:00 [INF] [allcodes-680-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:31.240 +01:00 [INF] [allcodes-680-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:31.259 +01:00 [INF] [allcodes-680-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:31.273 +01:00 [INF] [allcodes-680-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:31.292 +01:00 [INF] [allcodes-680-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:31.308 +01:00 [INF] [allcodes-680-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:31.329 +01:00 [WRN] [allcodes-680-20260326-124920]   ⚠ Forced test error codes toegepast: 680
+2026-03-26 12:49:31.331 +01:00 [INF] [allcodes-680-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:32.095 +01:00 [INF] [allcodes-686-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:32.096 +01:00 [INF] [allcodes-686-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:32.108 +01:00 [INF] [allcodes-686-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:32.125 +01:00 [INF] [allcodes-686-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:32.144 +01:00 [INF] [allcodes-686-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:32.158 +01:00 [INF] [allcodes-686-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:32.178 +01:00 [INF] [allcodes-686-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:32.194 +01:00 [WRN] [allcodes-686-20260326-124920]   ⚠ Forced test error codes toegepast: 686
+2026-03-26 12:49:32.196 +01:00 [INF] [allcodes-686-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:32.967 +01:00 [INF] [allcodes-687-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:32.969 +01:00 [INF] [allcodes-687-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:32.992 +01:00 [INF] [allcodes-687-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:33.008 +01:00 [INF] [allcodes-687-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:33.024 +01:00 [INF] [allcodes-687-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:33.044 +01:00 [INF] [allcodes-687-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:33.058 +01:00 [INF] [allcodes-687-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:33.075 +01:00 [WRN] [allcodes-687-20260326-124920]   ⚠ Forced test error codes toegepast: 687
+2026-03-26 12:49:33.084 +01:00 [INF] [allcodes-687-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:33.785 +01:00 [INF] [allcodes-688-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:33.786 +01:00 [INF] [allcodes-688-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:33.791 +01:00 [INF] [allcodes-688-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:33.807 +01:00 [INF] [allcodes-688-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:33.824 +01:00 [INF] [allcodes-688-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:33.839 +01:00 [INF] [allcodes-688-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:33.858 +01:00 [INF] [allcodes-688-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:33.875 +01:00 [WRN] [allcodes-688-20260326-124920]   ⚠ Forced test error codes toegepast: 688
+2026-03-26 12:49:33.877 +01:00 [INF] [allcodes-688-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:34.634 +01:00 [INF] [allcodes-689-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:34.635 +01:00 [INF] [allcodes-689-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:34.641 +01:00 [INF] [allcodes-689-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:34.658 +01:00 [INF] [allcodes-689-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:34.675 +01:00 [INF] [allcodes-689-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:34.694 +01:00 [INF] [allcodes-689-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:34.710 +01:00 [INF] [allcodes-689-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:34.725 +01:00 [WRN] [allcodes-689-20260326-124920]   ⚠ Forced test error codes toegepast: 689
+2026-03-26 12:49:34.730 +01:00 [INF] [allcodes-689-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:35.551 +01:00 [INF] [allcodes-700-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:35.553 +01:00 [INF] [allcodes-700-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:35.571 +01:00 [INF] [allcodes-700-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:35.595 +01:00 [INF] [allcodes-700-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:35.611 +01:00 [INF] [allcodes-700-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:35.625 +01:00 [INF] [allcodes-700-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:35.641 +01:00 [INF] [allcodes-700-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:35.658 +01:00 [WRN] [allcodes-700-20260326-124920]   ⚠ Forced test error codes toegepast: 700
+2026-03-26 12:49:35.669 +01:00 [INF] [allcodes-700-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:36.463 +01:00 [INF] [allcodes-701-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:36.465 +01:00 [INF] [allcodes-701-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:36.479 +01:00 [INF] [allcodes-701-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:36.496 +01:00 [INF] [allcodes-701-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:36.522 +01:00 [INF] [allcodes-701-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:36.540 +01:00 [INF] [allcodes-701-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:36.557 +01:00 [INF] [allcodes-701-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:36.576 +01:00 [WRN] [allcodes-701-20260326-124920]   ⚠ Forced test error codes toegepast: 701
+2026-03-26 12:49:36.579 +01:00 [INF] [allcodes-701-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:37.317 +01:00 [INF] [allcodes-702-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:37.318 +01:00 [INF] [allcodes-702-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:37.337 +01:00 [INF] [allcodes-702-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:37.352 +01:00 [INF] [allcodes-702-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:37.371 +01:00 [INF] [allcodes-702-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:37.386 +01:00 [INF] [allcodes-702-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:37.401 +01:00 [INF] [allcodes-702-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:37.425 +01:00 [WRN] [allcodes-702-20260326-124920]   ⚠ Forced test error codes toegepast: 702
+2026-03-26 12:49:37.431 +01:00 [INF] [allcodes-702-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:38.170 +01:00 [INF] [allcodes-754-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:38.172 +01:00 [INF] [allcodes-754-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:38.186 +01:00 [INF] [allcodes-754-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:38.203 +01:00 [INF] [allcodes-754-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:38.223 +01:00 [INF] [allcodes-754-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:38.244 +01:00 [INF] [allcodes-754-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:38.258 +01:00 [INF] [allcodes-754-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:38.273 +01:00 [WRN] [allcodes-754-20260326-124920]   ⚠ Forced test error codes toegepast: 754
+2026-03-26 12:49:38.276 +01:00 [INF] [allcodes-754-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:39.015 +01:00 [INF] [allcodes-755-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:39.017 +01:00 [INF] [allcodes-755-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:39.030 +01:00 [INF] [allcodes-755-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:39.047 +01:00 [INF] [allcodes-755-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:39.073 +01:00 [INF] [allcodes-755-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:39.092 +01:00 [INF] [allcodes-755-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:39.107 +01:00 [INF] [allcodes-755-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:39.125 +01:00 [WRN] [allcodes-755-20260326-124920]   ⚠ Forced test error codes toegepast: 755
+2026-03-26 12:49:39.128 +01:00 [INF] [allcodes-755-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:39.865 +01:00 [INF] [allcodes-756-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:39.866 +01:00 [INF] [allcodes-756-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:39.878 +01:00 [INF] [allcodes-756-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:39.895 +01:00 [INF] [allcodes-756-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:39.907 +01:00 [INF] [allcodes-756-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:39.924 +01:00 [INF] [allcodes-756-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:39.941 +01:00 [INF] [allcodes-756-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:39.957 +01:00 [WRN] [allcodes-756-20260326-124920]   ⚠ Forced test error codes toegepast: 756
+2026-03-26 12:49:39.960 +01:00 [INF] [allcodes-756-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:40.664 +01:00 [INF] [allcodes-758-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:40.666 +01:00 [INF] [allcodes-758-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:40.684 +01:00 [INF] [allcodes-758-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:40.701 +01:00 [INF] [allcodes-758-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:40.724 +01:00 [INF] [allcodes-758-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:40.737 +01:00 [INF] [allcodes-758-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:40.753 +01:00 [INF] [allcodes-758-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:40.774 +01:00 [WRN] [allcodes-758-20260326-124920]   ⚠ Forced test error codes toegepast: 758
+2026-03-26 12:49:40.778 +01:00 [INF] [allcodes-758-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:41.506 +01:00 [INF] [allcodes-759-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:41.507 +01:00 [INF] [allcodes-759-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:41.524 +01:00 [INF] [allcodes-759-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:41.538 +01:00 [INF] [allcodes-759-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:41.557 +01:00 [INF] [allcodes-759-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:41.574 +01:00 [INF] [allcodes-759-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:41.589 +01:00 [INF] [allcodes-759-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:41.607 +01:00 [WRN] [allcodes-759-20260326-124920]   ⚠ Forced test error codes toegepast: 759
+2026-03-26 12:49:41.610 +01:00 [INF] [allcodes-759-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:42.430 +01:00 [INF] [allcodes-760-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:42.432 +01:00 [INF] [allcodes-760-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:42.457 +01:00 [INF] [allcodes-760-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:42.472 +01:00 [INF] [allcodes-760-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:42.488 +01:00 [INF] [allcodes-760-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:42.503 +01:00 [INF] [allcodes-760-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:42.520 +01:00 [INF] [allcodes-760-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:42.535 +01:00 [WRN] [allcodes-760-20260326-124920]   ⚠ Forced test error codes toegepast: 760
+2026-03-26 12:49:42.536 +01:00 [INF] [allcodes-760-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:43.265 +01:00 [INF] [allcodes-772-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:43.266 +01:00 [INF] [allcodes-772-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:43.283 +01:00 [INF] [allcodes-772-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:43.305 +01:00 [INF] [allcodes-772-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:43.321 +01:00 [INF] [allcodes-772-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:43.333 +01:00 [INF] [allcodes-772-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:43.349 +01:00 [INF] [allcodes-772-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:43.361 +01:00 [WRN] [allcodes-772-20260326-124920]   ⚠ Forced test error codes toegepast: 772
+2026-03-26 12:49:43.363 +01:00 [INF] [allcodes-772-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:44.086 +01:00 [INF] [allcodes-773-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:44.087 +01:00 [INF] [allcodes-773-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:44.095 +01:00 [INF] [allcodes-773-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:44.110 +01:00 [INF] [allcodes-773-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:44.124 +01:00 [INF] [allcodes-773-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:44.147 +01:00 [INF] [allcodes-773-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:44.172 +01:00 [INF] [allcodes-773-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:44.195 +01:00 [WRN] [allcodes-773-20260326-124920]   ⚠ Forced test error codes toegepast: 773
+2026-03-26 12:49:44.198 +01:00 [INF] [allcodes-773-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:44.930 +01:00 [INF] [allcodes-774-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:44.932 +01:00 [INF] [allcodes-774-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:44.939 +01:00 [INF] [allcodes-774-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:44.957 +01:00 [INF] [allcodes-774-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:44.974 +01:00 [INF] [allcodes-774-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:44.999 +01:00 [INF] [allcodes-774-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:45.024 +01:00 [INF] [allcodes-774-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:45.040 +01:00 [WRN] [allcodes-774-20260326-124920]   ⚠ Forced test error codes toegepast: 774
+2026-03-26 12:49:45.043 +01:00 [INF] [allcodes-774-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:45.799 +01:00 [INF] [allcodes-775-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:45.800 +01:00 [INF] [allcodes-775-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:45.814 +01:00 [INF] [allcodes-775-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:45.830 +01:00 [INF] [allcodes-775-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:45.852 +01:00 [INF] [allcodes-775-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:45.874 +01:00 [INF] [allcodes-775-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:45.890 +01:00 [INF] [allcodes-775-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:45.907 +01:00 [WRN] [allcodes-775-20260326-124920]   ⚠ Forced test error codes toegepast: 775
+2026-03-26 12:49:45.913 +01:00 [INF] [allcodes-775-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:46.674 +01:00 [INF] [allcodes-780-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:46.676 +01:00 [INF] [allcodes-780-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:46.688 +01:00 [INF] [allcodes-780-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:46.705 +01:00 [INF] [allcodes-780-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:46.729 +01:00 [INF] [allcodes-780-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:46.740 +01:00 [INF] [allcodes-780-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:46.758 +01:00 [INF] [allcodes-780-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:46.770 +01:00 [WRN] [allcodes-780-20260326-124920]   ⚠ Forced test error codes toegepast: 780
+2026-03-26 12:49:46.772 +01:00 [INF] [allcodes-780-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:47.527 +01:00 [INF] [allcodes-781-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:47.528 +01:00 [INF] [allcodes-781-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:47.541 +01:00 [INF] [allcodes-781-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:47.554 +01:00 [INF] [allcodes-781-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:47.572 +01:00 [INF] [allcodes-781-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:47.590 +01:00 [INF] [allcodes-781-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:47.607 +01:00 [INF] [allcodes-781-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:47.622 +01:00 [WRN] [allcodes-781-20260326-124920]   ⚠ Forced test error codes toegepast: 781
+2026-03-26 12:49:47.624 +01:00 [INF] [allcodes-781-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:48.415 +01:00 [INF] [allcodes-782-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:48.416 +01:00 [INF] [allcodes-782-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:48.431 +01:00 [INF] [allcodes-782-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:48.446 +01:00 [INF] [allcodes-782-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:48.461 +01:00 [INF] [allcodes-782-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:48.473 +01:00 [INF] [allcodes-782-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:48.490 +01:00 [INF] [allcodes-782-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:48.507 +01:00 [WRN] [allcodes-782-20260326-124920]   ⚠ Forced test error codes toegepast: 782
+2026-03-26 12:49:48.509 +01:00 [INF] [allcodes-782-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 12:49:49.279 +01:00 [INF] [allcodes-999-20260326-124920] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 12:49:49.280 +01:00 [INF] [allcodes-999-20260326-124920] ✓ Step 3A: Controleer EAN-code
+2026-03-26 12:49:49.295 +01:00 [INF] [allcodes-999-20260326-124920] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 12:49:49.322 +01:00 [INF] [allcodes-999-20260326-124920] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 12:49:49.343 +01:00 [INF] [allcodes-999-20260326-124920] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 12:49:49.357 +01:00 [INF] [allcodes-999-20260326-124920] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 12:49:49.372 +01:00 [INF] [allcodes-999-20260326-124920] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 12:49:49.390 +01:00 [WRN] [allcodes-999-20260326-124920]   ⚠ Forced test error codes toegepast: 999
+2026-03-26 12:49:49.392 +01:00 [INF] [allcodes-999-20260326-124920] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:08:54.798 +01:00 [INF] [mv] [test-block-tag-130853] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:08:54.842 +01:00 [INF] [mv] [test-block-tag-130853] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:08:54.868 +01:00 [INF] [mv] [test-block-tag-130853] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:08:54.884 +01:00 [INF] [mv] [test-block-tag-130853] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:08:54.900 +01:00 [INF] [mv] [test-block-tag-130853] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:08:54.916 +01:00 [INF] [mv] [test-block-tag-130853] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:08:54.932 +01:00 [INF] [mv] [test-block-tag-130853] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:08:54.949 +01:00 [INF] [mv] [test-block-tag-130853] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:17.344 +01:00 [INF] [mv] [allcodes-650-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:17.348 +01:00 [INF] [mv] [allcodes-650-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:17.368 +01:00 [INF] [mv] [allcodes-650-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:17.399 +01:00 [INF] [mv] [allcodes-650-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:17.431 +01:00 [INF] [mv] [allcodes-650-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:17.462 +01:00 [INF] [mv] [allcodes-650-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:17.493 +01:00 [INF] [mv] [allcodes-650-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:17.509 +01:00 [WRN] [mv] [allcodes-650-20260326-131017]   ⚠ Forced test error codes toegepast: 650
+2026-03-26 13:10:17.513 +01:00 [INF] [mv] [allcodes-650-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:18.559 +01:00 [INF] [mv] [allcodes-651-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:18.561 +01:00 [INF] [mv] [allcodes-651-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:18.581 +01:00 [INF] [mv] [allcodes-651-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:18.595 +01:00 [INF] [mv] [allcodes-651-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:18.611 +01:00 [INF] [mv] [allcodes-651-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:18.627 +01:00 [INF] [mv] [allcodes-651-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:18.643 +01:00 [INF] [mv] [allcodes-651-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:18.660 +01:00 [WRN] [mv] [allcodes-651-20260326-131017]   ⚠ Forced test error codes toegepast: 651
+2026-03-26 13:10:18.662 +01:00 [INF] [mv] [allcodes-651-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:19.680 +01:00 [INF] [mv] [allcodes-652-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:19.683 +01:00 [INF] [mv] [allcodes-652-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:19.710 +01:00 [INF] [mv] [allcodes-652-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:19.741 +01:00 [INF] [mv] [allcodes-652-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:19.757 +01:00 [INF] [mv] [allcodes-652-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:19.773 +01:00 [INF] [mv] [allcodes-652-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:19.804 +01:00 [INF] [mv] [allcodes-652-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:19.820 +01:00 [WRN] [mv] [allcodes-652-20260326-131017]   ⚠ Forced test error codes toegepast: 652
+2026-03-26 13:10:19.823 +01:00 [INF] [mv] [allcodes-652-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:20.791 +01:00 [INF] [mv] [allcodes-653-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:20.794 +01:00 [INF] [mv] [allcodes-653-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:20.810 +01:00 [INF] [mv] [allcodes-653-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:20.826 +01:00 [INF] [mv] [allcodes-653-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:20.841 +01:00 [INF] [mv] [allcodes-653-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:20.857 +01:00 [INF] [mv] [allcodes-653-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:20.873 +01:00 [INF] [mv] [allcodes-653-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:20.888 +01:00 [WRN] [mv] [allcodes-653-20260326-131017]   ⚠ Forced test error codes toegepast: 653
+2026-03-26 13:10:20.894 +01:00 [INF] [mv] [allcodes-653-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:21.766 +01:00 [INF] [mv] [allcodes-654-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:21.770 +01:00 [INF] [mv] [allcodes-654-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:21.795 +01:00 [INF] [mv] [allcodes-654-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:21.810 +01:00 [INF] [mv] [allcodes-654-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:21.841 +01:00 [INF] [mv] [allcodes-654-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:21.872 +01:00 [INF] [mv] [allcodes-654-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:21.888 +01:00 [INF] [mv] [allcodes-654-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:21.903 +01:00 [WRN] [mv] [allcodes-654-20260326-131017]   ⚠ Forced test error codes toegepast: 654
+2026-03-26 13:10:21.907 +01:00 [INF] [mv] [allcodes-654-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:22.799 +01:00 [INF] [mv] [allcodes-655-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:22.801 +01:00 [INF] [mv] [allcodes-655-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:22.826 +01:00 [INF] [mv] [allcodes-655-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:22.842 +01:00 [INF] [mv] [allcodes-655-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:22.858 +01:00 [INF] [mv] [allcodes-655-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:22.889 +01:00 [INF] [mv] [allcodes-655-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:22.921 +01:00 [INF] [mv] [allcodes-655-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:22.937 +01:00 [WRN] [mv] [allcodes-655-20260326-131017]   ⚠ Forced test error codes toegepast: 655
+2026-03-26 13:10:22.943 +01:00 [INF] [mv] [allcodes-655-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:23.890 +01:00 [INF] [mv] [allcodes-656-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:23.893 +01:00 [INF] [mv] [allcodes-656-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:23.908 +01:00 [INF] [mv] [allcodes-656-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:23.923 +01:00 [INF] [mv] [allcodes-656-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:23.954 +01:00 [INF] [mv] [allcodes-656-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:23.985 +01:00 [INF] [mv] [allcodes-656-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:24.018 +01:00 [INF] [mv] [allcodes-656-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:24.049 +01:00 [WRN] [mv] [allcodes-656-20260326-131017]   ⚠ Forced test error codes toegepast: 656
+2026-03-26 13:10:24.056 +01:00 [INF] [mv] [allcodes-656-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:25.010 +01:00 [INF] [mv] [allcodes-676-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:25.013 +01:00 [INF] [mv] [allcodes-676-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:25.027 +01:00 [INF] [mv] [allcodes-676-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:25.043 +01:00 [INF] [mv] [allcodes-676-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:25.059 +01:00 [INF] [mv] [allcodes-676-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:25.075 +01:00 [INF] [mv] [allcodes-676-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:25.091 +01:00 [INF] [mv] [allcodes-676-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:25.106 +01:00 [WRN] [mv] [allcodes-676-20260326-131017]   ⚠ Forced test error codes toegepast: 676
+2026-03-26 13:10:25.110 +01:00 [INF] [mv] [allcodes-676-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:26.010 +01:00 [INF] [mv] [allcodes-677-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:26.012 +01:00 [INF] [mv] [allcodes-677-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:26.032 +01:00 [INF] [mv] [allcodes-677-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:26.048 +01:00 [INF] [mv] [allcodes-677-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:26.063 +01:00 [INF] [mv] [allcodes-677-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:26.079 +01:00 [INF] [mv] [allcodes-677-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:26.094 +01:00 [INF] [mv] [allcodes-677-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:26.110 +01:00 [WRN] [mv] [allcodes-677-20260326-131017]   ⚠ Forced test error codes toegepast: 677
+2026-03-26 13:10:26.112 +01:00 [INF] [mv] [allcodes-677-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:26.962 +01:00 [INF] [mv] [allcodes-678-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:26.964 +01:00 [INF] [mv] [allcodes-678-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:26.978 +01:00 [INF] [mv] [allcodes-678-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:26.994 +01:00 [INF] [mv] [allcodes-678-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:27.010 +01:00 [INF] [mv] [allcodes-678-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:27.026 +01:00 [INF] [mv] [allcodes-678-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:27.042 +01:00 [INF] [mv] [allcodes-678-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:27.058 +01:00 [WRN] [mv] [allcodes-678-20260326-131017]   ⚠ Forced test error codes toegepast: 678
+2026-03-26 13:10:27.068 +01:00 [INF] [mv] [allcodes-678-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:27.958 +01:00 [INF] [mv] [allcodes-679-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:27.961 +01:00 [INF] [mv] [allcodes-679-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:27.984 +01:00 [INF] [mv] [allcodes-679-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:27.999 +01:00 [INF] [mv] [allcodes-679-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:28.014 +01:00 [INF] [mv] [allcodes-679-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:28.030 +01:00 [INF] [mv] [allcodes-679-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:28.061 +01:00 [INF] [mv] [allcodes-679-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:28.076 +01:00 [WRN] [mv] [allcodes-679-20260326-131017]   ⚠ Forced test error codes toegepast: 679
+2026-03-26 13:10:28.081 +01:00 [INF] [mv] [allcodes-679-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:29.025 +01:00 [INF] [mv] [allcodes-680-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:29.027 +01:00 [INF] [mv] [allcodes-680-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:29.050 +01:00 [INF] [mv] [allcodes-680-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:29.066 +01:00 [INF] [mv] [allcodes-680-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:29.081 +01:00 [INF] [mv] [allcodes-680-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:29.097 +01:00 [INF] [mv] [allcodes-680-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:29.128 +01:00 [INF] [mv] [allcodes-680-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:29.159 +01:00 [WRN] [mv] [allcodes-680-20260326-131017]   ⚠ Forced test error codes toegepast: 680
+2026-03-26 13:10:29.164 +01:00 [INF] [mv] [allcodes-680-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:30.049 +01:00 [INF] [mv] [allcodes-686-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:30.051 +01:00 [INF] [mv] [allcodes-686-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:30.071 +01:00 [INF] [mv] [allcodes-686-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:30.086 +01:00 [INF] [mv] [allcodes-686-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:30.102 +01:00 [INF] [mv] [allcodes-686-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:30.118 +01:00 [INF] [mv] [allcodes-686-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:30.133 +01:00 [INF] [mv] [allcodes-686-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:30.164 +01:00 [WRN] [mv] [allcodes-686-20260326-131017]   ⚠ Forced test error codes toegepast: 686
+2026-03-26 13:10:30.169 +01:00 [INF] [mv] [allcodes-686-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:30.997 +01:00 [INF] [mv] [allcodes-687-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:31.000 +01:00 [INF] [mv] [allcodes-687-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:31.013 +01:00 [INF] [mv] [allcodes-687-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:31.029 +01:00 [INF] [mv] [allcodes-687-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:31.045 +01:00 [INF] [mv] [allcodes-687-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:31.061 +01:00 [INF] [mv] [allcodes-687-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:31.076 +01:00 [INF] [mv] [allcodes-687-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:31.093 +01:00 [WRN] [mv] [allcodes-687-20260326-131017]   ⚠ Forced test error codes toegepast: 687
+2026-03-26 13:10:31.097 +01:00 [INF] [mv] [allcodes-687-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:31.903 +01:00 [INF] [mv] [allcodes-688-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:31.905 +01:00 [INF] [mv] [allcodes-688-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:31.925 +01:00 [INF] [mv] [allcodes-688-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:31.940 +01:00 [INF] [mv] [allcodes-688-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:31.956 +01:00 [INF] [mv] [allcodes-688-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:31.972 +01:00 [INF] [mv] [allcodes-688-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:31.987 +01:00 [INF] [mv] [allcodes-688-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:32.002 +01:00 [WRN] [mv] [allcodes-688-20260326-131017]   ⚠ Forced test error codes toegepast: 688
+2026-03-26 13:10:32.005 +01:00 [INF] [mv] [allcodes-688-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:32.784 +01:00 [INF] [mv] [allcodes-689-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:32.786 +01:00 [INF] [mv] [allcodes-689-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:32.803 +01:00 [INF] [mv] [allcodes-689-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:32.819 +01:00 [INF] [mv] [allcodes-689-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:32.835 +01:00 [INF] [mv] [allcodes-689-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:32.850 +01:00 [INF] [mv] [allcodes-689-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:32.866 +01:00 [INF] [mv] [allcodes-689-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:32.883 +01:00 [WRN] [mv] [allcodes-689-20260326-131017]   ⚠ Forced test error codes toegepast: 689
+2026-03-26 13:10:32.886 +01:00 [INF] [mv] [allcodes-689-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:33.650 +01:00 [INF] [mv] [allcodes-700-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:33.652 +01:00 [INF] [mv] [allcodes-700-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:33.672 +01:00 [INF] [mv] [allcodes-700-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:33.688 +01:00 [INF] [mv] [allcodes-700-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:33.703 +01:00 [INF] [mv] [allcodes-700-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:33.719 +01:00 [INF] [mv] [allcodes-700-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:33.735 +01:00 [INF] [mv] [allcodes-700-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:33.750 +01:00 [WRN] [mv] [allcodes-700-20260326-131017]   ⚠ Forced test error codes toegepast: 700
+2026-03-26 13:10:33.753 +01:00 [INF] [mv] [allcodes-700-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:34.547 +01:00 [INF] [mv] [allcodes-701-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:34.548 +01:00 [INF] [mv] [allcodes-701-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:34.566 +01:00 [INF] [mv] [allcodes-701-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:34.582 +01:00 [INF] [mv] [allcodes-701-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:34.598 +01:00 [INF] [mv] [allcodes-701-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:34.614 +01:00 [INF] [mv] [allcodes-701-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:34.630 +01:00 [INF] [mv] [allcodes-701-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:34.645 +01:00 [WRN] [mv] [allcodes-701-20260326-131017]   ⚠ Forced test error codes toegepast: 701
+2026-03-26 13:10:34.646 +01:00 [INF] [mv] [allcodes-701-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:35.442 +01:00 [INF] [mv] [allcodes-702-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:35.444 +01:00 [INF] [mv] [allcodes-702-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:35.463 +01:00 [INF] [mv] [allcodes-702-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:35.479 +01:00 [INF] [mv] [allcodes-702-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:35.494 +01:00 [INF] [mv] [allcodes-702-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:35.509 +01:00 [INF] [mv] [allcodes-702-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:35.525 +01:00 [INF] [mv] [allcodes-702-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:35.540 +01:00 [WRN] [mv] [allcodes-702-20260326-131017]   ⚠ Forced test error codes toegepast: 702
+2026-03-26 13:10:35.546 +01:00 [INF] [mv] [allcodes-702-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:36.464 +01:00 [INF] [mv] [allcodes-754-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:36.466 +01:00 [INF] [mv] [allcodes-754-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:36.485 +01:00 [INF] [mv] [allcodes-754-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:36.501 +01:00 [INF] [mv] [allcodes-754-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:36.517 +01:00 [INF] [mv] [allcodes-754-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:36.533 +01:00 [INF] [mv] [allcodes-754-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:36.549 +01:00 [INF] [mv] [allcodes-754-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:36.565 +01:00 [WRN] [mv] [allcodes-754-20260326-131017]   ⚠ Forced test error codes toegepast: 754
+2026-03-26 13:10:36.567 +01:00 [INF] [mv] [allcodes-754-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:37.333 +01:00 [INF] [mv] [allcodes-755-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:37.336 +01:00 [INF] [mv] [allcodes-755-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:37.353 +01:00 [INF] [mv] [allcodes-755-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:37.369 +01:00 [INF] [mv] [allcodes-755-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:37.385 +01:00 [INF] [mv] [allcodes-755-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:37.401 +01:00 [INF] [mv] [allcodes-755-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:37.417 +01:00 [INF] [mv] [allcodes-755-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:37.433 +01:00 [WRN] [mv] [allcodes-755-20260326-131017]   ⚠ Forced test error codes toegepast: 755
+2026-03-26 13:10:37.437 +01:00 [INF] [mv] [allcodes-755-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:38.218 +01:00 [INF] [mv] [allcodes-756-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:38.220 +01:00 [INF] [mv] [allcodes-756-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:38.237 +01:00 [INF] [mv] [allcodes-756-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:38.252 +01:00 [INF] [mv] [allcodes-756-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:38.267 +01:00 [INF] [mv] [allcodes-756-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:38.283 +01:00 [INF] [mv] [allcodes-756-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:38.298 +01:00 [INF] [mv] [allcodes-756-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:38.314 +01:00 [WRN] [mv] [allcodes-756-20260326-131017]   ⚠ Forced test error codes toegepast: 756
+2026-03-26 13:10:38.321 +01:00 [INF] [mv] [allcodes-756-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:39.112 +01:00 [INF] [mv] [allcodes-758-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:39.115 +01:00 [INF] [mv] [allcodes-758-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:39.133 +01:00 [INF] [mv] [allcodes-758-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:39.149 +01:00 [INF] [mv] [allcodes-758-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:39.165 +01:00 [INF] [mv] [allcodes-758-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:39.181 +01:00 [INF] [mv] [allcodes-758-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:39.197 +01:00 [INF] [mv] [allcodes-758-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:39.213 +01:00 [WRN] [mv] [allcodes-758-20260326-131017]   ⚠ Forced test error codes toegepast: 758
+2026-03-26 13:10:39.217 +01:00 [INF] [mv] [allcodes-758-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:40.009 +01:00 [INF] [mv] [allcodes-759-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:40.011 +01:00 [INF] [mv] [allcodes-759-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:40.031 +01:00 [INF] [mv] [allcodes-759-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:40.046 +01:00 [INF] [mv] [allcodes-759-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:40.062 +01:00 [INF] [mv] [allcodes-759-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:40.078 +01:00 [INF] [mv] [allcodes-759-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:40.094 +01:00 [INF] [mv] [allcodes-759-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:40.110 +01:00 [WRN] [mv] [allcodes-759-20260326-131017]   ⚠ Forced test error codes toegepast: 759
+2026-03-26 13:10:40.116 +01:00 [INF] [mv] [allcodes-759-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:40.922 +01:00 [INF] [mv] [allcodes-760-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:40.924 +01:00 [INF] [mv] [allcodes-760-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:40.943 +01:00 [INF] [mv] [allcodes-760-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:40.959 +01:00 [INF] [mv] [allcodes-760-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:40.975 +01:00 [INF] [mv] [allcodes-760-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:40.991 +01:00 [INF] [mv] [allcodes-760-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:41.007 +01:00 [INF] [mv] [allcodes-760-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:41.023 +01:00 [WRN] [mv] [allcodes-760-20260326-131017]   ⚠ Forced test error codes toegepast: 760
+2026-03-26 13:10:41.026 +01:00 [INF] [mv] [allcodes-760-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:41.801 +01:00 [INF] [mv] [allcodes-772-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:41.803 +01:00 [INF] [mv] [allcodes-772-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:41.822 +01:00 [INF] [mv] [allcodes-772-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:41.838 +01:00 [INF] [mv] [allcodes-772-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:41.854 +01:00 [INF] [mv] [allcodes-772-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:41.869 +01:00 [INF] [mv] [allcodes-772-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:41.885 +01:00 [INF] [mv] [allcodes-772-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:41.900 +01:00 [WRN] [mv] [allcodes-772-20260326-131017]   ⚠ Forced test error codes toegepast: 772
+2026-03-26 13:10:41.903 +01:00 [INF] [mv] [allcodes-772-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:42.734 +01:00 [INF] [mv] [allcodes-773-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:42.736 +01:00 [INF] [mv] [allcodes-773-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:42.753 +01:00 [INF] [mv] [allcodes-773-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:42.769 +01:00 [INF] [mv] [allcodes-773-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:42.784 +01:00 [INF] [mv] [allcodes-773-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:42.799 +01:00 [INF] [mv] [allcodes-773-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:42.815 +01:00 [INF] [mv] [allcodes-773-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:42.831 +01:00 [WRN] [mv] [allcodes-773-20260326-131017]   ⚠ Forced test error codes toegepast: 773
+2026-03-26 13:10:42.833 +01:00 [INF] [mv] [allcodes-773-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:43.598 +01:00 [INF] [mv] [allcodes-774-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:43.601 +01:00 [INF] [mv] [allcodes-774-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:43.619 +01:00 [INF] [mv] [allcodes-774-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:43.634 +01:00 [INF] [mv] [allcodes-774-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:43.650 +01:00 [INF] [mv] [allcodes-774-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:43.666 +01:00 [INF] [mv] [allcodes-774-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:43.682 +01:00 [INF] [mv] [allcodes-774-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:43.697 +01:00 [WRN] [mv] [allcodes-774-20260326-131017]   ⚠ Forced test error codes toegepast: 774
+2026-03-26 13:10:43.701 +01:00 [INF] [mv] [allcodes-774-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:44.481 +01:00 [INF] [mv] [allcodes-775-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:44.484 +01:00 [INF] [mv] [allcodes-775-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:44.500 +01:00 [INF] [mv] [allcodes-775-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:44.515 +01:00 [INF] [mv] [allcodes-775-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:44.531 +01:00 [INF] [mv] [allcodes-775-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:44.547 +01:00 [INF] [mv] [allcodes-775-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:44.563 +01:00 [INF] [mv] [allcodes-775-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:44.579 +01:00 [WRN] [mv] [allcodes-775-20260326-131017]   ⚠ Forced test error codes toegepast: 775
+2026-03-26 13:10:44.583 +01:00 [INF] [mv] [allcodes-775-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:45.408 +01:00 [INF] [mv] [allcodes-780-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:45.410 +01:00 [INF] [mv] [allcodes-780-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:45.427 +01:00 [INF] [mv] [allcodes-780-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:45.443 +01:00 [INF] [mv] [allcodes-780-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:45.458 +01:00 [INF] [mv] [allcodes-780-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:45.473 +01:00 [INF] [mv] [allcodes-780-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:45.488 +01:00 [INF] [mv] [allcodes-780-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:45.504 +01:00 [WRN] [mv] [allcodes-780-20260326-131017]   ⚠ Forced test error codes toegepast: 780
+2026-03-26 13:10:45.508 +01:00 [INF] [mv] [allcodes-780-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:46.624 +01:00 [INF] [mv] [allcodes-781-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:46.626 +01:00 [INF] [mv] [allcodes-781-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:46.652 +01:00 [INF] [mv] [allcodes-781-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:46.668 +01:00 [INF] [mv] [allcodes-781-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:46.683 +01:00 [INF] [mv] [allcodes-781-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:46.698 +01:00 [INF] [mv] [allcodes-781-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:46.714 +01:00 [INF] [mv] [allcodes-781-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:46.730 +01:00 [WRN] [mv] [allcodes-781-20260326-131017]   ⚠ Forced test error codes toegepast: 781
+2026-03-26 13:10:46.733 +01:00 [INF] [mv] [allcodes-781-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:47.491 +01:00 [INF] [mv] [allcodes-782-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:47.493 +01:00 [INF] [mv] [allcodes-782-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:47.512 +01:00 [INF] [mv] [allcodes-782-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:47.528 +01:00 [INF] [mv] [allcodes-782-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:47.544 +01:00 [INF] [mv] [allcodes-782-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:47.559 +01:00 [INF] [mv] [allcodes-782-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:47.574 +01:00 [INF] [mv] [allcodes-782-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:47.590 +01:00 [WRN] [mv] [allcodes-782-20260326-131017]   ⚠ Forced test error codes toegepast: 782
+2026-03-26 13:10:47.594 +01:00 [INF] [mv] [allcodes-782-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 13:10:48.359 +01:00 [INF] [mv] [allcodes-999-20260326-131017] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 13:10:48.361 +01:00 [INF] [mv] [allcodes-999-20260326-131017] ✓ Step 3A: Controleer EAN-code
+2026-03-26 13:10:48.379 +01:00 [INF] [mv] [allcodes-999-20260326-131017] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 13:10:48.395 +01:00 [INF] [mv] [allcodes-999-20260326-131017] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 13:10:48.410 +01:00 [INF] [mv] [allcodes-999-20260326-131017] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 13:10:48.425 +01:00 [INF] [mv] [allcodes-999-20260326-131017] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 13:10:48.441 +01:00 [INF] [mv] [allcodes-999-20260326-131017] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 13:10:48.457 +01:00 [WRN] [mv] [allcodes-999-20260326-131017]   ⚠ Forced test error codes toegepast: 999
+2026-03-26 13:10:48.460 +01:00 [INF] [mv] [allcodes-999-20260326-131017] ✓ Step 3G: Herbruikbare validatieregels
