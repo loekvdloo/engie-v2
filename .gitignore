@@ -1,0 +1,14 @@
+# .NET build output
+**/bin/
+**/obj/
+
+# User/tooling files
+*.user
+*.suo
+*.tmp
+
+# Runtime logs (do not commit log lines)
+logs/**/*.log
+
+# Keep log folder structure in Git
+!logs/**/.gitkeep

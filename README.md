@@ -1,58 +1,89 @@
 # ENGIE MCA Microservices
 
-ASP.NET Core/.NET 10 microservices demo for processing ENGIE MCA market messages through a 29-step pipeline.
+Uitgebreide .NET 10 / ASP.NET Core microservices demo voor ENGIE MCA berichtverwerking.
 
-## Overview
+Het systeem verwerkt marktberichten via een orchestrated pipeline van 29 stappen, verdeeld over 6 services, inclusief:
 
-The workspace contains six services:
+- end-to-end correlatie (X-Correlation-ID)
+- verrijkte gestructureerde logging
+- centrale metrics endpoints
+- contract tests
+- natural fault-code tests
+- volledige fault-code dekking via geforceerde foutcodes
+- load test script
 
-- API Orchestrator on port 5000
-- EventHandler on port 5001
-- MessageProcessor on port 5002
-- MessageValidator on port 5003
-- NackHandler on port 5004
-- OutputHandler on port 5005
+## Inhoud
 
-Messages are submitted to the API and then flow through all six blocks. Each block writes its own log file and also writes to a shared combined log.
+- Architectuur
+- Services en poorten
+- Functionele flow (29 stappen)
+- Starten en stoppen
+- API endpoints
+- Logging en observability
+- Fault codes en validatiebereik
+- Teststrategie en run-instructies
+- Troubleshooting
+- Uitgebreide mapstructuur
 
-## Implemented Features
+## Architectuur
 
-- 29-step microservice pipeline
-- Combined block logging in logs/blocks/all-blocks-YYYYMMDD.log
-- Block tags in logs: api, eh, mp, mv, nh, oh
-- End-to-end correlation IDs via X-Correlation-ID
-- Message metrics on /api/metrics and /metrics
-- Deterministic all-fault-code testing via ForceErrorCodes
-- Natural validation tests for real validator rules
-- Contract tests for the API surface without live worker dependencies
-- Load test script for basic concurrency and latency checks
+Het landschap bestaat uit 1 API orchestrator en 5 worker services.
 
-## Current Validation Scope
+1. API Orchestrator ontvangt het bericht
+2. EventHandler doet intake stappen (kolom 1)
+3. MessageProcessor doet pre-processing (kolom 2)
+4. MessageValidator voert validatieregels uit (kolom 3)
+5. MessageProcessor maakt ACK of NACK (kolom 2+4)
+6. NackHandler verstuurt NACK-flow (kolom 5)
+7. OutputHandler zet output door (kolom 6)
 
-The fault code catalog contains 33 codes in [src/Engie.Mca.Api/Services/FaultCodeCatalog.cs](src/Engie.Mca.Api/Services/FaultCodeCatalog.cs).
+De API houdt context, status en processing steps bij en exposeert status-, step- en metrics endpoints.
 
-Natural validation rules currently cover these codes:
+Zie ook: MICROSERVICES_ARCHITECTURE.md
 
-- 676 required field missing
-- 686 invalid EAN
-- 755 duplicate document ID heuristic
-- 758 invalid or out-of-window time range
-- 760 future dated message
-- 772 negative quantity
-- 773 quantity above limit
-- 774 zero quantity
+## Services en poorten
 
-Full 33-code coverage is available through the existing ForceErrorCodes test hook.
+- API Orchestrator: 5000
+- EventHandler: 5001
+- MessageProcessor: 5002
+- MessageValidator: 5003
+- NackHandler: 5004
+- OutputHandler: 5005
 
-## Quick Start
+## Functionele flow (29 stappen)
 
-### Start all services
+Het systeem logt en bewaart een complete chain van 29 processtappen per bericht:
+
+- Kolom 1: Event Handler (1A-1F)
+- Kolom 2: Message Processor fase 2 (2A-2E)
+- Kolom 3: Message Validator (3A-3G)
+- Kolom 2+4: Message Processor fase 4 (4A-4E)
+- Kolom 5: Nack Handler (5A-5D)
+- Kolom 6: Output Handler (6A-6B)
+
+## Vereisten
+
+- Windows + PowerShell
+- .NET SDK 10
+- Toegang tot dotnet executable:
 
 ```powershell
-& .\scripts\start-all-services.ps1
+"C:\Program Files\dotnet\dotnet.exe"
 ```
 
-### Or start services manually
+Als dotnet niet op PATH staat, gebruik altijd het volledige pad.
+
+## Starten en stoppen
+
+### Alles starten via script
+
+```powershell
+.\scripts\start-all-services.ps1
+```
+
+### Alles handmatig starten
+
+Gebruik per service een aparte terminal:
 
 ```powershell
 & "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.EventHandler\Engie.Mca.EventHandler.csproj"
@@ -63,24 +94,38 @@ Full 33-code coverage is available through the existing ForceErrorCodes test hoo
 & "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.Api\Engie.Mca.Api.csproj"
 ```
 
-### Service URLs
+### Handig: oude processen eerst stoppen
 
-- API: http://localhost:5000
-- EventHandler health: http://localhost:5001/api/event/health
-- MessageProcessor health: http://localhost:5002/api/processor/health
-- MessageValidator health: http://localhost:5003/api/validator/health
-- NackHandler health: http://localhost:5004/api/nack/health
-- OutputHandler health: http://localhost:5005/api/output/health
+Als je lock-fouten krijgt op apphost.exe of service .exe bestanden:
 
-## API Endpoints
-
-### Process message
-
-```text
-POST /api/messages
+```powershell
+Get-Process Engie.Mca.Api,Engie.Mca.EventHandler,Engie.Mca.MessageProcessor,Engie.Mca.MessageValidator,Engie.Mca.NackHandler,Engie.Mca.OutputHandler -ErrorAction SilentlyContinue | Stop-Process -Force
 ```
 
-Request body:
+## API endpoints
+
+Base URL:
+
+```text
+http://localhost:5000
+```
+
+### Berichten
+
+- POST /api/messages
+- GET /api/messages/{messageId}
+- GET /api/messages/{messageId}/steps
+- GET /api/messages/status/{status}
+- GET /api/messages
+- GET /api/messages/stats/summary
+- POST /api/messages/{messageId}/reprocess
+
+### Metrics
+
+- GET /api/metrics
+- GET /metrics
+
+### Request voorbeeld
 
 ```json
 {
@@ -90,7 +135,13 @@ Request body:
 }
 ```
 
-Response body:
+### Header voor correlatie
+
+```text
+X-Correlation-ID: corr-001
+```
+
+### Response voorbeeld
 
 ```json
 {
@@ -103,169 +154,262 @@ Response body:
 }
 ```
 
-Optional request header:
+## Logging en observability
 
-```text
-X-Correlation-ID: corr-001
-```
+### Logbestanden
 
-### Get message status
-
-```text
-GET /api/messages/{messageId}
-```
-
-Returns processing status, error codes, steps, timestamps and processing duration.
-
-### Get message steps
-
-```text
-GET /api/messages/{messageId}/steps
-```
-
-### Get messages by status
-
-```text
-GET /api/messages/status/{status}
-```
-
-### Get all messages
-
-```text
-GET /api/messages
-```
-
-### Statistics summary
-
-```text
-GET /api/messages/stats/summary
-```
-
-### Reprocess message
-
-```text
-POST /api/messages/{messageId}/reprocess
-```
-
-### JSON metrics
-
-```text
-GET /api/metrics
-```
-
-### Prometheus-style metrics
-
-```text
-GET /metrics
-```
-
-## Logging
-
-Log files are written to:
-
-- logs/pipeline-YYYYMMDD.log for API-level logs
+- logs/pipeline-YYYYMMDD.log
+- logs/event-handler/event-handler-YYYYMMDD.log
+- logs/message-processor/processor-YYYYMMDD.log
+- logs/message-validator/validator-YYYYMMDD.log
+- logs/nack-handler/nack-YYYYMMDD.log
+- logs/output-handler/output-YYYYMMDD.log
 - logs/blocks/block1-event-handler-YYYYMMDD.log
 - logs/blocks/block2-4-message-processor-YYYYMMDD.log
 - logs/blocks/block3-message-validator-YYYYMMDD.log
 - logs/blocks/block5-nack-handler-YYYYMMDD.log
 - logs/blocks/block6-output-handler-YYYYMMDD.log
-- logs/blocks/all-blocks-YYYYMMDD.log for the combined cross-service view
+- logs/blocks/all-blocks-YYYYMMDD.log
 
-Combined log lines now include:
+### Gestructureerde velden
 
-- block code
-- correlation ID
-- message ID
-- message type
-- response type
-- error code list
+De gecombineerde block logs bevatten minimaal:
 
-## Testing
+- BlockCode
+- CorrelationId
+- MessageId
+- MessageType
+- ResponseType
+- ErrorCodes
 
-### Contract tests
+### Metrics inhoud
+
+Centrale metrics (JSON en Prometheus-style) bevatten onder andere:
+
+- totalMessages
+- deliveredMessages
+- failedMessages
+- ackMessages
+- nackMessages
+- successRate
+- averageProcessingDurationMs
+- p95ProcessingDurationMs
+- errorsByCode
+- messagesByStatus
+- messagesByType
+
+## Fault codes en validatie
+
+De catalog bevat 33 fault codes in:
+
+- src/Engie.Mca.Api/Services/FaultCodeCatalog.cs
+
+### Natural validatieregel dekking
+
+Realistische rules dekken op dit moment expliciet:
+
+- 676 required field missing
+- 686 invalid EAN
+- 755 duplicate document ID heuristic
+- 758 invalid/out-of-window time range
+- 760 future dated message
+- 772 negative quantity
+- 773 quantity above limit
+- 774 zero quantity
+
+### Volledige catalogusdekking
+
+Volledige deterministische dekking van alle 33 codes loopt via ForceErrorCodes in de testflow.
+
+## Teststrategie
+
+Deze repo gebruikt meerdere testlagen, elk met eigen doel:
+
+1. Contract tests: snel API contract valideren zonder live worker dependency
+2. API smoke scripts: basis endpointgedrag en stappen ophalen
+3. Natural fault-code tests: realistische validatiepaden
+4. All fault-code tests: volledige codecatalog dekking
+5. Logging tests: controle op block logging en combined log
+6. Load test: eenvoudige performance en latency smoke
+
+## Testen draaien
+
+### 1) Contract tests
 
 ```powershell
 & "C:\Program Files\dotnet\dotnet.exe" test ".\tests\Engie.Mca.Contracts.Tests\Engie.Mca.Contracts.Tests.csproj"
 ```
 
-### Natural validation tests
+### 2) Live stack starten
 
 ```powershell
-& .\scripts\test-natural-faultcodes.ps1
+.\scripts\start-all-services.ps1
 ```
 
-### Full fault code coverage
+### 3) Live scripts
 
 ```powershell
-& .\scripts\test-all-faultcodes.ps1
+.\scripts\test-api.ps1
+.\scripts\test-all-steps.ps1
+.\scripts\test-with-logging.ps1
+.\scripts\test-block-logging.ps1
+.\scripts\test-natural-faultcodes.ps1
+.\scripts\test-all-faultcodes.ps1
+.\scripts\load-test-api.ps1 -TotalRequests 100 -Concurrency 10
 ```
 
-### Load test
+## Aanbevolen daily workflow
+
+Voor kleine wijzigingen:
+
+1. contract test
+2. test-api
+3. test-natural-faultcodes
+
+Voor grotere wijzigingen of release-check:
+
+1. contract test
+2. volledige live scripts
+3. load test
+4. handmatige check van logs/blocks/all-blocks-YYYYMMDD.log
+5. handmatige check van /api/metrics
+
+## Troubleshooting
+
+### dotnet wordt niet gevonden
+
+Gebruik expliciet:
 
 ```powershell
-& .\scripts\load-test-api.ps1 -TotalRequests 100 -Concurrency 10
+& "C:\Program Files\dotnet\dotnet.exe" --info
 ```
 
-### Other useful scripts
+### Lock fout op apphost.exe of service .exe
 
-- scripts/test-api.ps1
-- scripts/test-all-steps.ps1
-- scripts/test-block-logging.ps1
-- scripts/test-with-logging.ps1
+Oorzaak: service draait nog.
+Oplossing: stop bestaande processen en start opnieuw.
 
-## Example Request
+### /api/health geeft 404
 
-```powershell
-$headers = @{
-    "Content-Type" = "application/json"
-    "X-Correlation-ID" = "demo-correlation-001"
-}
+Niet elke service gebruikt exact hetzelfde health pad. Gebruik de service-specifieke endpoints of test direct met een script.
 
-$body = @{
-    messageId = "demo-001"
-    xmlContent = "<AllocationSeries><DocumentID>DOC-001</DocumentID><EAN>8712345678901</EAN><Quantity>100</Quantity><StartDateTime>2026-03-20T10:00:00Z</StartDateTime><EndDateTime>2026-03-20T11:00:00Z</EndDateTime></AllocationSeries>"
-} | ConvertTo-Json
+### Te veel gewijzigde bestanden in Git
 
-Invoke-RestMethod -Method Post -Uri "http://localhost:5000/api/messages" -Headers $headers -Body $body
-```
+De meeste zijn gegenereerde bestanden (bin/obj en test output). Voeg een .gitignore toe als die nog ontbreekt.
 
-## Project Structure
+## Uitgebreide mapstructuur
+
+Onderstaande structuur toont de functionele layout. Build artifacts (bin/obj) zijn functioneel minder relevant en horen meestal niet in Git.
 
 ```text
-src/
-  Engie.Mca.Api/
-  Engie.Mca.EventHandler/
-  Engie.Mca.MessageProcessor/
-  Engie.Mca.MessageValidator/
-  Engie.Mca.NackHandler/
-  Engie.Mca.OutputHandler/
-
-scripts/
-  start-all-services.ps1
-  test-all-faultcodes.ps1
-  test-natural-faultcodes.ps1
-  load-test-api.ps1
-
-tests/
-  Engie.Mca.Contracts.Tests/
-
-docs/
-  ENGIE-MCA-API-Postman.json
-  API-TESTING-GUIDE.md
+engie-v2/
+|-- .git/
+|-- MICROSERVICES_ARCHITECTURE.md
+|-- README.md
+|
+|-- docs/
+|   |-- API-TESTING-GUIDE.md
+|   |-- ENGIE-MCA-API-Postman.json
+|   |-- trello-board-api-no-dashboard.json
+|   `-- trello-board-import-guide.md
+|
+|-- scripts/
+|   |-- create-trello-board.ps1
+|   |-- start-all-services.ps1
+|   |-- test-api.ps1
+|   |-- test-all-steps.ps1
+|   |-- test-with-logging.ps1
+|   |-- test-block-logging.ps1
+|   |-- test-natural-faultcodes.ps1
+|   |-- test-all-faultcodes.ps1
+|   `-- load-test-api.ps1
+|
+|-- src/
+|   |-- Engie.Mca.Api/
+|   |   |-- appsettings.json
+|   |   |-- Engie.Mca.Api.csproj
+|   |   |-- Program.cs
+|   |   |-- Controllers/
+|   |   |-- Models/
+|   |   |-- Services/
+|   |   |-- bin/                  (generated)
+|   |   `-- obj/                  (generated)
+|   |
+|   |-- Engie.Mca.EventHandler/
+|   |   |-- Engie.Mca.EventHandler.csproj
+|   |   |-- Program.cs
+|   |   |-- Controllers/
+|   |   |-- bin/                  (generated)
+|   |   `-- obj/                  (generated)
+|   |
+|   |-- Engie.Mca.MessageProcessor/
+|   |   |-- Engie.Mca.MessageProcessor.csproj
+|   |   |-- Program.cs
+|   |   |-- Controllers/
+|   |   |-- bin/                  (generated)
+|   |   `-- obj/                  (generated)
+|   |
+|   |-- Engie.Mca.MessageValidator/
+|   |   |-- Engie.Mca.MessageValidator.csproj
+|   |   |-- Program.cs
+|   |   |-- Controllers/
+|   |   |-- bin/                  (generated)
+|   |   `-- obj/                  (generated)
+|   |
+|   |-- Engie.Mca.NackHandler/
+|   |   |-- Engie.Mca.NackHandler.csproj
+|   |   |-- Program.cs
+|   |   |-- Controllers/
+|   |   |-- bin/                  (generated)
+|   |   `-- obj/                  (generated)
+|   |
+|   |-- Engie.Mca.OutputHandler/
+|   |   |-- Engie.Mca.OutputHandler.csproj
+|   |   |-- Program.cs
+|   |   |-- Controllers/
+|   |   |-- bin/                  (generated)
+|   |   `-- obj/                  (generated)
+|   |
+|   `-- logs/
+|
+|-- tests/
+|   `-- Engie.Mca.Contracts.Tests/
+|       |-- Engie.Mca.Contracts.Tests.csproj
+|       |-- ContractWebApplicationFactory.cs
+|       |-- MessagesContractTests.cs
+|       |-- bin/                  (generated)
+|       `-- obj/                  (generated)
+|
+`-- logs/
+    |-- pipeline-YYYYMMDD.log
+    |-- event-handler/
+    |-- message-processor/
+    |-- message-validator/
+    |-- nack-handler/
+    |-- output-handler/
+    `-- blocks/
+        |-- all-blocks-YYYYMMDD.log
+        |-- block1-event-handler-YYYYMMDD.log
+        |-- block2-4-message-processor-YYYYMMDD.log
+        |-- block3-message-validator-YYYYMMDD.log
+        |-- block5-nack-handler-YYYYMMDD.log
+        `-- block6-output-handler-YYYYMMDD.log
 ```
 
-## Verification Status
+## Status van de huidige implementatie
 
-The current repo state has been validated with:
+De stack is gevalideerd op:
 
-- successful build of all csproj files
-- successful contract tests
-- successful natural validation script run
-- successful live metrics response from the API
+- succesvolle build van alle csproj projecten
+- contract tests geslaagd
+- natural fault-code tests geslaagd
+- all fault-code tests geslaagd
+- load test geslaagd
+- metrics endpoint live bevestigd
 
-## Next Logical Extensions
+## Mogelijke vervolgstappen
 
-- make more catalog codes naturally triggerable
-- add durable persistence instead of in-memory storage
-- expose richer Prometheus metrics per service
-- add CI execution for contract, natural and load smoke tests
+- meer natural fault-code paden implementeren
+- persistente opslag toevoegen in plaats van uitsluitend in-memory store
+- CI pipeline toevoegen voor contract + live smoke + load smoke
+- standaard .gitignore opnemen voor bin/obj/log output
