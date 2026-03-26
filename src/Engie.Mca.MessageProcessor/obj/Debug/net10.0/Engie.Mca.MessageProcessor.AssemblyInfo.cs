@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Engie.Mca.MessageProcessor")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf73bc74a8cb29d33080cb06a60d247b24e027fb")]
 [assembly: System.Reflection.AssemblyProductAttribute("Engie.Mca.MessageProcessor")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Engie.Mca.MessageProcessor")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

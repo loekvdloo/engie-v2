@@ -36,3 +36,4 @@ C:\Users\loek\engie\engie-v2\src\Engie.Mca.MessageValidator\obj\Debug\net10.0\re
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.MessageValidator\obj\Debug\net10.0\Engie.Mca.MessageValidator.pdb
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.MessageValidator\obj\Debug\net10.0\Engie.Mca.MessageValidator.genruntimeconfig.cache
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.MessageValidator\obj\Debug\net10.0\ref\Engie.Mca.MessageValidator.dll
+C:\Users\loek\engie\engie-v2\src\Engie.Mca.MessageValidator\obj\Debug\net10.0\Engie.Mca.MessageValidator.sourcelink.json

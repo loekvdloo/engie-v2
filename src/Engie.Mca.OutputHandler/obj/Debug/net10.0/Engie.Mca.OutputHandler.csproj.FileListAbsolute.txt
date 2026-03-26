@@ -36,3 +36,4 @@ C:\Users\loek\engie\engie-v2\src\Engie.Mca.OutputHandler\obj\Debug\net10.0\refin
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.OutputHandler\obj\Debug\net10.0\Engie.Mca.OutputHandler.pdb
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.OutputHandler\obj\Debug\net10.0\Engie.Mca.OutputHandler.genruntimeconfig.cache
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.OutputHandler\obj\Debug\net10.0\ref\Engie.Mca.OutputHandler.dll
+C:\Users\loek\engie\engie-v2\src\Engie.Mca.OutputHandler\obj\Debug\net10.0\Engie.Mca.OutputHandler.sourcelink.json

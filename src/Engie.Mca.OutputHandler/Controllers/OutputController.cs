@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Serilog.Context;
 namespace Engie.Mca.OutputHandler.Controllers;
 
 [ApiController]
@@ -24,6 +25,10 @@ public class OutputController : ControllerBase
     public async Task<IActionResult> FinalizeOutput([FromBody] OutputRequest request)
     {
         var messageId = request.MessageId;
+
+        using var messageIdScope = LogContext.PushProperty("MessageId", messageId);
+        using var responseTypeScope = LogContext.PushProperty("ResponseType", request.Status);
+
         _logger.LogInformation("[{MessageId}] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===", messageId);
 
         try

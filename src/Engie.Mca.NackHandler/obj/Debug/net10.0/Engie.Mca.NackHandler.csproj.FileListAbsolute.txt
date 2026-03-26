@@ -36,3 +36,4 @@ C:\Users\loek\engie\engie-v2\src\Engie.Mca.NackHandler\obj\Debug\net10.0\refint\
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.NackHandler\obj\Debug\net10.0\Engie.Mca.NackHandler.pdb
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.NackHandler\obj\Debug\net10.0\Engie.Mca.NackHandler.genruntimeconfig.cache
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.NackHandler\obj\Debug\net10.0\ref\Engie.Mca.NackHandler.dll
+C:\Users\loek\engie\engie-v2\src\Engie.Mca.NackHandler\obj\Debug\net10.0\Engie.Mca.NackHandler.sourcelink.json

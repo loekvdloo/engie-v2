@@ -1,243 +1,271 @@
-# ENGIE Allocation Processor API - Complete Setup
+# ENGIE MCA Microservices
 
-## ✅ What's Been Created
+ASP.NET Core/.NET 10 microservices demo for processing ENGIE MCA market messages through a 29-step pipeline.
 
-### 1. **ASP.NET Core Web API** 
-- Full-featured REST API with 5 endpoints
-- 29-step processing pipeline implemented
-- 6 processing columns (Event Handler → Output Handler)
-- Error handling with 38 official fault codes
-- In-memory message store (ready for database integration)
+## Overview
 
-### 2. **Postman Collection**
-- 11 comprehensive test scenarios
-- Pre-configured test data for all message types
-- Automated assertions and validations
-- Variable management for tracking message IDs
-- Easy one-click testing
+The workspace contains six services:
 
-### 3. **API Documentation**
-- Full endpoint reference
-- Error codes and handling
-- Architecture diagrams
-- Troubleshooting guide
+- API Orchestrator on port 5000
+- EventHandler on port 5001
+- MessageProcessor on port 5002
+- MessageValidator on port 5003
+- NackHandler on port 5004
+- OutputHandler on port 5005
 
-## 🚀 Quick Start
+Messages are submitted to the API and then flow through all six blocks. Each block writes its own log file and also writes to a shared combined log.
 
-### Start the API
+## Implemented Features
+
+- 29-step microservice pipeline
+- Combined block logging in logs/blocks/all-blocks-YYYYMMDD.log
+- Block tags in logs: api, eh, mp, mv, nh, oh
+- End-to-end correlation IDs via X-Correlation-ID
+- Message metrics on /api/metrics and /metrics
+- Deterministic all-fault-code testing via ForceErrorCodes
+- Natural validation tests for real validator rules
+- Contract tests for the API surface without live worker dependencies
+- Load test script for basic concurrency and latency checks
+
+## Current Validation Scope
+
+The fault code catalog contains 33 codes in [src/Engie.Mca.Api/Services/FaultCodeCatalog.cs](src/Engie.Mca.Api/Services/FaultCodeCatalog.cs).
+
+Natural validation rules currently cover these codes:
+
+- 676 required field missing
+- 686 invalid EAN
+- 755 duplicate document ID heuristic
+- 758 invalid or out-of-window time range
+- 760 future dated message
+- 772 negative quantity
+- 773 quantity above limit
+- 774 zero quantity
+
+Full 33-code coverage is available through the existing ForceErrorCodes test hook.
+
+## Quick Start
+
+### Start all services
+
 ```powershell
-cd c:\Users\loek\engie\engie-v2\src\Engie.Mca.Api
-& "C:\Program Files\dotnet\dotnet.exe" run
+& .\scripts\start-all-services.ps1
 ```
 
-API runs on: **http://localhost:5000**
+### Or start services manually
 
-### Test with Postman
-
-1. Open Postman
-2. Import: `docs/ENGIE-MCA-API-Postman.json`
-3. Run any request from the collection
-4. All tests have automated assertions
-
-## 📡 API Endpoints
-
-### 1. Process Message
+```powershell
+& "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.EventHandler\Engie.Mca.EventHandler.csproj"
+& "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.MessageProcessor\Engie.Mca.MessageProcessor.csproj"
+& "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.MessageValidator\Engie.Mca.MessageValidator.csproj"
+& "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.NackHandler\Engie.Mca.NackHandler.csproj"
+& "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.OutputHandler\Engie.Mca.OutputHandler.csproj"
+& "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.Api\Engie.Mca.Api.csproj"
 ```
+
+### Service URLs
+
+- API: http://localhost:5000
+- EventHandler health: http://localhost:5001/api/event/health
+- MessageProcessor health: http://localhost:5002/api/processor/health
+- MessageValidator health: http://localhost:5003/api/validator/health
+- NackHandler health: http://localhost:5004/api/nack/health
+- OutputHandler health: http://localhost:5005/api/output/health
+
+## API Endpoints
+
+### Process message
+
+```text
 POST /api/messages
+```
 
-Request:
+Request body:
+
+```json
 {
-  "messageId": "optional-uuid",
-  "xmlContent": "<xml>...</xml>"
+  "messageId": "optional-id",
+  "correlationId": "optional-correlation-id",
+  "xmlContent": "<AllocationSeries>...</AllocationSeries>"
 }
+```
 
-Response:
+Response body:
+
+```json
 {
-  "messageId": "uuid",
-  "status": "Delivered|Failed|Processing",
-  "responseType": "Ack|Nack",
+  "messageId": "msg-001",
+  "correlationId": "corr-001",
+  "status": "Delivered",
+  "responseType": "Ack",
   "errorCount": 0,
-  "errorCodes": ["code"]
+  "errorCodes": []
 }
 ```
 
-### 2. Get Message Status
+Optional request header:
+
+```text
+X-Correlation-ID: corr-001
 ```
+
+### Get message status
+
+```text
 GET /api/messages/{messageId}
-
-Returns detailed status with all 29 processing steps
 ```
 
-### 3. Get Messages by Status
+Returns processing status, error codes, steps, timestamps and processing duration.
+
+### Get message steps
+
+```text
+GET /api/messages/{messageId}/steps
 ```
+
+### Get messages by status
+
+```text
 GET /api/messages/status/{status}
-
-Status values: Received, Processing, Delivered, Failed, Retrying
 ```
 
-### 4. Get All Messages
-```
+### Get all messages
+
+```text
 GET /api/messages
-
-Returns summary of all processed messages
 ```
 
-### 5. Reprocess Message
+### Statistics summary
+
+```text
+GET /api/messages/stats/summary
 ```
+
+### Reprocess message
+
+```text
 POST /api/messages/{messageId}/reprocess
-
-Retry processing a message through the full pipeline
 ```
 
-## 🧪 Test Scenarios Included
+### JSON metrics
 
-✅ **Valid Message** → Delivered + Ack + No errors
-✅ **Invalid EAN** → Failed + Nack + Error 686
-✅ **Future Date** → Failed + Nack + Error 760
-✅ **Invalid XML** → Failed + Nack + Error 651
-✅ **AllocationFactorSeries** → Full pipeline
-✅ **AggregatedAllocationSeries** → Full pipeline
-✅ **Message Status** → Show all 29 steps
-✅ **Filter by Status** → Delivered / Failed
-✅ **Get All Messages** → Summary view
-✅ **Reprocess Failed** → Retry mechanism
-✅ **Full Test Suite** → Run all at once
-
-## 🔧 Processing Pipeline (29 Steps)
-
-### Column 1: Event Handler (1A-1F)
-- Receive market message
-- Send technical confirmation
-- Validate XML format
-- Log receipt time
-- Identify message type
-- Prepare processing
-
-### Column 2+4: Message Processor (2A-2E + 4A-4E)
-- Classify by type
-- Determine priority
-- Queue message
-- Handle exceptions
-- Manage retries
-- Generate ACK/NACK response
-- Add error codes
-- Record result
-- Configure delivery
-
-### Column 3: Message Validator (3A-3G)
-- **3A** - BRP register check (EAN validation)
-- **3B** - Business rule validation
-- **3C** - Required field check
-- **3D** - Configurable validation rules
-- **3E** - Time window validation
-- **3F** - Sequence validation
-- **3G** - Reusable rule library
-
-### Column 5: N-ACK Handler (5A-5D)
-- Send ACK/NACK response
-- Apply configured rules
-- Log send time
-- Independent delivery
-
-### Column 6: Output Handler (6A-6B)
-- Forward to raw-layer
-- Record final status
-
-## 📋 Error Codes
-
-| Code | Message | Step |
-|------|---------|------|
-| 651  | XML parsing failed | 1C |
-| 686  | Invalid EAN code | 3A |
-| 754  | Invalid sequence | 3F |
-| 758  | Message outside period | 3E |
-| 760  | Message in future | 3E |
-| 772  | Negative quantity | 3D |
-| 782  | Configuration not loaded | 4E |
-| 999  | Unknown processing error | * |
-
-## 📂 Project Structure
-
+```text
+GET /api/metrics
 ```
-src/Engie.Mca.Api/
-├── Engie.Mca.Api.csproj
-├── Program.cs                    # Startup & DI configuration
-├── appsettings.json
-├── Models/
-│   └── Models.cs                 # All data structures
-├── Services/
-│   ├── PipelineEngine.cs         # Main 29-step orchestrator
-│   ├── FaultCodeCatalog.cs       # 38 error code definitions
-│   └── MessageStore.cs           # In-memory message storage
-└── Controllers/
-    └── MessagesController.cs     # 5 API endpoints
 
-docs/
-├── ENGIE-MCA-API-Postman.json   # 11 test scenarios
-├── API-TESTING-GUIDE.md          # Detailed testing guide
-└── trello-board-api-no-dashboard.json
+### Prometheus-style metrics
+
+```text
+GET /metrics
+```
+
+## Logging
+
+Log files are written to:
+
+- logs/pipeline-YYYYMMDD.log for API-level logs
+- logs/blocks/block1-event-handler-YYYYMMDD.log
+- logs/blocks/block2-4-message-processor-YYYYMMDD.log
+- logs/blocks/block3-message-validator-YYYYMMDD.log
+- logs/blocks/block5-nack-handler-YYYYMMDD.log
+- logs/blocks/block6-output-handler-YYYYMMDD.log
+- logs/blocks/all-blocks-YYYYMMDD.log for the combined cross-service view
+
+Combined log lines now include:
+
+- block code
+- correlation ID
+- message ID
+- message type
+- response type
+- error code list
+
+## Testing
+
+### Contract tests
+
+```powershell
+& "C:\Program Files\dotnet\dotnet.exe" test ".\tests\Engie.Mca.Contracts.Tests\Engie.Mca.Contracts.Tests.csproj"
+```
+
+### Natural validation tests
+
+```powershell
+& .\scripts\test-natural-faultcodes.ps1
+```
+
+### Full fault code coverage
+
+```powershell
+& .\scripts\test-all-faultcodes.ps1
+```
+
+### Load test
+
+```powershell
+& .\scripts\load-test-api.ps1 -TotalRequests 100 -Concurrency 10
+```
+
+### Other useful scripts
+
+- scripts/test-api.ps1
+- scripts/test-all-steps.ps1
+- scripts/test-block-logging.ps1
+- scripts/test-with-logging.ps1
+
+## Example Request
+
+```powershell
+$headers = @{
+    "Content-Type" = "application/json"
+    "X-Correlation-ID" = "demo-correlation-001"
+}
+
+$body = @{
+    messageId = "demo-001"
+    xmlContent = "<AllocationSeries><DocumentID>DOC-001</DocumentID><EAN>8712345678901</EAN><Quantity>100</Quantity><StartDateTime>2026-03-20T10:00:00Z</StartDateTime><EndDateTime>2026-03-20T11:00:00Z</EndDateTime></AllocationSeries>"
+} | ConvertTo-Json
+
+Invoke-RestMethod -Method Post -Uri "http://localhost:5000/api/messages" -Headers $headers -Body $body
+```
+
+## Project Structure
+
+```text
+src/
+  Engie.Mca.Api/
+  Engie.Mca.EventHandler/
+  Engie.Mca.MessageProcessor/
+  Engie.Mca.MessageValidator/
+  Engie.Mca.NackHandler/
+  Engie.Mca.OutputHandler/
 
 scripts/
-├── create-trello-board.ps1       # Trello board automation
+  start-all-services.ps1
+  test-all-faultcodes.ps1
+  test-natural-faultcodes.ps1
+  load-test-api.ps1
+
+tests/
+  Engie.Mca.Contracts.Tests/
+
+docs/
+  ENGIE-MCA-API-Postman.json
+  API-TESTING-GUIDE.md
 ```
 
-## 🔌 Integration Points
+## Verification Status
 
-### Ready for:
-- ✅ Database persistence (replace MessageStore)
-- ✅ Real message queueing (RabbitMQ, Service Bus)
-- ✅ Authentication (JWT, OAuth2)
-- ✅ Rate limiting
-- ✅ Logging & monitoring
-- ✅ Docker containerization
-- ✅ Kubernetes deployment
+The current repo state has been validated with:
 
-## 📝 Example Request (cURL)
+- successful build of all csproj files
+- successful contract tests
+- successful natural validation script run
+- successful live metrics response from the API
 
-```bash
-curl -X POST http://localhost:5000/api/messages \
-  -H "Content-Type: application/json" \
-  -d '{
-    "messageId": "msg-001",
-    "xmlContent": "<?xml version=\"1.0\"?><AllocationSeries><EAN>8714568009996</EAN><Quantity>100</Quantity></AllocationSeries>"
-  }'
-```
+## Next Logical Extensions
 
-## ✔️ Verification Checklist
-
-After starting the API:
-
-- [ ] API responds on http://localhost:5000
-- [ ] `GET /api/messages` returns `[]`
-- [ ] `POST /api/messages` with valid XML returns `Status: Delivered`
-- [ ] `POST /api/messages` with invalid EAN returns error 686
-- [ ] `GET /api/messages/{id}` shows all 29 steps
-- [ ] Postman collection imports successfully
-- [ ] All 11 test requests pass
-
-## 🎯 Next Steps
-
-1. **Test in Postman** - Run full suite to verify all flows
-2. **Add Database** - Replace MessageStore with SQL Server/PostgreSQL  
-3. **Add Security** - Implement JWT authentication
-4. **Add API Gateway** - Deploy behind Azure API Management
-5. **Monitor** - Add Application Insights logging
-6. **Deploy** - Docker → Azure Container Instances
-
-## 📞 File Locations
-
-- **API Code**: `c:\Users\loek\engie\engie-v2\src\Engie.Mca.Api\`
-- **Postman Collection**: `c:\Users\loek\engie\engie-v2\docs\ENGIE-MCA-API-Postman.json`
-- **Testing Guide**: `c:\Users\loek\engie\engie-v2\docs\API-TESTING-GUIDE.md`
-- **Trello Board**: https://trello.com/b/N3res2mo/engie-allocation-processor-api-29-user-stories
-
-## 🎓 Architecture Reference
-
-The API implements the complete allocation processor pipeline with:
-- **Asynchronous processing** - Full async/await throughout
-- **Error resilience** - 38 error codes with detailed tracking
-- **Message tracing** - Complete audit trail of all 29 steps
-- **Extensible design** - Easy to add new validation rules or message types
-- **Production-ready** - Logging, error handling, null safety
-
-Enjoy! 🚀
+- make more catalog codes naturally triggerable
+- add durable persistence instead of in-memory storage
+- expose richer Prometheus metrics per service
+- add CI execution for contract, natural and load smoke tests

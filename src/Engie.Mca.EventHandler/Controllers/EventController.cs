@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Serilog.Context;
 namespace Engie.Mca.EventHandler.Controllers;
 
 [ApiController]
@@ -24,6 +25,10 @@ public class EventController : ControllerBase
     public async Task<IActionResult> HandleEvent([FromBody] EventHandlerRequest request)
     {
         var messageId = request.MessageId;
+
+        using var messageIdScope = LogContext.PushProperty("MessageId", messageId);
+        using var messageTypeScope = LogContext.PushProperty("MessageType", request.MessageType);
+
         _logger.LogInformation("[{MessageId}] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===", messageId);
 
         try

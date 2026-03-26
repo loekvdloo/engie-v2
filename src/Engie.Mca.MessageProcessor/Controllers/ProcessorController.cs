@@ -1,8 +1,10 @@
 
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Serilog.Context;
 namespace Engie.Mca.MessageProcessor.Controllers;
 
 [ApiController]
@@ -24,6 +26,10 @@ public class ProcessorController : ControllerBase
     public async Task<IActionResult> ProcessPhase2([FromBody] ProcessorRequest request)
     {
         var messageId = request.MessageId;
+
+        using var messageIdScope = LogContext.PushProperty("MessageId", messageId);
+        using var messageTypeScope = LogContext.PushProperty("MessageType", request.MessageType);
+
         _logger.LogInformation("[{MessageId}] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===", messageId);
 
         try
@@ -72,6 +78,11 @@ public class ProcessorController : ControllerBase
     public async Task<IActionResult> ProcessPhase4([FromBody] ProcessorRequest request)
     {
         var messageId = request.MessageId;
+
+        using var messageIdScope = LogContext.PushProperty("MessageId", messageId);
+        using var responseTypeScope = LogContext.PushProperty("ResponseType", request.HasErrors ? "NACK" : "ACK");
+        using var errorCodesScope = LogContext.PushProperty("ErrorCodes", request.ErrorCodes == null ? string.Empty : string.Join(",", request.ErrorCodes));
+
         _logger.LogInformation("[{MessageId}] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===", messageId);
 
         try
@@ -134,4 +145,5 @@ public class ProcessorRequest
     public string MessageType { get; set; } = string.Empty;
     public bool HasErrors { get; set; }
     public string? ErrorCode { get; set; }
+    public List<string>? ErrorCodes { get; set; }
 }

@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Engie.Mca.Api.Models;
 using Engie.Mca.Api.Services;
+using Serilog.Context;
 
 namespace Engie.Mca.Api.Controllers;
 
@@ -10,11 +11,11 @@ public class MessagesController : ControllerBase
 {
 
 
-    private readonly MicroserviceOrchestrator _orchestrator;
+    private readonly IMicroserviceOrchestrator _orchestrator;
     private readonly MessageStore _store;
     private readonly ILogger<MessagesController> _logger;
 
-    public MessagesController(MicroserviceOrchestrator orchestrator, MessageStore store, ILogger<MessagesController> logger)
+    public MessagesController(IMicroserviceOrchestrator orchestrator, MessageStore store, ILogger<MessagesController> logger)
     {
         _orchestrator = orchestrator;
         _store = store;
@@ -28,25 +29,35 @@ public class MessagesController : ControllerBase
     {
         try
         {
-            _logger.LogInformation("Processing message: {MessageId}", request.MessageId);
-
             var messageId = request.MessageId ?? Guid.NewGuid().ToString();
+            var correlationId = Request.Headers["X-Correlation-ID"].FirstOrDefault()
+                ?? request.CorrelationId
+                ?? HttpContext.TraceIdentifier;
             var content = request.XmlContent ?? request.Xml ?? "<Message/>";
-
             var messageType = DetermineMessageType(content);
+
+            Response.Headers["X-Correlation-ID"] = correlationId;
+
+            using var correlationScope = LogContext.PushProperty("CorrelationId", correlationId);
+            using var messageIdScope = LogContext.PushProperty("MessageId", messageId);
+            using var messageTypeScope = LogContext.PushProperty("MessageType", messageType.ToString());
+
+            _logger.LogInformation("Processing message request received");
 
             var message = new MarketMessage(
                 messageId,
+                correlationId,
                 messageType,
                 content,
                 DateTime.UtcNow
             );
 
-            var result = await _orchestrator.ProcessAsync(message);
+            var result = await _orchestrator.ProcessAsync(message, HttpContext.RequestAborted);
             _store.Save(result);
 
             var response = new MessageResponseDto(
                 result.MessageId,
+                result.CorrelationId,
                 result.Status.ToString(),
                 result.ResponseType?.ToString() ?? "Unknown",
                 result.Errors.Count,
@@ -74,13 +85,15 @@ public class MessagesController : ControllerBase
 
         var response = new MessageStatusResponse(
             msg.MessageId,
+            msg.CorrelationId,
             msg.Status.ToString(),
             msg.ResponseType?.ToString(),
             msg.Errors.Count,
             msg.Errors.Select(e => e.Code).ToList(),
             msg.Steps,
             msg.ReceivedAt,
-            msg.ProcessedAt
+            msg.ProcessedAt,
+            msg.ProcessingDurationMs
         );
 
         return Ok(response);
@@ -129,6 +142,7 @@ public class MessagesController : ControllerBase
         var messages = _store.GetByStatus(status);
         var response = messages.Select(m => new MessageResponseDto(
             m.MessageId,
+            m.CorrelationId,
             m.Status.ToString(),
             m.ResponseType?.ToString() ?? "Unknown",
             m.Errors.Count,
@@ -147,6 +161,7 @@ public class MessagesController : ControllerBase
         var messages = _store.GetAll();
         var response = messages.Select(m => new MessageResponseDto(
             m.MessageId,
+            m.CorrelationId,
             m.Status.ToString(),
             m.ResponseType?.ToString() ?? "Unknown",
             m.Errors.Count,
@@ -199,16 +214,20 @@ public class MessagesController : ControllerBase
 
         var message = new MarketMessage(
             messageId,
+            original.CorrelationId,
             original.Type,
             original.Xml?.ToString() ?? "<Message/>",
             DateTime.UtcNow
         );
 
-        var result = await _orchestrator.ProcessAsync(message);
+        Response.Headers["X-Correlation-ID"] = original.CorrelationId;
+
+        var result = await _orchestrator.ProcessAsync(message, HttpContext.RequestAborted);
         _store.Save(result);
 
         var response = new MessageResponseDto(
             result.MessageId,
+            result.CorrelationId,
             result.Status.ToString(),
             result.ResponseType?.ToString() ?? "Unknown",
             result.Errors.Count,

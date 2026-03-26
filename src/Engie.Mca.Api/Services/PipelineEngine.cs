@@ -32,6 +32,7 @@ public class PipelineEngine
     {
         var context = new MessageContext(
             message.MessageId,
+            message.CorrelationId,
             message.Type,
             ProcessingStatus.Received,
             null,
@@ -39,6 +40,7 @@ public class PipelineEngine
             new List<ValidationError>(),
             new List<(string, string)>(),
             message.ReceivedAt,
+            null,
             null
         );
 

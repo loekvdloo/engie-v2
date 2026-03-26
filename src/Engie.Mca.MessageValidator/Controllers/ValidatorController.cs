@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Serilog.Context;
 
 namespace Engie.Mca.MessageValidator.Controllers;
 
@@ -28,6 +29,8 @@ public class ValidatorController : ControllerBase
     {
         var messageId = request.MessageId;
         var errors = new List<string>();
+
+        using var messageIdScope = LogContext.PushProperty("MessageId", messageId);
 
         _logger.LogInformation("[{MessageId}] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===", messageId);
 
@@ -145,6 +148,8 @@ public class ValidatorController : ControllerBase
             var forcedCodes = ExtractForcedErrorCodes(request.Content);
             if (forcedCodes.Count > 0)
             {
+                using var errorCodesScope = LogContext.PushProperty("ErrorCodes", string.Join(",", forcedCodes));
+
                 foreach (var code in forcedCodes)
                 {
                     if (!errors.Contains(code))
@@ -155,6 +160,8 @@ public class ValidatorController : ControllerBase
 
                 _logger.LogWarning("[{MessageId}]   ⚠ Forced test error codes toegepast: {Codes}", messageId, string.Join(",", forcedCodes));
             }
+
+            using var aggregatedErrorCodesScope = LogContext.PushProperty("ErrorCodes", string.Join(",", errors));
 
             _logger.LogInformation("[{MessageId}] ✓ Step 3G: Herbruikbare validatieregels", messageId);
             await Task.Delay(10);

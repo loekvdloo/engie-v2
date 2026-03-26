@@ -36,3 +36,4 @@ C:\Users\loek\engie\engie-v2\src\Engie.Mca.MessageProcessor\obj\Debug\net10.0\re
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.MessageProcessor\obj\Debug\net10.0\Engie.Mca.MessageProcessor.pdb
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.MessageProcessor\obj\Debug\net10.0\Engie.Mca.MessageProcessor.genruntimeconfig.cache
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.MessageProcessor\obj\Debug\net10.0\ref\Engie.Mca.MessageProcessor.dll
+C:\Users\loek\engie\engie-v2\src\Engie.Mca.MessageProcessor\obj\Debug\net10.0\Engie.Mca.MessageProcessor.sourcelink.json

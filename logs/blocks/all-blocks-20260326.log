@@ -1221,3 +1221,703 @@
 2026-03-26 13:10:48.658 +01:00 [INF] [oh] [allcodes-999-20260326-131017] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
 2026-03-26 13:10:48.659 +01:00 [INF] [oh] [allcodes-999-20260326-131017] ✓ Step 6A: Doorzetten naar raw-layer
 2026-03-26 13:10:48.677 +01:00 [INF] [oh] [allcodes-999-20260326-131017] ✓ Step 6B: Registreer afleverstatus: Failed
+2026-03-26 14:09:10.266 +01:00 [INF] [eh] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:10.303 +01:00 [INF] [eh] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:10.318 +01:00 [INF] [eh] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:10.333 +01:00 [INF] [eh] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:10.348 +01:00 [INF] [eh] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:10.364 +01:00 [INF] [eh] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:10.380 +01:00 [INF] [eh] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:10.552 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:10.588 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:10.615 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:10.631 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:10.647 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:10.662 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:AllocationSeries] [resp:] [codes:] [natural-valid] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:10.837 +01:00 [INF] [mv] [corr-valid] [msg:natural-valid] [type:] [resp:] [codes:] [natural-valid] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:10.874 +01:00 [INF] [mv] [corr-valid] [msg:natural-valid] [type:] [resp:] [codes:] [natural-valid] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:10.901 +01:00 [INF] [mv] [corr-valid] [msg:natural-valid] [type:] [resp:] [codes:] [natural-valid] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:10.917 +01:00 [INF] [mv] [corr-valid] [msg:natural-valid] [type:] [resp:] [codes:] [natural-valid] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:10.933 +01:00 [INF] [mv] [corr-valid] [msg:natural-valid] [type:] [resp:] [codes:] [natural-valid] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:10.949 +01:00 [INF] [mv] [corr-valid] [msg:natural-valid] [type:] [resp:] [codes:] [natural-valid] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:10.981 +01:00 [INF] [mv] [corr-valid] [msg:natural-valid] [type:] [resp:] [codes:] [natural-valid] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:10.996 +01:00 [INF] [mv] [corr-valid] [msg:natural-valid] [type:] [resp:] [codes:] [natural-valid] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:11.057 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:] [resp:ACK] [codes:] [natural-valid] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:11.061 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:] [resp:ACK] [codes:] [natural-valid] ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 14:09:11.074 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:] [resp:ACK] [codes:] [natural-valid] ✓ Step 4B: Geen foutcodes toe te voegen
+2026-03-26 14:09:11.105 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:] [resp:ACK] [codes:] [natural-valid] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:11.121 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:] [resp:ACK] [codes:] [natural-valid] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:11.136 +01:00 [INF] [mp] [corr-valid] [msg:natural-valid] [type:] [resp:ACK] [codes:] [natural-valid] ✓ Step 4E: Configureer ACK-verzending
+2026-03-26 14:09:11.311 +01:00 [INF] [nh] [corr-valid] [msg:natural-valid] [type:] [resp:Ack] [codes:] [natural-valid] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:11.349 +01:00 [INF] [nh] [corr-valid] [msg:natural-valid] [type:] [resp:Ack] [codes:] [natural-valid] ✓ Step 5A: Verstuur Ack-bericht
+2026-03-26 14:09:11.373 +01:00 [INF] [nh] [corr-valid] [msg:natural-valid] [type:] [resp:Ack] [codes:] [natural-valid] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:11.389 +01:00 [INF] [nh] [corr-valid] [msg:natural-valid] [type:] [resp:Ack] [codes:] [natural-valid] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:11.405 +01:00 [INF] [nh] [corr-valid] [msg:natural-valid] [type:] [resp:Ack] [codes:] [natural-valid] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:11.561 +01:00 [INF] [oh] [corr-valid] [msg:natural-valid] [type:] [resp:Delivered] [codes:] [natural-valid] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:11.602 +01:00 [INF] [oh] [corr-valid] [msg:natural-valid] [type:] [resp:Delivered] [codes:] [natural-valid] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:11.625 +01:00 [INF] [oh] [corr-valid] [msg:natural-valid] [type:] [resp:Delivered] [codes:] [natural-valid] ✓ Step 6B: Registreer afleverstatus: Delivered
+2026-03-26 14:09:11.771 +01:00 [INF] [eh] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:11.775 +01:00 [INF] [eh] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:11.800 +01:00 [INF] [eh] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:11.815 +01:00 [INF] [eh] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:11.831 +01:00 [INF] [eh] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:11.847 +01:00 [INF] [eh] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:11.863 +01:00 [INF] [eh] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:11.894 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:11.897 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:11.925 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:11.941 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:11.957 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:11.973 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:AllocationSeries] [resp:] [codes:] [natural-686] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:12.009 +01:00 [INF] [mv] [corr-missing-ean] [msg:natural-686] [type:] [resp:] [codes:] [natural-686] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:12.013 +01:00 [WRN] [mv] [corr-missing-ean] [msg:natural-686] [type:] [resp:] [codes:] [natural-686]   ✗ Error 686 (3A): Ongeldige EAN-code
+2026-03-26 14:09:12.036 +01:00 [INF] [mv] [corr-missing-ean] [msg:natural-686] [type:] [resp:] [codes:] [natural-686] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:12.052 +01:00 [INF] [mv] [corr-missing-ean] [msg:natural-686] [type:] [resp:] [codes:] [natural-686] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:12.084 +01:00 [INF] [mv] [corr-missing-ean] [msg:natural-686] [type:] [resp:] [codes:] [natural-686] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:12.100 +01:00 [INF] [mv] [corr-missing-ean] [msg:natural-686] [type:] [resp:] [codes:] [natural-686] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:12.115 +01:00 [INF] [mv] [corr-missing-ean] [msg:natural-686] [type:] [resp:] [codes:] [natural-686] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:12.131 +01:00 [INF] [mv] [corr-missing-ean] [msg:natural-686] [type:] [resp:] [codes:686] [natural-686] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:12.164 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:] [resp:NACK] [codes:686] [natural-686] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:12.166 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:] [resp:NACK] [codes:686] [natural-686] ✓ Step 4A: Genereer NACK-bericht
+2026-03-26 14:09:12.179 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:] [resp:NACK] [codes:686] [natural-686] ✓ Step 4B: Voeg foutcodes toe aan NACK
+2026-03-26 14:09:12.195 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:] [resp:NACK] [codes:686] [natural-686] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:12.211 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:] [resp:NACK] [codes:686] [natural-686] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:12.242 +01:00 [INF] [mp] [corr-missing-ean] [msg:natural-686] [type:] [resp:NACK] [codes:686] [natural-686] ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 14:09:12.292 +01:00 [INF] [nh] [corr-missing-ean] [msg:natural-686] [type:] [resp:Nack] [codes:] [natural-686] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:12.296 +01:00 [INF] [nh] [corr-missing-ean] [msg:natural-686] [type:] [resp:Nack] [codes:] [natural-686] ✓ Step 5A: Verstuur Nack-bericht
+2026-03-26 14:09:12.321 +01:00 [INF] [nh] [corr-missing-ean] [msg:natural-686] [type:] [resp:Nack] [codes:] [natural-686] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:12.337 +01:00 [INF] [nh] [corr-missing-ean] [msg:natural-686] [type:] [resp:Nack] [codes:] [natural-686] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:12.353 +01:00 [INF] [nh] [corr-missing-ean] [msg:natural-686] [type:] [resp:Nack] [codes:] [natural-686] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:12.387 +01:00 [INF] [oh] [corr-missing-ean] [msg:natural-686] [type:] [resp:Failed] [codes:] [natural-686] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:12.391 +01:00 [INF] [oh] [corr-missing-ean] [msg:natural-686] [type:] [resp:Failed] [codes:] [natural-686] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:12.417 +01:00 [INF] [oh] [corr-missing-ean] [msg:natural-686] [type:] [resp:Failed] [codes:] [natural-686] ✓ Step 6B: Registreer afleverstatus: Failed
+2026-03-26 14:09:12.496 +01:00 [INF] [eh] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:12.500 +01:00 [INF] [eh] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:12.527 +01:00 [INF] [eh] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:12.559 +01:00 [INF] [eh] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:12.575 +01:00 [INF] [eh] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:12.591 +01:00 [INF] [eh] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:12.607 +01:00 [INF] [eh] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:12.638 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:12.641 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:12.655 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:12.671 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:12.686 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:12.701 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:AllocationSeries] [resp:] [codes:] [natural-676] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:12.734 +01:00 [INF] [mv] [corr-missing-documentid] [msg:natural-676] [type:] [resp:] [codes:] [natural-676] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:12.736 +01:00 [INF] [mv] [corr-missing-documentid] [msg:natural-676] [type:] [resp:] [codes:] [natural-676] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:12.748 +01:00 [INF] [mv] [corr-missing-documentid] [msg:natural-676] [type:] [resp:] [codes:] [natural-676] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:12.764 +01:00 [WRN] [mv] [corr-missing-documentid] [msg:natural-676] [type:] [resp:] [codes:] [natural-676]   ✗ Error 676 (3C): Vereist veld DocumentID ontbreekt
+2026-03-26 14:09:12.780 +01:00 [INF] [mv] [corr-missing-documentid] [msg:natural-676] [type:] [resp:] [codes:] [natural-676] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:12.796 +01:00 [INF] [mv] [corr-missing-documentid] [msg:natural-676] [type:] [resp:] [codes:] [natural-676] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:12.812 +01:00 [INF] [mv] [corr-missing-documentid] [msg:natural-676] [type:] [resp:] [codes:] [natural-676] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:12.843 +01:00 [INF] [mv] [corr-missing-documentid] [msg:natural-676] [type:] [resp:] [codes:676] [natural-676] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:12.875 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:] [resp:NACK] [codes:676] [natural-676] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:12.880 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:] [resp:NACK] [codes:676] [natural-676] ✓ Step 4A: Genereer NACK-bericht
+2026-03-26 14:09:12.906 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:] [resp:NACK] [codes:676] [natural-676] ✓ Step 4B: Voeg foutcodes toe aan NACK
+2026-03-26 14:09:12.922 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:] [resp:NACK] [codes:676] [natural-676] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:12.939 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:] [resp:NACK] [codes:676] [natural-676] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:12.970 +01:00 [INF] [mp] [corr-missing-documentid] [msg:natural-676] [type:] [resp:NACK] [codes:676] [natural-676] ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 14:09:13.002 +01:00 [INF] [nh] [corr-missing-documentid] [msg:natural-676] [type:] [resp:Nack] [codes:] [natural-676] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:13.004 +01:00 [INF] [nh] [corr-missing-documentid] [msg:natural-676] [type:] [resp:Nack] [codes:] [natural-676] ✓ Step 5A: Verstuur Nack-bericht
+2026-03-26 14:09:13.017 +01:00 [INF] [nh] [corr-missing-documentid] [msg:natural-676] [type:] [resp:Nack] [codes:] [natural-676] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:13.033 +01:00 [INF] [nh] [corr-missing-documentid] [msg:natural-676] [type:] [resp:Nack] [codes:] [natural-676] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:13.048 +01:00 [INF] [nh] [corr-missing-documentid] [msg:natural-676] [type:] [resp:Nack] [codes:] [natural-676] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:13.081 +01:00 [INF] [oh] [corr-missing-documentid] [msg:natural-676] [type:] [resp:Failed] [codes:] [natural-676] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:13.084 +01:00 [INF] [oh] [corr-missing-documentid] [msg:natural-676] [type:] [resp:Failed] [codes:] [natural-676] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:13.111 +01:00 [INF] [oh] [corr-missing-documentid] [msg:natural-676] [type:] [resp:Failed] [codes:] [natural-676] ✓ Step 6B: Registreer afleverstatus: Failed
+2026-03-26 14:09:13.169 +01:00 [INF] [eh] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:13.171 +01:00 [INF] [eh] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:13.190 +01:00 [INF] [eh] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:13.205 +01:00 [INF] [eh] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:13.221 +01:00 [INF] [eh] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:13.253 +01:00 [INF] [eh] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:13.269 +01:00 [INF] [eh] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:13.300 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:13.303 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:13.315 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:13.331 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:13.346 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:13.362 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:AllocationSeries] [resp:] [codes:] [natural-760] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:13.393 +01:00 [INF] [mv] [corr-future-start] [msg:natural-760] [type:] [resp:] [codes:] [natural-760] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:13.396 +01:00 [INF] [mv] [corr-future-start] [msg:natural-760] [type:] [resp:] [codes:] [natural-760] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:13.425 +01:00 [WRN] [mv] [corr-future-start] [msg:natural-760] [type:] [resp:] [codes:] [natural-760]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ("2030-01-01T00:00:00.0000000Z")
+2026-03-26 14:09:13.456 +01:00 [INF] [mv] [corr-future-start] [msg:natural-760] [type:] [resp:] [codes:] [natural-760] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:13.488 +01:00 [INF] [mv] [corr-future-start] [msg:natural-760] [type:] [resp:] [codes:] [natural-760] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:13.503 +01:00 [INF] [mv] [corr-future-start] [msg:natural-760] [type:] [resp:] [codes:] [natural-760] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:13.533 +01:00 [INF] [mv] [corr-future-start] [msg:natural-760] [type:] [resp:] [codes:] [natural-760] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:13.549 +01:00 [INF] [mv] [corr-future-start] [msg:natural-760] [type:] [resp:] [codes:760] [natural-760] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:13.581 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:] [resp:NACK] [codes:760] [natural-760] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:13.584 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:] [resp:NACK] [codes:760] [natural-760] ✓ Step 4A: Genereer NACK-bericht
+2026-03-26 14:09:13.598 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:] [resp:NACK] [codes:760] [natural-760] ✓ Step 4B: Voeg foutcodes toe aan NACK
+2026-03-26 14:09:13.629 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:] [resp:NACK] [codes:760] [natural-760] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:13.646 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:] [resp:NACK] [codes:760] [natural-760] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:13.661 +01:00 [INF] [mp] [corr-future-start] [msg:natural-760] [type:] [resp:NACK] [codes:760] [natural-760] ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 14:09:13.690 +01:00 [INF] [nh] [corr-future-start] [msg:natural-760] [type:] [resp:Nack] [codes:] [natural-760] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:13.692 +01:00 [INF] [nh] [corr-future-start] [msg:natural-760] [type:] [resp:Nack] [codes:] [natural-760] ✓ Step 5A: Verstuur Nack-bericht
+2026-03-26 14:09:13.709 +01:00 [INF] [nh] [corr-future-start] [msg:natural-760] [type:] [resp:Nack] [codes:] [natural-760] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:13.725 +01:00 [INF] [nh] [corr-future-start] [msg:natural-760] [type:] [resp:Nack] [codes:] [natural-760] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:13.740 +01:00 [INF] [nh] [corr-future-start] [msg:natural-760] [type:] [resp:Nack] [codes:] [natural-760] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:13.771 +01:00 [INF] [oh] [corr-future-start] [msg:natural-760] [type:] [resp:Failed] [codes:] [natural-760] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:13.774 +01:00 [INF] [oh] [corr-future-start] [msg:natural-760] [type:] [resp:Failed] [codes:] [natural-760] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:13.789 +01:00 [INF] [oh] [corr-future-start] [msg:natural-760] [type:] [resp:Failed] [codes:] [natural-760] ✓ Step 6B: Registreer afleverstatus: Failed
+2026-03-26 14:09:13.849 +01:00 [INF] [eh] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:13.852 +01:00 [INF] [eh] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:13.868 +01:00 [INF] [eh] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:13.884 +01:00 [INF] [eh] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:13.900 +01:00 [INF] [eh] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:13.916 +01:00 [INF] [eh] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:13.932 +01:00 [INF] [eh] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:13.962 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:13.965 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:13.979 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:13.995 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:14.011 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:14.042 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:AllocationSeries] [resp:] [codes:] [natural-758-old] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:14.088 +01:00 [INF] [mv] [corr-old-start] [msg:natural-758-old] [type:] [resp:] [codes:] [natural-758-old] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:14.091 +01:00 [INF] [mv] [corr-old-start] [msg:natural-758-old] [type:] [resp:] [codes:] [natural-758-old] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:14.105 +01:00 [WRN] [mv] [corr-old-start] [msg:natural-758-old] [type:] [resp:] [codes:] [natural-758-old]   ✗ Error 758 (3B): Bericht buiten geldige periode ("2020-01-01T00:00:00.0000000Z")
+2026-03-26 14:09:14.120 +01:00 [INF] [mv] [corr-old-start] [msg:natural-758-old] [type:] [resp:] [codes:] [natural-758-old] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:14.136 +01:00 [INF] [mv] [corr-old-start] [msg:natural-758-old] [type:] [resp:] [codes:] [natural-758-old] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:14.152 +01:00 [INF] [mv] [corr-old-start] [msg:natural-758-old] [type:] [resp:] [codes:] [natural-758-old] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:14.168 +01:00 [INF] [mv] [corr-old-start] [msg:natural-758-old] [type:] [resp:] [codes:] [natural-758-old] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:14.183 +01:00 [INF] [mv] [corr-old-start] [msg:natural-758-old] [type:] [resp:] [codes:758] [natural-758-old] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:14.214 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:] [resp:NACK] [codes:758] [natural-758-old] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:14.218 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:] [resp:NACK] [codes:758] [natural-758-old] ✓ Step 4A: Genereer NACK-bericht
+2026-03-26 14:09:14.246 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:] [resp:NACK] [codes:758] [natural-758-old] ✓ Step 4B: Voeg foutcodes toe aan NACK
+2026-03-26 14:09:14.261 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:] [resp:NACK] [codes:758] [natural-758-old] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:14.276 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:] [resp:NACK] [codes:758] [natural-758-old] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:14.291 +01:00 [INF] [mp] [corr-old-start] [msg:natural-758-old] [type:] [resp:NACK] [codes:758] [natural-758-old] ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 14:09:14.341 +01:00 [INF] [nh] [corr-old-start] [msg:natural-758-old] [type:] [resp:Nack] [codes:] [natural-758-old] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:14.344 +01:00 [INF] [nh] [corr-old-start] [msg:natural-758-old] [type:] [resp:Nack] [codes:] [natural-758-old] ✓ Step 5A: Verstuur Nack-bericht
+2026-03-26 14:09:14.371 +01:00 [INF] [nh] [corr-old-start] [msg:natural-758-old] [type:] [resp:Nack] [codes:] [natural-758-old] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:14.387 +01:00 [INF] [nh] [corr-old-start] [msg:natural-758-old] [type:] [resp:Nack] [codes:] [natural-758-old] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:14.403 +01:00 [INF] [nh] [corr-old-start] [msg:natural-758-old] [type:] [resp:Nack] [codes:] [natural-758-old] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:14.437 +01:00 [INF] [oh] [corr-old-start] [msg:natural-758-old] [type:] [resp:Failed] [codes:] [natural-758-old] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:14.439 +01:00 [INF] [oh] [corr-old-start] [msg:natural-758-old] [type:] [resp:Failed] [codes:] [natural-758-old] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:14.465 +01:00 [INF] [oh] [corr-old-start] [msg:natural-758-old] [type:] [resp:Failed] [codes:] [natural-758-old] ✓ Step 6B: Registreer afleverstatus: Failed
+2026-03-26 14:09:14.526 +01:00 [INF] [eh] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:14.529 +01:00 [INF] [eh] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:14.545 +01:00 [INF] [eh] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:14.561 +01:00 [INF] [eh] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:14.576 +01:00 [INF] [eh] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:14.592 +01:00 [INF] [eh] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:14.608 +01:00 [INF] [eh] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:14.638 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:14.641 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:14.655 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:14.671 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:14.686 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:14.702 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:AllocationSeries] [resp:] [codes:] [natural-758-window] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:14.733 +01:00 [INF] [mv] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:] [codes:] [natural-758-window] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:14.737 +01:00 [INF] [mv] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:] [codes:] [natural-758-window] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:14.750 +01:00 [INF] [mv] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:] [codes:] [natural-758-window] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:14.766 +01:00 [INF] [mv] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:] [codes:] [natural-758-window] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:14.781 +01:00 [INF] [mv] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:] [codes:] [natural-758-window] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:14.796 +01:00 [WRN] [mv] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:] [codes:] [natural-758-window]   ✗ Error 758 (3E): EndDateTime ligt voor of gelijk aan StartDateTime
+2026-03-26 14:09:14.811 +01:00 [INF] [mv] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:] [codes:] [natural-758-window] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:14.826 +01:00 [INF] [mv] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:] [codes:758] [natural-758-window] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:14.872 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:NACK] [codes:758] [natural-758-window] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:14.875 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:NACK] [codes:758] [natural-758-window] ✓ Step 4A: Genereer NACK-bericht
+2026-03-26 14:09:14.890 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:NACK] [codes:758] [natural-758-window] ✓ Step 4B: Voeg foutcodes toe aan NACK
+2026-03-26 14:09:14.906 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:NACK] [codes:758] [natural-758-window] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:14.922 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:NACK] [codes:758] [natural-758-window] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:14.938 +01:00 [INF] [mp] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:NACK] [codes:758] [natural-758-window] ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 14:09:14.969 +01:00 [INF] [nh] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:Nack] [codes:] [natural-758-window] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:14.972 +01:00 [INF] [nh] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:Nack] [codes:] [natural-758-window] ✓ Step 5A: Verstuur Nack-bericht
+2026-03-26 14:09:14.985 +01:00 [INF] [nh] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:Nack] [codes:] [natural-758-window] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:15.001 +01:00 [INF] [nh] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:Nack] [codes:] [natural-758-window] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:15.016 +01:00 [INF] [nh] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:Nack] [codes:] [natural-758-window] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:15.046 +01:00 [INF] [oh] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:Failed] [codes:] [natural-758-window] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:15.049 +01:00 [INF] [oh] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:Failed] [codes:] [natural-758-window] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:15.063 +01:00 [INF] [oh] [corr-end-before-start] [msg:natural-758-window] [type:] [resp:Failed] [codes:] [natural-758-window] ✓ Step 6B: Registreer afleverstatus: Failed
+2026-03-26 14:09:15.123 +01:00 [INF] [eh] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:15.126 +01:00 [INF] [eh] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:15.142 +01:00 [INF] [eh] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:15.158 +01:00 [INF] [eh] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:15.174 +01:00 [INF] [eh] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:15.189 +01:00 [INF] [eh] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:15.221 +01:00 [INF] [eh] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:15.266 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:15.269 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:15.285 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:15.301 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:15.317 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:15.332 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:AllocationSeries] [resp:] [codes:] [natural-772] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:15.377 +01:00 [INF] [mv] [corr-negative-quantity] [msg:natural-772] [type:] [resp:] [codes:] [natural-772] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:15.380 +01:00 [INF] [mv] [corr-negative-quantity] [msg:natural-772] [type:] [resp:] [codes:] [natural-772] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:15.394 +01:00 [INF] [mv] [corr-negative-quantity] [msg:natural-772] [type:] [resp:] [codes:] [natural-772] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:15.410 +01:00 [INF] [mv] [corr-negative-quantity] [msg:natural-772] [type:] [resp:] [codes:] [natural-772] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:15.426 +01:00 [WRN] [mv] [corr-negative-quantity] [msg:natural-772] [type:] [resp:] [codes:] [natural-772]   ✗ Error 772 (3D): Negatieve hoeveelheid niet toegestaan (-1)
+2026-03-26 14:09:15.456 +01:00 [INF] [mv] [corr-negative-quantity] [msg:natural-772] [type:] [resp:] [codes:] [natural-772] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:15.472 +01:00 [INF] [mv] [corr-negative-quantity] [msg:natural-772] [type:] [resp:] [codes:] [natural-772] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:15.488 +01:00 [INF] [mv] [corr-negative-quantity] [msg:natural-772] [type:] [resp:] [codes:772] [natural-772] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:15.534 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:] [resp:NACK] [codes:772] [natural-772] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:15.537 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:] [resp:NACK] [codes:772] [natural-772] ✓ Step 4A: Genereer NACK-bericht
+2026-03-26 14:09:15.550 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:] [resp:NACK] [codes:772] [natural-772] ✓ Step 4B: Voeg foutcodes toe aan NACK
+2026-03-26 14:09:15.565 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:] [resp:NACK] [codes:772] [natural-772] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:15.581 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:] [resp:NACK] [codes:772] [natural-772] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:15.612 +01:00 [INF] [mp] [corr-negative-quantity] [msg:natural-772] [type:] [resp:NACK] [codes:772] [natural-772] ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 14:09:15.641 +01:00 [INF] [nh] [corr-negative-quantity] [msg:natural-772] [type:] [resp:Nack] [codes:] [natural-772] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:15.644 +01:00 [INF] [nh] [corr-negative-quantity] [msg:natural-772] [type:] [resp:Nack] [codes:] [natural-772] ✓ Step 5A: Verstuur Nack-bericht
+2026-03-26 14:09:15.659 +01:00 [INF] [nh] [corr-negative-quantity] [msg:natural-772] [type:] [resp:Nack] [codes:] [natural-772] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:15.675 +01:00 [INF] [nh] [corr-negative-quantity] [msg:natural-772] [type:] [resp:Nack] [codes:] [natural-772] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:15.691 +01:00 [INF] [nh] [corr-negative-quantity] [msg:natural-772] [type:] [resp:Nack] [codes:] [natural-772] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:15.736 +01:00 [INF] [oh] [corr-negative-quantity] [msg:natural-772] [type:] [resp:Failed] [codes:] [natural-772] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:15.739 +01:00 [INF] [oh] [corr-negative-quantity] [msg:natural-772] [type:] [resp:Failed] [codes:] [natural-772] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:15.755 +01:00 [INF] [oh] [corr-negative-quantity] [msg:natural-772] [type:] [resp:Failed] [codes:] [natural-772] ✓ Step 6B: Registreer afleverstatus: Failed
+2026-03-26 14:09:15.811 +01:00 [INF] [eh] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:15.815 +01:00 [INF] [eh] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:15.832 +01:00 [INF] [eh] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:15.848 +01:00 [INF] [eh] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:15.864 +01:00 [INF] [eh] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:15.880 +01:00 [INF] [eh] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:15.895 +01:00 [INF] [eh] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:15.925 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:15.927 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:15.942 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:15.957 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:15.973 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:15.989 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:AllocationSeries] [resp:] [codes:] [natural-774] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:16.022 +01:00 [INF] [mv] [corr-zero-quantity] [msg:natural-774] [type:] [resp:] [codes:] [natural-774] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:16.025 +01:00 [INF] [mv] [corr-zero-quantity] [msg:natural-774] [type:] [resp:] [codes:] [natural-774] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:16.036 +01:00 [INF] [mv] [corr-zero-quantity] [msg:natural-774] [type:] [resp:] [codes:] [natural-774] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:16.052 +01:00 [INF] [mv] [corr-zero-quantity] [msg:natural-774] [type:] [resp:] [codes:] [natural-774] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:16.067 +01:00 [WRN] [mv] [corr-zero-quantity] [msg:natural-774] [type:] [resp:] [codes:] [natural-774]   ✗ Error 774 (3D): Hoeveelheid nul niet toegestaan
+2026-03-26 14:09:16.083 +01:00 [INF] [mv] [corr-zero-quantity] [msg:natural-774] [type:] [resp:] [codes:] [natural-774] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:16.098 +01:00 [INF] [mv] [corr-zero-quantity] [msg:natural-774] [type:] [resp:] [codes:] [natural-774] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:16.114 +01:00 [INF] [mv] [corr-zero-quantity] [msg:natural-774] [type:] [resp:] [codes:774] [natural-774] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:16.143 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:] [resp:NACK] [codes:774] [natural-774] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:16.146 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:] [resp:NACK] [codes:774] [natural-774] ✓ Step 4A: Genereer NACK-bericht
+2026-03-26 14:09:16.162 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:] [resp:NACK] [codes:774] [natural-774] ✓ Step 4B: Voeg foutcodes toe aan NACK
+2026-03-26 14:09:16.178 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:] [resp:NACK] [codes:774] [natural-774] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:16.194 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:] [resp:NACK] [codes:774] [natural-774] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:16.210 +01:00 [INF] [mp] [corr-zero-quantity] [msg:natural-774] [type:] [resp:NACK] [codes:774] [natural-774] ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 14:09:16.240 +01:00 [INF] [nh] [corr-zero-quantity] [msg:natural-774] [type:] [resp:Nack] [codes:] [natural-774] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:16.243 +01:00 [INF] [nh] [corr-zero-quantity] [msg:natural-774] [type:] [resp:Nack] [codes:] [natural-774] ✓ Step 5A: Verstuur Nack-bericht
+2026-03-26 14:09:16.257 +01:00 [INF] [nh] [corr-zero-quantity] [msg:natural-774] [type:] [resp:Nack] [codes:] [natural-774] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:16.272 +01:00 [INF] [nh] [corr-zero-quantity] [msg:natural-774] [type:] [resp:Nack] [codes:] [natural-774] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:16.287 +01:00 [INF] [nh] [corr-zero-quantity] [msg:natural-774] [type:] [resp:Nack] [codes:] [natural-774] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:16.318 +01:00 [INF] [oh] [corr-zero-quantity] [msg:natural-774] [type:] [resp:Failed] [codes:] [natural-774] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:16.321 +01:00 [INF] [oh] [corr-zero-quantity] [msg:natural-774] [type:] [resp:Failed] [codes:] [natural-774] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:16.334 +01:00 [INF] [oh] [corr-zero-quantity] [msg:natural-774] [type:] [resp:Failed] [codes:] [natural-774] ✓ Step 6B: Registreer afleverstatus: Failed
+2026-03-26 14:09:16.397 +01:00 [INF] [eh] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:16.399 +01:00 [INF] [eh] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:16.414 +01:00 [INF] [eh] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:16.430 +01:00 [INF] [eh] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:16.445 +01:00 [INF] [eh] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:16.461 +01:00 [INF] [eh] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:16.477 +01:00 [INF] [eh] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:16.508 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:16.511 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:16.525 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:16.541 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:16.556 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:16.572 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:AllocationSeries] [resp:] [codes:] [natural-773] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:16.601 +01:00 [INF] [mv] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:] [codes:] [natural-773] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:16.604 +01:00 [INF] [mv] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:] [codes:] [natural-773] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:16.620 +01:00 [INF] [mv] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:] [codes:] [natural-773] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:16.635 +01:00 [INF] [mv] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:] [codes:] [natural-773] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:16.651 +01:00 [WRN] [mv] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:] [codes:] [natural-773]   ✗ Error 773 (3D): Hoeveelheid overschrijdt maximale limiet (1000000)
+2026-03-26 14:09:16.667 +01:00 [INF] [mv] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:] [codes:] [natural-773] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:16.682 +01:00 [INF] [mv] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:] [codes:] [natural-773] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:16.698 +01:00 [INF] [mv] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:] [codes:773] [natural-773] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:16.735 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:NACK] [codes:773] [natural-773] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:16.738 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:NACK] [codes:773] [natural-773] ✓ Step 4A: Genereer NACK-bericht
+2026-03-26 14:09:16.761 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:NACK] [codes:773] [natural-773] ✓ Step 4B: Voeg foutcodes toe aan NACK
+2026-03-26 14:09:16.776 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:NACK] [codes:773] [natural-773] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:16.792 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:NACK] [codes:773] [natural-773] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:16.808 +01:00 [INF] [mp] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:NACK] [codes:773] [natural-773] ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 14:09:16.841 +01:00 [INF] [nh] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:Nack] [codes:] [natural-773] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:16.844 +01:00 [INF] [nh] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:Nack] [codes:] [natural-773] ✓ Step 5A: Verstuur Nack-bericht
+2026-03-26 14:09:16.871 +01:00 [INF] [nh] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:Nack] [codes:] [natural-773] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:16.887 +01:00 [INF] [nh] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:Nack] [codes:] [natural-773] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:16.903 +01:00 [INF] [nh] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:Nack] [codes:] [natural-773] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:16.933 +01:00 [INF] [oh] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:Failed] [codes:] [natural-773] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:16.935 +01:00 [INF] [oh] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:Failed] [codes:] [natural-773] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:16.950 +01:00 [INF] [oh] [corr-too-large-quantity] [msg:natural-773] [type:] [resp:Failed] [codes:] [natural-773] ✓ Step 6B: Registreer afleverstatus: Failed
+2026-03-26 14:09:17.010 +01:00 [INF] [eh] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:17.013 +01:00 [INF] [eh] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:17.030 +01:00 [INF] [eh] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:17.046 +01:00 [INF] [eh] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:17.062 +01:00 [INF] [eh] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:17.078 +01:00 [INF] [eh] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:17.094 +01:00 [INF] [eh] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:17.139 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:17.142 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:17.157 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:17.173 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:17.189 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:17.205 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:AllocationSeries] [resp:] [codes:] [natural-755] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:17.235 +01:00 [INF] [mv] [corr-duplicate-document] [msg:natural-755] [type:] [resp:] [codes:] [natural-755] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:17.238 +01:00 [INF] [mv] [corr-duplicate-document] [msg:natural-755] [type:] [resp:] [codes:] [natural-755] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:17.252 +01:00 [INF] [mv] [corr-duplicate-document] [msg:natural-755] [type:] [resp:] [codes:] [natural-755] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:17.268 +01:00 [INF] [mv] [corr-duplicate-document] [msg:natural-755] [type:] [resp:] [codes:] [natural-755] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:17.283 +01:00 [INF] [mv] [corr-duplicate-document] [msg:natural-755] [type:] [resp:] [codes:] [natural-755] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:17.299 +01:00 [INF] [mv] [corr-duplicate-document] [msg:natural-755] [type:] [resp:] [codes:] [natural-755] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:17.315 +01:00 [WRN] [mv] [corr-duplicate-document] [msg:natural-755] [type:] [resp:] [codes:] [natural-755]   ✗ Error 755 (3F): Dubbele bericht-ID gedetecteerd (DUP-001)
+2026-03-26 14:09:17.330 +01:00 [INF] [mv] [corr-duplicate-document] [msg:natural-755] [type:] [resp:] [codes:755] [natural-755] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:17.360 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:] [resp:NACK] [codes:755] [natural-755] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:17.363 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:] [resp:NACK] [codes:755] [natural-755] ✓ Step 4A: Genereer NACK-bericht
+2026-03-26 14:09:17.392 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:] [resp:NACK] [codes:755] [natural-755] ✓ Step 4B: Voeg foutcodes toe aan NACK
+2026-03-26 14:09:17.408 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:] [resp:NACK] [codes:755] [natural-755] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:17.424 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:] [resp:NACK] [codes:755] [natural-755] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:17.439 +01:00 [INF] [mp] [corr-duplicate-document] [msg:natural-755] [type:] [resp:NACK] [codes:755] [natural-755] ✓ Step 4E: Configureer NACK-verzending
+2026-03-26 14:09:17.470 +01:00 [INF] [nh] [corr-duplicate-document] [msg:natural-755] [type:] [resp:Nack] [codes:] [natural-755] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:17.473 +01:00 [INF] [nh] [corr-duplicate-document] [msg:natural-755] [type:] [resp:Nack] [codes:] [natural-755] ✓ Step 5A: Verstuur Nack-bericht
+2026-03-26 14:09:17.486 +01:00 [INF] [nh] [corr-duplicate-document] [msg:natural-755] [type:] [resp:Nack] [codes:] [natural-755] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:17.502 +01:00 [INF] [nh] [corr-duplicate-document] [msg:natural-755] [type:] [resp:Nack] [codes:] [natural-755] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:17.518 +01:00 [INF] [nh] [corr-duplicate-document] [msg:natural-755] [type:] [resp:Nack] [codes:] [natural-755] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:17.548 +01:00 [INF] [oh] [corr-duplicate-document] [msg:natural-755] [type:] [resp:Failed] [codes:] [natural-755] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:17.551 +01:00 [INF] [oh] [corr-duplicate-document] [msg:natural-755] [type:] [resp:Failed] [codes:] [natural-755] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:17.565 +01:00 [INF] [oh] [corr-duplicate-document] [msg:natural-755] [type:] [resp:Failed] [codes:] [natural-755] ✓ Step 6B: Registreer afleverstatus: Failed
+2026-03-26 14:09:25.447 +01:00 [INF] [eh] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:25.450 +01:00 [INF] [eh] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:25.476 +01:00 [INF] [eh] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:25.492 +01:00 [INF] [eh] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:25.508 +01:00 [INF] [eh] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:25.516 +01:00 [INF] [eh] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:25.519 +01:00 [INF] [eh] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:25.521 +01:00 [INF] [eh] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:25.540 +01:00 [INF] [eh] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:25.540 +01:00 [INF] [eh] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:25.569 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:25.572 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:25.571 +01:00 [INF] [eh] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:25.586 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:25.586 +01:00 [INF] [eh] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:25.601 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:25.601 +01:00 [INF] [eh] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:25.617 +01:00 [INF] [eh] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:25.617 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:25.633 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:AllocationSeries] [resp:] [codes:] [load-1] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:25.648 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:25.652 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:25.664 +01:00 [INF] [mv] [load-corr-1] [msg:load-1] [type:] [resp:] [codes:] [load-1] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:25.664 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:25.666 +01:00 [INF] [mv] [load-corr-1] [msg:load-1] [type:] [resp:] [codes:] [load-1] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:25.679 +01:00 [INF] [mv] [load-corr-1] [msg:load-1] [type:] [resp:] [codes:] [load-1] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:25.679 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:25.695 +01:00 [INF] [mv] [load-corr-1] [msg:load-1] [type:] [resp:] [codes:] [load-1] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:25.695 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:25.711 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:AllocationSeries] [resp:] [codes:] [load-2] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:25.711 +01:00 [INF] [mv] [load-corr-1] [msg:load-1] [type:] [resp:] [codes:] [load-1] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:25.727 +01:00 [INF] [mv] [load-corr-1] [msg:load-1] [type:] [resp:] [codes:] [load-1] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:25.742 +01:00 [INF] [mv] [load-corr-2] [msg:load-2] [type:] [resp:] [codes:] [load-2] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:25.743 +01:00 [INF] [mv] [load-corr-1] [msg:load-1] [type:] [resp:] [codes:] [load-1] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:25.745 +01:00 [INF] [mv] [load-corr-2] [msg:load-2] [type:] [resp:] [codes:] [load-2] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:25.759 +01:00 [INF] [mv] [load-corr-2] [msg:load-2] [type:] [resp:] [codes:] [load-2] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:25.759 +01:00 [INF] [mv] [load-corr-1] [msg:load-1] [type:] [resp:] [codes:] [load-1] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:25.775 +01:00 [INF] [mv] [load-corr-2] [msg:load-2] [type:] [resp:] [codes:] [load-2] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:25.790 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:] [resp:ACK] [codes:] [load-1] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:25.791 +01:00 [INF] [mv] [load-corr-2] [msg:load-2] [type:] [resp:] [codes:] [load-2] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:25.794 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:] [resp:ACK] [codes:] [load-1] ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 14:09:25.807 +01:00 [INF] [mv] [load-corr-2] [msg:load-2] [type:] [resp:] [codes:] [load-2] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:25.822 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:] [resp:ACK] [codes:] [load-1] ✓ Step 4B: Geen foutcodes toe te voegen
+2026-03-26 14:09:25.822 +01:00 [INF] [mv] [load-corr-2] [msg:load-2] [type:] [resp:] [codes:] [load-2] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:25.838 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:] [resp:ACK] [codes:] [load-1] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:25.838 +01:00 [INF] [mv] [load-corr-2] [msg:load-2] [type:] [resp:] [codes:] [load-2] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:25.854 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:] [resp:ACK] [codes:] [load-1] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:25.868 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:] [resp:ACK] [codes:] [load-2] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:25.870 +01:00 [INF] [mp] [load-corr-1] [msg:load-1] [type:] [resp:ACK] [codes:] [load-1] ✓ Step 4E: Configureer ACK-verzending
+2026-03-26 14:09:25.870 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:] [resp:ACK] [codes:] [load-2] ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 14:09:25.886 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:] [resp:ACK] [codes:] [load-2] ✓ Step 4B: Geen foutcodes toe te voegen
+2026-03-26 14:09:25.900 +01:00 [INF] [nh] [load-corr-1] [msg:load-1] [type:] [resp:Ack] [codes:] [load-1] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:25.901 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:] [resp:ACK] [codes:] [load-2] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:25.902 +01:00 [INF] [nh] [load-corr-1] [msg:load-1] [type:] [resp:Ack] [codes:] [load-1] ✓ Step 5A: Verstuur Ack-bericht
+2026-03-26 14:09:25.916 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:] [resp:ACK] [codes:] [load-2] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:25.916 +01:00 [INF] [nh] [load-corr-1] [msg:load-1] [type:] [resp:Ack] [codes:] [load-1] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:25.932 +01:00 [INF] [nh] [load-corr-1] [msg:load-1] [type:] [resp:Ack] [codes:] [load-1] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:25.932 +01:00 [INF] [mp] [load-corr-2] [msg:load-2] [type:] [resp:ACK] [codes:] [load-2] ✓ Step 4E: Configureer ACK-verzending
+2026-03-26 14:09:25.948 +01:00 [INF] [nh] [load-corr-1] [msg:load-1] [type:] [resp:Ack] [codes:] [load-1] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:25.963 +01:00 [INF] [nh] [load-corr-2] [msg:load-2] [type:] [resp:Ack] [codes:] [load-2] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:25.966 +01:00 [INF] [nh] [load-corr-2] [msg:load-2] [type:] [resp:Ack] [codes:] [load-2] ✓ Step 5A: Verstuur Ack-bericht
+2026-03-26 14:09:25.977 +01:00 [INF] [oh] [load-corr-1] [msg:load-1] [type:] [resp:Delivered] [codes:] [load-1] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:25.979 +01:00 [INF] [nh] [load-corr-2] [msg:load-2] [type:] [resp:Ack] [codes:] [load-2] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:25.980 +01:00 [INF] [oh] [load-corr-1] [msg:load-1] [type:] [resp:Delivered] [codes:] [load-1] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:25.994 +01:00 [INF] [oh] [load-corr-1] [msg:load-1] [type:] [resp:Delivered] [codes:] [load-1] ✓ Step 6B: Registreer afleverstatus: Delivered
+2026-03-26 14:09:25.994 +01:00 [INF] [nh] [load-corr-2] [msg:load-2] [type:] [resp:Ack] [codes:] [load-2] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:26.010 +01:00 [INF] [nh] [load-corr-2] [msg:load-2] [type:] [resp:Ack] [codes:] [load-2] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:26.046 +01:00 [INF] [oh] [load-corr-2] [msg:load-2] [type:] [resp:Delivered] [codes:] [load-2] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:26.048 +01:00 [INF] [oh] [load-corr-2] [msg:load-2] [type:] [resp:Delivered] [codes:] [load-2] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:26.074 +01:00 [INF] [oh] [load-corr-2] [msg:load-2] [type:] [resp:Delivered] [codes:] [load-2] ✓ Step 6B: Registreer afleverstatus: Delivered
+2026-03-26 14:09:26.520 +01:00 [INF] [eh] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:26.523 +01:00 [INF] [eh] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:26.546 +01:00 [INF] [eh] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:26.562 +01:00 [INF] [eh] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:26.578 +01:00 [INF] [eh] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:26.594 +01:00 [INF] [eh] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:26.597 +01:00 [INF] [eh] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:26.600 +01:00 [INF] [eh] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:26.610 +01:00 [INF] [eh] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:26.626 +01:00 [INF] [eh] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:26.639 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:26.641 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:26.642 +01:00 [INF] [eh] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:26.658 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:26.658 +01:00 [INF] [eh] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:26.674 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:26.674 +01:00 [INF] [eh] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:26.690 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:26.690 +01:00 [INF] [eh] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:26.706 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:AllocationSeries] [resp:] [codes:] [load-3] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:26.720 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:26.722 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:26.735 +01:00 [INF] [mv] [load-corr-3] [msg:load-3] [type:] [resp:] [codes:] [load-3] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:26.737 +01:00 [INF] [mv] [load-corr-3] [msg:load-3] [type:] [resp:] [codes:] [load-3] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:26.738 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:26.754 +01:00 [INF] [mv] [load-corr-3] [msg:load-3] [type:] [resp:] [codes:] [load-3] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:26.754 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:26.770 +01:00 [INF] [mv] [load-corr-3] [msg:load-3] [type:] [resp:] [codes:] [load-3] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:26.770 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:26.786 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:AllocationSeries] [resp:] [codes:] [load-4] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:26.786 +01:00 [INF] [mv] [load-corr-3] [msg:load-3] [type:] [resp:] [codes:] [load-3] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:26.802 +01:00 [INF] [mv] [load-corr-3] [msg:load-3] [type:] [resp:] [codes:] [load-3] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:26.816 +01:00 [INF] [mv] [load-corr-4] [msg:load-4] [type:] [resp:] [codes:] [load-4] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:26.818 +01:00 [INF] [mv] [load-corr-3] [msg:load-3] [type:] [resp:] [codes:] [load-3] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:26.819 +01:00 [INF] [mv] [load-corr-4] [msg:load-4] [type:] [resp:] [codes:] [load-4] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:26.834 +01:00 [INF] [mv] [load-corr-4] [msg:load-4] [type:] [resp:] [codes:] [load-4] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:26.834 +01:00 [INF] [mv] [load-corr-3] [msg:load-3] [type:] [resp:] [codes:] [load-3] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:26.850 +01:00 [INF] [mv] [load-corr-4] [msg:load-4] [type:] [resp:] [codes:] [load-4] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:26.863 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:] [resp:ACK] [codes:] [load-3] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:26.866 +01:00 [INF] [mv] [load-corr-4] [msg:load-4] [type:] [resp:] [codes:] [load-4] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:26.866 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:] [resp:ACK] [codes:] [load-3] ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 14:09:26.882 +01:00 [INF] [mv] [load-corr-4] [msg:load-4] [type:] [resp:] [codes:] [load-4] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:26.882 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:] [resp:ACK] [codes:] [load-3] ✓ Step 4B: Geen foutcodes toe te voegen
+2026-03-26 14:09:26.898 +01:00 [INF] [mv] [load-corr-4] [msg:load-4] [type:] [resp:] [codes:] [load-4] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:26.898 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:] [resp:ACK] [codes:] [load-3] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:26.914 +01:00 [INF] [mv] [load-corr-4] [msg:load-4] [type:] [resp:] [codes:] [load-4] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:26.914 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:] [resp:ACK] [codes:] [load-3] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:26.930 +01:00 [INF] [mp] [load-corr-3] [msg:load-3] [type:] [resp:ACK] [codes:] [load-3] ✓ Step 4E: Configureer ACK-verzending
+2026-03-26 14:09:26.943 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:] [resp:ACK] [codes:] [load-4] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:26.946 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:] [resp:ACK] [codes:] [load-4] ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 14:09:26.959 +01:00 [INF] [nh] [load-corr-3] [msg:load-3] [type:] [resp:Ack] [codes:] [load-3] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:26.961 +01:00 [INF] [nh] [load-corr-3] [msg:load-3] [type:] [resp:Ack] [codes:] [load-3] ✓ Step 5A: Verstuur Ack-bericht
+2026-03-26 14:09:26.962 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:] [resp:ACK] [codes:] [load-4] ✓ Step 4B: Geen foutcodes toe te voegen
+2026-03-26 14:09:26.978 +01:00 [INF] [nh] [load-corr-3] [msg:load-3] [type:] [resp:Ack] [codes:] [load-3] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:26.978 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:] [resp:ACK] [codes:] [load-4] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:26.994 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:] [resp:ACK] [codes:] [load-4] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:26.994 +01:00 [INF] [nh] [load-corr-3] [msg:load-3] [type:] [resp:Ack] [codes:] [load-3] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:27.010 +01:00 [INF] [nh] [load-corr-3] [msg:load-3] [type:] [resp:Ack] [codes:] [load-3] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:27.010 +01:00 [INF] [mp] [load-corr-4] [msg:load-4] [type:] [resp:ACK] [codes:] [load-4] ✓ Step 4E: Configureer ACK-verzending
+2026-03-26 14:09:27.050 +01:00 [INF] [nh] [load-corr-4] [msg:load-4] [type:] [resp:Ack] [codes:] [load-4] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:27.053 +01:00 [INF] [oh] [load-corr-3] [msg:load-3] [type:] [resp:Delivered] [codes:] [load-3] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:27.053 +01:00 [INF] [nh] [load-corr-4] [msg:load-4] [type:] [resp:Ack] [codes:] [load-4] ✓ Step 5A: Verstuur Ack-bericht
+2026-03-26 14:09:27.055 +01:00 [INF] [oh] [load-corr-3] [msg:load-3] [type:] [resp:Delivered] [codes:] [load-3] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:27.073 +01:00 [INF] [nh] [load-corr-4] [msg:load-4] [type:] [resp:Ack] [codes:] [load-4] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:27.073 +01:00 [INF] [oh] [load-corr-3] [msg:load-3] [type:] [resp:Delivered] [codes:] [load-3] ✓ Step 6B: Registreer afleverstatus: Delivered
+2026-03-26 14:09:27.089 +01:00 [INF] [nh] [load-corr-4] [msg:load-4] [type:] [resp:Ack] [codes:] [load-4] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:27.105 +01:00 [INF] [nh] [load-corr-4] [msg:load-4] [type:] [resp:Ack] [codes:] [load-4] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:27.135 +01:00 [INF] [oh] [load-corr-4] [msg:load-4] [type:] [resp:Delivered] [codes:] [load-4] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:27.138 +01:00 [INF] [oh] [load-corr-4] [msg:load-4] [type:] [resp:Delivered] [codes:] [load-4] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:27.153 +01:00 [INF] [oh] [load-corr-4] [msg:load-4] [type:] [resp:Delivered] [codes:] [load-4] ✓ Step 6B: Registreer afleverstatus: Delivered
+2026-03-26 14:09:27.553 +01:00 [INF] [eh] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:27.556 +01:00 [INF] [eh] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:27.578 +01:00 [INF] [eh] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:27.593 +01:00 [INF] [eh] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:27.609 +01:00 [INF] [eh] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:27.626 +01:00 [INF] [eh] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:27.627 +01:00 [INF] [eh] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:27.632 +01:00 [INF] [eh] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:27.641 +01:00 [INF] [eh] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:27.645 +01:00 [INF] [eh] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:27.657 +01:00 [INF] [eh] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:27.670 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:27.672 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:27.673 +01:00 [INF] [eh] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:27.689 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:27.689 +01:00 [INF] [eh] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:27.704 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:27.704 +01:00 [INF] [eh] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:27.720 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:27.733 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:27.735 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:AllocationSeries] [resp:] [codes:] [load-5] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:27.735 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:27.751 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:27.765 +01:00 [INF] [mv] [load-corr-5] [msg:load-5] [type:] [resp:] [codes:] [load-5] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:27.767 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:27.768 +01:00 [INF] [mv] [load-corr-5] [msg:load-5] [type:] [resp:] [codes:] [load-5] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:27.783 +01:00 [INF] [mv] [load-corr-5] [msg:load-5] [type:] [resp:] [codes:] [load-5] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:27.783 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:27.799 +01:00 [INF] [mv] [load-corr-5] [msg:load-5] [type:] [resp:] [codes:] [load-5] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:27.799 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:AllocationSeries] [resp:] [codes:] [load-6] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:27.815 +01:00 [INF] [mv] [load-corr-5] [msg:load-5] [type:] [resp:] [codes:] [load-5] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:27.829 +01:00 [INF] [mv] [load-corr-6] [msg:load-6] [type:] [resp:] [codes:] [load-6] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:27.831 +01:00 [INF] [mv] [load-corr-5] [msg:load-5] [type:] [resp:] [codes:] [load-5] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:27.831 +01:00 [INF] [mv] [load-corr-6] [msg:load-6] [type:] [resp:] [codes:] [load-6] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:27.847 +01:00 [INF] [mv] [load-corr-6] [msg:load-6] [type:] [resp:] [codes:] [load-6] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:27.847 +01:00 [INF] [mv] [load-corr-5] [msg:load-5] [type:] [resp:] [codes:] [load-5] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:27.863 +01:00 [INF] [mv] [load-corr-5] [msg:load-5] [type:] [resp:] [codes:] [load-5] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:27.863 +01:00 [INF] [mv] [load-corr-6] [msg:load-6] [type:] [resp:] [codes:] [load-6] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:27.879 +01:00 [INF] [mv] [load-corr-6] [msg:load-6] [type:] [resp:] [codes:] [load-6] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:27.892 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:] [resp:ACK] [codes:] [load-5] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:27.894 +01:00 [INF] [mv] [load-corr-6] [msg:load-6] [type:] [resp:] [codes:] [load-6] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:27.895 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:] [resp:ACK] [codes:] [load-5] ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 14:09:27.910 +01:00 [INF] [mv] [load-corr-6] [msg:load-6] [type:] [resp:] [codes:] [load-6] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:27.910 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:] [resp:ACK] [codes:] [load-5] ✓ Step 4B: Geen foutcodes toe te voegen
+2026-03-26 14:09:27.926 +01:00 [INF] [mv] [load-corr-6] [msg:load-6] [type:] [resp:] [codes:] [load-6] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:27.926 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:] [resp:ACK] [codes:] [load-5] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:27.941 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:] [resp:ACK] [codes:] [load-5] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:27.955 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:] [resp:ACK] [codes:] [load-6] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:27.957 +01:00 [INF] [mp] [load-corr-5] [msg:load-5] [type:] [resp:ACK] [codes:] [load-5] ✓ Step 4E: Configureer ACK-verzending
+2026-03-26 14:09:27.957 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:] [resp:ACK] [codes:] [load-6] ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 14:09:27.987 +01:00 [INF] [nh] [load-corr-5] [msg:load-5] [type:] [resp:Ack] [codes:] [load-5] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:27.988 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:] [resp:ACK] [codes:] [load-6] ✓ Step 4B: Geen foutcodes toe te voegen
+2026-03-26 14:09:27.990 +01:00 [INF] [nh] [load-corr-5] [msg:load-5] [type:] [resp:Ack] [codes:] [load-5] ✓ Step 5A: Verstuur Ack-bericht
+2026-03-26 14:09:28.003 +01:00 [INF] [nh] [load-corr-5] [msg:load-5] [type:] [resp:Ack] [codes:] [load-5] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:28.003 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:] [resp:ACK] [codes:] [load-6] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:28.018 +01:00 [INF] [nh] [load-corr-5] [msg:load-5] [type:] [resp:Ack] [codes:] [load-5] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:28.018 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:] [resp:ACK] [codes:] [load-6] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:28.034 +01:00 [INF] [nh] [load-corr-5] [msg:load-5] [type:] [resp:Ack] [codes:] [load-5] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:28.034 +01:00 [INF] [mp] [load-corr-6] [msg:load-6] [type:] [resp:ACK] [codes:] [load-6] ✓ Step 4E: Configureer ACK-verzending
+2026-03-26 14:09:28.072 +01:00 [INF] [nh] [load-corr-6] [msg:load-6] [type:] [resp:Ack] [codes:] [load-6] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:28.074 +01:00 [INF] [oh] [load-corr-5] [msg:load-5] [type:] [resp:Delivered] [codes:] [load-5] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:28.075 +01:00 [INF] [nh] [load-corr-6] [msg:load-6] [type:] [resp:Ack] [codes:] [load-6] ✓ Step 5A: Verstuur Ack-bericht
+2026-03-26 14:09:28.077 +01:00 [INF] [oh] [load-corr-5] [msg:load-5] [type:] [resp:Delivered] [codes:] [load-5] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:28.095 +01:00 [INF] [nh] [load-corr-6] [msg:load-6] [type:] [resp:Ack] [codes:] [load-6] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:28.095 +01:00 [INF] [oh] [load-corr-5] [msg:load-5] [type:] [resp:Delivered] [codes:] [load-5] ✓ Step 6B: Registreer afleverstatus: Delivered
+2026-03-26 14:09:28.111 +01:00 [INF] [nh] [load-corr-6] [msg:load-6] [type:] [resp:Ack] [codes:] [load-6] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:28.127 +01:00 [INF] [nh] [load-corr-6] [msg:load-6] [type:] [resp:Ack] [codes:] [load-6] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:28.156 +01:00 [INF] [oh] [load-corr-6] [msg:load-6] [type:] [resp:Delivered] [codes:] [load-6] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:28.158 +01:00 [INF] [oh] [load-corr-6] [msg:load-6] [type:] [resp:Delivered] [codes:] [load-6] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:28.175 +01:00 [INF] [oh] [load-corr-6] [msg:load-6] [type:] [resp:Delivered] [codes:] [load-6] ✓ Step 6B: Registreer afleverstatus: Delivered
+2026-03-26 14:09:28.575 +01:00 [INF] [eh] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:28.578 +01:00 [INF] [eh] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:28.600 +01:00 [INF] [eh] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:28.616 +01:00 [INF] [eh] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:28.632 +01:00 [INF] [eh] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:28.647 +01:00 [INF] [eh] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:28.650 +01:00 [INF] [eh] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:28.653 +01:00 [INF] [eh] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:28.663 +01:00 [INF] [eh] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:28.679 +01:00 [INF] [eh] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:28.692 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:28.694 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:28.695 +01:00 [INF] [eh] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:28.711 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:28.711 +01:00 [INF] [eh] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:28.727 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:28.727 +01:00 [INF] [eh] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:28.743 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:28.743 +01:00 [INF] [eh] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:28.759 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:AllocationSeries] [resp:] [codes:] [load-7] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:28.773 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:28.776 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:28.789 +01:00 [INF] [mv] [load-corr-7] [msg:load-7] [type:] [resp:] [codes:] [load-7] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:28.791 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:28.792 +01:00 [INF] [mv] [load-corr-7] [msg:load-7] [type:] [resp:] [codes:] [load-7] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:28.807 +01:00 [INF] [mv] [load-corr-7] [msg:load-7] [type:] [resp:] [codes:] [load-7] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:28.807 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:28.823 +01:00 [INF] [mv] [load-corr-7] [msg:load-7] [type:] [resp:] [codes:] [load-7] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:28.823 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:28.839 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:AllocationSeries] [resp:] [codes:] [load-8] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:28.839 +01:00 [INF] [mv] [load-corr-7] [msg:load-7] [type:] [resp:] [codes:] [load-7] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:28.855 +01:00 [INF] [mv] [load-corr-7] [msg:load-7] [type:] [resp:] [codes:] [load-7] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:28.869 +01:00 [INF] [mv] [load-corr-8] [msg:load-8] [type:] [resp:] [codes:] [load-8] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:28.871 +01:00 [INF] [mv] [load-corr-7] [msg:load-7] [type:] [resp:] [codes:] [load-7] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:28.872 +01:00 [INF] [mv] [load-corr-8] [msg:load-8] [type:] [resp:] [codes:] [load-8] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:28.887 +01:00 [INF] [mv] [load-corr-8] [msg:load-8] [type:] [resp:] [codes:] [load-8] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:28.887 +01:00 [INF] [mv] [load-corr-7] [msg:load-7] [type:] [resp:] [codes:] [load-7] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:28.903 +01:00 [INF] [mv] [load-corr-8] [msg:load-8] [type:] [resp:] [codes:] [load-8] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:28.916 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:] [resp:ACK] [codes:] [load-7] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:28.918 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:] [resp:ACK] [codes:] [load-7] ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 14:09:28.919 +01:00 [INF] [mv] [load-corr-8] [msg:load-8] [type:] [resp:] [codes:] [load-8] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:28.935 +01:00 [INF] [mv] [load-corr-8] [msg:load-8] [type:] [resp:] [codes:] [load-8] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:28.935 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:] [resp:ACK] [codes:] [load-7] ✓ Step 4B: Geen foutcodes toe te voegen
+2026-03-26 14:09:28.951 +01:00 [INF] [mv] [load-corr-8] [msg:load-8] [type:] [resp:] [codes:] [load-8] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:28.951 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:] [resp:ACK] [codes:] [load-7] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:28.967 +01:00 [INF] [mv] [load-corr-8] [msg:load-8] [type:] [resp:] [codes:] [load-8] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:28.967 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:] [resp:ACK] [codes:] [load-7] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:28.983 +01:00 [INF] [mp] [load-corr-7] [msg:load-7] [type:] [resp:ACK] [codes:] [load-7] ✓ Step 4E: Configureer ACK-verzending
+2026-03-26 14:09:28.998 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:] [resp:ACK] [codes:] [load-8] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:29.001 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:] [resp:ACK] [codes:] [load-8] ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 14:09:29.012 +01:00 [INF] [nh] [load-corr-7] [msg:load-7] [type:] [resp:Ack] [codes:] [load-7] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:29.015 +01:00 [INF] [nh] [load-corr-7] [msg:load-7] [type:] [resp:Ack] [codes:] [load-7] ✓ Step 5A: Verstuur Ack-bericht
+2026-03-26 14:09:29.015 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:] [resp:ACK] [codes:] [load-8] ✓ Step 4B: Geen foutcodes toe te voegen
+2026-03-26 14:09:29.031 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:] [resp:ACK] [codes:] [load-8] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:29.031 +01:00 [INF] [nh] [load-corr-7] [msg:load-7] [type:] [resp:Ack] [codes:] [load-7] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:29.047 +01:00 [INF] [nh] [load-corr-7] [msg:load-7] [type:] [resp:Ack] [codes:] [load-7] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:29.047 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:] [resp:ACK] [codes:] [load-8] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:29.063 +01:00 [INF] [nh] [load-corr-7] [msg:load-7] [type:] [resp:Ack] [codes:] [load-7] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:29.063 +01:00 [INF] [mp] [load-corr-8] [msg:load-8] [type:] [resp:ACK] [codes:] [load-8] ✓ Step 4E: Configureer ACK-verzending
+2026-03-26 14:09:29.102 +01:00 [INF] [nh] [load-corr-8] [msg:load-8] [type:] [resp:Ack] [codes:] [load-8] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:29.105 +01:00 [INF] [oh] [load-corr-7] [msg:load-7] [type:] [resp:Delivered] [codes:] [load-7] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:29.105 +01:00 [INF] [nh] [load-corr-8] [msg:load-8] [type:] [resp:Ack] [codes:] [load-8] ✓ Step 5A: Verstuur Ack-bericht
+2026-03-26 14:09:29.107 +01:00 [INF] [oh] [load-corr-7] [msg:load-7] [type:] [resp:Delivered] [codes:] [load-7] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:29.127 +01:00 [INF] [nh] [load-corr-8] [msg:load-8] [type:] [resp:Ack] [codes:] [load-8] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:29.127 +01:00 [INF] [oh] [load-corr-7] [msg:load-7] [type:] [resp:Delivered] [codes:] [load-7] ✓ Step 6B: Registreer afleverstatus: Delivered
+2026-03-26 14:09:29.143 +01:00 [INF] [nh] [load-corr-8] [msg:load-8] [type:] [resp:Ack] [codes:] [load-8] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:29.159 +01:00 [INF] [nh] [load-corr-8] [msg:load-8] [type:] [resp:Ack] [codes:] [load-8] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:29.188 +01:00 [INF] [oh] [load-corr-8] [msg:load-8] [type:] [resp:Delivered] [codes:] [load-8] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:29.191 +01:00 [INF] [oh] [load-corr-8] [msg:load-8] [type:] [resp:Delivered] [codes:] [load-8] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:29.207 +01:00 [INF] [oh] [load-corr-8] [msg:load-8] [type:] [resp:Delivered] [codes:] [load-8] ✓ Step 6B: Registreer afleverstatus: Delivered
+2026-03-26 14:09:29.599 +01:00 [INF] [eh] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:29.602 +01:00 [INF] [eh] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:29.619 +01:00 [INF] [eh] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:29.635 +01:00 [INF] [eh] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:29.651 +01:00 [INF] [eh] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:29.667 +01:00 [INF] [eh] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:29.681 +01:00 [INF] [eh] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] === COLUMN 1: EVENT HANDLER (Steps 1A-1F) ===
+2026-03-26 14:09:29.682 +01:00 [INF] [eh] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:29.685 +01:00 [INF] [eh] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] ✓ Step 1A: Ontvang event
+2026-03-26 14:09:29.712 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:29.714 +01:00 [INF] [eh] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] ✓ Step 1B: Technische ontvangstbevestiging
+2026-03-26 14:09:29.714 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:29.729 +01:00 [INF] [eh] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] ✓ Step 1C: Technische validatie XML geslaagd
+2026-03-26 14:09:29.729 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:29.745 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:29.745 +01:00 [INF] [eh] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] ✓ Step 1D: Logging van ontvangsttijd
+2026-03-26 14:09:29.761 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:29.761 +01:00 [INF] [eh] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] ✓ Step 1E: Berichttype geïdentificeerd: AllocationSeries
+2026-03-26 14:09:29.777 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:AllocationSeries] [resp:] [codes:] [load-9] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:29.777 +01:00 [INF] [eh] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] ✓ Step 1F: Bereid verwerking voor
+2026-03-26 14:09:29.817 +01:00 [INF] [mv] [load-corr-9] [msg:load-9] [type:] [resp:] [codes:] [load-9] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:29.819 +01:00 [INF] [mv] [load-corr-9] [msg:load-9] [type:] [resp:] [codes:] [load-9] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:29.820 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===
+2026-03-26 14:09:29.822 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] ✓ Step 2A: Classificeer berichttype: AllocationSeries
+2026-03-26 14:09:29.840 +01:00 [INF] [mv] [load-corr-9] [msg:load-9] [type:] [resp:] [codes:] [load-9] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:29.840 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] ✓ Step 2B: Bepaal prioriteit: Normaal
+2026-03-26 14:09:29.856 +01:00 [INF] [mv] [load-corr-9] [msg:load-9] [type:] [resp:] [codes:] [load-9] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:29.856 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] ✓ Step 2C: Plaats in wachtrij: Queue-OK
+2026-03-26 14:09:29.872 +01:00 [INF] [mv] [load-corr-9] [msg:load-9] [type:] [resp:] [codes:] [load-9] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:29.872 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] ✓ Step 2D: Uitzonderingen geen gepark
+2026-03-26 14:09:29.888 +01:00 [INF] [mv] [load-corr-9] [msg:load-9] [type:] [resp:] [codes:] [load-9] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:29.888 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:AllocationSeries] [resp:] [codes:] [load-10] ✓ Step 2E: Geen herversending vereist
+2026-03-26 14:09:29.903 +01:00 [INF] [mv] [load-corr-9] [msg:load-9] [type:] [resp:] [codes:] [load-9] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:29.916 +01:00 [INF] [mv] [load-corr-10] [msg:load-10] [type:] [resp:] [codes:] [load-10] === COLUMN 3: MESSAGE VALIDATOR (Steps 3A-3G) ===
+2026-03-26 14:09:29.918 +01:00 [INF] [mv] [load-corr-9] [msg:load-9] [type:] [resp:] [codes:] [load-9] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:29.918 +01:00 [INF] [mv] [load-corr-10] [msg:load-10] [type:] [resp:] [codes:] [load-10] ✓ Step 3A: Controleer EAN-code
+2026-03-26 14:09:29.933 +01:00 [INF] [mv] [load-corr-10] [msg:load-10] [type:] [resp:] [codes:] [load-10] ✓ Step 3B: Controleer datum/tijd
+2026-03-26 14:09:29.947 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:] [resp:ACK] [codes:] [load-9] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:29.949 +01:00 [INF] [mv] [load-corr-10] [msg:load-10] [type:] [resp:] [codes:] [load-10] ✓ Step 3C: Controleer verplichte velden
+2026-03-26 14:09:29.949 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:] [resp:ACK] [codes:] [load-9] ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 14:09:29.965 +01:00 [INF] [mv] [load-corr-10] [msg:load-10] [type:] [resp:] [codes:] [load-10] ✓ Step 3D: Validatieregels zijn configureerbaar
+2026-03-26 14:09:29.965 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:] [resp:ACK] [codes:] [load-9] ✓ Step 4B: Geen foutcodes toe te voegen
+2026-03-26 14:09:29.981 +01:00 [INF] [mv] [load-corr-10] [msg:load-10] [type:] [resp:] [codes:] [load-10] ✓ Step 3E: Controleer tijdvenster
+2026-03-26 14:09:29.981 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:] [resp:ACK] [codes:] [load-9] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:29.996 +01:00 [INF] [mv] [load-corr-10] [msg:load-10] [type:] [resp:] [codes:] [load-10] ✓ Step 3F: Controleer volgordelijkheid
+2026-03-26 14:09:29.996 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:] [resp:ACK] [codes:] [load-9] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:30.012 +01:00 [INF] [mv] [load-corr-10] [msg:load-10] [type:] [resp:] [codes:] [load-10] ✓ Step 3G: Herbruikbare validatieregels
+2026-03-26 14:09:30.012 +01:00 [INF] [mp] [load-corr-9] [msg:load-9] [type:] [resp:ACK] [codes:] [load-9] ✓ Step 4E: Configureer ACK-verzending
+2026-03-26 14:09:30.051 +01:00 [INF] [nh] [load-corr-9] [msg:load-9] [type:] [resp:Ack] [codes:] [load-9] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:30.054 +01:00 [INF] [nh] [load-corr-9] [msg:load-9] [type:] [resp:Ack] [codes:] [load-9] ✓ Step 5A: Verstuur Ack-bericht
+2026-03-26 14:09:30.054 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:] [resp:ACK] [codes:] [load-10] === COLUMN 2+4: MESSAGE PROCESSOR PHASE 4 (Steps 4A-4E) ===
+2026-03-26 14:09:30.057 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:] [resp:ACK] [codes:] [load-10] ✓ Step 4A: Genereer ACK-bericht
+2026-03-26 14:09:30.074 +01:00 [INF] [nh] [load-corr-9] [msg:load-9] [type:] [resp:Ack] [codes:] [load-9] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:30.074 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:] [resp:ACK] [codes:] [load-10] ✓ Step 4B: Geen foutcodes toe te voegen
+2026-03-26 14:09:30.090 +01:00 [INF] [nh] [load-corr-9] [msg:load-9] [type:] [resp:Ack] [codes:] [load-9] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:30.090 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:] [resp:ACK] [codes:] [load-10] ✓ Step 4C: Voeg foutcodes toe
+2026-03-26 14:09:30.106 +01:00 [INF] [nh] [load-corr-9] [msg:load-9] [type:] [resp:Ack] [codes:] [load-9] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:30.106 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:] [resp:ACK] [codes:] [load-10] ✓ Step 4D: Registreer validatieresultaat
+2026-03-26 14:09:30.122 +01:00 [INF] [mp] [load-corr-10] [msg:load-10] [type:] [resp:ACK] [codes:] [load-10] ✓ Step 4E: Configureer ACK-verzending
+2026-03-26 14:09:30.137 +01:00 [INF] [oh] [load-corr-9] [msg:load-9] [type:] [resp:Delivered] [codes:] [load-9] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:30.139 +01:00 [INF] [oh] [load-corr-9] [msg:load-9] [type:] [resp:Delivered] [codes:] [load-9] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:30.150 +01:00 [INF] [nh] [load-corr-10] [msg:load-10] [type:] [resp:Ack] [codes:] [load-10] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===
+2026-03-26 14:09:30.153 +01:00 [INF] [nh] [load-corr-10] [msg:load-10] [type:] [resp:Ack] [codes:] [load-10] ✓ Step 5A: Verstuur Ack-bericht
+2026-03-26 14:09:30.154 +01:00 [INF] [oh] [load-corr-9] [msg:load-9] [type:] [resp:Delivered] [codes:] [load-9] ✓ Step 6B: Registreer afleverstatus: Delivered
+2026-03-26 14:09:30.170 +01:00 [INF] [nh] [load-corr-10] [msg:load-10] [type:] [resp:Ack] [codes:] [load-10] ✓ Step 5B: Geconfigureerde respons
+2026-03-26 14:09:30.186 +01:00 [INF] [nh] [load-corr-10] [msg:load-10] [type:] [resp:Ack] [codes:] [load-10] ✓ Step 5C: Logging verzendtijd
+2026-03-26 14:09:30.201 +01:00 [INF] [nh] [load-corr-10] [msg:load-10] [type:] [resp:Ack] [codes:] [load-10] ✓ Step 5D: Zelfstandige verzending
+2026-03-26 14:09:30.234 +01:00 [INF] [oh] [load-corr-10] [msg:load-10] [type:] [resp:Delivered] [codes:] [load-10] === COLUMN 6: OUTPUT HANDLER (Steps 6A-6B) ===
+2026-03-26 14:09:30.237 +01:00 [INF] [oh] [load-corr-10] [msg:load-10] [type:] [resp:Delivered] [codes:] [load-10] ✓ Step 6A: Doorzetten naar raw-layer
+2026-03-26 14:09:30.265 +01:00 [INF] [oh] [load-corr-10] [msg:load-10] [type:] [resp:Delivered] [codes:] [load-10] ✓ Step 6B: Registreer afleverstatus: Delivered

@@ -36,3 +36,4 @@ C:\Users\loek\engie\engie-v2\src\Engie.Mca.EventHandler\obj\Debug\net10.0\refint
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.EventHandler\obj\Debug\net10.0\Engie.Mca.EventHandler.pdb
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.EventHandler\obj\Debug\net10.0\Engie.Mca.EventHandler.genruntimeconfig.cache
 C:\Users\loek\engie\engie-v2\src\Engie.Mca.EventHandler\obj\Debug\net10.0\ref\Engie.Mca.EventHandler.dll
+C:\Users\loek\engie\engie-v2\src\Engie.Mca.EventHandler\obj\Debug\net10.0\Engie.Mca.EventHandler.sourcelink.json

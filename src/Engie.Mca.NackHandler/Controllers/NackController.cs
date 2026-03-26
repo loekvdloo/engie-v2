@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
+using Serilog.Context;
 namespace Engie.Mca.NackHandler.Controllers;
 
 [ApiController]
@@ -24,6 +25,10 @@ public class NackController : ControllerBase
     public async Task<IActionResult> SendAckNack([FromBody] NackRequest request)
     {
         var messageId = request.MessageId;
+
+        using var messageIdScope = LogContext.PushProperty("MessageId", messageId);
+        using var responseTypeScope = LogContext.PushProperty("ResponseType", request.Response);
+
         _logger.LogInformation("[{MessageId}] === COLUMN 5: N-ACK HANDLER (Steps 5A-5D) ===", messageId);
 
         try

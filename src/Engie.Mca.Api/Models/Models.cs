@@ -29,6 +29,7 @@ public record ValidationError(string Code, string Message, string Step);
 
 public record MarketMessage(
     string MessageId,
+    string CorrelationId,
     MessageType Type,
     string? XmlContent,
     DateTime ReceivedAt
@@ -36,6 +37,7 @@ public record MarketMessage(
 
 public record MessageContext(
     string MessageId,
+    string CorrelationId,
     MessageType Type,
     ProcessingStatus Status,
     ResponseType? ResponseType,
@@ -43,7 +45,8 @@ public record MessageContext(
     List<ValidationError> Errors,
     List<(string StepId, string Description)> Steps,
     DateTime ReceivedAt,
-    DateTime? ProcessedAt
+    DateTime? ProcessedAt,
+    double? ProcessingDurationMs
 )
 {
     public void AddStep(string stepId, string description)
@@ -67,6 +70,7 @@ public record StepResult(
 
 public record MessageDetailArtifact(
     string MessageId,
+    string CorrelationId,
     string Type,
     string Status,
     string? ResponseType,
@@ -81,22 +85,26 @@ public record MessageDetailArtifact(
 public record ProcessMessageRequest(
     string? MessageId = null,
     string? XmlContent = null,
-    string? Xml = null
+    string? Xml = null,
+    string? CorrelationId = null
 );
 
 public record MessageStatusResponse(
     string MessageId,
+    string CorrelationId,
     string Status,
     string? ResponseType,
     int ErrorCount,
     List<string> ErrorCodes,
     List<(string StepId, string Description)> Steps,
     DateTime ReceivedAt,
-    DateTime? ProcessedAt
+    DateTime? ProcessedAt,
+    double? ProcessingDurationMs
 );
 
 public record MessageResponseDto(
     string MessageId,
+    string CorrelationId,
     string Status,
     string ResponseType,
     int ErrorCount,

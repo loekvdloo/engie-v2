@@ -1,10 +1,18 @@
 using Engie.Mca.Api.Models;
+using Serilog.Context;
+using System.Diagnostics;
+using System.Net.Http.Json;
 using System.Net.Http.Json;
 using System.Text.Json;
 
 namespace Engie.Mca.Api.Services;
 
-public class MicroserviceOrchestrator
+public interface IMicroserviceOrchestrator
+{
+    Task<MessageContext> ProcessAsync(MarketMessage message, CancellationToken cancellationToken = default);
+}
+
+public class MicroserviceOrchestrator : IMicroserviceOrchestrator
 {
     private readonly HttpClient _httpClient;
     private readonly ILogger<MicroserviceOrchestrator> _logger;
@@ -21,11 +29,16 @@ public class MicroserviceOrchestrator
         _logger = logger;
     }
 
-    public async Task<MessageContext> ProcessAsync(MarketMessage message)
+    public async Task<MessageContext> ProcessAsync(MarketMessage message, CancellationToken cancellationToken = default)
     {
         var steps = new List<(string StepId, string Description)>();
         var errors = new List<ValidationError>();
         var response = ResponseType.Ack;
+        var stopwatch = Stopwatch.StartNew();
+
+        using var correlationScope = LogContext.PushProperty("CorrelationId", message.CorrelationId);
+        using var messageIdScope = LogContext.PushProperty("MessageId", message.MessageId);
+        using var messageTypeScope = LogContext.PushProperty("MessageType", message.Type.ToString());
 
         try
         {
@@ -38,12 +51,12 @@ public class MicroserviceOrchestrator
                 MessageId = message.MessageId,
                 MessageType = message.Type.ToString(),
                 Content = message.XmlContent
-            });
+            }, message.CorrelationId, cancellationToken);
 
             if (eventResponse == null)
             {
                 errors.Add(new ValidationError("001", "Event handler service failed", "1A"));
-                return CreateFailedMessage(message, steps, errors, ResponseType.Nack);
+                return CreateFailedMessage(message, steps, errors, ResponseType.Nack, stopwatch.Elapsed.TotalMilliseconds);
             }
 
             steps.Add(("1A", "Ontvang event"));
@@ -59,12 +72,12 @@ public class MicroserviceOrchestrator
             {
                 MessageId = message.MessageId,
                 MessageType = message.Type.ToString()
-            });
+            }, message.CorrelationId, cancellationToken);
 
             if (phase2Response == null)
             {
                 errors.Add(new ValidationError("002", "Message processor phase 2 failed", "2A"));
-                return CreateFailedMessage(message, steps, errors, ResponseType.Nack);
+                return CreateFailedMessage(message, steps, errors, ResponseType.Nack, stopwatch.Elapsed.TotalMilliseconds);
             }
 
             steps.Add(("2A", $"Classificeer berichttype: {message.Type}"));
@@ -84,12 +97,12 @@ public class MicroserviceOrchestrator
                 StartDateTime = ExtractDateTime(message.XmlContent, "StartDateTime"),
                 EndDateTime = ExtractDateTime(message.XmlContent, "EndDateTime"),
                 Content = message.XmlContent
-            });
+            }, message.CorrelationId, cancellationToken);
 
             if (validatorResponse == null)
             {
                 errors.Add(new ValidationError("003", "Message validator service failed", "3A"));
-                return CreateFailedMessage(message, steps, errors, ResponseType.Nack);
+                return CreateFailedMessage(message, steps, errors, ResponseType.Nack, stopwatch.Elapsed.TotalMilliseconds);
             }
 
             // Check if validation passed — collect ALL error codes returned
@@ -127,13 +140,14 @@ public class MicroserviceOrchestrator
                 MessageId = message.MessageId,
                 MessageType = message.Type.ToString(),
                 HasErrors = hasErrors,
-                ErrorCode = errors.FirstOrDefault()?.Code
-            });
+                ErrorCode = errors.FirstOrDefault()?.Code,
+                ErrorCodes = errors.Select(error => error.Code).ToList()
+            }, message.CorrelationId, cancellationToken);
 
             if (phase4Response == null)
             {
                 errors.Add(new ValidationError("004", "Message processor phase 4 failed", "4A"));
-                return CreateFailedMessage(message, steps, errors, ResponseType.Nack);
+                return CreateFailedMessage(message, steps, errors, ResponseType.Nack, stopwatch.Elapsed.TotalMilliseconds);
             }
 
             steps.Add(("4A", $"Genereer {response}-bericht"));
@@ -148,12 +162,12 @@ public class MicroserviceOrchestrator
             {
                 MessageId = message.MessageId,
                 Response = response.ToString()
-            });
+            }, message.CorrelationId, cancellationToken);
 
             if (nackResponse == null)
             {
                 errors.Add(new ValidationError("005", "N-ACK handler service failed", "5A"));
-                return CreateFailedMessage(message, steps, errors, ResponseType.Nack);
+                return CreateFailedMessage(message, steps, errors, ResponseType.Nack, stopwatch.Elapsed.TotalMilliseconds);
             }
 
             steps.Add(("5A", $"Verstuur {response}-bericht"));
@@ -167,12 +181,12 @@ public class MicroserviceOrchestrator
             {
                 MessageId = message.MessageId,
                 Status = response == ResponseType.Nack ? "Failed" : "Delivered"
-            });
+            }, message.CorrelationId, cancellationToken);
 
             if (outputResponse == null)
             {
                 errors.Add(new ValidationError("006", "Output handler service failed", "6A"));
-                return CreateFailedMessage(message, steps, errors, ResponseType.Nack);
+                return CreateFailedMessage(message, steps, errors, ResponseType.Nack, stopwatch.Elapsed.TotalMilliseconds);
             }
 
             steps.Add(("6A", "Doorzetten naar raw-layer"));
@@ -186,6 +200,7 @@ public class MicroserviceOrchestrator
 
             return new MessageContext(
                 message.MessageId,
+                message.CorrelationId,
                 message.Type,
                 status,
                 finalResponse,
@@ -193,14 +208,15 @@ public class MicroserviceOrchestrator
                 errors,
                 steps,
                 message.ReceivedAt,
-                DateTime.UtcNow
+                DateTime.UtcNow,
+                stopwatch.Elapsed.TotalMilliseconds
             );
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "[{MessageId}] Orchestration failed", message.MessageId);
             errors.Add(new ValidationError("999", ex.Message, "Pipeline"));
-            return CreateFailedMessage(message, steps, errors, ResponseType.Nack);
+            return CreateFailedMessage(message, steps, errors, ResponseType.Nack, stopwatch.Elapsed.TotalMilliseconds);
         }
     }
 
@@ -208,10 +224,12 @@ public class MicroserviceOrchestrator
         MarketMessage message,
         List<(string StepId, string Description)> steps,
         List<ValidationError> errors,
-        ResponseType response)
+        ResponseType response,
+        double? processingDurationMs)
     {
         return new MessageContext(
             message.MessageId,
+            message.CorrelationId,
             message.Type,
             ProcessingStatus.Failed,
             response,
@@ -219,15 +237,22 @@ public class MicroserviceOrchestrator
             errors,
             steps,
             message.ReceivedAt,
-            DateTime.UtcNow
+            DateTime.UtcNow,
+            processingDurationMs
         );
     }
 
-    private async Task<JsonDocument?> CallService(string url, object requestBody)
+    private async Task<JsonDocument?> CallService(string url, object requestBody, string correlationId, CancellationToken cancellationToken)
     {
         try
         {
-            var response = await _httpClient.PostAsJsonAsync(url, requestBody);
+            using var request = new HttpRequestMessage(HttpMethod.Post, url)
+            {
+                Content = JsonContent.Create(requestBody)
+            };
+            request.Headers.Add("X-Correlation-ID", correlationId);
+
+            var response = await _httpClient.SendAsync(request, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
                 _logger.LogWarning("Service call to {Url} returned {StatusCode}", url, response.StatusCode);
