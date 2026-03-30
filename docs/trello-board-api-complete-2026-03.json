@@ -1,0 +1,582 @@
+﻿{
+    "board":  {
+                  "name":  "ENGIE MCA API - Complete Board 2026-03 (v2)",
+                  "description":  "Volledig Trello-bord voor de actuele ENGIE MCA applicatie. Bevat 29 pipeline-stappen (1A-6B), testdekking, observability en operationele taken.",
+                  "version":  "2026-03",
+                  "lists":  [
+                                {
+                                    "name":  "01 - Architectuur en Scope",
+                                    "cards":  [
+                                                  {
+                                                      "id":  "ARCH-01",
+                                                      "title":  "Microservices keten 1A-6B",
+                                                      "description":  "Bevestig en borg de keten: API -\u003e EventHandler -\u003e MessageProcessor -\u003e MessageValidator -\u003e MessageProcessor -\u003e NackHandler -\u003e OutputHandler.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Alle services hebben een duidelijk endpoint en poort.",
+                                                                                 "Flow tussen services is traceerbaar via correlation id.",
+                                                                                 "29 stappen zijn eenduidig gekoppeld aan serviceblokken."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "ARCH-02",
+                                                      "title":  "API-first zonder dashboard",
+                                                      "description":  "Scope is API, scripts, logs en metrics. Geen dashboardafhankelijkheid.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Alle operationele checks zijn uitvoerbaar via API en scripts.",
+                                                                                 "Geen dashboard is nodig voor validatie van pipeline-gedrag."
+                                                                             ]
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "name":  "02 - Event Handler (Kolom 1)",
+                                    "cards":  [
+                                                  {
+                                                      "id":  "US-01",
+                                                      "title":  "1A Request + MessageId check",
+                                                      "description":  "Stapcode: 1A\nMoet doen: Ontvang inkomende request en controleer dat body + MessageId aanwezig zijn.\nControletype: Technische inputvalidatie\n\nReject request zonder body of zonder MessageId.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-1"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Lege request geeft 400.",
+                                                                                 "Lege MessageId geeft 400."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-02",
+                                                      "title":  "1B Verplichte JSON velden",
+                                                      "description":  "Stapcode: 1B\nMoet doen: Controleer verplichte JSON-velden zoals MessageType en Content.\nControletype: Schema/veldvalidatie\n\nControle op MessageType en Content.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-1"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Ontbrekende velden geven 400 met missende velden."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-03",
+                                                      "title":  "1C XML parse validatie",
+                                                      "description":  "Stapcode: 1C\nMoet doen: Parse de XML en valideer dat een geldig root-element aanwezig is.\nControletype: Technische XML-validatie\n\nContent moet parsebare XML zijn met root-element.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-1"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Ongeldige XML wordt afgewezen.",
+                                                                                 "Geen root-element wordt afgewezen."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-04",
+                                                      "title":  "1D Ontvangsttijd logging",
+                                                      "description":  "Stapcode: 1D\nMoet doen: Registreer ontvangsttijd en correlatie voor traceability.\nControletype: Observability/auditcontrole\n\nLeg receivedAt vast en log in output.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-1"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "receivedAt staat in response en logs."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-05",
+                                                      "title":  "1E Bekend MessageType",
+                                                      "description":  "Stapcode: 1E\nMoet doen: Bepaal berichttype en sta alleen bekende typen toe.\nControletype: Business routing-validatie\n\nAlleen AllocationSeries, AllocationFactorSeries, AggregatedAllocationSeries.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-1"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Onbekend type geeft 400."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-06",
+                                                      "title":  "1F Root-element match met MessageType",
+                                                      "description":  "Stapcode: 1F\nMoet doen: Controleer dat XML-root overeenkomt met opgegeven MessageType.\nControletype: Consistentiecontrole\n\nXML root moet bij het opgegeven type passen.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-1"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Mismatch root/type geeft 400."
+                                                                             ]
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "name":  "03 - Message Processor (Kolom 2 + 4)",
+                                    "cards":  [
+                                                  {
+                                                      "id":  "US-07",
+                                                      "title":  "2A Berichttype classificatie",
+                                                      "description":  "Stapcode: 2A\nMoet doen: Classificeer bericht voor verdere verwerkingsroute.\nControletype: Routingclassificatie\n\nValideer known message types in phase2.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-2-4"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Onbekend type geeft 400 op step 2A."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-08",
+                                                      "title":  "2B Prioriteit Normaal",
+                                                      "description":  "Stapcode: 2B\nMoet doen: Ken prioriteit toe aan het bericht (nu: Normaal).\nControletype: Prioriteringscontrole\n\nStap 2B zet expliciet prioriteit op Normaal.",
+                                                      "labels":  [
+                                                                     "fase-3",
+                                                                     "oranje",
+                                                                     "kolom-2-4"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "priority=Normaal in response."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-09",
+                                                      "title":  "2C Slagboom met gelijktijdigheid",
+                                                      "description":  "Stapcode: 2C\nMoet doen: Plaats bericht achter een slagboom/wachtrij met gelijktijdigheidslimiet.\nControletype: Concurrency/backpressure controle\n\nSemaphoreSlim gate op concurrente processing slots.",
+                                                      "labels":  [
+                                                                     "fase-3",
+                                                                     "oranje",
+                                                                     "kolom-2-4"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Gate beschermt tegen overbelasting.",
+                                                                                 "Timeout geeft 503."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-10",
+                                                      "title":  "2D Parkeerlogica bij overload",
+                                                      "description":  "Stapcode: 2D\nMoet doen: Parkeer berichten bij overload op basis van threshold.\nControletype: Overload/parkingcontrole\n\nParkeer bericht wanneer pending threshold wordt overschreden.",
+                                                      "labels":  [
+                                                                     "fase-4",
+                                                                     "groen",
+                                                                     "kolom-2-4"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Over threshold resulteert in parked status en 429."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-11",
+                                                      "title":  "2E Herversending detectie",
+                                                      "description":  "Stapcode: 2E\nMoet doen: Detecteer herversending op basis van messageId-patroon.\nControletype: Idempotency/resend controle\n\nDetecteer resend via messageId patroon (-retry / -resend-).",
+                                                      "labels":  [
+                                                                     "fase-4",
+                                                                     "groen",
+                                                                     "kolom-2-4"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "isResend flag is correct gevuld."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-18",
+                                                      "title":  "4A ACK/NACK generatie",
+                                                      "description":  "Stapcode: 4A\nMoet doen: Genereer ACK of NACK op basis van validatieresultaat.\nControletype: Responselogica controle\n\nResponse type op basis van HasErrors.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-2-4"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "HasErrors=true =\u003e NACK.",
+                                                                                 "HasErrors=false =\u003e ACK."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-19",
+                                                      "title":  "4B Consistentie HasErrors en ErrorCodes",
+                                                      "description":  "Stapcode: 4B\nMoet doen: Controleer consistentie tussen HasErrors en ErrorCodes.\nControletype: Consistentievalidatie\n\nCheck op tegenstrijdige combinaties.",
+                                                      "labels":  [
+                                                                     "fase-2",
+                                                                     "geel",
+                                                                     "kolom-2-4"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "HasErrors=true zonder codes wordt afgewezen.",
+                                                                                 "HasErrors=false met codes wordt afgewezen."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-20",
+                                                      "title":  "4C Validatie foutcodeformaat",
+                                                      "description":  "Stapcode: 4C\nMoet doen: Valideer formaat van foutcodes (3 cijfers).\nControletype: Foutcode-integriteitscontrole\n\nErrorCodes moeten 3-cijferig zijn.",
+                                                      "labels":  [
+                                                                     "fase-2",
+                                                                     "geel",
+                                                                     "kolom-2-4"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Ongeldig formaat geeft 400."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-21",
+                                                      "title":  "4D Registratie validatieresultaat",
+                                                      "description":  "Stapcode: 4D\nMoet doen: Registreer validatieresultaat per bericht.\nControletype: State-registratie controle\n\nSla phase4-resultaat in registry op.",
+                                                      "labels":  [
+                                                                     "fase-2",
+                                                                     "geel",
+                                                                     "kolom-2-4"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Resultaat is opvraagbaar in memory per messageId."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-22",
+                                                      "title":  "4E Response routing kanaal",
+                                                      "description":  "Stapcode: 4E\nMoet doen: Routeer response naar positief of negatief kanaal.\nControletype: Kanaalrouteringscontrole\n\nSelecteer PositiveFlow of NegativeFlow.",
+                                                      "labels":  [
+                                                                     "fase-3",
+                                                                     "oranje",
+                                                                     "kolom-2-4"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "ACK routeert naar PositiveFlow.",
+                                                                                 "NACK routeert naar NegativeFlow."
+                                                                             ]
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "name":  "04 - Message Validator (Kolom 3)",
+                                    "cards":  [
+                                                  {
+                                                      "id":  "US-12",
+                                                      "title":  "3A EAN validatie (686)",
+                                                      "description":  "Stapcode: 3A\nMoet doen: Valideer EAN-format en lengte.\nControletype: Datakwaliteit validatie\n\nEAN moet exact 18 cijfers bevatten.",
+                                                      "labels":  [
+                                                                     "fase-2",
+                                                                     "geel",
+                                                                     "kolom-3"
+                                                                 ],
+                                                      "errorCodes":  [
+                                                                         "686"
+                                                                     ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Leeg of ongeldig EAN geeft 686."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-13",
+                                                      "title":  "3B Datum/tijd validatie (760/758)",
+                                                      "description":  "Stapcode: 3B\nMoet doen: Valideer startdatum/tijd op toekomst en ouderdom.\nControletype: Tijdvalidatie\n\nStartDateTime niet in de toekomst en niet te oud.",
+                                                      "labels":  [
+                                                                     "fase-2",
+                                                                     "geel",
+                                                                     "kolom-3"
+                                                                 ],
+                                                      "errorCodes":  [
+                                                                         "760",
+                                                                         "758"
+                                                                     ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Future start =\u003e 760.",
+                                                                                 "Te oude start =\u003e 758."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-14",
+                                                      "title":  "3C Verplichte velden (676)",
+                                                      "description":  "Stapcode: 3C\nMoet doen: Valideer verplichte velden zoals DocumentID.\nControletype: Verplicht-veld controle\n\nDocumentID verplicht en binnen lengtegrens.",
+                                                      "labels":  [
+                                                                     "fase-2",
+                                                                     "geel",
+                                                                     "kolom-3"
+                                                                 ],
+                                                      "errorCodes":  [
+                                                                         "676"
+                                                                     ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Leeg of ongeldig DocumentID geeft 676."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-15",
+                                                      "title":  "3D Hoeveelheidsregels (772/773/774)",
+                                                      "description":  "Stapcode: 3D\nMoet doen: Valideer quantity op negatief, nul en bovengrens.\nControletype: Numerieke businessvalidatie\n\nControle op negative, zero en over max limit.",
+                                                      "labels":  [
+                                                                     "fase-2",
+                                                                     "geel",
+                                                                     "kolom-3"
+                                                                 ],
+                                                      "errorCodes":  [
+                                                                         "772",
+                                                                         "773",
+                                                                         "774"
+                                                                     ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Negatief =\u003e 772.",
+                                                                                 "Nul =\u003e 774.",
+                                                                                 "Te groot =\u003e 773."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-16",
+                                                      "title":  "3E Tijdvensterregels (758)",
+                                                      "description":  "Stapcode: 3E\nMoet doen: Valideer tijdvenster tussen start en eind.\nControletype: Window/interval controle\n\nEndDateTime moet na StartDateTime liggen en binnen vensterlimiet.",
+                                                      "labels":  [
+                                                                     "fase-2",
+                                                                     "geel",
+                                                                     "kolom-3"
+                                                                 ],
+                                                      "errorCodes":  [
+                                                                         "758"
+                                                                     ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "End \u003c= Start =\u003e 758.",
+                                                                                 "Ontbrekende start/eind =\u003e 758."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-17",
+                                                      "title":  "3F Volgordelijkheid (754/755)",
+                                                      "description":  "Stapcode: 3F\nMoet doen: Controleer volgordelijkheid en detecteer duplicaten.\nControletype: Sequence/duplicate controle\n\nDetectie van DUP documenten en sequence regressie.",
+                                                      "labels":  [
+                                                                     "fase-2",
+                                                                     "geel",
+                                                                     "kolom-3"
+                                                                 ],
+                                                      "errorCodes":  [
+                                                                         "754",
+                                                                         "755"
+                                                                     ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "DocumentID met DUP =\u003e 755.",
+                                                                                 "Out-of-sequence =\u003e 754."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-23",
+                                                      "title":  "3G Reusable + forced codes",
+                                                      "description":  "Stapcode: 3G\nMoet doen: Pas herbruikbare regels en forced error codes toe.\nControletype: Regel-engine/testinjectie controle\n\nOndersteun ForceErrorCodes voor volledige codecatalog testdekking.",
+                                                      "labels":  [
+                                                                     "fase-2",
+                                                                     "geel",
+                                                                     "kolom-3"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "ForceErrorCodes voegt codes deterministisch toe."
+                                                                             ]
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "name":  "05 - Nack + Output (Kolom 5 + 6)",
+                                    "cards":  [
+                                                  {
+                                                      "id":  "US-24",
+                                                      "title":  "5A ACK/NACK type validatie",
+                                                      "description":  "Stapcode: 5A\nMoet doen: Valideer ACK/NACK type voor verzending.\nControletype: Protocolvalidatie\n\nNackHandler accepteert alleen ACK of NACK.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-5"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Ongeldig responstype geeft 400."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-25",
+                                                      "title":  "5B Route configuratie",
+                                                      "description":  "Stapcode: 5B\nMoet doen: Bepaal en controleer routeconfiguratie per response.\nControletype: Configuratiecontrole\n\nConfigureer PositiveFlow/NegativeFlow per response.",
+                                                      "labels":  [
+                                                                     "fase-3",
+                                                                     "oranje",
+                                                                     "kolom-5"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "ACK route = PositiveFlow.",
+                                                                                 "NACK route = NegativeFlow."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-26",
+                                                      "title":  "5C Verzendtijd registratie",
+                                                      "description":  "Stapcode: 5C\nMoet doen: Log verzendtijd en response metadata.\nControletype: Audit/observability controle\n\nsentAt timestamp in output en logs.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-5"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Verzendtijd is aanwezig en herleidbaar."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-27",
+                                                      "title":  "5D Idempotente verzending",
+                                                      "description":  "Stapcode: 5D\nMoet doen: Voorkom dubbele verzending via idempotente sleutel.\nControletype: Idempotency controle\n\nDubbele verzending wordt geblokkeerd.",
+                                                      "labels":  [
+                                                                     "fase-4",
+                                                                     "groen",
+                                                                     "kolom-5"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Duplicate key geeft 409 DuplicateBlocked."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-28",
+                                                      "title":  "6A Raw-layer forwarding check",
+                                                      "description":  "Stapcode: 6A\nMoet doen: Zet output door naar raw-layer met statusvalidatie.\nControletype: Output-gating controle\n\nOutput status validatie en duplicate delivery bescherming.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-6"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Status moet Delivered/Failed zijn.",
+                                                                                 "Re-delivery geeft 409."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "US-29",
+                                                      "title":  "6B Delivery status registratie",
+                                                      "description":  "Stapcode: 6B\nMoet doen: Registreer definitieve afleverstatus met timestamp.\nControletype: Delivery-state controle\n\nSla delivery record op met deliveredAt.",
+                                                      "labels":  [
+                                                                     "fase-1",
+                                                                     "blauw",
+                                                                     "kolom-6"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "DeliveryRecord bevat messageId, status, deliveredAt."
+                                                                             ]
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "name":  "06 - Test, Logging en Operations",
+                                    "cards":  [
+                                                  {
+                                                      "id":  "OPS-01",
+                                                      "title":  "Volledige pipeline testscript 14/14",
+                                                      "description":  "Gebruik scripts/test-full-pipeline.ps1 als hoofdregressietest.",
+                                                      "labels":  [
+                                                                     "fase-4",
+                                                                     "groen"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Script draait groen (14/14).",
+                                                                                 "Resultaten zichtbaar in /api/messages."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "OPS-02",
+                                                      "title":  "Berichtenoverzicht script",
+                                                      "description":  "Gebruik scripts/view-messages.ps1 voor overzicht en detailstappen.",
+                                                      "labels":  [
+                                                                     "fase-4",
+                                                                     "groen"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "-Last werkt.",
+                                                                                 "-MessageId met -Steps toont stapdetail."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "OPS-03",
+                                                      "title":  "Logs en block logs valideren",
+                                                      "description":  "Controle op pipeline logs en block logs per service.",
+                                                      "labels":  [
+                                                                     "fase-4",
+                                                                     "groen"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "all-blocks log wordt gevuld.",
+                                                                                 "Service-specifieke logs worden dagelijks gerold."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "OPS-04",
+                                                      "title":  "Metrics endpoint validatie",
+                                                      "description":  "Controleer /api/metrics en /metrics op total, failed, delivered, p95.",
+                                                      "labels":  [
+                                                                     "fase-4",
+                                                                     "groen"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "JSON en Prometheus metrics beschikbaar."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "OPS-05",
+                                                      "title":  "Startscript dotnet pad hardcoded",
+                                                      "description":  "Gebruik C:\\Program Files\\dotnet\\dotnet.exe in scripts/start-all-services.ps1 om PATH issues te vermijden.",
+                                                      "labels":  [
+                                                                     "fase-4",
+                                                                     "groen"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Script start alle services zonder PATH dependency."
+                                                                             ]
+                                                  }
+                                              ]
+                                },
+                                {
+                                    "name":  "07 - Backlog Next",
+                                    "cards":  [
+                                                  {
+                                                      "id":  "NEXT-01",
+                                                      "title":  "Persistent storage i.p.v. in-memory",
+                                                      "description":  "Vervang in-memory registries door duurzame opslag.",
+                                                      "labels":  [
+                                                                     "fase-4",
+                                                                     "groen"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "State overleeft service restart."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "NEXT-02",
+                                                      "title":  "Externe queue/broker",
+                                                      "description":  "Vervang interne gate met broker voor echte backpressure.",
+                                                      "labels":  [
+                                                                     "fase-3",
+                                                                     "oranje"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "Queue depth en retries zijn observeerbaar."
+                                                                             ]
+                                                  },
+                                                  {
+                                                      "id":  "NEXT-03",
+                                                      "title":  "CI quality gates",
+                                                      "description":  "Automatiseer build, tests en regressierun in pipeline.",
+                                                      "labels":  [
+                                                                     "fase-4",
+                                                                     "groen"
+                                                                 ],
+                                                      "acceptanceCriteria":  [
+                                                                                 "PR blokkeert bij falende contract/full-pipeline tests."
+                                                                             ]
+                                                  }
+                                              ]
+                                }
+                            ]
+              }
+}

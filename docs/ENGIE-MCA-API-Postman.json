@@ -1,745 +1,240 @@
-{
+﻿{
   "info": {
-    "_postman_id": "engie-mca-api",
-    "name": "ENGIE Allocation Processor API",
-    "description": "Complete test collection for ENGIE Market Message Processing API\n\nPhipeline Architecture:\n- Column 1: Event Handler (Steps 1A-1F)\n- Column 2+4: Message Processor (Steps 2A-2E + 4A-4E)\n- Column 3: Message Validator (Steps 3A-3G)\n- Column 5: N-ACK Handler (Steps 5A-5D)\n- Column 6: Output Handler (Steps 6A-6B)\n\nTotal: 29 user stories processed end-to-end\n\n**Base URL:** http://localhost:5000",
+    "_postman_id": "engie-mca-api-2026-03",
+    "name": "ENGIE MCA API (Up-to-date)",
+    "description": "Actuele collectie voor de 29-stappen pipeline (1A-6B).\n\nBase URL variable: {{base_url}}\nAanbevolen waarde: http://localhost:5000",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Messages",
+      "name": "1) Pipeline - Happy Flow",
       "item": [
         {
-          "name": "1. Process Valid AllocationSeries",
+          "name": "Process valid AllocationSeries (Delivered/Ack)",
           "event": [
             {
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
+                  "pm.test('Status code 200', function () { pm.response.to.have.status(200); });",
+                  "var r = pm.response.json();",
+                  "pm.test('Delivered + Ack + no errors', function () {",
+                  "  pm.expect(r.status).to.eql('Delivered');",
+                  "  pm.expect(r.responseType).to.eql('Ack');",
+                  "  pm.expect(r.errorCount).to.eql(0);",
                   "});",
-                  "",
-                  "pm.test('Response has required fields', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData).to.have.property('messageId');",
-                  "    pm.expect(jsonData).to.have.property('status');",
-                  "    pm.expect(jsonData).to.have.property('responseType');",
-                  "    pm.expect(jsonData).to.have.property('errorCount');",
-                  "    pm.expect(jsonData).to.have.property('errorCodes');",
-                  "});",
-                  "",
-                  "pm.test('Valid message returns ACK', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.equal('Delivered');",
-                  "    pm.expect(jsonData.responseType).to.equal('Ack');",
-                  "    pm.expect(jsonData.errorCount).to.equal(0);",
-                  "});",
-                  "",
-                  "pm.collectionVariables.set('messageId_valid', pm.response.json().messageId);"
-                ]
+                  "pm.collectionVariables.set('messageId_last', r.messageId);"
+                ],
+                "type": "text/javascript"
               }
             }
           ],
           "request": {
             "method": "POST",
             "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "X-Correlation-ID", "value": "corr-postman-valid-001" }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"messageId\": \"msg-valid-001\",\n  \"xmlContent\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\\n<AllocationSeries>\\n  <Header>\\n    <MessageId>msg-valid-001</MessageId>\\n    <Timestamp>2026-03-26T10:00:00Z</Timestamp>\\n    <Type>AllocationSeries</Type>\\n  </Header>\\n  <EAN>8714568009996</EAN>\\n  <ContractId>CONTRACT-12345</ContractId>\\n  <Quantity>100</Quantity>\\n  <Unit>kWh</Unit>\\n  <Period>2026-03-26</Period>\\n</AllocationSeries>\"\n}"
+              "raw": "{\n  \"messageId\": \"postman-valid-001\",\n  \"xmlContent\": \"<AllocationSeries><DocumentID>DOC-POSTMAN-001</DocumentID><EAN>871234567890100000</EAN><Quantity>100</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/messages",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages"
-              ]
-            },
-            "description": "Process a valid market message\n\nExpected Flow:\n- Step 1A-1F: Event Handler - Receive, validate XML\n- Step 2A-2E: Message Processor - Classify, prioritize\n- Step 3A-3G: Message Validator - All validations pass\n- Step 4A-4E: Response Handler - Generate ACK\n- Step 5A-5D: N-ACK Handler - Send ACK\n- Step 6A-6B: Output Handler - Deliver\n\nExpected Result: Delivered + Ack + No errors"
-          }
-        },
-        {
-          "name": "2. Process with Invalid EAN",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Invalid EAN returns NACK with error 686', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.equal('Failed');",
-                  "    pm.expect(jsonData.responseType).to.equal('Nack');",
-                  "    pm.expect(jsonData.errorCount).to.be.above(0);",
-                  "    pm.expect(jsonData.errorCodes).to.include('686');",
-                  "});",
-                  "",
-                  "pm.collectionVariables.set('messageId_invalid_ean', pm.response.json().messageId);"
-                ]
-              }
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages"]
             }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"messageId\": \"msg-invalid-ean-001\",\n  \"xmlContent\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\\n<AllocationSeries>\\n  <Header>\\n    <MessageId>msg-invalid-ean-001</MessageId>\\n    <Timestamp>2026-03-26T10:00:00Z</Timestamp>\\n  </Header>\\n  <EAN>INVALID-EAN</EAN>\\n  <ContractId>CONTRACT-12345</ContractId>\\n  <Quantity>100</Quantity>\\n</AllocationSeries>\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/messages",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages"
-              ]
-            },
-            "description": "Process a message with invalid EAN code\n\nValidation Step: 3A - BRP Register (EAN validation)\nError Code: 686 - Ongeldige EAN-code\n\nExpected Result: Failed + Nack + Error 686"
-          }
-        },
-        {
-          "name": "3. Process with Future Date",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Future date returns NACK with error 760', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.equal('Failed');",
-                  "    pm.expect(jsonData.responseType).to.equal('Nack');",
-                  "    pm.expect(jsonData.errorCodes).to.include('760');",
-                  "});",
-                  "",
-                  "pm.collectionVariables.set('messageId_future', pm.response.json().messageId);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"messageId\": \"msg-future-001\",\n  \"xmlContent\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\\n<AllocationSeries>\\n  <Header>\\n    <MessageId>msg-future-001</MessageId>\\n    <Timestamp>2099-03-26T10:00:00Z</Timestamp>\\n  </Header>\\n  <EAN>8714568009996</EAN>\\n  <Period>2099-03-26</Period>\\n</AllocationSeries>\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/messages",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages"
-              ]
-            },
-            "description": "Process a message with future timestamp\n\nValidation Step: 3E - Time Window Validation\nError Code: 760 - Bericht in toekomst\n\nExpected Result: Failed + Nack + Error 760"
-          }
-        },
-        {
-          "name": "4. Process AllocationFactorSeries",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('AllocationFactorSeries processed', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData).to.have.property('messageId');",
-                  "});",
-                  "",
-                  "pm.collectionVariables.set('messageId_factor', pm.response.json().messageId);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"messageId\": \"msg-factor-001\",\n  \"xmlContent\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\\n<AllocationFactorSeries>\\n  <Header>\\n    <MessageId>msg-factor-001</MessageId>\\n    <Timestamp>2026-03-26T10:00:00Z</Timestamp>\\n  </Header>\\n  <EAN>8714568009996</EAN>\\n  <FactorValue>95.5</FactorValue>\\n  <EffectiveDate>2026-04-01</EffectiveDate>\\n</AllocationFactorSeries>\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/messages",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages"
-              ]
-            },
-            "description": "Process AllocationFactorSeries message type\n\nMessage Type Detection: 1E\nExpected Result: Processed with Delivered status"
-          }
-        },
-        {
-          "name": "5. Process AggregatedAllocationSeries",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('AggregatedAllocationSeries processed', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData).to.have.property('messageId');",
-                  "});",
-                  "",
-                  "pm.collectionVariables.set('messageId_aggregated', pm.response.json().messageId);"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"messageId\": \"msg-aggregated-001\",\n  \"xmlContent\": \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\\n<AggregatedAllocationSeries>\\n  <Header>\\n    <MessageId>msg-aggregated-001</MessageId>\\n    <Timestamp>2026-03-26T10:00:00Z</Timestamp>\\n  </Header>\\n  <TotalQuantity>50000</TotalQuantity>\\n  <MeterPoints>250</MeterPoints>\\n</AggregatedAllocationSeries>\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/messages",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages"
-              ]
-            },
-            "description": "Process AggregatedAllocationSeries message type\n\nMessage Type Detection: 1E\nExpected Result: Processed with Delivered status"
-          }
-        },
-        {
-          "name": "6. Process Invalid XML",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Invalid XML returns NACK with error 651', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.status).to.equal('Failed');",
-                  "    pm.expect(jsonData.responseType).to.equal('Nack');",
-                  "    pm.expect(jsonData.errorCodes).to.include('651');",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              }
-            ],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"messageId\": \"msg-invalid-xml-001\",\n  \"xmlContent\": \"<InvalidXML><Unclosed>\"\n}"
-            },
-            "url": {
-              "raw": "{{base_url}}/api/messages",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages"
-              ]
-            },
-            "description": "Process message with invalid XML syntax\n\nValidation Step: 1C - XML Technical Validation\nError Code: 651 - XML kan niet geparst worden\n\nExpected Result: Failed + Nack + Error 651"
-          }
-        },
-        {
-          "name": "7. Get Message Status",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Response includes all processing steps', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData).to.have.property('steps');",
-                  "    pm.expect(jsonData.steps).to.be.an('array');",
-                  "    pm.expect(jsonData.steps.length).to.be.at.least(6);",
-                  "});",
-                  "",
-                  "pm.test('Response shows 6 processing columns', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    var steps = jsonData.steps.map(s => s[0]).join(',');",
-                  "    pm.expect(steps).to.include('1');",
-                  "    pm.expect(steps).to.include('2');",
-                  "    pm.expect(steps).to.include('3');",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/messages/{{messageId_valid}}",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages",
-                "{{messageId_valid}}"
-              ]
-            },
-            "description": "Retrieve complete processing status for a message\n\nIncludes:\n- All 29 processing steps\n- Current status\n- Error details\n- Processing timeline\n\nUses: messageId from step 1 (valid message)"
-          }
-        },
-        {
-          "name": "8. Get Messages by Status - Delivered",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Returns array of messages', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData).to.be.an('array');",
-                  "});",
-                  "",
-                  "pm.test('All returned messages have Delivered status', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    jsonData.forEach(function(msg) {",
-                  "        pm.expect(msg.status).to.equal('Delivered');",
-                  "    });",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/messages/status/Delivered",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages",
-                "status",
-                "Delivered"
-              ]
-            },
-            "description": "Get all messages with Delivered status\n\nStatus Values:\n- Received: Message received, not yet processed\n- Processing: Currently being processed\n- Delivered: Successfully processed and delivered\n- Failed: Processing failed\n- Retrying: Retry in progress"
-          }
-        },
-        {
-          "name": "9. Get Messages by Status - Failed",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('All returned messages have Failed status', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    jsonData.forEach(function(msg) {",
-                  "        pm.expect(msg.status).to.equal('Failed');",
-                  "        pm.expect(msg.responseType).to.equal('Nack');",
-                  "        pm.expect(msg.errorCount).to.be.above(0);",
-                  "    });",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/messages/status/Failed",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages",
-                "status",
-                "Failed"
-              ]
-            },
-            "description": "Get all messages with Failed status\n\nIncludes error codes and details for troubleshooting"
-          }
-        },
-        {
-          "name": "10. Get All Messages Summary",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Returns array of all messages', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData).to.be.an('array');",
-                  "    pm.expect(jsonData.length).to.be.at.least(1);",
-                  "});",
-                  "",
-                  "pm.test('Each message has required fields', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    jsonData.forEach(function(msg) {",
-                  "        pm.expect(msg).to.have.property('messageId');",
-                  "        pm.expect(msg).to.have.property('status');",
-                  "        pm.expect(msg).to.have.property('responseType');",
-                  "        pm.expect(msg).to.have.property('errorCount');",
-                  "    });",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/messages",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages"
-              ]
-            },
-            "description": "Get summary of all processed messages\n\nReturns an array with quick overview:\n- Message ID\n- Status\n- Response Type (ACK/NACK)\n- Error Count\n- Error Codes\n\nFor detailed information, use \"Get Message Status\" endpoint"
-          }
-        },
-        {
-          "name": "12. Get All Processing Steps",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Response includes all steps', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData).to.have.property('totalSteps');",
-                  "    pm.expect(jsonData.totalSteps).to.be.greaterThan(20);",
-                  "});",
-                  "",
-                  "pm.test('Steps show column information', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    var columns = jsonData.steps.map(s => s.column).filter((v, i, a) => a.indexOf(v) === i);",
-                  "    pm.expect(columns.length).to.be.greaterThan(3);",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/messages/{{messageId_valid}}/steps",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages",
-                "{{messageId_valid}}",
-                "steps"
-              ]
-            },
-            "description": "Get all 29 processing steps with column mapping\n\nShows:\n- Each step ID and description\n- Which column executed the step\n- Error indicators\n- Detailed flow through 6 columns\n\nUses: messageId from step 1 (valid message)"
-          }
-        },
-        {
-          "name": "13. Get Steps for Invalid Message",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Shows failed steps with errors', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.totalErrors).to.be.greaterThan(0);",
-                  "    var hasErrors = jsonData.steps.some(s => s.hasError);",
-                  "    pm.expect(hasErrors).to.equal(true);",
-                  "});",
-                  "",
-                  "pm.test('Error details included', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData).to.have.property('errors');",
-                  "    pm.expect(jsonData.errors.length).to.be.greaterThan(0);",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/messages/{{messageId_invalid_ean}}/steps",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages",
-                "{{messageId_invalid_ean}}",
-                "steps"
-              ]
-            },
-            "description": "Get steps for failed message (invalid EAN)\n\nShows:\n- Which steps failed (marked with ❌)\n- Error codes and messages\n- Exactly where validation failed (Step 3A)\n\nUses: messageId from step 2 (invalid EAN)"
-          }
-        },
-        {
-          "name": "11. Reprocess Failed Message",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Reprocessed message returns new response', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData).to.have.property('messageId');",
-                  "    pm.expect(jsonData).to.have.property('status');",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "POST",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/messages/{{messageId_invalid_ean}}/reprocess",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages",
-                "{{messageId_invalid_ean}}",
-                "reprocess"
-              ]
-            },
-            "description": "Retry processing of a message\n\nUses: messageId from step 2 (invalid EAN)\n\nThis endpoint allows you to:\n1. Reprocess failed messages\n2. Retry messages after fixing issues\n3. Test error recovery flows\n\nThe message goes through the entire 29-step pipeline again"
-          }
-        },
-        {
-          "name": "14. Get Statistics Summary",
-          "event": [
-            {
-              "listen": "test",
-              "script": {
-                "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
-                  "});",
-                  "",
-                  "pm.test('Statistics include all metrics', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData).to.have.property('totalMessages');",
-                  "    pm.expect(jsonData).to.have.property('delivered');",
-                  "    pm.expect(jsonData).to.have.property('failed');",
-                  "    pm.expect(jsonData).to.have.property('totalStepsExecuted');",
-                  "    pm.expect(jsonData).to.have.property('averageStepsPerMessage');",
-                  "});",
-                  "",
-                  "pm.test('Success rate calculated', function () {",
-                  "    var jsonData = pm.response.json();",
-                  "    pm.expect(jsonData.successRate).to.be.greaterThanOrEqualTo(0);",
-                  "    pm.expect(jsonData.successRate).to.be.lessThanOrEqualTo(100);",
-                  "});"
-                ]
-              }
-            }
-          ],
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/api/messages/stats/summary",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                "api",
-                "messages",
-                "stats",
-                "summary"
-              ]
-            },
-            "description": "Get overall processing statistics\n\nIncludes:\n- Total messages processed\n- Delivered vs Failed count\n- Success rate percentage\n- Total steps executed across all messages\n- Average steps per message\n- Breakdown by message type\n\nPerfect for monitoring and analytics"
           }
         }
       ]
     },
     {
-      "name": "Health",
+      "name": "2) Pipeline - Step 1 Failures (001)",
       "item": [
         {
-          "name": "Swagger UI",
+          "name": "Invalid XML (1C -> 001)",
           "event": [
             {
               "listen": "test",
               "script": {
                 "exec": [
-                  "pm.test('Status code is 200', function () {",
-                  "    pm.response.to.have.status(200);",
+                  "var r = pm.response.json();",
+                  "pm.test('Failed with error 001', function () {",
+                  "  pm.expect(r.status).to.eql('Failed');",
+                  "  pm.expect(r.errorCodes).to.include('001');",
                   "});"
-                ]
+                ],
+                "type": "text/javascript"
               }
             }
           ],
           "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{base_url}}/",
-              "host": [
-                "{{base_url}}"
-              ],
-              "path": [
-                ""
-              ]
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageId\": \"postman-invalidxml-001\",\n  \"xmlContent\": \"geen xml\"\n}"
             },
-            "description": "Access Swagger UI documentation\n\nOpen in browser to see interactive API documentation with full schema details"
+            "url": {
+              "raw": "{{base_url}}/api/messages",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages"]
+            }
+          }
+        },
+        {
+          "name": "Unknown root type (1E -> 001)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "var r = pm.response.json();",
+                  "pm.test('Failed with error 001', function () {",
+                  "  pm.expect(r.status).to.eql('Failed');",
+                  "  pm.expect(r.errorCodes).to.include('001');",
+                  "});"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageId\": \"postman-unknowntype-001\",\n  \"xmlContent\": \"<UnknownType><DocumentID>DOC-U-001</DocumentID><EAN>871234567890100000</EAN><Quantity>10</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></UnknownType>\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/messages",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages"]
+            }
           }
         }
       ]
-    }
-  ],
-  "event": [
-    {
-      "listen": "prerequest",
-      "script": {
-        "type": "text/javascript",
-        "exec": [
-          "// Set variables if not already set",
-          "if (!pm.collectionVariables.get('base_url')) {",
-          "    pm.collectionVariables.set('base_url', 'http://localhost:5000');",
-          "}"
-        ]
-      }
     },
     {
-      "listen": "test",
-      "script": {
-        "type": "text/javascript",
-        "exec": []
-      }
+      "name": "3) Validator Error Codes",
+      "item": [
+        {
+          "name": "Missing EAN -> 686",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageId\": \"postman-686-001\",\n  \"xmlContent\": \"<AllocationSeries><DocumentID>DOC-686</DocumentID><EAN></EAN><Quantity>100</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/messages", "host": ["{{base_url}}"], "path": ["api", "messages"] }
+          }
+        },
+        {
+          "name": "Missing DocumentID -> 676",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageId\": \"postman-676-001\",\n  \"xmlContent\": \"<AllocationSeries><DocumentID></DocumentID><EAN>871234567890100000</EAN><Quantity>100</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/messages", "host": ["{{base_url}}"], "path": ["api", "messages"] }
+          }
+        },
+        {
+          "name": "Future StartDateTime -> 760",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageId\": \"postman-760-001\",\n  \"xmlContent\": \"<AllocationSeries><DocumentID>DOC-760</DocumentID><EAN>871234567890100000</EAN><Quantity>100</Quantity><StartDateTime>2030-01-01T00:00:00Z</StartDateTime><EndDateTime>2030-01-01T01:00:00Z</EndDateTime></AllocationSeries>\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/messages", "host": ["{{base_url}}"], "path": ["api", "messages"] }
+          }
+        },
+        {
+          "name": "Negative Quantity -> 772",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"messageId\": \"postman-772-001\",\n  \"xmlContent\": \"<AllocationSeries><DocumentID>DOC-772</DocumentID><EAN>871234567890100000</EAN><Quantity>-1</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\"\n}"
+            },
+            "url": { "raw": "{{base_url}}/api/messages", "host": ["{{base_url}}"], "path": ["api", "messages"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4) Read Endpoints",
+      "item": [
+        {
+          "name": "Get all messages",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/api/messages", "host": ["{{base_url}}"], "path": ["api", "messages"] }
+          }
+        },
+        {
+          "name": "Get message by id (messageId_last)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/messages/{{messageId_last}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages", "{{messageId_last}}"]
+            }
+          }
+        },
+        {
+          "name": "Get message steps (messageId_last)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/messages/{{messageId_last}}/steps",
+              "host": ["{{base_url}}"],
+              "path": ["api", "messages", "{{messageId_last}}", "steps"]
+            }
+          }
+        },
+        {
+          "name": "Get stats summary",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/api/messages/stats/summary", "host": ["{{base_url}}"], "path": ["api", "messages", "stats", "summary"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5) Metrics",
+      "item": [
+        {
+          "name": "JSON metrics",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/api/metrics", "host": ["{{base_url}}"], "path": ["api", "metrics"] }
+          }
+        },
+        {
+          "name": "Prometheus metrics",
+          "request": {
+            "method": "GET",
+            "url": { "raw": "{{base_url}}/metrics", "host": ["{{base_url}}"], "path": ["metrics"] }
+          }
+        }
+      ]
     }
   ],
   "variable": [
-    {
-      "key": "base_url",
-      "value": "http://localhost:5000",
-      "type": "string"
-    },
-    {
-      "key": "messageId_valid",
-      "value": "",
-      "type": "string"
-    },
-    {
-      "key": "messageId_invalid_ean",
-      "value": "",
-      "type": "string"
-    },
-    {
-      "key": "messageId_future",
-      "value": "",
-      "type": "string"
-    },
-    {
-      "key": "messageId_factor",
-      "value": "",
-      "type": "string"
-    },
-    {
-      "key": "messageId_aggregated",
-      "value": "",
-      "type": "string"
-    }
+    { "key": "base_url", "value": "http://localhost:5000" },
+    { "key": "messageId_last", "value": "" }
   ]
 }

@@ -1,5 +1,5 @@
 param(
-    [string]$BoardFile = "docs/trello-board-api-no-dashboard.json",
+    [string]$BoardFile = "docs/trello-board-api-complete-2026-03.json",
     [string]$ApiKey = $env:TRELLO_KEY,
     [string]$ApiToken = $env:TRELLO_TOKEN,
     [string]$WorkspaceId = $env:TRELLO_WORKSPACE_ID,

@@ -2,7 +2,8 @@
 
 Dit project bevat een script dat een echt Trello-bord aanmaakt via de Trello API op basis van:
 
-- [docs/trello-board-api-no-dashboard.json](docs/trello-board-api-no-dashboard.json)
+- [docs/trello-board-api-complete-2026-03.json](docs/trello-board-api-complete-2026-03.json) (nieuw, default)
+- [docs/trello-board-api-no-dashboard.json](docs/trello-board-api-no-dashboard.json) (legacy)
 - [scripts/create-trello-board.ps1](scripts/create-trello-board.ps1)
 
 ## Benodigd
@@ -33,7 +34,7 @@ Of expliciet met parameters:
 
 ```powershell
 ./scripts/create-trello-board.ps1 `
-  -BoardFile "docs/trello-board-api-no-dashboard.json" `
+  -BoardFile "docs/trello-board-api-complete-2026-03.json" `
   -ApiKey "jouw-key" `
   -ApiToken "jouw-token" `
   -WorkspaceId "jouw-workspace-id" `

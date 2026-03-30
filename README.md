@@ -19,6 +19,8 @@ Het systeem verwerkt marktberichten via een orchestrated pipeline van 29 stappen
 - Functionele flow (29 stappen)
 - Starten en stoppen
 - API endpoints
+- Postman collectie
+- Trello board definitie
 - Logging en observability
 - Fault codes en validatiebereik
 - Teststrategie en run-instructies
@@ -154,6 +156,37 @@ X-Correlation-ID: corr-001
 }
 ```
 
+## Postman collectie
+
+Gebruik de bijgewerkte collectie:
+
+- docs/ENGIE-MCA-API-Postman.json
+
+Aanbevolen collection variables:
+
+- base_url = http://localhost:5000
+
+De collectie bevat onder andere:
+
+- geldige end-to-end verwerking (ACK)
+- stap 1 fouten (001 via Event Handler)
+- stap 3 foutcodes (676, 686, 758, 760, 772, 773, 774, 755)
+- read endpoints (/api/messages, /api/messages/{id}, /steps)
+- metrics endpoints
+
+## Trello board definitie
+
+Bijgewerkte boarddefinities:
+
+- docs/trello-board-api-no-dashboard.json (bestaand)
+- docs/trello-board-api-complete-2026-03.json (nieuw, compleet en up-to-date)
+
+Nieuw bord maken via API:
+
+```powershell
+./scripts/create-trello-board.ps1 -BoardFile "docs/trello-board-api-complete-2026-03.json" -OpenBoard
+```
+
 ## Logging en observability
 
 ### Logbestanden
@@ -255,8 +288,18 @@ Deze repo gebruikt meerdere testlagen, elk met eigen doel:
 .\scripts\test-block-logging.ps1
 .\scripts\test-natural-faultcodes.ps1
 .\scripts\test-all-faultcodes.ps1
+.\scripts\test-full-pipeline.ps1
 .\scripts\load-test-api.ps1 -TotalRequests 100 -Concurrency 10
+.\scripts\view-messages.ps1
 ```
+
+### Nieuwe scripts
+
+- scripts/test-full-pipeline.ps1
+  Doet een complete 14-case run tegen de actuele implementatie en valideert verwachte status + foutcodes.
+
+- scripts/view-messages.ps1
+  Toont overzicht van verwerkte berichten of detail incl. stappen per messageId.
 
 ## Aanbevolen daily workflow
 
@@ -311,6 +354,7 @@ engie-v2/
 |   |-- API-TESTING-GUIDE.md
 |   |-- ENGIE-MCA-API-Postman.json
 |   |-- trello-board-api-no-dashboard.json
+|   |-- trello-board-api-complete-2026-03.json
 |   `-- trello-board-import-guide.md
 |
 |-- scripts/
@@ -322,6 +366,8 @@ engie-v2/
 |   |-- test-block-logging.ps1
 |   |-- test-natural-faultcodes.ps1
 |   |-- test-all-faultcodes.ps1
+|   |-- test-full-pipeline.ps1
+|   |-- view-messages.ps1
 |   `-- load-test-api.ps1
 |
 |-- src/
