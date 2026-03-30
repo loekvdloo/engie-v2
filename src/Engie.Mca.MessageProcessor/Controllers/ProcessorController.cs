@@ -27,6 +27,10 @@ public class ProcessorController : ControllerBase
         "AggregatedAllocationSeries"
     };
 
+    // 4D — Registratie van validatieresultaat per bericht.
+    private static readonly Dictionary<string, object> ValidationResultRegistry = new();
+    private static readonly object RegistryLock = new();
+
     private readonly ILogger<ProcessorController> _logger;
 
     public ProcessorController(ILogger<ProcessorController> logger)
@@ -136,6 +140,9 @@ public class ProcessorController : ControllerBase
     [HttpPost("phase4")]
     public async Task<IActionResult> ProcessPhase4([FromBody] ProcessorRequest request)
     {
+        if (request == null || string.IsNullOrWhiteSpace(request.MessageId))
+            return BadRequest(new { step = "4A", error = "MessageId is verplicht" });
+
         var messageId = request.MessageId;
 
         using var messageIdScope = LogContext.PushProperty("MessageId", messageId);
@@ -146,33 +153,82 @@ public class ProcessorController : ControllerBase
 
         try
         {
-            // Step 4A: Generate ACK/NACK
+            // Step 4A: Generate ACK/NACK op basis van validatieresultaat
             var responseType = request.HasErrors ? "NACK" : "ACK";
             _logger.LogInformation("[{MessageId}] ✓ Step 4A: Genereer {ResponseType}-bericht", messageId, responseType);
-            await Task.Delay(10);
 
-            // Step 4B: Document errors (if any)
+            // Step 4B: Documenteer fouten en check input-consistentie
+            var normalizedCodes = (request.ErrorCodes ?? new List<string>())
+                .Where(code => !string.IsNullOrWhiteSpace(code))
+                .Select(code => code.Trim())
+                .Distinct(StringComparer.Ordinal)
+                .ToList();
+
+            if (request.HasErrors && normalizedCodes.Count == 0 && !string.IsNullOrWhiteSpace(request.ErrorCode))
+            {
+                normalizedCodes.Add(request.ErrorCode.Trim());
+            }
+
+            if (request.HasErrors && normalizedCodes.Count == 0)
+            {
+                _logger.LogWarning("[{MessageId}] ✗ Step 4B: HasErrors=true maar geen foutcodes aangeleverd", messageId);
+                return BadRequest(new { step = "4B", error = "HasErrors=true vereist minimaal 1 foutcode" });
+            }
+
+            if (!request.HasErrors && normalizedCodes.Count > 0)
+            {
+                _logger.LogWarning("[{MessageId}] ✗ Step 4B: HasErrors=false maar foutcodes wel aanwezig", messageId);
+                return BadRequest(new { step = "4B", error = "HasErrors=false mag geen foutcodes bevatten" });
+            }
+
             if (request.HasErrors)
             {
-                _logger.LogInformation("[{MessageId}] ✓ Step 4B: Voeg foutcodes toe aan NACK", messageId);
+                _logger.LogInformation("[{MessageId}] ✓ Step 4B: Fouten gedocumenteerd voor NACK", messageId);
             }
             else
             {
                 _logger.LogInformation("[{MessageId}] ✓ Step 4B: Geen foutcodes toe te voegen", messageId);
             }
-            await Task.Delay(10);
 
-            // Step 4C: Add error codes
-            _logger.LogInformation("[{MessageId}] ✓ Step 4C: Voeg foutcodes toe", messageId);
-            await Task.Delay(10);
+            // Step 4C: Valideer en voeg foutcodes toe
+            foreach (var code in normalizedCodes)
+            {
+                if (code.Length != 3 || !code.All(char.IsDigit))
+                {
+                    _logger.LogWarning("[{MessageId}] ✗ Step 4C: Ongeldige foutcode-indeling: {Code}", messageId, code);
+                    return BadRequest(new { step = "4C", error = $"Ongeldige foutcode-indeling: {code}" });
+                }
+            }
 
-            // Step 4D: Register validation result
-            _logger.LogInformation("[{MessageId}] ✓ Step 4D: Registreer validatieresultaat", messageId);
-            await Task.Delay(10);
+            if (normalizedCodes.Count > 0)
+            {
+                _logger.LogInformation("[{MessageId}] ✓ Step 4C: Foutcodes toegevoegd: {ErrorCodes}", messageId, string.Join(",", normalizedCodes));
+            }
+            else
+            {
+                _logger.LogInformation("[{MessageId}] ✓ Step 4C: Geen foutcodes voor ACK", messageId);
+            }
 
-            // Step 4E: Configure NACK sending
-            _logger.LogInformation("[{MessageId}] ✓ Step 4E: Configureer {ResponseType}-verzending", messageId, responseType);
-            await Task.Delay(10);
+            // Step 4D: Registreer validatieresultaat in geheugen
+            var registration = new
+            {
+                MessageId = messageId,
+                HasErrors = request.HasErrors,
+                ResponseType = responseType,
+                ErrorCodes = normalizedCodes,
+                RegisteredAt = DateTime.UtcNow
+            };
+
+            lock (RegistryLock)
+            {
+                ValidationResultRegistry[messageId] = registration;
+            }
+
+            _logger.LogInformation("[{MessageId}] ✓ Step 4D: Validatieresultaat geregistreerd", messageId);
+
+            // Step 4E: Configureer response-verzending naar volgend kanaal
+            var targetChannel = responseType == "NACK" ? "NegativeFlow" : "PositiveFlow";
+            _logger.LogInformation("[{MessageId}] ✓ Step 4E: Configureer {ResponseType}-verzending via {TargetChannel}", messageId, responseType, targetChannel);
 
             return Ok(new
             {
@@ -180,6 +236,8 @@ public class ProcessorController : ControllerBase
                 phase = 4,
                 stepsCompleted = 5,
                 response = responseType,
+                errorCodes = normalizedCodes,
+                targetChannel,
                 status = "Phase4Complete",
                 nextService = "NackHandler"
             });
