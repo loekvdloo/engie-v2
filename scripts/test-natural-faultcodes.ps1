@@ -8,7 +8,7 @@ $ErrorActionPreference = "Stop"
 function New-RequestBody {
     param(
         [string]$MessageId,
-        [string]$Ean = "8712345678901",
+        [string]$Ean = "871234567890100000",
         [string]$DocumentId = "DOC-OK",
         [decimal]$Quantity = 100,
         [string]$StartDateTime = "2026-03-20T10:00:00Z",

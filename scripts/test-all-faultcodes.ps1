@@ -55,7 +55,7 @@ foreach ($code in $faultCodes) {
     $messageId = "allcodes-$code-$stamp"
 
     # Base message stays valid to avoid accidental extra errors.
-    $xml = "<AllocationSeries><EAN>871600000001234</EAN><DocumentID>DOC-$code-$stamp</DocumentID><Quantity>42.5</Quantity><StartDateTime>2026-03-20T00:00:00Z</StartDateTime><EndDateTime>2026-03-21T00:00:00Z</EndDateTime><ForceErrorCodes>$code</ForceErrorCodes></AllocationSeries>"
+    $xml = "<AllocationSeries><DocumentID>DOC-$code-$stamp</DocumentID><EAN>871600000012345678</EAN><Quantity>42.5</Quantity><StartDateTime>2026-03-28T00:00:00Z</StartDateTime><EndDateTime>2026-03-28T23:00:00Z</EndDateTime><ForceErrorCodes>$code</ForceErrorCodes></AllocationSeries>"
 
     $response = Send-TestMessage -MessageId $messageId -XmlContent $xml
     $actualCodes = @()

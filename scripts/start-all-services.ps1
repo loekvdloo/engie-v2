@@ -25,7 +25,7 @@ foreach ($service in $services) {
     # Check if project exists
     if (Test-Path "$($service.Path)\$([System.IO.Path]::GetFileName($service.Path)).csproj") {
         # Start service in background
-        $process = Start-Process PowerShell -ArgumentList "-NoExit", "-Command", "cd '$($service.Path)'; dotnet run" -PassThru
+        $process = Start-Process PowerShell -ArgumentList "-NoExit", "-Command", "cd '$($service.Path)'; & 'C:\Program Files\dotnet\dotnet.exe' run" -PassThru
         $pids += $process.Id
         Write-Host "   ✓ Started (PID: $($process.Id))" -ForegroundColor Green
         Start-Sleep -Milliseconds 500

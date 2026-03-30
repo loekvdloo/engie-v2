@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Engie.Mca.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0bb3a0ff652459e2a76c86ae3012dd2ed697fbb3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa1c67bd43faedbb58fbcd4c2d3a79d15727a4b4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Engie.Mca.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Engie.Mca.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
