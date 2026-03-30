@@ -2,15 +2,31 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
+
 namespace Engie.Mca.MessageProcessor.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
 public class ProcessorController : ControllerBase
 {
+    // 2C — Slagboom: max 5 berichten worden gelijktijdig verwerkt; overige wachten
+    private static readonly SemaphoreSlim _gate = new SemaphoreSlim(5, 5);
+
+    // 2D — Parkeerdrempel: telt berichten die wachten + actief verwerkt worden
+    private static int _pendingCount = 0;
+    private const int ParkThreshold = 15;
+
+    private static readonly HashSet<string> KnownMessageTypes = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "AllocationSeries",
+        "AllocationFactorSeries",
+        "AggregatedAllocationSeries"
+    };
+
     private readonly ILogger<ProcessorController> _logger;
 
     public ProcessorController(ILogger<ProcessorController> logger)
@@ -20,11 +36,14 @@ public class ProcessorController : ControllerBase
 
     /// <summary>
     /// Message Processor Phase 2: Steps 2A-2E
-    /// Classification, priority, queueing
+    /// Classification, priority, queueing, parking check, resend check
     /// </summary>
     [HttpPost("phase2")]
     public async Task<IActionResult> ProcessPhase2([FromBody] ProcessorRequest request)
     {
+        if (request == null || string.IsNullOrWhiteSpace(request.MessageId))
+            return BadRequest(new { step = "2A", error = "MessageId is verplicht" });
+
         var messageId = request.MessageId;
 
         using var messageIdScope = LogContext.PushProperty("MessageId", messageId);
@@ -32,33 +51,68 @@ public class ProcessorController : ControllerBase
 
         _logger.LogInformation("[{MessageId}] === COLUMN 2: MESSAGE PROCESSOR PHASE 2 (Steps 2A-2E) ===", messageId);
 
+        // Registreer bericht als 'in de pijp' voor de parkeerdrempel-check (2D)
+        Interlocked.Increment(ref _pendingCount);
+        bool gateEntered = false;
+
         try
         {
-            // Step 2A: Classify message type
-            _logger.LogInformation("[{MessageId}] ✓ Step 2A: Classificeer berichttype: {MessageType}", messageId, request.MessageType);
-            await Task.Delay(10);
+            // Step 2A: Classificeer berichttype
+            if (string.IsNullOrWhiteSpace(request.MessageType) || !KnownMessageTypes.Contains(request.MessageType))
+            {
+                _logger.LogWarning("[{MessageId}] ✗ Step 2A: Onbekend berichttype: {MessageType}", messageId, request.MessageType);
+                return BadRequest(new { step = "2A", error = $"Onbekend berichttype: {request.MessageType}" });
+            }
+            _logger.LogInformation("[{MessageId}] ✓ Step 2A: Berichttype geclassificeerd: {MessageType}", messageId, request.MessageType);
 
-            // Step 2B: Determine priority
-            _logger.LogInformation("[{MessageId}] ✓ Step 2B: Bepaal prioriteit: Normaal", messageId);
-            await Task.Delay(10);
+            // Step 2B: Bepaal prioriteit — altijd Normaal
+            const string priority = "Normaal";
+            _logger.LogInformation("[{MessageId}] ✓ Step 2B: Prioriteit bepaald: {Priority}", messageId, priority);
 
-            // Step 2C: Place in queue
-            _logger.LogInformation("[{MessageId}] ✓ Step 2C: Plaats in wachtrij: Queue-OK", messageId);
-            await Task.Delay(10);
+            // Step 2C: Slagboom — wacht op een vrij verwerkingsslot (max 5 seconden)
+            _logger.LogInformation("[{MessageId}] Step 2C: Wachtrij — wacht op slot (bezet: {InUse}/5, totaal in pijp: {Pending})",
+                messageId, 5 - _gate.CurrentCount, _pendingCount);
 
-            // Step 2D: No exceptions parked
-            _logger.LogInformation("[{MessageId}] ✓ Step 2D: Uitzonderingen geen gepark", messageId);
-            await Task.Delay(10);
+            gateEntered = await _gate.WaitAsync(TimeSpan.FromSeconds(5));
+            if (!gateEntered)
+            {
+                _logger.LogWarning("[{MessageId}] ✗ Step 2C: Slagboom timeout — alle slots bezet na 5 seconden wachten", messageId);
+                return StatusCode(503, new { step = "2C", error = "Verwerkingswachtrij vol, probeer later opnieuw" });
+            }
+            _logger.LogInformation("[{MessageId}] ✓ Step 2C: Slot verkregen — bericht staat in de wachtrij (bezet: {InUse}/5)",
+                messageId, 5 - _gate.CurrentCount + 1);
 
-            // Step 2E: No resending required
-            _logger.LogInformation("[{MessageId}] ✓ Step 2E: Geen herversending vereist", messageId);
-            await Task.Delay(10);
+            // Step 2D: Parkeercheck — te veel berichten actief in het systeem?
+            if (_pendingCount > ParkThreshold)
+            {
+                _logger.LogWarning("[{MessageId}] ✗ Step 2D: Parkeerdrempel overschreden ({Pending}/{Threshold}) — bericht geparkeerd",
+                    messageId, _pendingCount, ParkThreshold);
+                return StatusCode(429, new
+                {
+                    step = "2D",
+                    status = "Parked",
+                    error = $"Systeem overbelast ({_pendingCount} berichten actief) — bericht geparkeerd voor latere verwerking"
+                });
+            }
+            _logger.LogInformation("[{MessageId}] ✓ Step 2D: Geen parkering nodig ({Pending}/{Threshold} berichten actief)",
+                messageId, _pendingCount, ParkThreshold);
+
+            // Step 2E: Controleer op herversending via MessageId-patroon
+            bool isResend = messageId.EndsWith("-retry", StringComparison.OrdinalIgnoreCase)
+                         || messageId.Contains("-resend-", StringComparison.OrdinalIgnoreCase);
+            if (isResend)
+                _logger.LogWarning("[{MessageId}] ✓ Step 2E: Herversending gedetecteerd — wordt alsnog verwerkt", messageId);
+            else
+                _logger.LogInformation("[{MessageId}] ✓ Step 2E: Geen herversending vereist", messageId);
 
             return Ok(new
             {
                 messageId,
                 phase = 2,
                 stepsCompleted = 5,
+                priority,
+                isResend,
+                activeMessages = _pendingCount,
                 status = "Phase2Complete",
                 nextService = "MessageValidator"
             });
@@ -66,7 +120,12 @@ public class ProcessorController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "[{MessageId}] Message processor phase 2 failed", messageId);
-            return BadRequest(new { error = ex.Message });
+            return BadRequest(new { step = "unknown", error = ex.Message });
+        }
+        finally
+        {
+            if (gateEntered) _gate.Release();
+            Interlocked.Decrement(ref _pendingCount);
         }
     }
 
