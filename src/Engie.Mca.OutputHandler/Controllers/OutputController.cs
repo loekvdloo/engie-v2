@@ -80,12 +80,18 @@ public class OutputController : ControllerBase
             _logger.LogInformation("[{MessageId}] ✓ Step 6B: Afleverstatus geregistreerd: {Status} op {DeliveredAt:O}",
                 messageId, status, deliveredAt);
 
+            // Eindresultaat — dit is het antwoord dat helemaal terug door de keten gaat naar de client
+            var errorCodes   = request.ErrorCodes ?? new List<string>();
+            var responseType = request.ResponseType ?? (status == "Delivered" ? "Ack" : "Nack");
+
             return Ok(new
             {
                 messageId,
+                correlationId = request.CorrelationId ?? messageId,
                 status,
-                stepsCompleted = 2,
-                finalStatus = status == "Delivered" ? "Delivered" : "Failed",
+                responseType,
+                errorCount = errorCodes.Count,
+                errorCodes,
                 deliveredAt
             });
         }
@@ -107,6 +113,9 @@ public class OutputRequest
 {
     public string MessageId { get; set; } = string.Empty;
     public string Status { get; set; } = "Delivered";
+    public string? CorrelationId { get; set; }
+    public string? ResponseType { get; set; }
+    public List<string>? ErrorCodes { get; set; }
 }
 
 public record DeliveryRecord(string MessageId, string Status, DateTime DeliveredAt);

@@ -3,12 +3,11 @@
 
 $basePath = "c:\Users\loek\engie\engie-v2\src"
 $services = @(
-    @{ Name = "🎯 Event Handler"; Path = "$basePath\Engie.Mca.EventHandler"; Port = 5001 },
+    @{ Name = "🎯 Event Handler";    Path = "$basePath\Engie.Mca.EventHandler";    Port = 5001 },
     @{ Name = "🔄 Message Processor"; Path = "$basePath\Engie.Mca.MessageProcessor"; Port = 5002 },
-    @{ Name = "✓ Message Validator"; Path = "$basePath\Engie.Mca.MessageValidator"; Port = 5003 },
-    @{ Name = "✗ N-ACK Handler"; Path = "$basePath\Engie.Mca.NackHandler"; Port = 5004 },
-    @{ Name = "📤 Output Handler"; Path = "$basePath\Engie.Mca.OutputHandler"; Port = 5005 },
-    @{ Name = "🎪 API Orchestrator"; Path = "$basePath\Engie.Mca.Api"; Port = 5000 }
+    @{ Name = "✓ Message Validator";  Path = "$basePath\Engie.Mca.MessageValidator"; Port = 5003 },
+    @{ Name = "✗ N-ACK Handler";      Path = "$basePath\Engie.Mca.NackHandler";      Port = 5004 },
+    @{ Name = "📤 Output Handler";    Path = "$basePath\Engie.Mca.OutputHandler";    Port = 5005 }
 )
 
 Write-Host "========================================" -ForegroundColor Cyan
@@ -51,8 +50,8 @@ Write-Host "  - Message Validator: c:\Users\loek\engie\engie-v2\logs\message-val
 Write-Host "  - N-ACK Handler:    c:\Users\loek\engie\engie-v2\logs\nack-handler\" -ForegroundColor Gray
 Write-Host "  - Output Handler:   c:\Users\loek\engie\engie-v2\logs\output-handler\" -ForegroundColor Gray
 Write-Host ""
-Write-Host "💡 To test the orchestrator:" -ForegroundColor Cyan
-Write-Host '  Invoke-WebRequest -Uri "http://localhost:5000/api/health" -Method Get' -ForegroundColor Gray
+Write-Host "💡 Stuur een bericht:" -ForegroundColor Cyan
+Write-Host '  Invoke-WebRequest -Uri "http://localhost:5001/api/messages" -Method Post' -ForegroundColor Gray
 Write-Host ""
 Write-Host "Type 'exit' in any service window to stop it." -ForegroundColor Yellow
 Write-Host ""

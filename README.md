@@ -93,7 +93,6 @@ Gebruik per service een aparte terminal:
 & "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.MessageValidator\Engie.Mca.MessageValidator.csproj"
 & "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.NackHandler\Engie.Mca.NackHandler.csproj"
 & "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.OutputHandler\Engie.Mca.OutputHandler.csproj"
-& "C:\Program Files\dotnet\dotnet.exe" run --project ".\src\Engie.Mca.Api\Engie.Mca.Api.csproj"
 ```
 
 ### Handig: oude processen eerst stoppen
@@ -101,7 +100,7 @@ Gebruik per service een aparte terminal:
 Als je lock-fouten krijgt op apphost.exe of service .exe bestanden:
 
 ```powershell
-Get-Process Engie.Mca.Api,Engie.Mca.EventHandler,Engie.Mca.MessageProcessor,Engie.Mca.MessageValidator,Engie.Mca.NackHandler,Engie.Mca.OutputHandler -ErrorAction SilentlyContinue | Stop-Process -Force
+Get-Process Engie.Mca.EventHandler,Engie.Mca.MessageProcessor,Engie.Mca.MessageValidator,Engie.Mca.NackHandler,Engie.Mca.OutputHandler -ErrorAction SilentlyContinue | Stop-Process -Force
 ```
 
 ## API endpoints
@@ -109,7 +108,7 @@ Get-Process Engie.Mca.Api,Engie.Mca.EventHandler,Engie.Mca.MessageProcessor,Engi
 Base URL:
 
 ```text
-http://localhost:5000
+http://localhost:5001
 ```
 
 ### Berichten
@@ -235,7 +234,7 @@ Centrale metrics (JSON en Prometheus-style) bevatten onder andere:
 
 De catalog bevat 33 fault codes in:
 
-- src/Engie.Mca.Api/Services/FaultCodeCatalog.cs
+- src/Engie.Mca.EventHandler/Services/FaultCodeCatalog.cs
 
 ### Natural validatieregel dekking
 
@@ -371,16 +370,6 @@ engie-v2/
 |   `-- load-test-api.ps1
 |
 |-- src/
-|   |-- Engie.Mca.Api/
-|   |   |-- appsettings.json
-|   |   |-- Engie.Mca.Api.csproj
-|   |   |-- Program.cs
-|   |   |-- Controllers/
-|   |   |-- Models/
-|   |   |-- Services/
-|   |   |-- bin/                  (generated)
-|   |   `-- obj/                  (generated)
-|   |
 |   |-- Engie.Mca.EventHandler/
 |   |   |-- Engie.Mca.EventHandler.csproj
 |   |   |-- Program.cs

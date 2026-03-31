@@ -8,6 +8,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
+using System.Net.Http;
+using System.Net.Http.Json;
 
 namespace Engie.Mca.MessageProcessor.Controllers;
 
@@ -35,9 +37,12 @@ public class ProcessorController : ControllerBase
 
     private readonly ILogger<ProcessorController> _logger;
 
-    public ProcessorController(ILogger<ProcessorController> logger)
+    private readonly IHttpClientFactory _httpClientFactory;
+
+    public ProcessorController(ILogger<ProcessorController> logger, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
+        _httpClientFactory = httpClientFactory;
     }
 
     /// <summary>
@@ -111,17 +116,25 @@ public class ProcessorController : ControllerBase
             else
                 _logger.LogInformation("[{MessageId}] ✓ Step 2E: Geen herversending vereist", messageId);
 
-            return Ok(new
+            // Doorgeven aan MessageValidator (volgende in de keten)
+            using var valReq = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5003/api/validator/validate");
+            valReq.Content = JsonContent.Create(new
             {
-                messageId,
-                phase = 2,
-                stepsCompleted = 5,
-                priority,
-                isResend,
-                activeMessages = _pendingCount,
-                status = "Phase2Complete",
-                nextService = "MessageValidator"
+                MessageId     = messageId,
+                CorrelationId = request.CorrelationId,
+                MessageType   = request.MessageType,
+                EanCode       = request.EanCode ?? string.Empty,
+                DocumentId    = request.DocumentId,
+                Quantity      = request.Quantity,
+                StartDateTime = request.StartDateTime,
+                EndDateTime   = request.EndDateTime,
+                Content       = request.XmlContent
             });
+            valReq.Headers.Add("X-Correlation-ID", request.CorrelationId ?? messageId);
+            _logger.LogInformation("[{MessageId}] → Doorgeven aan MessageValidator", messageId);
+            var valResp = await _httpClientFactory.CreateClient().SendAsync(valReq, HttpContext.RequestAborted);
+            valResp.EnsureSuccessStatusCode();
+            return Content(await valResp.Content.ReadAsStringAsync(HttpContext.RequestAborted), "application/json");
         }
         catch (Exception ex)
         {
@@ -232,17 +245,20 @@ public class ProcessorController : ControllerBase
             var targetChannel = responseType == "NACK" ? "NegativeFlow" : "PositiveFlow";
             _logger.LogInformation("[{MessageId}] ✓ Step 4E: Configureer {ResponseType}-verzending via {TargetChannel}", messageId, responseType, targetChannel);
 
-            return Ok(new
+            // Doorgeven aan NackHandler (volgende in de keten)
+            using var nackReq = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5004/api/nack/send");
+            nackReq.Content = JsonContent.Create(new
             {
-                messageId,
-                phase = 4,
-                stepsCompleted = 5,
-                response = responseType,
-                errorCodes = normalizedCodes,
-                targetChannel,
-                status = "Phase4Complete",
-                nextService = "NackHandler"
+                MessageId     = messageId,
+                CorrelationId = request.CorrelationId,
+                Response      = responseType,
+                ErrorCodes    = normalizedCodes
             });
+            nackReq.Headers.Add("X-Correlation-ID", request.CorrelationId ?? messageId);
+            _logger.LogInformation("[{MessageId}] → Doorgeven aan NackHandler", messageId);
+            var nackResp = await _httpClientFactory.CreateClient().SendAsync(nackReq, HttpContext.RequestAborted);
+            nackResp.EnsureSuccessStatusCode();
+            return Content(await nackResp.Content.ReadAsStringAsync(HttpContext.RequestAborted), "application/json");
         }
         catch (Exception ex)
         {
@@ -265,4 +281,12 @@ public class ProcessorRequest
     public bool HasErrors { get; set; }
     public string? ErrorCode { get; set; }
     public List<string>? ErrorCodes { get; set; }
+    // Doorgegeven door EventHandler, benodigd voor ketenverwerking
+    public string? CorrelationId { get; set; }
+    public string? XmlContent { get; set; }
+    public string? EanCode { get; set; }
+    public string? DocumentId { get; set; }
+    public decimal? Quantity { get; set; }
+    public DateTime? StartDateTime { get; set; }
+    public DateTime? EndDateTime { get; set; }
 }

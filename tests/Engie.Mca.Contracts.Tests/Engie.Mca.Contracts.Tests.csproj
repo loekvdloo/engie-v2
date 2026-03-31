@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Engie.Mca.Api\Engie.Mca.Api.csproj" />
+    <ProjectReference Include="..\..\src\Engie.Mca.EventHandler\Engie.Mca.EventHandler.csproj" />
   </ItemGroup>
 
 </Project>

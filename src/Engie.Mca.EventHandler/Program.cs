@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Serilog.Events;
 using Serilog.Context;
+using Engie.Mca.EventHandler.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 // Configure Serilog
@@ -37,6 +38,7 @@ builder.Host.UseSerilog((context, services, configuration) =>
 
 builder.Services.AddControllers();
 builder.Services.AddHttpClient();
+builder.Services.AddSingleton<MessageStore>();
 
 var app = builder.Build();
 
@@ -58,3 +60,5 @@ app.Use(async (httpContext, next) =>
 app.UseAuthorization();
 app.MapControllers();
 app.Run("http://localhost:5001");
+
+public partial class Program;

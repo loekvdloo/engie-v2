@@ -8,7 +8,7 @@ $body1 = @{
 } | ConvertTo-Json
 
 Start-Sleep -Seconds 1
-$r1 = Invoke-WebRequest -Uri "http://localhost:5000/api/messages" -Method POST -ContentType "application/json" -Body $body1
+$r1 = Invoke-WebRequest -Uri "http://localhost:5001/api/messages" -Method POST -ContentType "application/json" -Body $body1
 $res1 = $r1.Content | ConvertFrom-Json
 Write-Host "✓ Valid message: $($res1.status) + $($res1.responseType)" -ForegroundColor Green
 
@@ -19,19 +19,19 @@ $body2 = @{
     xmlContent = '<?xml version="1.0"?><AllocationSeries><EAN>BADEAN</EAN></AllocationSeries>'
 } | ConvertTo-Json
 
-$r2 = Invoke-WebRequest -Uri "http://localhost:5000/api/messages" -Method POST -ContentType "application/json" -Body $body2
+$r2 = Invoke-WebRequest -Uri "http://localhost:5001/api/messages" -Method POST -ContentType "application/json" -Body $body2
 $res2 = $r2.Content | ConvertFrom-Json
 Write-Host "✓ Invalid message: $($res2.status) + $($res2.responseType) (Errors: $($res2.errorCount))" -ForegroundColor Green
 
 # Test 3: Get steps for valid
 Write-Host "`n[03/04] Getting all steps..." -ForegroundColor Yellow
-$r3 = Invoke-WebRequest -Uri "http://localhost:5000/api/messages/test-logging-valid/steps" -Method GET
+$r3 = Invoke-WebRequest -Uri "http://localhost:5001/api/messages/test-logging-valid/steps" -Method GET
 $res3 = $r3.Content | ConvertFrom-Json
 Write-Host "✓ Retrieved $($res3.totalSteps) steps" -ForegroundColor Green
 
 # Test 4: Get statistics
 Write-Host "`n[04/04] Getting statistics..." -ForegroundColor Yellow
-$r4 = Invoke-WebRequest -Uri "http://localhost:5000/api/messages/stats/summary" -Method GET
+$r4 = Invoke-WebRequest -Uri "http://localhost:5001/api/messages/stats/summary" -Method GET
 $res4 = $r4.Content | ConvertFrom-Json
 Write-Host "✓ Total Messages: $($res4.totalMessages) | Success Rate: $($res4.successRate)%" -ForegroundColor Green
 

@@ -6,7 +6,7 @@ $body = @{
 Start-Sleep -Seconds 1
 
 Write-Host "Sending request..." -ForegroundColor Cyan
-$response = Invoke-WebRequest -Uri "http://localhost:5000/api/messages" `
+$response = Invoke-WebRequest -Uri "http://localhost:5001/api/messages" `
   -Method POST `
   -ContentType "application/json" `
   -Body $body
@@ -19,7 +19,7 @@ Write-Host "Response Type: $($result.responseType)"
 Write-Host "Error Count: $($result.errorCount)"
 
 Write-Host "`n=== GET ALL STEPS ===" -ForegroundColor Cyan
-$stepsResponse = Invoke-WebRequest -Uri "http://localhost:5000/api/messages/steps-test-001/steps" `
+$stepsResponse = Invoke-WebRequest -Uri "http://localhost:5001/api/messages/steps-test-001/steps" `
   -Method GET
 
 $steps = $stepsResponse.Content | ConvertFrom-Json
@@ -31,7 +31,7 @@ $steps.steps | ForEach-Object {
 }
 
 Write-Host "`n=== STATISTICS ===" -ForegroundColor Cyan
-$stats = (Invoke-WebRequest -Uri "http://localhost:5000/api/messages/stats/summary" -Method GET).Content | ConvertFrom-Json
+$stats = (Invoke-WebRequest -Uri "http://localhost:5001/api/messages/stats/summary" -Method GET).Content | ConvertFrom-Json
 Write-Host "Total Messages Processed: $($stats.totalMessages)"
 Write-Host "Delivered: $($stats.delivered)"
 Write-Host "Failed: $($stats.failed)"

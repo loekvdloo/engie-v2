@@ -1,5 +1,5 @@
 param(
-    [string]$ApiBaseUrl = "http://localhost:5000",
+    [string]$ApiBaseUrl = "http://localhost:5001",
     [switch]$ShowResponses
 )
 

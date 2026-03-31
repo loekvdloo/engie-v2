@@ -5,16 +5,16 @@
 ### 1. Build & Run the API
 
 ```powershell
-cd c:\Users\loek\engie\engie-v2\src\Engie.Mca.Api
+cd c:\Users\loek\engie\engie-v2\src\Engie.Mca.EventHandler
 dotnet build
 dotnet run
 ```
 
-The API will start on: **http://localhost:5000**
+The API will start on: **http://localhost:5001**
 
 ### 2. Access Swagger Documentation
 
-Once running, visit: **http://localhost:5000**
+Once running, visit: **http://localhost:5001**
 
 Interactive API documentation with live testing available at the root URL.
 
@@ -29,7 +29,7 @@ Interactive API documentation with live testing available at the root URL.
 
 ### Configure Base URL
 
-The collection automatically sets `base_url = http://localhost:5000`
+The collection automatically sets `base_url = http://localhost:5001`
 
 To change it:
 1. Select **ENGIE Allocation Processor API** collection

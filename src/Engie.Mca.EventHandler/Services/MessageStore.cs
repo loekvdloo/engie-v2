@@ -1,10 +1,10 @@
-using Engie.Mca.Api.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using Engie.Mca.EventHandler.Models;
 
-namespace Engie.Mca.Api.Services;
+namespace Engie.Mca.EventHandler.Services;
 
-/// <summary>
-/// In-memory message store for demonstration. Replace with database in production.
-/// </summary>
 public class MessageStore
 {
     private readonly Dictionary<string, MessageContext> _messages = new();

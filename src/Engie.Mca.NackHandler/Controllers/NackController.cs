@@ -6,6 +6,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading;
 
 namespace Engie.Mca.NackHandler.Controllers;
 
@@ -24,9 +27,12 @@ public class NackController : ControllerBase
 
     private readonly ILogger<NackController> _logger;
 
-    public NackController(ILogger<NackController> logger)
+    private readonly IHttpClientFactory _httpClientFactory;
+
+    public NackController(ILogger<NackController> logger, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
+        _httpClientFactory = httpClientFactory;
     }
 
     /// <summary>
@@ -87,16 +93,24 @@ public class NackController : ControllerBase
 
             _logger.LogInformation("[{MessageId}] ✓ Step 5D: Zelfstandige verzending geregistreerd", messageId);
 
-            return Ok(new
+            // Doorgeven aan OutputHandler (volgende in de keten)
+            var outputStatus     = response == "NACK" ? "Failed"    : "Delivered";
+            var outputRespType   = response == "NACK" ? "Nack"      : "Ack";
+
+            using var outReq = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5005/api/output/finalize");
+            outReq.Content = JsonContent.Create(new
             {
-                messageId,
-                response,
-                stepsCompleted = 4,
-                route,
-                sentAt,
-                status = "ResponseSent",
-                nextService = "OutputHandler"
+                MessageId    = messageId,
+                Status       = outputStatus,
+                CorrelationId = request.CorrelationId,
+                ResponseType  = outputRespType,
+                ErrorCodes    = request.ErrorCodes ?? new List<string>()
             });
+            outReq.Headers.Add("X-Correlation-ID", request.CorrelationId ?? messageId);
+            _logger.LogInformation("[{MessageId}] → Doorgeven aan OutputHandler", messageId);
+            var outResp = await _httpClientFactory.CreateClient().SendAsync(outReq, HttpContext.RequestAborted);
+            outResp.EnsureSuccessStatusCode();
+            return Content(await outResp.Content.ReadAsStringAsync(HttpContext.RequestAborted), "application/json");
         }
         catch (Exception ex)
         {
@@ -116,4 +130,6 @@ public class NackRequest
 {
     public string MessageId { get; set; } = string.Empty;
     public string Response { get; set; } = "ACK"; // ACK or NACK
+    public string? CorrelationId { get; set; }
+    public List<string>? ErrorCodes { get; set; }
 }

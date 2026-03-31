@@ -1,7 +1,7 @@
 # Test all known EDSN fault codes through the API orchestrator.
 # Usage: .\scripts\test-all-faultcodes.ps1
 
-$apiUrl = "http://localhost:5000/api/messages"
+$apiUrl = "http://localhost:5001/api/messages"
 
 # Keep this list aligned with FaultCodeCatalog.
 $faultCodes = @(

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Engie.Mca.NackHandler")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa1c67bd43faedbb58fbcd4c2d3a79d15727a4b4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a2cba56c1a296b4036637bab5d572105329e7b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("Engie.Mca.NackHandler")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Engie.Mca.NackHandler")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

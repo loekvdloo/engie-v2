@@ -21,9 +21,9 @@ test data
 
 ## Services
 
-### 1. API Orchestrator (Port 5000)
-**Location**: `src/Engie.Mca.Api`
-**Role**: Main gateway that orchestrates all microservices
+### 1. Event Handler Entry (Port 5001)
+**Location**: `src/Engie.Mca.EventHandler`
+**Role**: Main entrypoint that starts the chained microservice flow
 **Endpoints**:
 - `POST /api/messages` - Process a message (calls all services in sequence)
 - `GET /api/messages/{id}` - Get message status
@@ -181,9 +181,7 @@ dotnet run
 cd src\Engie.Mca.OutputHandler
 dotnet run
 
-# Terminal 6: API Orchestrator
-cd src\Engie.Mca.Api
-dotnet run
+# Client traffic enters directly on Event Handler (port 5001)
 ```
 
 ### Option 3: Docker Containers (Future)

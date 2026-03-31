@@ -7,6 +7,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading;
 
 namespace Engie.Mca.MessageValidator.Controllers;
 
@@ -19,9 +22,12 @@ public class ValidatorController : ControllerBase
 
     private readonly ILogger<ValidatorController> _logger;
 
-    public ValidatorController(ILogger<ValidatorController> logger)
+    private readonly IHttpClientFactory _httpClientFactory;
+
+    public ValidatorController(ILogger<ValidatorController> logger, IHttpClientFactory httpClientFactory)
     {
         _logger = logger;
+        _httpClientFactory = httpClientFactory;
     }
 
     /// <summary>
@@ -206,16 +212,23 @@ public class ValidatorController : ControllerBase
             await Task.Delay(10);
 
             bool isValid = errors.Count == 0;
-            return Ok(new
+
+            // Doorgeven aan MessageProcessor/phase4 (volgende in de keten)
+            using var p4Req = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5002/api/processor/phase4");
+            p4Req.Content = JsonContent.Create(new
             {
-                messageId,
-                stepsCompleted = 7,
-                isValid,
-                errorCodes = errors,
-                errorCode = errors.Count > 0 ? errors[0] : (string?)null,
-                status = isValid ? "ValidationPassed" : "ValidationFailed",
-                nextService = "MessageProcessor"
+                MessageId     = messageId,
+                CorrelationId = request.CorrelationId,
+                MessageType   = request.MessageType,
+                HasErrors     = !isValid,
+                ErrorCode     = errors.Count > 0 ? errors[0] : (string?)null,
+                ErrorCodes    = errors
             });
+            p4Req.Headers.Add("X-Correlation-ID", request.CorrelationId ?? messageId);
+            _logger.LogInformation("[{MessageId}] → Doorgeven aan MessageProcessor/phase4", messageId);
+            var p4Resp = await _httpClientFactory.CreateClient().SendAsync(p4Req, HttpContext.RequestAborted);
+            p4Resp.EnsureSuccessStatusCode();
+            return Content(await p4Resp.Content.ReadAsStringAsync(HttpContext.RequestAborted), "application/json");
         }
         catch (Exception ex)
         {
@@ -270,4 +283,6 @@ public class ValidatorRequest
     public DateTime? StartDateTime { get; set; }
     public DateTime? EndDateTime { get; set; }
     public string Content { get; set; } = string.Empty;
+    public string? CorrelationId { get; set; }
+    public string? MessageType { get; set; }
 }

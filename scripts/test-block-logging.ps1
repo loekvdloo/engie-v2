@@ -1,7 +1,7 @@
 # Test per-block logging using current API endpoint.
 # Usage: .\scripts\test-block-logging.ps1
 
-$apiUrl = "http://localhost:5000/api/messages"
+$apiUrl = "http://localhost:5001/api/messages"
 $logDir = "c:\Users\loek\engie\engie-v2\logs\blocks"
 
 function Send-TestMessage {

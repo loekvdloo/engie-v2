@@ -1,6 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Linq;
 
-namespace Engie.Mca.Api.Models;
+namespace Engie.Mca.EventHandler.Models;
 
 public enum MessageType
 {
@@ -27,14 +30,6 @@ public enum ResponseType
 
 public record ValidationError(string Code, string Message, string Step);
 
-public record MarketMessage(
-    string MessageId,
-    string CorrelationId,
-    MessageType Type,
-    string? XmlContent,
-    DateTime ReceivedAt
-);
-
 public record MessageContext(
     string MessageId,
     string CorrelationId,
@@ -47,41 +42,8 @@ public record MessageContext(
     DateTime ReceivedAt,
     DateTime? ProcessedAt,
     double? ProcessingDurationMs
-)
-{
-    public void AddStep(string stepId, string description)
-    {
-        Steps.Add((stepId, description));
-    }
-
-    public void AddError(string code, string message, string step)
-    {
-        Errors.Add(new ValidationError(code, message, step));
-    }
-
-    public bool HasErrors => Errors.Count > 0;
-}
-
-public record StepResult(
-    bool Success,
-    string Message,
-    List<ValidationError> Errors
 );
 
-public record MessageDetailArtifact(
-    string MessageId,
-    string CorrelationId,
-    string Type,
-    string Status,
-    string? ResponseType,
-    int ErrorCount,
-    string ErrorCodes,
-    List<string> StepIds,
-    DateTime ReceivedAt,
-    DateTime? ProcessedAt
-);
-
-// API Request/Response DTOs
 public record ProcessMessageRequest(
     string? MessageId = null,
     string? XmlContent = null,

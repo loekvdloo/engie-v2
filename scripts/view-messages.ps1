@@ -4,7 +4,7 @@
 # Gebruik: .\scripts\view-messages.ps1 [-MessageId <id>] [-Steps] [-Last <n>]
 # ============================================================
 param(
-    [string]$ApiBaseUrl = "http://localhost:5000",
+    [string]$ApiBaseUrl = "http://localhost:5001",
     [string]$MessageId  = "",
     [switch]$Steps,
     [int]$Last          = 20
