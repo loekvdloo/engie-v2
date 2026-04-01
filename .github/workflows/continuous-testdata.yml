@@ -1,0 +1,40 @@
+name: Continuous Test Data
+
+on:
+  workflow_dispatch:
+    inputs:
+      api_base:
+        description: Public EventHandler base URL (zonder /api)
+        required: true
+        default: http://engie-mca-event-handler-loek-engie.apps.experience.ilionx-ocp.com
+      interval_seconds:
+        description: Wachtijd tussen batches
+        required: true
+        default: "20"
+      duration_minutes:
+        description: Hoe lang laten draaien (cancel run om eerder te stoppen)
+        required: true
+        default: "120"
+      include_full_fault_catalog:
+        description: Draai ook volledige faultcode script per loop
+        type: boolean
+        required: true
+        default: false
+
+jobs:
+  stream-testdata:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Run continuous standard test data
+      shell: pwsh
+      run: |
+        ./scripts/stream-standard-testdata.ps1 \
+          -ApiBase "${{ github.event.inputs.api_base }}" \
+          -IntervalSeconds ${{ github.event.inputs.interval_seconds }} \
+          -DurationMinutes ${{ github.event.inputs.duration_minutes }} \
+          $(if ('${{ github.event.inputs.include_full_fault_catalog }}' -eq 'true') { '-IncludeFullFaultCatalog' } else { '' })
