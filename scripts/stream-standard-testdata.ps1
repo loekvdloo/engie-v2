@@ -94,9 +94,14 @@ while ((Get-Date).ToUniversalTime() -lt $runUntil) {
     $minuteStartUtc = (Get-Date).ToUniversalTime()
     $targetCount = Get-Random -Minimum $MinPerMinute -Maximum ($MaxPerMinute + 1)
     $stamp = Get-Date -Format "yyyyMMddHHmmss"
+    $profile = switch ($minuteLoop % 3) {
+        1 { "nack-heavy" }
+        2 { "balanced" }
+        default { "ack-heavy" }
+    }
 
     Write-Host ""
-    Write-Host "Minute ${minuteLoop}: target=$targetCount msgs" -ForegroundColor Cyan
+    Write-Host "Minute ${minuteLoop}: target=$targetCount msgs, profile=$profile" -ForegroundColor Cyan
 
     $start = (Get-Date).AddDays(-5).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
     $end = (Get-Date).AddDays(-1).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
@@ -113,11 +118,13 @@ while ((Get-Date).ToUniversalTime() -lt $runUntil) {
         }
 
         $roll = Get-Random -Minimum 1 -Maximum 101
-        if ($roll -le 55) {
+        $ackThreshold = if ($profile -eq "ack-heavy") { 75 } elseif ($profile -eq "nack-heavy") { 35 } else { 55 }
+
+        if ($roll -le $ackThreshold) {
             $xml = New-ValidXml "DOC-$messageId" "871685900012345678" $start $end (Get-Random -Minimum 1 -Maximum 1000)
-        } elseif ($roll -le 75) {
+        } elseif ($roll -le ($ackThreshold + 15)) {
             $xml = New-InvalidEanXml "DOC-$messageId" $start $end
-        } elseif ($roll -le 90) {
+        } elseif ($roll -le ($ackThreshold + 30)) {
             $xml = New-MissingDocXml $start $end
         } else {
             $xml = New-FutureDateXml "DOC-$messageId" $futureStart $futureEnd
