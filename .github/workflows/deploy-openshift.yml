@@ -81,7 +81,11 @@ jobs:
         oc apply -f /tmp/buildconfigs.yaml
         oc apply -f openshift/configmap.yaml
         oc apply -f openshift/deployments.yaml
-        oc apply -f openshift/hpa.yaml
+        oc apply -f openshift/autoscaler-70-40.yaml
+
+    - name: Disable old HPA (use 70/40 autoscaler)
+      run: |
+        oc delete hpa engie-mca-event-handler engie-mca-message-processor engie-mca-message-validator engie-mca-nack-handler engie-mca-output-handler --ignore-not-found=true
 
     - name: Trigger OpenShift image builds
       run: |

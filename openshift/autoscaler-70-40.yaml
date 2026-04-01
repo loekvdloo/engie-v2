@@ -1,0 +1,138 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: engie-mca-autoscaler
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: engie-mca-autoscaler
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+- apiGroups: ["metrics.k8s.io"]
+  resources: ["pods"]
+  verbs: ["get", "list"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "deployments/scale"]
+  verbs: ["get", "list", "patch", "update"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: engie-mca-autoscaler
+subjects:
+- kind: ServiceAccount
+  name: engie-mca-autoscaler
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: engie-mca-autoscaler
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: engie-mca-autoscaler-script
+  labels:
+    app: engie-mca-autoscaler
+data:
+  scale.sh: |
+    #!/bin/sh
+    set -eu
+
+    NAMESPACE="${NAMESPACE:-loek-engie}"
+    MIN_REPLICAS="${MIN_REPLICAS:-1}"
+    MAX_REPLICAS="${MAX_REPLICAS:-8}"
+    SCALE_UP_THRESHOLD="${SCALE_UP_THRESHOLD:-70}"
+    SCALE_DOWN_THRESHOLD="${SCALE_DOWN_THRESHOLD:-40}"
+    DEPLOYMENTS="${DEPLOYMENTS:-engie-mca-event-handler engie-mca-message-processor engie-mca-message-validator engie-mca-nack-handler engie-mca-output-handler}"
+
+    echo "Autoscaler run $(date -u +%FT%TZ) namespace=${NAMESPACE}"
+
+    for dep in $DEPLOYMENTS; do
+      current_replicas=$(kubectl -n "$NAMESPACE" get deployment "$dep" -o jsonpath='{.spec.replicas}' 2>/dev/null || echo "")
+      request_cpu=$(kubectl -n "$NAMESPACE" get deployment "$dep" -o jsonpath='{.spec.template.spec.containers[0].resources.requests.cpu}' 2>/dev/null || echo "")
+
+      if [ -z "$current_replicas" ] || [ -z "$request_cpu" ]; then
+        echo "skip $dep (missing deployment or cpu request)"
+        continue
+      fi
+
+      request_millicores=${request_cpu%m}
+      if [ -z "$request_millicores" ] || [ "$request_millicores" -le 0 ]; then
+        echo "skip $dep (invalid cpu request: $request_cpu)"
+        continue
+      fi
+
+      top_output=$(kubectl -n "$NAMESPACE" top pods -l app="$dep" --no-headers 2>/dev/null || true)
+      if [ -z "$top_output" ]; then
+        echo "skip $dep (no metrics yet)"
+        continue
+      fi
+
+      sum_m=$(echo "$top_output" | awk '{cpu=$2; gsub("m","",cpu); s+=cpu} END{print s+0}')
+      pod_count=$(echo "$top_output" | awk 'NF>0 {c++} END{print c+0}')
+
+      if [ "$pod_count" -le 0 ]; then
+        echo "skip $dep (pod_count=0)"
+        continue
+      fi
+
+      avg_m=$((sum_m / pod_count))
+      util_pct=$((avg_m * 100 / request_millicores))
+      desired_replicas=$current_replicas
+
+      if [ "$util_pct" -gt "$SCALE_UP_THRESHOLD" ] && [ "$current_replicas" -lt "$MAX_REPLICAS" ]; then
+        desired_replicas=$((current_replicas + 1))
+      elif [ "$util_pct" -lt "$SCALE_DOWN_THRESHOLD" ] && [ "$current_replicas" -gt "$MIN_REPLICAS" ]; then
+        desired_replicas=$((current_replicas - 1))
+      fi
+
+      echo "$dep util=${util_pct}% avg=${avg_m}m request=${request_millicores}m replicas=${current_replicas}->${desired_replicas}"
+
+      if [ "$desired_replicas" -ne "$current_replicas" ]; then
+        kubectl -n "$NAMESPACE" scale deployment "$dep" --replicas="$desired_replicas"
+      fi
+    done
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: engie-mca-autoscaler-70-40
+spec:
+  schedule: "*/1 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: engie-mca-autoscaler
+          restartPolicy: OnFailure
+          containers:
+          - name: scaler
+            image: quay.io/openshift/origin-cli:4.16
+            command: ["/bin/sh", "/opt/autoscaler/scale.sh"]
+            env:
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: MIN_REPLICAS
+              value: "1"
+            - name: MAX_REPLICAS
+              value: "8"
+            - name: SCALE_UP_THRESHOLD
+              value: "70"
+            - name: SCALE_DOWN_THRESHOLD
+              value: "40"
+            volumeMounts:
+            - name: script
+              mountPath: /opt/autoscaler
+          volumes:
+          - name: script
+            configMap:
+              name: engie-mca-autoscaler-script
+              defaultMode: 0755
