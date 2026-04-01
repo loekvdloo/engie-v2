@@ -10,19 +10,19 @@ on:
       min_per_minute:
         description: Min aantal berichten per minuut
         required: true
-        default: "50"
+        default: "180"
       max_per_minute:
         description: Max aantal berichten per minuut
         required: true
-        default: "200"
+        default: "320"
       duplicate_rate_percent:
         description: Percentage duplicate messageId's (0-100)
         required: true
-        default: "10"
+        default: "18"
       duration_minutes:
         description: Hoe lang laten draaien (cancel run om eerder te stoppen)
         required: true
-        default: "120"
+        default: "25"
       include_full_fault_catalog:
         description: Draai ook volledige faultcode script per loop
         type: boolean
