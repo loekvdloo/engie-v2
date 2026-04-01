@@ -274,6 +274,7 @@ public class MessagesController : ControllerBase
     public IActionResult GetMetrics()
     {
         var snap = _metrics.GetSnapshot();
+        var all = _store.GetAll();
         var rate = snap.Total > 0 ? (decimal)snap.Delivered / snap.Total * 100 : 0;
 
         return Ok(new
@@ -287,9 +288,13 @@ public class MessagesController : ControllerBase
             AverageProcessingDurationMs = Math.Round(snap.AvgDurationMs, 2),
             P95ProcessingDurationMs    = Math.Round(snap.P95DurationMs, 2),
             TotalErrors                = snap.ErrorsByCode.Sum(e => e.Count),
-            LastProcessedAt            = (DateTime?)null,
-            MessagesByStatus           = Array.Empty<object>(),
-            MessagesByType             = Array.Empty<object>(),
+            LastProcessedAt            = all.OrderByDescending(m => m.ProcessedAt).FirstOrDefault()?.ProcessedAt,
+            MessagesByStatus           = all.GroupBy(m => m.Status.ToString())
+                .Select(g => new { Status = g.Key, Count = g.Count() })
+                .ToList(),
+            MessagesByType             = all.GroupBy(m => m.Type.ToString())
+                .Select(g => new { Type = g.Key, Count = g.Count() })
+                .ToList(),
             ErrorsByCode               = snap.ErrorsByCode
                 .Select(e => new { e.Code, e.Count, Description = "" })
                 .ToList()
