@@ -41,10 +41,16 @@ jobs:
     - name: Run continuous standard test data
       shell: pwsh
       run: |
-        ./scripts/stream-standard-testdata.ps1 \
-          -ApiBase "${{ github.event.inputs.api_base }}" \
-          -MinPerMinute ${{ github.event.inputs.min_per_minute }} \
-          -MaxPerMinute ${{ github.event.inputs.max_per_minute }} \
-          -DuplicateRatePercent ${{ github.event.inputs.duplicate_rate_percent }} \
-          -DurationMinutes ${{ github.event.inputs.duration_minutes }} \
-          $(if ('${{ github.event.inputs.include_full_fault_catalog }}' -eq 'true') { '-IncludeFullFaultCatalog' } else { '' })
+        $params = @{
+          ApiBase              = "${{ github.event.inputs.api_base }}"
+          MinPerMinute         = [int]"${{ github.event.inputs.min_per_minute }}"
+          MaxPerMinute         = [int]"${{ github.event.inputs.max_per_minute }}"
+          DuplicateRatePercent = [int]"${{ github.event.inputs.duplicate_rate_percent }}"
+          DurationMinutes      = [int]"${{ github.event.inputs.duration_minutes }}"
+        }
+
+        if ('${{ github.event.inputs.include_full_fault_catalog }}' -eq 'true') {
+          $params.IncludeFullFaultCatalog = $true
+        }
+
+        ./scripts/stream-standard-testdata.ps1 @params
