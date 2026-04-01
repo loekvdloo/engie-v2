@@ -43,20 +43,36 @@ data:
 
     NAMESPACE="${NAMESPACE:-loek-engie}"
     MIN_REPLICAS="${MIN_REPLICAS:-1}"
-    MAX_REPLICAS="${MAX_REPLICAS:-8}"
+    MAX_REPLICAS="${MAX_REPLICAS:-3}"
     SCALE_UP_THRESHOLD="${SCALE_UP_THRESHOLD:-70}"
     SCALE_DOWN_THRESHOLD="${SCALE_DOWN_THRESHOLD:-40}"
     DEPLOYMENTS="${DEPLOYMENTS:-engie-mca-event-handler engie-mca-message-processor engie-mca-message-validator engie-mca-nack-handler engie-mca-output-handler}"
 
     echo "Autoscaler run $(date -u +%FT%TZ) namespace=${NAMESPACE}"
 
+    current_replicas=""
+    any_metrics=0
+    any_above=0
+    all_below=1
+    max_util=0
+
     for dep in $DEPLOYMENTS; do
-      current_replicas=$(kubectl -n "$NAMESPACE" get deployment "$dep" -o jsonpath='{.spec.replicas}' 2>/dev/null || echo "")
+      dep_replicas=$(kubectl -n "$NAMESPACE" get deployment "$dep" -o jsonpath='{.spec.replicas}' 2>/dev/null || echo "")
       request_cpu=$(kubectl -n "$NAMESPACE" get deployment "$dep" -o jsonpath='{.spec.template.spec.containers[0].resources.requests.cpu}' 2>/dev/null || echo "")
 
-      if [ -z "$current_replicas" ] || [ -z "$request_cpu" ]; then
+      if [ -z "$dep_replicas" ] || [ -z "$request_cpu" ]; then
         echo "skip $dep (missing deployment or cpu request)"
         continue
+      fi
+
+      if [ "$dep_replicas" -gt "$MAX_REPLICAS" ]; then
+        echo "cap $dep from $dep_replicas to $MAX_REPLICAS"
+        kubectl -n "$NAMESPACE" scale deployment "$dep" --replicas="$MAX_REPLICAS"
+        dep_replicas="$MAX_REPLICAS"
+      fi
+
+      if [ -z "$current_replicas" ]; then
+        current_replicas="$dep_replicas"
       fi
 
       request_millicores=${request_cpu%m}
@@ -71,6 +87,8 @@ data:
         continue
       fi
 
+      any_metrics=1
+
       sum_m=$(echo "$top_output" | awk '{cpu=$2; gsub("m","",cpu); s+=cpu} END{print s+0}')
       pod_count=$(echo "$top_output" | awk 'NF>0 {c++} END{print c+0}')
 
@@ -81,20 +99,42 @@ data:
 
       avg_m=$((sum_m / pod_count))
       util_pct=$((avg_m * 100 / request_millicores))
-      desired_replicas=$current_replicas
 
-      if [ "$util_pct" -gt "$SCALE_UP_THRESHOLD" ] && [ "$current_replicas" -lt "$MAX_REPLICAS" ]; then
-        desired_replicas=$((current_replicas + 1))
-      elif [ "$util_pct" -lt "$SCALE_DOWN_THRESHOLD" ] && [ "$current_replicas" -gt "$MIN_REPLICAS" ]; then
-        desired_replicas=$((current_replicas - 1))
+      if [ "$util_pct" -gt "$max_util" ]; then
+        max_util="$util_pct"
       fi
 
-      echo "$dep util=${util_pct}% avg=${avg_m}m request=${request_millicores}m replicas=${current_replicas}->${desired_replicas}"
-
-      if [ "$desired_replicas" -ne "$current_replicas" ]; then
-        kubectl -n "$NAMESPACE" scale deployment "$dep" --replicas="$desired_replicas"
+      if [ "$util_pct" -gt "$SCALE_UP_THRESHOLD" ]; then
+        any_above=1
       fi
+
+      if [ "$util_pct" -ge "$SCALE_DOWN_THRESHOLD" ]; then
+        all_below=0
+      fi
+
+      echo "$dep util=${util_pct}% avg=${avg_m}m request=${request_millicores}m replicas=${dep_replicas}"
     done
+
+    if [ -z "$current_replicas" ]; then
+      echo "no deployments found"
+      exit 0
+    fi
+
+    desired_replicas="$current_replicas"
+    if [ "$any_metrics" -eq 1 ] && [ "$any_above" -eq 1 ] && [ "$current_replicas" -lt "$MAX_REPLICAS" ]; then
+      desired_replicas=$((current_replicas + 1))
+    elif [ "$any_metrics" -eq 1 ] && [ "$all_below" -eq 1 ] && [ "$current_replicas" -gt "$MIN_REPLICAS" ]; then
+      desired_replicas=$((current_replicas - 1))
+    fi
+
+    echo "decision current=${current_replicas} desired=${desired_replicas} maxUtil=${max_util}% anyAbove=${any_above} allBelow=${all_below}"
+
+    if [ "$desired_replicas" -ne "$current_replicas" ]; then
+      for dep in $DEPLOYMENTS; do
+        echo "scale $dep -> $desired_replicas"
+        kubectl -n "$NAMESPACE" scale deployment "$dep" --replicas="$desired_replicas"
+      done
+    fi
 ---
 apiVersion: batch/v1
 kind: CronJob
@@ -123,7 +163,7 @@ spec:
             - name: MIN_REPLICAS
               value: "1"
             - name: MAX_REPLICAS
-              value: "8"
+              value: "3"
             - name: SCALE_UP_THRESHOLD
               value: "70"
             - name: SCALE_DOWN_THRESHOLD
