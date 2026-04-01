@@ -10,6 +10,7 @@ using Serilog.Context;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading;
+using System.Text.Json.Serialization;
 
 namespace Engie.Mca.MessageValidator.Controllers;
 
@@ -241,6 +242,13 @@ public class ValidatorController : ControllerBase
         }
     }
 
+    // Compatibility endpoint: allow posting the same payload to /api/validator.
+    [HttpPost]
+    public Task<IActionResult> ValidateMessageRoot([FromBody] ValidatorRequest request)
+    {
+        return ValidateMessage(request);
+    }
+
     [HttpGet("health")]
     public IActionResult Health()
     {
@@ -289,4 +297,41 @@ public class ValidatorRequest
     public string Content { get; set; } = string.Empty;
     public string? CorrelationId { get; set; }
     public string? MessageType { get; set; }
+
+    // Common aliases used by other payloads/scripts.
+    [JsonPropertyName("ean")]
+    public string? Ean
+    {
+        set
+        {
+            if (!string.IsNullOrWhiteSpace(value) && string.IsNullOrWhiteSpace(EanCode))
+            {
+                EanCode = value;
+            }
+        }
+    }
+
+    [JsonPropertyName("xmlContent")]
+    public string? XmlContent
+    {
+        set
+        {
+            if (!string.IsNullOrWhiteSpace(value) && string.IsNullOrWhiteSpace(Content))
+            {
+                Content = value;
+            }
+        }
+    }
+
+    [JsonPropertyName("xml")]
+    public string? Xml
+    {
+        set
+        {
+            if (!string.IsNullOrWhiteSpace(value) && string.IsNullOrWhiteSpace(Content))
+            {
+                Content = value;
+            }
+        }
+    }
 }
