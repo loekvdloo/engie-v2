@@ -316,6 +316,7 @@ spec:
       containers:
       - name: redis
         image: redis:7-alpine
+        args: ["redis-server", "--save", "", "--stop-writes-on-bgsave-error", "no"]
         ports:
         - containerPort: 6379
         resources:
