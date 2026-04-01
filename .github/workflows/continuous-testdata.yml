@@ -7,10 +7,18 @@ on:
         description: Public EventHandler base URL (zonder /api)
         required: true
         default: http://engie-mca-event-handler-loek-engie.apps.experience.ilionx-ocp.com
-      interval_seconds:
-        description: Wachtijd tussen batches
+      min_per_minute:
+        description: Min aantal berichten per minuut
         required: true
-        default: "20"
+        default: "50"
+      max_per_minute:
+        description: Max aantal berichten per minuut
+        required: true
+        default: "200"
+      duplicate_rate_percent:
+        description: Percentage duplicate messageId's (0-100)
+        required: true
+        default: "10"
       duration_minutes:
         description: Hoe lang laten draaien (cancel run om eerder te stoppen)
         required: true
@@ -35,6 +43,8 @@ jobs:
       run: |
         ./scripts/stream-standard-testdata.ps1 \
           -ApiBase "${{ github.event.inputs.api_base }}" \
-          -IntervalSeconds ${{ github.event.inputs.interval_seconds }} \
+          -MinPerMinute ${{ github.event.inputs.min_per_minute }} \
+          -MaxPerMinute ${{ github.event.inputs.max_per_minute }} \
+          -DuplicateRatePercent ${{ github.event.inputs.duplicate_rate_percent }} \
           -DurationMinutes ${{ github.event.inputs.duration_minutes }} \
           $(if ('${{ github.event.inputs.include_full_fault_catalog }}' -eq 'true') { '-IncludeFullFaultCatalog' } else { '' })

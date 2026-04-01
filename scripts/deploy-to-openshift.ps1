@@ -61,6 +61,7 @@ Remove-Item $tempFile -Force
 
 Invoke-Oc "apply", "-f", "$PSScriptRoot\..\openshift\configmap.yaml" | ForEach-Object { Write-Host "  $_" }
 Invoke-Oc "apply", "-f", "$PSScriptRoot\..\openshift\deployments.yaml" | ForEach-Object { Write-Host "  $_" }
+Invoke-Oc "apply", "-f", "$PSScriptRoot\..\openshift\hpa.yaml" | ForEach-Object { Write-Host "  $_" }
 Write-Host "  Manifests toegepast" -ForegroundColor Green
 
 # Start builds

@@ -81,6 +81,7 @@ jobs:
         oc apply -f /tmp/buildconfigs.yaml
         oc apply -f openshift/configmap.yaml
         oc apply -f openshift/deployments.yaml
+        oc apply -f openshift/hpa.yaml
 
     - name: Trigger OpenShift image builds
       run: |
