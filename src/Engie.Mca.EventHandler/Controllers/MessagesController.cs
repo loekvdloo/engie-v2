@@ -26,12 +26,14 @@ public class MessagesController : ControllerBase
     private readonly MessageStore _store;
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger<MessagesController> _logger;
+    private readonly MetricsAggregator _metrics;
 
-    public MessagesController(MessageStore store, IHttpClientFactory httpClientFactory, ILogger<MessagesController> logger)
+    public MessagesController(MessageStore store, IHttpClientFactory httpClientFactory, ILogger<MessagesController> logger, MetricsAggregator metrics)
     {
         _store = store;
         _httpClientFactory = httpClientFactory;
         _logger = logger;
+        _metrics = metrics;
     }
 
     // POST api/messages — doet stap 1A-1F, dan keten naar MessageProcessor (2A-2E) → ... → OutputHandler (6B)
@@ -161,6 +163,7 @@ public class MessagesController : ControllerBase
                 finalStatus, finalResponse, null,
                 finalErrors, steps, receivedAt, DateTime.UtcNow, sw.Elapsed.TotalMilliseconds
             ));
+            _metrics.Record(finalResponse, finalStatus, sw.Elapsed.TotalMilliseconds, finalErrors);
 
             using var rtScope = LogContext.PushProperty("ResponseType", chainRespType);
             using var ecScope = LogContext.PushProperty("ErrorCodes", string.Join(",", chainCodes));
@@ -270,42 +273,25 @@ public class MessagesController : ControllerBase
     [HttpGet("/api/metrics")]
     public IActionResult GetMetrics()
     {
-        var all = _store.GetAll();
-        var delivered = all.Count(m => m.Status == ProcessingStatus.Delivered);
-        var failed = all.Count(m => m.Status == ProcessingStatus.Failed);
-        var ack = all.Count(m => m.ResponseType == ResponseType.Ack);
-        var nack = all.Count(m => m.ResponseType == ResponseType.Nack);
-        var totalErrors = all.Sum(m => m.Errors.Count);
-
-        var durations = all.Where(m => m.ProcessingDurationMs.HasValue)
-            .Select(m => m.ProcessingDurationMs!.Value)
-            .OrderBy(v => v)
-            .ToList();
-
-        double avg = durations.Count > 0 ? durations.Average() : 0;
-        double p95 = durations.Count > 0 ? durations[(int)Math.Ceiling(durations.Count * 0.95) - 1] : 0;
+        var snap = _metrics.GetSnapshot();
+        var rate = snap.Total > 0 ? (decimal)snap.Delivered / snap.Total * 100 : 0;
 
         return Ok(new
         {
-            TotalMessages = all.Count,
-            DeliveredMessages = delivered,
-            FailedMessages = failed,
-            AckMessages = ack,
-            NackMessages = nack,
-            SuccessRate = all.Count > 0 ? (decimal)delivered / all.Count * 100 : 0,
-            AverageProcessingDurationMs = avg,
-            P95ProcessingDurationMs = p95,
-            TotalErrors = totalErrors,
-            LastProcessedAt = all.OrderByDescending(m => m.ProcessedAt).FirstOrDefault()?.ProcessedAt,
-            MessagesByStatus = all.GroupBy(m => m.Status.ToString())
-                .Select(g => new { Status = g.Key, Count = g.Count() })
-                .ToList(),
-            MessagesByType = all.GroupBy(m => m.Type.ToString())
-                .Select(g => new { Type = g.Key, Count = g.Count() })
-                .ToList(),
-            ErrorsByCode = all.SelectMany(m => m.Errors)
-                .GroupBy(e => e.Code)
-                .Select(g => new { Code = g.Key, Count = g.Count() })
+            TotalMessages               = snap.Total,
+            DeliveredMessages          = snap.Delivered,
+            FailedMessages             = snap.Failed,
+            AckMessages                = snap.Ack,
+            NackMessages               = snap.Nack,
+            SuccessRate                = Math.Round(rate, 2),
+            AverageProcessingDurationMs = Math.Round(snap.AvgDurationMs, 2),
+            P95ProcessingDurationMs    = Math.Round(snap.P95DurationMs, 2),
+            TotalErrors                = snap.ErrorsByCode.Sum(e => e.Count),
+            LastProcessedAt            = (DateTime?)null,
+            MessagesByStatus           = Array.Empty<object>(),
+            MessagesByType             = Array.Empty<object>(),
+            ErrorsByCode               = snap.ErrorsByCode
+                .Select(e => new { e.Code, e.Count, Description = "" })
                 .ToList()
         });
     }
@@ -343,6 +329,7 @@ public class MessagesController : ControllerBase
             errors, steps, receivedAt, DateTime.UtcNow, sw.Elapsed.TotalMilliseconds
         );
         _store.Save(ctx);
+        _metrics.Record(ResponseType.Nack, ProcessingStatus.Failed, sw.Elapsed.TotalMilliseconds, errors);
 
         using var rtScope = LogContext.PushProperty("ResponseType", "Nack");
         using var ecScope = LogContext.PushProperty("ErrorCodes", string.Join(",", errors.Select(e => e.Code)));

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageValidator\\Engie.Mca.MessageValidator.csproj": {}
+    "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageValidator\\Engie.Mca.MessageValidator.csproj": {}
   },
   "projects": {
-    "c:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageValidator\\Engie.Mca.MessageValidator.csproj": {
+    "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageValidator\\Engie.Mca.MessageValidator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageValidator\\Engie.Mca.MessageValidator.csproj",
+        "projectUniqueName": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageValidator\\Engie.Mca.MessageValidator.csproj",
         "projectName": "Engie.Mca.MessageValidator",
-        "projectPath": "c:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageValidator\\Engie.Mca.MessageValidator.csproj",
+        "projectPath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageValidator\\Engie.Mca.MessageValidator.csproj",
         "packagesPath": "C:\\Users\\loek\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageValidator\\obj\\",
+        "outputPath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageValidator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

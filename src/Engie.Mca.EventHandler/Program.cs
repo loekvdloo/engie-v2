@@ -40,6 +40,8 @@ builder.Host.UseSerilog((context, services, configuration) =>
 builder.Services.AddControllers();
 builder.Services.AddHttpClient();
 builder.Services.AddSingleton<MessageStore>();
+builder.Services.AddSingleton<MetricsAggregator>(
+    sp => new MetricsAggregator(Environment.GetEnvironmentVariable("REDIS_URL")));
 
 var app = builder.Build();
 

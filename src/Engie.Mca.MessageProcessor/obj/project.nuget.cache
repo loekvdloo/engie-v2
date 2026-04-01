@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "macgmXc1C1I=",
+  "dgSpecHash": "uX1QYryn6es=",
   "success": true,
-  "projectFilePath": "c:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageProcessor\\Engie.Mca.MessageProcessor.csproj",
+  "projectFilePath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.MessageProcessor\\Engie.Mca.MessageProcessor.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\loek\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.0\\microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512",
     "C:\\Users\\loek\\.nuget\\packages\\serilog\\3.1.1\\serilog.3.1.1.nupkg.sha512",

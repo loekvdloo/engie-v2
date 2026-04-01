@@ -26,28 +26,6 @@
           "buildTransitive/net10.0/Microsoft.AspNetCore.Mvc.Testing.targets": {}
         }
       },
-      "Microsoft.AspNetCore.OpenApi/10.0.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.OpenApi": "2.0.0"
-        },
-        "compile": {
-          "lib/net10.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net10.0/Microsoft.AspNetCore.OpenApi.dll": {
-            "related": ".xml"
-          }
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ],
-        "build": {
-          "build/_._": {}
-        }
-      },
       "Microsoft.AspNetCore.TestHost/10.0.0": {
         "type": "package",
         "compile": {
@@ -690,19 +668,6 @@
           "buildMultiTargeting/Microsoft.NET.Test.Sdk.props": {}
         }
       },
-      "Microsoft.OpenApi/2.0.0": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/Microsoft.OpenApi.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net8.0/Microsoft.OpenApi.dll": {
-            "related": ".pdb;.xml"
-          }
-        }
-      },
       "Microsoft.TestPlatform.ObjectModel/17.12.0": {
         "type": "package",
         "compile": {
@@ -1244,21 +1209,20 @@
           "build/net6.0/xunit.runner.visualstudio.props": {}
         }
       },
-      "Engie.Mca.Api/1.0.0": {
+      "Engie.Mca.EventHandler/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": "10.0.0",
           "Serilog": "3.1.1",
           "Serilog.AspNetCore": "8.0.0",
           "Serilog.Sinks.Console": "5.0.1",
           "Serilog.Sinks.File": "5.0.0"
         },
         "compile": {
-          "bin/placeholder/Engie.Mca.Api.dll": {}
+          "bin/placeholder/Engie.Mca.EventHandler.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Engie.Mca.Api.dll": {}
+          "bin/placeholder/Engie.Mca.EventHandler.dll": {}
         },
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
@@ -1284,24 +1248,6 @@
         "microsoft.aspnetcore.mvc.testing.10.0.0.nupkg.sha512",
         "microsoft.aspnetcore.mvc.testing.nuspec",
         "tasks/netstandard2.0/Microsoft.AspNetCore.Mvc.Testing.Tasks.dll"
-      ]
-    },
-    "Microsoft.AspNetCore.OpenApi/10.0.0": {
-      "sha512": "0aqIF1t+sA2T62LIeMtXGSiaV7keGQaJnvwwmu+htQdjCaKYARfXAeqp4nHH9y2etpilyZ/tnQzZg4Ilmo/c4Q==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.openapi/10.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "PACKAGE.md",
-        "THIRD-PARTY-NOTICES.TXT",
-        "analyzers/dotnet/cs/Microsoft.AspNetCore.OpenApi.SourceGenerators.dll",
-        "build/Microsoft.AspNetCore.OpenApi.targets",
-        "lib/net10.0/Microsoft.AspNetCore.OpenApi.dll",
-        "lib/net10.0/Microsoft.AspNetCore.OpenApi.xml",
-        "microsoft.aspnetcore.openapi.10.0.0.nupkg.sha512",
-        "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
     "Microsoft.AspNetCore.TestHost/10.0.0": {
@@ -2302,24 +2248,6 @@
         "microsoft.net.test.sdk.nuspec"
       ]
     },
-    "Microsoft.OpenApi/2.0.0": {
-      "sha512": "GGYLfzV/G/ct80OZ45JxnWP7NvMX1BCugn/lX7TH5o0lcVaviavsLMTxmFV2AybXWjbi3h6FF1vgZiTK6PXndw==",
-      "type": "package",
-      "path": "microsoft.openapi/2.0.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "lib/net8.0/Microsoft.OpenApi.dll",
-        "lib/net8.0/Microsoft.OpenApi.pdb",
-        "lib/net8.0/Microsoft.OpenApi.xml",
-        "lib/netstandard2.0/Microsoft.OpenApi.dll",
-        "lib/netstandard2.0/Microsoft.OpenApi.pdb",
-        "lib/netstandard2.0/Microsoft.OpenApi.xml",
-        "microsoft.openapi.2.0.0.nupkg.sha512",
-        "microsoft.openapi.nuspec"
-      ]
-    },
     "Microsoft.TestPlatform.ObjectModel/17.12.0": {
       "sha512": "TDqkTKLfQuAaPcEb3pDDWnh7b3SyZF+/W9OZvWFp6eJCIiiYFdSB6taE2I6tWrFw5ywhzOb6sreoGJTI6m3rSQ==",
       "type": "package",
@@ -2919,15 +2847,15 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "Engie.Mca.Api/1.0.0": {
+    "Engie.Mca.EventHandler/1.0.0": {
       "type": "project",
-      "path": "../../src/Engie.Mca.Api/Engie.Mca.Api.csproj",
-      "msbuildProject": "../../src/Engie.Mca.Api/Engie.Mca.Api.csproj"
+      "path": "../../src/Engie.Mca.EventHandler/Engie.Mca.EventHandler.csproj",
+      "msbuildProject": "../../src/Engie.Mca.EventHandler/Engie.Mca.EventHandler.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net10.0": [
-      "Engie.Mca.Api >= 1.0.0",
+      "Engie.Mca.EventHandler >= 1.0.0",
       "Microsoft.AspNetCore.Mvc.Testing >= 10.0.0",
       "Microsoft.NET.Test.Sdk >= 17.12.0",
       "xunit >= 2.9.3",
@@ -2967,8 +2895,8 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.Api\\Engie.Mca.Api.csproj": {
-              "projectPath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.Api\\Engie.Mca.Api.csproj"
+            "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.EventHandler\\Engie.Mca.EventHandler.csproj": {
+              "projectPath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.EventHandler\\Engie.Mca.EventHandler.csproj"
             }
           }
         }

@@ -4,14 +4,14 @@
     "C:\\Users\\loek\\engie\\engie-v2\\tests\\Engie.Mca.Contracts.Tests\\Engie.Mca.Contracts.Tests.csproj": {}
   },
   "projects": {
-    "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.Api\\Engie.Mca.Api.csproj": {
+    "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.EventHandler\\Engie.Mca.EventHandler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.Api\\Engie.Mca.Api.csproj",
-        "projectName": "Engie.Mca.Api",
-        "projectPath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.Api\\Engie.Mca.Api.csproj",
+        "projectUniqueName": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.EventHandler\\Engie.Mca.EventHandler.csproj",
+        "projectName": "Engie.Mca.EventHandler",
+        "projectPath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.EventHandler\\Engie.Mca.EventHandler.csproj",
         "packagesPath": "C:\\Users\\loek\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.Api\\obj\\",
+        "outputPath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.EventHandler\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -51,10 +51,6 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
-            "Microsoft.AspNetCore.OpenApi": {
-              "target": "Package",
-              "version": "[10.0.0, )"
-            },
             "Serilog": {
               "target": "Package",
               "version": "[3.1.1, )"
@@ -538,8 +534,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.Api\\Engie.Mca.Api.csproj": {
-                "projectPath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.Api\\Engie.Mca.Api.csproj"
+              "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.EventHandler\\Engie.Mca.EventHandler.csproj": {
+                "projectPath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.EventHandler\\Engie.Mca.EventHandler.csproj"
               }
             }
           }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Engie.Mca.OutputHandler")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3a2cba56c1a296b4036637bab5d572105329e7b7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22e6be78fa97900c0837fb3e422ca3785b739190")]
 [assembly: System.Reflection.AssemblyProductAttribute("Engie.Mca.OutputHandler")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Engie.Mca.OutputHandler")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "d4GzOrLvmWY=",
+  "dgSpecHash": "F/NQtYf+0KM=",
   "success": true,
-  "projectFilePath": "c:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.EventHandler\\Engie.Mca.EventHandler.csproj",
+  "projectFilePath": "C:\\Users\\loek\\engie\\engie-v2\\src\\Engie.Mca.EventHandler\\Engie.Mca.EventHandler.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\loek\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.0\\microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512",
     "C:\\Users\\loek\\.nuget\\packages\\serilog\\3.1.1\\serilog.3.1.1.nupkg.sha512",

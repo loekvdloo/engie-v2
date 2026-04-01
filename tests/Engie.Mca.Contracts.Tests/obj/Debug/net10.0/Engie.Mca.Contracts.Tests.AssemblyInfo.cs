@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Engie.Mca.Contracts.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0bb3a0ff652459e2a76c86ae3012dd2ed697fbb3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+22e6be78fa97900c0837fb3e422ca3785b739190")]
 [assembly: System.Reflection.AssemblyProductAttribute("Engie.Mca.Contracts.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Engie.Mca.Contracts.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
