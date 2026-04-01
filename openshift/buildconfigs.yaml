@@ -1,0 +1,154 @@
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: engie-mca-event-handler
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: engie-mca-message-processor
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: engie-mca-message-validator
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: engie-mca-nack-handler
+---
+apiVersion: image.openshift.io/v1
+kind: ImageStream
+metadata:
+  name: engie-mca-output-handler
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: engie-mca-event-handler
+spec:
+  source:
+    type: Git
+    git:
+      uri: REPLACE_WITH_YOUR_GIT_URL
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile.service
+      buildArgs:
+      - name: SERVICE_PATH
+        value: Engie.Mca.EventHandler
+      - name: PROJECT_FILE
+        value: Engie.Mca.EventHandler.csproj
+      - name: APP_DLL
+        value: Engie.Mca.EventHandler.dll
+  output:
+    to:
+      kind: ImageStreamTag
+      name: engie-mca-event-handler:latest
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: engie-mca-message-processor
+spec:
+  source:
+    type: Git
+    git:
+      uri: REPLACE_WITH_YOUR_GIT_URL
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile.service
+      buildArgs:
+      - name: SERVICE_PATH
+        value: Engie.Mca.MessageProcessor
+      - name: PROJECT_FILE
+        value: Engie.Mca.MessageProcessor.csproj
+      - name: APP_DLL
+        value: Engie.Mca.MessageProcessor.dll
+  output:
+    to:
+      kind: ImageStreamTag
+      name: engie-mca-message-processor:latest
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: engie-mca-message-validator
+spec:
+  source:
+    type: Git
+    git:
+      uri: REPLACE_WITH_YOUR_GIT_URL
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile.service
+      buildArgs:
+      - name: SERVICE_PATH
+        value: Engie.Mca.MessageValidator
+      - name: PROJECT_FILE
+        value: Engie.Mca.MessageValidator.csproj
+      - name: APP_DLL
+        value: Engie.Mca.MessageValidator.dll
+  output:
+    to:
+      kind: ImageStreamTag
+      name: engie-mca-message-validator:latest
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: engie-mca-nack-handler
+spec:
+  source:
+    type: Git
+    git:
+      uri: REPLACE_WITH_YOUR_GIT_URL
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile.service
+      buildArgs:
+      - name: SERVICE_PATH
+        value: Engie.Mca.NackHandler
+      - name: PROJECT_FILE
+        value: Engie.Mca.NackHandler.csproj
+      - name: APP_DLL
+        value: Engie.Mca.NackHandler.dll
+  output:
+    to:
+      kind: ImageStreamTag
+      name: engie-mca-nack-handler:latest
+---
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: engie-mca-output-handler
+spec:
+  source:
+    type: Git
+    git:
+      uri: REPLACE_WITH_YOUR_GIT_URL
+      ref: main
+  strategy:
+    type: Docker
+    dockerStrategy:
+      dockerfilePath: Dockerfile.service
+      buildArgs:
+      - name: SERVICE_PATH
+        value: Engie.Mca.OutputHandler
+      - name: PROJECT_FILE
+        value: Engie.Mca.OutputHandler.csproj
+      - name: APP_DLL
+        value: Engie.Mca.OutputHandler.dll
+  output:
+    to:
+      kind: ImageStreamTag
+      name: engie-mca-output-handler:latest

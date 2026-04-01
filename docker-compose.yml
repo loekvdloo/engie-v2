@@ -1,0 +1,138 @@
+services:
+
+  engie-mca-event-handler:
+    build:
+      context: .
+      dockerfile: Dockerfile.service
+      args:
+        SERVICE_PATH: Engie.Mca.EventHandler
+        PROJECT_FILE: Engie.Mca.EventHandler.csproj
+        APP_DLL: Engie.Mca.EventHandler.dll
+    image: engie-mca-event-handler:local
+    container_name: engie-mca-event-handler
+    ports:
+      - "8081:8080"
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:8080
+      ASPNETCORE_ENVIRONMENT: Production
+      LOGS_DIRECTORY: /tmp/logs/blocks
+      MESSAGE_PROCESSOR_BASE_URL: http://engie-mca-message-processor:8080
+    depends_on:
+      engie-mca-message-processor:
+        condition: service_healthy
+    networks:
+      - engie-mca
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/api/event/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  engie-mca-message-processor:
+    build:
+      context: .
+      dockerfile: Dockerfile.service
+      args:
+        SERVICE_PATH: Engie.Mca.MessageProcessor
+        PROJECT_FILE: Engie.Mca.MessageProcessor.csproj
+        APP_DLL: Engie.Mca.MessageProcessor.dll
+    image: engie-mca-message-processor:local
+    container_name: engie-mca-message-processor
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:8080
+      ASPNETCORE_ENVIRONMENT: Production
+      LOGS_DIRECTORY: /tmp/logs/blocks
+      MESSAGE_VALIDATOR_BASE_URL: http://engie-mca-message-validator:8080
+      NACK_HANDLER_BASE_URL: http://engie-mca-nack-handler:8080
+    depends_on:
+      engie-mca-message-validator:
+        condition: service_healthy
+      engie-mca-nack-handler:
+        condition: service_healthy
+    networks:
+      - engie-mca
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/api/processor/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  engie-mca-message-validator:
+    build:
+      context: .
+      dockerfile: Dockerfile.service
+      args:
+        SERVICE_PATH: Engie.Mca.MessageValidator
+        PROJECT_FILE: Engie.Mca.MessageValidator.csproj
+        APP_DLL: Engie.Mca.MessageValidator.dll
+    image: engie-mca-message-validator:local
+    container_name: engie-mca-message-validator
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:8080
+      ASPNETCORE_ENVIRONMENT: Production
+      LOGS_DIRECTORY: /tmp/logs/blocks
+      MESSAGE_PROCESSOR_BASE_URL: http://engie-mca-message-processor:8080
+    networks:
+      - engie-mca
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/api/validator/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  engie-mca-nack-handler:
+    build:
+      context: .
+      dockerfile: Dockerfile.service
+      args:
+        SERVICE_PATH: Engie.Mca.NackHandler
+        PROJECT_FILE: Engie.Mca.NackHandler.csproj
+        APP_DLL: Engie.Mca.NackHandler.dll
+    image: engie-mca-nack-handler:local
+    container_name: engie-mca-nack-handler
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:8080
+      ASPNETCORE_ENVIRONMENT: Production
+      LOGS_DIRECTORY: /tmp/logs/blocks
+      OUTPUT_HANDLER_BASE_URL: http://engie-mca-output-handler:8080
+    depends_on:
+      engie-mca-output-handler:
+        condition: service_healthy
+    networks:
+      - engie-mca
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/api/nack/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  engie-mca-output-handler:
+    build:
+      context: .
+      dockerfile: Dockerfile.service
+      args:
+        SERVICE_PATH: Engie.Mca.OutputHandler
+        PROJECT_FILE: Engie.Mca.OutputHandler.csproj
+        APP_DLL: Engie.Mca.OutputHandler.dll
+    image: engie-mca-output-handler:local
+    container_name: engie-mca-output-handler
+    environment:
+      ASPNETCORE_URLS: http://0.0.0.0:8080
+      ASPNETCORE_ENVIRONMENT: Production
+      LOGS_DIRECTORY: /tmp/logs/blocks
+    networks:
+      - engie-mca
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:8080/api/output/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+networks:
+  engie-mca:
+    driver: bridge

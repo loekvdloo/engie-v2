@@ -17,6 +17,14 @@ namespace Engie.Mca.MessageProcessor.Controllers;
 [Route("api/[controller]")]
 public class ProcessorController : ControllerBase
 {
+    private static readonly string MessageValidatorBaseUrl =
+        Environment.GetEnvironmentVariable("MESSAGE_VALIDATOR_BASE_URL")
+        ?? "http://engie-mca-message-validator:8080";
+
+    private static readonly string NackHandlerBaseUrl =
+        Environment.GetEnvironmentVariable("NACK_HANDLER_BASE_URL")
+        ?? "http://engie-mca-nack-handler:8080";
+
     // 2C — Slagboom: max 5 berichten worden gelijktijdig verwerkt; overige wachten
     private static readonly SemaphoreSlim _gate = new SemaphoreSlim(5, 5);
 
@@ -117,7 +125,7 @@ public class ProcessorController : ControllerBase
                 _logger.LogInformation("[{MessageId}] ✓ Step 2E: Geen herversending vereist", messageId);
 
             // Doorgeven aan MessageValidator (volgende in de keten)
-            using var valReq = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5003/api/validator/validate");
+            using var valReq = new HttpRequestMessage(HttpMethod.Post, $"{MessageValidatorBaseUrl}/api/validator/validate");
             valReq.Content = JsonContent.Create(new
             {
                 MessageId     = messageId,
@@ -246,7 +254,7 @@ public class ProcessorController : ControllerBase
             _logger.LogInformation("[{MessageId}] ✓ Step 4E: Configureer {ResponseType}-verzending via {TargetChannel}", messageId, responseType, targetChannel);
 
             // Doorgeven aan NackHandler (volgende in de keten)
-            using var nackReq = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5004/api/nack/send");
+            using var nackReq = new HttpRequestMessage(HttpMethod.Post, $"{NackHandlerBaseUrl}/api/nack/send");
             nackReq.Content = JsonContent.Create(new
             {
                 MessageId     = messageId,

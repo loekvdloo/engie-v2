@@ -14,7 +14,8 @@ using Engie.Mca.EventHandler.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 // Configure Serilog
-var logsDirectory = Path.Combine(@"c:\Users\loek\engie\engie-v2", "logs", "blocks");
+var logsDirectory = Environment.GetEnvironmentVariable("LOGS_DIRECTORY")
+    ?? Path.Combine(Path.GetTempPath(), "logs", "blocks");
 Directory.CreateDirectory(logsDirectory);
 
 builder.Host.UseSerilog((context, services, configuration) =>
@@ -59,6 +60,6 @@ app.Use(async (httpContext, next) =>
 
 app.UseAuthorization();
 app.MapControllers();
-app.Run("http://localhost:5001");
+app.Run();
 
 public partial class Program;

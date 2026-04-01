@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: engie-mca-config
+data:
+  MESSAGE_PROCESSOR_BASE_URL: http://engie-mca-message-processor:8080
+  MESSAGE_VALIDATOR_BASE_URL: http://engie-mca-message-validator:8080
+  NACK_HANDLER_BASE_URL: http://engie-mca-nack-handler:8080
+  OUTPUT_HANDLER_BASE_URL: http://engie-mca-output-handler:8080
+  LOGS_DIRECTORY: /tmp/logs/blocks

@@ -1,0 +1,260 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: engie-mca-event-handler
+  labels:
+    app: engie-mca-event-handler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: engie-mca-event-handler
+  template:
+    metadata:
+      labels:
+        app: engie-mca-event-handler
+    spec:
+      containers:
+      - name: app
+        image: image-registry.openshift-image-registry.svc:5000/loek-engie/engie-mca-event-handler:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: engie-mca-config
+        readinessProbe:
+          httpGet:
+            path: /api/event/health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /api/event/health
+            port: 8080
+          initialDelaySeconds: 20
+          periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: engie-mca-event-handler
+spec:
+  selector:
+    app: engie-mca-event-handler
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: engie-mca-event-handler
+spec:
+  to:
+    kind: Service
+    name: engie-mca-event-handler
+  port:
+    targetPort: http
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: engie-mca-message-processor
+  labels:
+    app: engie-mca-message-processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: engie-mca-message-processor
+  template:
+    metadata:
+      labels:
+        app: engie-mca-message-processor
+    spec:
+      containers:
+      - name: app
+        image: image-registry.openshift-image-registry.svc:5000/loek-engie/engie-mca-message-processor:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: engie-mca-config
+        readinessProbe:
+          httpGet:
+            path: /api/processor/health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /api/processor/health
+            port: 8080
+          initialDelaySeconds: 20
+          periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: engie-mca-message-processor
+spec:
+  selector:
+    app: engie-mca-message-processor
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: engie-mca-message-validator
+  labels:
+    app: engie-mca-message-validator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: engie-mca-message-validator
+  template:
+    metadata:
+      labels:
+        app: engie-mca-message-validator
+    spec:
+      containers:
+      - name: app
+        image: image-registry.openshift-image-registry.svc:5000/loek-engie/engie-mca-message-validator:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: engie-mca-config
+        readinessProbe:
+          httpGet:
+            path: /api/validator/health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /api/validator/health
+            port: 8080
+          initialDelaySeconds: 20
+          periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: engie-mca-message-validator
+spec:
+  selector:
+    app: engie-mca-message-validator
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: engie-mca-nack-handler
+  labels:
+    app: engie-mca-nack-handler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: engie-mca-nack-handler
+  template:
+    metadata:
+      labels:
+        app: engie-mca-nack-handler
+    spec:
+      containers:
+      - name: app
+        image: image-registry.openshift-image-registry.svc:5000/loek-engie/engie-mca-nack-handler:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: engie-mca-config
+        readinessProbe:
+          httpGet:
+            path: /api/nack/health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /api/nack/health
+            port: 8080
+          initialDelaySeconds: 20
+          periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: engie-mca-nack-handler
+spec:
+  selector:
+    app: engie-mca-nack-handler
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: engie-mca-output-handler
+  labels:
+    app: engie-mca-output-handler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: engie-mca-output-handler
+  template:
+    metadata:
+      labels:
+        app: engie-mca-output-handler
+    spec:
+      containers:
+      - name: app
+        image: image-registry.openshift-image-registry.svc:5000/loek-engie/engie-mca-output-handler:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: engie-mca-config
+        readinessProbe:
+          httpGet:
+            path: /api/output/health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /api/output/health
+            port: 8080
+          initialDelaySeconds: 20
+          periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: engie-mca-output-handler
+spec:
+  selector:
+    app: engie-mca-output-handler
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080

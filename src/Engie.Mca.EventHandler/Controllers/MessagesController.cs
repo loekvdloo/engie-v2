@@ -19,6 +19,10 @@ namespace Engie.Mca.EventHandler.Controllers;
 [Route("api/[controller]")]
 public class MessagesController : ControllerBase
 {
+    private static readonly string MessageProcessorBaseUrl =
+        Environment.GetEnvironmentVariable("MESSAGE_PROCESSOR_BASE_URL")
+        ?? "http://engie-mca-message-processor:8080";
+
     private readonly MessageStore _store;
     private readonly IHttpClientFactory _httpClientFactory;
     private readonly ILogger<MessagesController> _logger;
@@ -114,7 +118,7 @@ public class MessagesController : ControllerBase
             // ── Keten: stuur door naar MessageProcessor (die doet stap 2A→6B) ─
             _logger.LogInformation("[{MessageId}] → Doorgeven aan MessageProcessor/phase2", messageId);
 
-            using var phase2Req = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5002/api/processor/phase2");
+            using var phase2Req = new HttpRequestMessage(HttpMethod.Post, $"{MessageProcessorBaseUrl}/api/processor/phase2");
             phase2Req.Content = JsonContent.Create(new
             {
                 MessageId     = messageId,
@@ -259,6 +263,50 @@ public class MessagesController : ControllerBase
             MessageTypes           = all.GroupBy(m => m.Type)
                                        .Select(g => new { Type = g.Key.ToString(), Count = g.Count() })
                                        .ToList()
+        });
+    }
+
+    // GET /api/metrics
+    [HttpGet("/api/metrics")]
+    public IActionResult GetMetrics()
+    {
+        var all = _store.GetAll();
+        var delivered = all.Count(m => m.Status == ProcessingStatus.Delivered);
+        var failed = all.Count(m => m.Status == ProcessingStatus.Failed);
+        var ack = all.Count(m => m.ResponseType == ResponseType.Ack);
+        var nack = all.Count(m => m.ResponseType == ResponseType.Nack);
+        var totalErrors = all.Sum(m => m.Errors.Count);
+
+        var durations = all.Where(m => m.ProcessingDurationMs.HasValue)
+            .Select(m => m.ProcessingDurationMs!.Value)
+            .OrderBy(v => v)
+            .ToList();
+
+        double avg = durations.Count > 0 ? durations.Average() : 0;
+        double p95 = durations.Count > 0 ? durations[(int)Math.Ceiling(durations.Count * 0.95) - 1] : 0;
+
+        return Ok(new
+        {
+            TotalMessages = all.Count,
+            DeliveredMessages = delivered,
+            FailedMessages = failed,
+            AckMessages = ack,
+            NackMessages = nack,
+            SuccessRate = all.Count > 0 ? (decimal)delivered / all.Count * 100 : 0,
+            AverageProcessingDurationMs = avg,
+            P95ProcessingDurationMs = p95,
+            TotalErrors = totalErrors,
+            LastProcessedAt = all.OrderByDescending(m => m.ProcessedAt).FirstOrDefault()?.ProcessedAt,
+            MessagesByStatus = all.GroupBy(m => m.Status.ToString())
+                .Select(g => new { Status = g.Key, Count = g.Count() })
+                .ToList(),
+            MessagesByType = all.GroupBy(m => m.Type.ToString())
+                .Select(g => new { Type = g.Key, Count = g.Count() })
+                .ToList(),
+            ErrorsByCode = all.SelectMany(m => m.Errors)
+                .GroupBy(e => e.Code)
+                .Select(g => new { Code = g.Key, Count = g.Count() })
+                .ToList()
         });
     }
 

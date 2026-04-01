@@ -17,6 +17,10 @@ namespace Engie.Mca.MessageValidator.Controllers;
 [Route("api/[controller]")]
 public class ValidatorController : ControllerBase
 {
+    private static readonly string MessageProcessorBaseUrl =
+        Environment.GetEnvironmentVariable("MESSAGE_PROCESSOR_BASE_URL")
+        ?? "http://engie-mca-message-processor:8080";
+
     // Tracks last processed start-time per (EAN, DocumentId) for sequence checks (3F).
     private static readonly ConcurrentDictionary<string, DateTime> LastSeenSequenceByKey = new();
 
@@ -214,7 +218,7 @@ public class ValidatorController : ControllerBase
             bool isValid = errors.Count == 0;
 
             // Doorgeven aan MessageProcessor/phase4 (volgende in de keten)
-            using var p4Req = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5002/api/processor/phase4");
+            using var p4Req = new HttpRequestMessage(HttpMethod.Post, $"{MessageProcessorBaseUrl}/api/processor/phase4");
             p4Req.Content = JsonContent.Create(new
             {
                 MessageId     = messageId,

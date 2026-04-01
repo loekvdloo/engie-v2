@@ -16,6 +16,10 @@ namespace Engie.Mca.NackHandler.Controllers;
 [Route("api/[controller]")]
 public class NackController : ControllerBase
 {
+    private static readonly string OutputHandlerBaseUrl =
+        Environment.GetEnvironmentVariable("OUTPUT_HANDLER_BASE_URL")
+        ?? "http://engie-mca-output-handler:8080";
+
     private static readonly HashSet<string> AllowedResponses = new(StringComparer.OrdinalIgnoreCase)
     {
         "ACK",
@@ -97,7 +101,7 @@ public class NackController : ControllerBase
             var outputStatus     = response == "NACK" ? "Failed"    : "Delivered";
             var outputRespType   = response == "NACK" ? "Nack"      : "Ack";
 
-            using var outReq = new HttpRequestMessage(HttpMethod.Post, "http://localhost:5005/api/output/finalize");
+            using var outReq = new HttpRequestMessage(HttpMethod.Post, $"{OutputHandlerBaseUrl}/api/output/finalize");
             outReq.Content = JsonContent.Create(new
             {
                 MessageId    = messageId,

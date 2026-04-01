@@ -1,5 +1,5 @@
 # Start all ENGIE Microservices Script
-# This script will start all 6 services in separate processes
+# This script starts all services with explicit local ports and local inter-service URLs.
 
 $basePath = "c:\Users\loek\engie\engie-v2\src"
 $services = @(
@@ -23,8 +23,19 @@ foreach ($service in $services) {
     
     # Check if project exists
     if (Test-Path "$($service.Path)\$([System.IO.Path]::GetFileName($service.Path)).csproj") {
+        $serviceLogPath = Join-Path "c:\Users\loek\engie\engie-v2\logs" ($service.Path.Split('\\')[-1])
+        $envBlock = @(
+            "$env:ASPNETCORE_URLS=http://localhost:$($service.Port)",
+            "$env:LOGS_DIRECTORY=c:\Users\loek\engie\engie-v2\logs\blocks",
+            "$env:MESSAGE_PROCESSOR_BASE_URL=http://localhost:5002",
+            "$env:MESSAGE_VALIDATOR_BASE_URL=http://localhost:5003",
+            "$env:NACK_HANDLER_BASE_URL=http://localhost:5004",
+            "$env:OUTPUT_HANDLER_BASE_URL=http://localhost:5005"
+        ) -join "; "
+
         # Start service in background
-        $process = Start-Process PowerShell -ArgumentList "-NoExit", "-Command", "cd '$($service.Path)'; & 'C:\Program Files\dotnet\dotnet.exe' run" -PassThru
+        $command = "$envBlock; cd '$($service.Path)'; & 'C:\Program Files\dotnet\dotnet.exe' run"
+        $process = Start-Process PowerShell -ArgumentList "-NoExit", "-Command", $command -PassThru
         $pids += $process.Id
         Write-Host "   ✓ Started (PID: $($process.Id))" -ForegroundColor Green
         Start-Sleep -Milliseconds 500
@@ -40,7 +51,13 @@ Write-Host "========================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Service Status:" -ForegroundColor Cyan
 $services | ForEach-Object {
-    Write-Host "  $($_.Name): http://localhost:$($_.Port)/api/health" -ForegroundColor Gray
+    switch ($_.Port) {
+        5001 { Write-Host "  $($_.Name): http://localhost:$($_.Port)/api/event/health" -ForegroundColor Gray }
+        5002 { Write-Host "  $($_.Name): http://localhost:$($_.Port)/api/processor/health" -ForegroundColor Gray }
+        5003 { Write-Host "  $($_.Name): http://localhost:$($_.Port)/api/validator/health" -ForegroundColor Gray }
+        5004 { Write-Host "  $($_.Name): http://localhost:$($_.Port)/api/nack/health" -ForegroundColor Gray }
+        5005 { Write-Host "  $($_.Name): http://localhost:$($_.Port)/api/output/health" -ForegroundColor Gray }
+    }
 }
 Write-Host ""
 Write-Host "📝 Logs Location:" -ForegroundColor Cyan

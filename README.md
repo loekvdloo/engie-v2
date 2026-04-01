@@ -258,6 +258,102 @@ Volledige deterministische dekking van alle 33 codes loopt via ForceErrorCodes i
 Deze repo gebruikt meerdere testlagen, elk met eigen doel:
 
 1. Contract tests: snel API contract valideren zonder live worker dependency
+
+## OpenShift deployment
+
+Deze applicatie is geschikt gemaakt voor OpenShift met:
+
+- env-based service discovery (geen localhost-hardcoding)
+- container-vriendelijke poortbinding via `ASPNETCORE_URLS`
+- container-vriendelijk logpad via `LOGS_DIRECTORY`
+- generieke Dockerfile voor alle services
+
+Bestanden:
+
+- `Dockerfile.service`
+- `openshift/buildconfigs.yaml`
+- `openshift/configmap.yaml`
+- `openshift/deployments.yaml`
+
+### 1. Voorbereiding
+
+Log in en kies je project:
+
+```bash
+oc login <openshift-api-url>
+oc new-project engie-mca
+```
+
+### 2. Build configs aanmaken
+
+1. Pas eerst in `openshift/buildconfigs.yaml` de waarde `REPLACE_WITH_YOUR_GIT_URL` aan naar je echte Git repository URL.
+2. Apply daarna:
+
+```bash
+oc apply -f openshift/buildconfigs.yaml
+```
+
+### 3. Images builden
+
+Start alle builds:
+
+```bash
+oc start-build engie-mca-event-handler --follow
+oc start-build engie-mca-message-processor --follow
+oc start-build engie-mca-message-validator --follow
+oc start-build engie-mca-nack-handler --follow
+oc start-build engie-mca-output-handler --follow
+```
+
+### 4. Runtime resources deployen
+
+```bash
+oc apply -f openshift/configmap.yaml
+oc apply -f openshift/deployments.yaml
+```
+
+### 5. Controleren
+
+```bash
+oc get pods
+oc get svc
+oc get route
+```
+
+EventHandler route ophalen:
+
+```bash
+oc get route engie-mca-event-handler -o jsonpath='{.spec.host}'
+```
+
+Test health endpoint:
+
+```bash
+curl http://<route-host>/api/event/health
+```
+
+### 6. End-to-end test
+
+Gebruik je bestaande request naar:
+
+- `POST http://<route-host>/api/messages`
+
+### Veelvoorkomende issues
+
+- Build faalt op Git URL: controleer `REPLACE_WITH_YOUR_GIT_URL`.
+- Pods in CrashLoopBackOff: check logs met `oc logs deployment/<naam> --tail=200`.
+- Ketenfout tussen services: controleer of services bestaan met `oc get svc` en of configmap is geladen.
+
+## CI/CD pipelines
+
+Deze repo bevat nu automatische pipelines:
+
+- `CI` workflow: build + tests op elke push en pull request
+- `Deploy OpenShift` workflow: test-gated deploy naar OpenShift op `main` of handmatig
+
+Zie voor volledige setup en vereiste secrets:
+
+- `docs/OPENSHIFT-CICD.md`
 2. API smoke scripts: basis endpointgedrag en stappen ophalen
 3. Natural fault-code tests: realistische validatiepaden
 4. All fault-code tests: volledige codecatalog dekking
