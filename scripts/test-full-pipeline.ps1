@@ -22,9 +22,27 @@ function Invoke-Message {
         [string]$Xml
     )
     $body = @{
-        messageId   = $MessageId
-        correlationId = "corr-$MessageId"
-        xmlContent  = $Xml
+        id                       = [guid]::NewGuid().ToString()
+        type                     = "mma.msg.new"
+        createtime               = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
+        source                   = "ENTEM"
+        msgsender                = "8712423009196"
+        msgsenderrole            = "DDK"
+        msgreceiver              = "8716867999990"
+        msgreceiverrole          = "DDM"
+        msgtype                  = "AllocationServiceNotification"
+        msgsubtype               = "N101"
+        msgid                    = $MessageId
+        msgcorrelationid         = "corr-$MessageId"
+        msgcreationtime          = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
+        msgversion               = "1.2"
+        msgpayloadid             = [guid]::NewGuid().ToString()
+        msgcontenttype           = "application/xml"
+        msgpayload               = $Xml
+        entemsendacknowledgement = $true
+        entemsendtooutput        = $true
+        entemvalidationresult    = @()
+        entemtimestamp           = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
     } | ConvertTo-Json -Depth 3
 
     try {

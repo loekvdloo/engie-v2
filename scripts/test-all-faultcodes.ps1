@@ -26,7 +26,30 @@ $stamp = Get-Date -Format "HHmmss"
 #  Helpers 
 
 function Send-Msg([string]$id, [string]$xml) {
-    $body = "{`"messageId`":`"$id`",`"xmlContent`":`"$xml`"}"
+    $envelope = @{
+        id                       = [guid]::NewGuid().ToString()
+        type                     = "mma.msg.new"
+        createtime               = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
+        source                   = "ENTEM"
+        msgsender                = "8712423009196"
+        msgsenderrole            = "DDK"
+        msgreceiver              = "8716867999990"
+        msgreceiverrole          = "DDM"
+        msgtype                  = "AllocationServiceNotification"
+        msgsubtype               = "N101"
+        msgid                    = $id
+        msgcorrelationid         = $id
+        msgcreationtime          = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
+        msgversion               = "1.2"
+        msgpayloadid             = [guid]::NewGuid().ToString()
+        msgcontenttype           = "application/xml"
+        msgpayload               = $xml
+        entemsendacknowledgement = $true
+        entemsendtooutput        = $true
+        entemvalidationresult    = @()
+        entemtimestamp           = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
+    }
+    $body = $envelope | ConvertTo-Json -Compress
     try {
         return (Invoke-WebRequest -Uri $apiUrl -Method Post -ContentType 'application/json' -Body $body -UseBasicParsing -TimeoutSec 20 -ErrorAction Stop).Content | ConvertFrom-Json
     } catch {

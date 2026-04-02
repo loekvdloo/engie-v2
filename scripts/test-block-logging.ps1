@@ -11,8 +11,17 @@ function Send-TestMessage {
     )
 
     $body = @{
-        messageId = $MessageId
-        xmlContent = $XmlContent
+        id                       = [guid]::NewGuid().ToString()
+        type                     = "mma.msg.new"
+        source                   = "ENTEM"
+        msgtype                  = "AllocationServiceNotification"
+        msgsubtype               = "N101"
+        msgid                    = $MessageId
+        msgcorrelationid         = $MessageId
+        msgpayload               = $XmlContent
+        entemsendacknowledgement = $true
+        entemsendtooutput        = $true
+        entemvalidationresult    = @()
     } | ConvertTo-Json
 
     try {

@@ -20,8 +20,27 @@ public sealed class MessagesContractTests : IClassFixture<ContractWebApplication
         {
             Content = JsonContent.Create(new
             {
-                messageId = "contract-001",
-                xmlContent = "<AllocationSeries><EAN>8712345678901</EAN><DocumentID>DOC-001</DocumentID><Quantity>10</Quantity></AllocationSeries>"
+                id = Guid.NewGuid().ToString(),
+                type = "mma.msg.new",
+                createtime = DateTime.UtcNow.ToString("o"),
+                source = "ENTEM",
+                msgsender = "8712423009196",
+                msgsenderrole = "DDK",
+                msgreceiver = "8716867999990",
+                msgreceiverrole = "DDM",
+                msgtype = "AllocationServiceNotification",
+                msgsubtype = "N101",
+                msgid = "contract-001",
+                msgcorrelationid = "contract-correlation-001",
+                msgcreationtime = DateTime.UtcNow.ToString("o"),
+                msgversion = "1.2",
+                msgpayloadid = Guid.NewGuid().ToString(),
+                msgcontenttype = "application/xml",
+                msgpayload = "<AllocationSeries><EAN>8712345678901</EAN><DocumentID>DOC-001</DocumentID><Quantity>10</Quantity></AllocationSeries>",
+                entemsendacknowledgement = true,
+                entemsendtooutput = true,
+                entemvalidationresult = Array.Empty<object>(),
+                entemtimestamp = DateTime.UtcNow.ToString("o")
             })
         };
         request.Headers.Add("X-Correlation-ID", "contract-correlation-001");
@@ -44,9 +63,17 @@ public sealed class MessagesContractTests : IClassFixture<ContractWebApplication
     {
         await _client.PostAsJsonAsync("/api/messages", new
         {
-            messageId = "contract-002",
-            correlationId = "contract-correlation-002",
-            xmlContent = "<AllocationSeries><EAN>8712345678901</EAN><DocumentID>DOC-002</DocumentID><Quantity>25</Quantity></AllocationSeries>"
+            id = Guid.NewGuid().ToString(),
+            type = "mma.msg.new",
+            source = "ENTEM",
+            msgtype = "AllocationServiceNotification",
+            msgsubtype = "N101",
+            msgid = "contract-002",
+            msgcorrelationid = "contract-correlation-002",
+            msgpayload = "<AllocationSeries><EAN>8712345678901</EAN><DocumentID>DOC-002</DocumentID><Quantity>25</Quantity></AllocationSeries>",
+            entemsendacknowledgement = true,
+            entemsendtooutput = true,
+            entemvalidationresult = Array.Empty<object>()
         });
 
         var response = await _client.GetAsync("/api/messages/contract-002");
@@ -66,9 +93,17 @@ public sealed class MessagesContractTests : IClassFixture<ContractWebApplication
     {
         await _client.PostAsJsonAsync("/api/messages", new
         {
-            messageId = "contract-003",
-            correlationId = "contract-correlation-003",
-            xmlContent = "<AllocationSeries><EAN>8712345678901</EAN><DocumentID>DOC-003</DocumentID><Quantity>25</Quantity></AllocationSeries>"
+            id = Guid.NewGuid().ToString(),
+            type = "mma.msg.new",
+            source = "ENTEM",
+            msgtype = "AllocationServiceNotification",
+            msgsubtype = "N101",
+            msgid = "contract-003",
+            msgcorrelationid = "contract-correlation-003",
+            msgpayload = "<AllocationSeries><EAN>8712345678901</EAN><DocumentID>DOC-003</DocumentID><Quantity>25</Quantity></AllocationSeries>",
+            entemsendacknowledgement = true,
+            entemsendtooutput = true,
+            entemvalidationresult = Array.Empty<object>()
         });
 
         var response = await _client.GetAsync("/api/metrics");

@@ -86,6 +86,28 @@ public class OutputController : ControllerBase
 
             return Ok(new
             {
+                // Originele envelope-velden
+                id                       = request.EnvelopeId,
+                type                     = request.EnvelopeType,
+                createtime               = request.EnvelopeCreatetime,
+                source                   = request.EnvelopeSource,
+                msgsender                = request.EnvelopeMsgsender,
+                msgsenderrole            = request.EnvelopeMsgsenderrole,
+                msgreceiver              = request.EnvelopeMsgreceiver,
+                msgreceiverrole          = request.EnvelopeMsgreceiverrole,
+                msgtype                  = request.EnvelopeMsgtype,
+                msgsubtype               = request.EnvelopeMsgsubtype,
+                msgid                    = messageId,
+                msgcorrelationid         = request.CorrelationId ?? messageId,
+                msgcreationtime          = request.EnvelopeMsgcreationtime,
+                msgversion               = request.EnvelopeMsgversion,
+                msgpayloadid             = request.EnvelopeMsgpayloadid,
+                msgcontenttype           = request.EnvelopeMsgcontenttype,
+                entemsendacknowledgement = request.EnvelopeEntemsendacknowledgement,
+                entemsendtooutput        = request.EnvelopeEntemsendtooutput,
+                entemvalidationresult    = request.EnvelopeEntemvalidationresult,
+                entemtimestamp           = request.EnvelopeEntemtimestamp,
+                // Verwerkingsresultaat
                 messageId,
                 correlationId = request.CorrelationId ?? messageId,
                 status,
@@ -116,6 +138,31 @@ public class OutputRequest
     public string? CorrelationId { get; set; }
     public string? ResponseType { get; set; }
     public List<string>? ErrorCodes { get; set; }
+    // Volledige envelope-velden
+    public string? EnvelopeId { get; set; }
+    public string? EnvelopeType { get; set; }
+    public string? EnvelopeCreatetime { get; set; }
+    public string? EnvelopeSource { get; set; }
+    public string? EnvelopeMsgsender { get; set; }
+    public string? EnvelopeMsgsenderrole { get; set; }
+    public string? EnvelopeMsgreceiver { get; set; }
+    public string? EnvelopeMsgreceiverrole { get; set; }
+    public string? EnvelopeMsgtype { get; set; }
+    public string? EnvelopeMsgsubtype { get; set; }
+    public string? EnvelopeMsgcreationtime { get; set; }
+    public string? EnvelopeMsgversion { get; set; }
+    public string? EnvelopeMsgpayloadid { get; set; }
+    public string? EnvelopeMsgcontenttype { get; set; }
+    public bool EnvelopeEntemsendacknowledgement { get; set; }
+    public bool EnvelopeEntemsendtooutput { get; set; }
+    public List<OutputEnvelopeValidationItem>? EnvelopeEntemvalidationresult { get; set; }
+    public string? EnvelopeEntemtimestamp { get; set; }
+}
+
+public class OutputEnvelopeValidationItem
+{
+    public string Code { get; set; } = string.Empty;
+    public string Text { get; set; } = string.Empty;
 }
 
 public record DeliveryRecord(string MessageId, string Status, DateTime DeliveredAt);

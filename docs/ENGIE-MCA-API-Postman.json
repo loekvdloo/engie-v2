@@ -37,7 +37,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"messageId\": \"postman-valid-001\",\n  \"xmlContent\": \"<AllocationSeries><DocumentID>DOC-POSTMAN-001</DocumentID><EAN>871234567890100000</EAN><Quantity>100</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\"\n}"
+              "raw": "{\n  \"id\": \"a1b2c3d4-0001-4000-8000-000000000001\",\n  \"type\": \"mma.msg.new\",\n  \"source\": \"ENTEM\",\n  \"msgsender\": \"8712423009196\",\n  \"msgsenderrole\": \"DDK\",\n  \"msgreceiver\": \"8716867999990\",\n  \"msgreceiverrole\": \"DDM\",\n  \"msgtype\": \"AllocationServiceNotification\",\n  \"msgsubtype\": \"N101\",\n  \"msgid\": \"postman-valid-001\",\n  \"msgcorrelationid\": \"postman-valid-001\",\n  \"msgversion\": \"1.2\",\n  \"msgcontenttype\": \"application/xml\",\n  \"msgpayload\": \"<AllocationSeries><DocumentID>DOC-POSTMAN-001</DocumentID><EAN>871234567890100000</EAN><Quantity>100</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\",\n  \"entemsendacknowledgement\": true,\n  \"entemsendtooutput\": true,\n  \"entemvalidationresult\": []\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/messages",
@@ -75,7 +75,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"messageId\": \"postman-invalidxml-001\",\n  \"xmlContent\": \"geen xml\"\n}"
+              "raw": "{\n  \"id\": \"a1b2c3d4-0002-4000-8000-000000000002\",\n  \"type\": \"mma.msg.new\",\n  \"source\": \"ENTEM\",\n  \"msgtype\": \"AllocationServiceNotification\",\n  \"msgid\": \"postman-invalidxml-001\",\n  \"msgcorrelationid\": \"postman-invalidxml-001\",\n  \"msgpayload\": \"geen xml\",\n  \"entemsendacknowledgement\": true,\n  \"entemsendtooutput\": true,\n  \"entemvalidationresult\": []\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/messages",
@@ -108,7 +108,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"messageId\": \"postman-unknowntype-001\",\n  \"xmlContent\": \"<UnknownType><DocumentID>DOC-U-001</DocumentID><EAN>871234567890100000</EAN><Quantity>10</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></UnknownType>\"\n}"
+              "raw": "{\n  \"id\": \"a1b2c3d4-0003-4000-8000-000000000003\",\n  \"type\": \"mma.msg.new\",\n  \"source\": \"ENTEM\",\n  \"msgtype\": \"AllocationServiceNotification\",\n  \"msgid\": \"postman-unknowntype-001\",\n  \"msgcorrelationid\": \"postman-unknowntype-001\",\n  \"msgpayload\": \"<UnknownType><DocumentID>DOC-U-001</DocumentID><EAN>871234567890100000</EAN><Quantity>10</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></UnknownType>\",\n  \"entemsendacknowledgement\": true,\n  \"entemsendtooutput\": true,\n  \"entemvalidationresult\": []\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/messages",
@@ -129,7 +129,7 @@
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"messageId\": \"postman-686-001\",\n  \"xmlContent\": \"<AllocationSeries><DocumentID>DOC-686</DocumentID><EAN></EAN><Quantity>100</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\"\n}"
+              "raw": "{\n  \"id\": \"a1b2c3d4-0004-4000-8000-000000000004\",\n  \"type\": \"mma.msg.new\",\n  \"source\": \"ENTEM\",\n  \"msgtype\": \"AllocationServiceNotification\",\n  \"msgid\": \"postman-686-001\",\n  \"msgcorrelationid\": \"postman-686-001\",\n  \"msgpayload\": \"<AllocationSeries><DocumentID>DOC-686</DocumentID><EAN></EAN><Quantity>100</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\",\n  \"entemsendacknowledgement\": true,\n  \"entemsendtooutput\": true,\n  \"entemvalidationresult\": []\n}"
             },
             "url": { "raw": "{{base_url}}/api/messages", "host": ["{{base_url}}"], "path": ["api", "messages"] }
           }
@@ -141,7 +141,7 @@
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"messageId\": \"postman-676-001\",\n  \"xmlContent\": \"<AllocationSeries><DocumentID></DocumentID><EAN>871234567890100000</EAN><Quantity>100</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\"\n}"
+              "raw": "{\n  \"id\": \"a1b2c3d4-0005-4000-8000-000000000005\",\n  \"type\": \"mma.msg.new\",\n  \"source\": \"ENTEM\",\n  \"msgtype\": \"AllocationServiceNotification\",\n  \"msgid\": \"postman-676-001\",\n  \"msgcorrelationid\": \"postman-676-001\",\n  \"msgpayload\": \"<AllocationSeries><DocumentID></DocumentID><EAN>871234567890100000</EAN><Quantity>100</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\",\n  \"entemsendacknowledgement\": true,\n  \"entemsendtooutput\": true,\n  \"entemvalidationresult\": []\n}"
             },
             "url": { "raw": "{{base_url}}/api/messages", "host": ["{{base_url}}"], "path": ["api", "messages"] }
           }
@@ -153,7 +153,7 @@
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"messageId\": \"postman-760-001\",\n  \"xmlContent\": \"<AllocationSeries><DocumentID>DOC-760</DocumentID><EAN>871234567890100000</EAN><Quantity>100</Quantity><StartDateTime>2030-01-01T00:00:00Z</StartDateTime><EndDateTime>2030-01-01T01:00:00Z</EndDateTime></AllocationSeries>\"\n}"
+              "raw": "{\n  \"id\": \"a1b2c3d4-0006-4000-8000-000000000006\",\n  \"type\": \"mma.msg.new\",\n  \"source\": \"ENTEM\",\n  \"msgtype\": \"AllocationServiceNotification\",\n  \"msgid\": \"postman-760-001\",\n  \"msgcorrelationid\": \"postman-760-001\",\n  \"msgpayload\": \"<AllocationSeries><DocumentID>DOC-760</DocumentID><EAN>871234567890100000</EAN><Quantity>100</Quantity><StartDateTime>2030-01-01T00:00:00Z</StartDateTime><EndDateTime>2030-01-01T01:00:00Z</EndDateTime></AllocationSeries>\",\n  \"entemsendacknowledgement\": true,\n  \"entemsendtooutput\": true,\n  \"entemvalidationresult\": []\n}"
             },
             "url": { "raw": "{{base_url}}/api/messages", "host": ["{{base_url}}"], "path": ["api", "messages"] }
           }
@@ -165,7 +165,7 @@
             "header": [{ "key": "Content-Type", "value": "application/json" }],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"messageId\": \"postman-772-001\",\n  \"xmlContent\": \"<AllocationSeries><DocumentID>DOC-772</DocumentID><EAN>871234567890100000</EAN><Quantity>-1</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\"\n}"
+              "raw": "{\n  \"id\": \"a1b2c3d4-0007-4000-8000-000000000007\",\n  \"type\": \"mma.msg.new\",\n  \"source\": \"ENTEM\",\n  \"msgtype\": \"AllocationServiceNotification\",\n  \"msgid\": \"postman-772-001\",\n  \"msgcorrelationid\": \"postman-772-001\",\n  \"msgpayload\": \"<AllocationSeries><DocumentID>DOC-772</DocumentID><EAN>871234567890100000</EAN><Quantity>-1</Quantity><StartDateTime>2026-03-28T08:00:00Z</StartDateTime><EndDateTime>2026-03-28T09:00:00Z</EndDateTime></AllocationSeries>\",\n  \"entemsendacknowledgement\": true,\n  \"entemsendtooutput\": true,\n  \"entemvalidationresult\": []\n}"
             },
             "url": { "raw": "{{base_url}}/api/messages", "host": ["{{base_url}}"], "path": ["api", "messages"] }
           }

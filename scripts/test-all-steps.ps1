@@ -1,6 +1,15 @@
 $body = @{
-    messageId = "steps-test-001"
-    xmlContent = '<?xml version="1.0"?><AllocationSeries><EAN>8714568009996</EAN><Quantity>100</Quantity></AllocationSeries>'
+    id                       = [guid]::NewGuid().ToString()
+    type                     = "mma.msg.new"
+    source                   = "ENTEM"
+    msgtype                  = "AllocationServiceNotification"
+    msgsubtype               = "N101"
+    msgid                    = "steps-test-001"
+    msgcorrelationid         = "steps-test-001"
+    msgpayload               = '<?xml version="1.0"?><AllocationSeries><EAN>8714568009996</EAN><Quantity>100</Quantity></AllocationSeries>'
+    entemsendacknowledgement = $true
+    entemsendtooutput        = $true
+    entemvalidationresult    = @()
 } | ConvertTo-Json
 
 Start-Sleep -Seconds 1

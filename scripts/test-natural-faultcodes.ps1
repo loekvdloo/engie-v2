@@ -26,9 +26,17 @@ function New-RequestBody {
 "@
 
     return @{
-        messageId = $MessageId
-        correlationId = "natural-$MessageId"
-        xmlContent = $xml
+        id                       = [guid]::NewGuid().ToString()
+        type                     = "mma.msg.new"
+        source                   = "ENTEM"
+        msgtype                  = "AllocationServiceNotification"
+        msgsubtype               = "N101"
+        msgid                    = $MessageId
+        msgcorrelationid         = "natural-$MessageId"
+        msgpayload               = $xml
+        entemsendacknowledgement = $true
+        entemsendtooutput        = $true
+        entemvalidationresult    = @()
     } | ConvertTo-Json -Depth 5
 }
 

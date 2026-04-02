@@ -3,8 +3,17 @@ Write-Host "=== TESTING UPDATED API WITH FILE LOGGING ===" -ForegroundColor Cyan
 # Test 1: Valid message
 Write-Host "`n[01/04] Processing VALID message..." -ForegroundColor Yellow
 $body1 = @{
-    messageId = "test-logging-valid"
-    xmlContent = '<?xml version="1.0"?><AllocationSeries><EAN>8714568009996</EAN><Quantity>100</Quantity></AllocationSeries>'
+    id                       = [guid]::NewGuid().ToString()
+    type                     = "mma.msg.new"
+    source                   = "ENTEM"
+    msgtype                  = "AllocationServiceNotification"
+    msgsubtype               = "N101"
+    msgid                    = "test-logging-valid"
+    msgcorrelationid         = "test-logging-valid"
+    msgpayload               = '<?xml version="1.0"?><AllocationSeries><EAN>8714568009996</EAN><Quantity>100</Quantity></AllocationSeries>'
+    entemsendacknowledgement = $true
+    entemsendtooutput        = $true
+    entemvalidationresult    = @()
 } | ConvertTo-Json
 
 Start-Sleep -Seconds 1
@@ -15,8 +24,17 @@ Write-Host "✓ Valid message: $($res1.status) + $($res1.responseType)" -Foregro
 # Test 2: Invalid message
 Write-Host "`n[02/04] Processing INVALID message (bad EAN)..." -ForegroundColor Yellow
 $body2 = @{
-    messageId = "test-logging-invalid"
-    xmlContent = '<?xml version="1.0"?><AllocationSeries><EAN>BADEAN</EAN></AllocationSeries>'
+    id                       = [guid]::NewGuid().ToString()
+    type                     = "mma.msg.new"
+    source                   = "ENTEM"
+    msgtype                  = "AllocationServiceNotification"
+    msgsubtype               = "N101"
+    msgid                    = "test-logging-invalid"
+    msgcorrelationid         = "test-logging-invalid"
+    msgpayload               = '<?xml version="1.0"?><AllocationSeries><EAN>BADEAN</EAN></AllocationSeries>'
+    entemsendacknowledgement = $true
+    entemsendtooutput        = $true
+    entemvalidationresult    = @()
 } | ConvertTo-Json
 
 $r2 = Invoke-WebRequest -Uri "http://localhost:5001/api/messages" -Method POST -ContentType "application/json" -Body $body2

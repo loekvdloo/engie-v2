@@ -108,7 +108,26 @@ public class NackController : ControllerBase
                 Status       = outputStatus,
                 CorrelationId = request.CorrelationId,
                 ResponseType  = outputRespType,
-                ErrorCodes    = request.ErrorCodes ?? new List<string>()
+                ErrorCodes    = request.ErrorCodes ?? new List<string>(),
+                // Envelope doorsturen
+                EnvelopeId                         = request.EnvelopeId,
+                EnvelopeType                       = request.EnvelopeType,
+                EnvelopeCreatetime                 = request.EnvelopeCreatetime,
+                EnvelopeSource                     = request.EnvelopeSource,
+                EnvelopeMsgsender                  = request.EnvelopeMsgsender,
+                EnvelopeMsgsenderrole              = request.EnvelopeMsgsenderrole,
+                EnvelopeMsgreceiver                = request.EnvelopeMsgreceiver,
+                EnvelopeMsgreceiverrole            = request.EnvelopeMsgreceiverrole,
+                EnvelopeMsgtype                    = request.EnvelopeMsgtype,
+                EnvelopeMsgsubtype                 = request.EnvelopeMsgsubtype,
+                EnvelopeMsgcreationtime            = request.EnvelopeMsgcreationtime,
+                EnvelopeMsgversion                 = request.EnvelopeMsgversion,
+                EnvelopeMsgpayloadid               = request.EnvelopeMsgpayloadid,
+                EnvelopeMsgcontenttype             = request.EnvelopeMsgcontenttype,
+                EnvelopeEntemsendacknowledgement   = request.EnvelopeEntemsendacknowledgement,
+                EnvelopeEntemsendtooutput           = request.EnvelopeEntemsendtooutput,
+                EnvelopeEntemvalidationresult       = request.EnvelopeEntemvalidationresult,
+                EnvelopeEntemtimestamp              = request.EnvelopeEntemtimestamp
             });
             outReq.Headers.Add("X-Correlation-ID", request.CorrelationId ?? messageId);
             _logger.LogInformation("[{MessageId}] → Doorgeven aan OutputHandler", messageId);
@@ -136,4 +155,29 @@ public class NackRequest
     public string Response { get; set; } = "ACK"; // ACK or NACK
     public string? CorrelationId { get; set; }
     public List<string>? ErrorCodes { get; set; }
+    // Volledige envelope-velden
+    public string? EnvelopeId { get; set; }
+    public string? EnvelopeType { get; set; }
+    public string? EnvelopeCreatetime { get; set; }
+    public string? EnvelopeSource { get; set; }
+    public string? EnvelopeMsgsender { get; set; }
+    public string? EnvelopeMsgsenderrole { get; set; }
+    public string? EnvelopeMsgreceiver { get; set; }
+    public string? EnvelopeMsgreceiverrole { get; set; }
+    public string? EnvelopeMsgtype { get; set; }
+    public string? EnvelopeMsgsubtype { get; set; }
+    public string? EnvelopeMsgcreationtime { get; set; }
+    public string? EnvelopeMsgversion { get; set; }
+    public string? EnvelopeMsgpayloadid { get; set; }
+    public string? EnvelopeMsgcontenttype { get; set; }
+    public bool EnvelopeEntemsendacknowledgement { get; set; }
+    public bool EnvelopeEntemsendtooutput { get; set; }
+    public List<NackEnvelopeValidationItem>? EnvelopeEntemvalidationresult { get; set; }
+    public string? EnvelopeEntemtimestamp { get; set; }
+}
+
+public class NackEnvelopeValidationItem
+{
+    public string Code { get; set; } = string.Empty;
+    public string Text { get; set; } = string.Empty;
 }

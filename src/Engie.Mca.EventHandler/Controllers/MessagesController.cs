@@ -38,13 +38,13 @@ public class MessagesController : ControllerBase
 
     // POST api/messages — doet stap 1A-1F, dan keten naar MessageProcessor (2A-2E) → ... → OutputHandler (6B)
     [HttpPost]
-    public async Task<IActionResult> ProcessMessage([FromBody] ProcessMessageRequest request)
+    public async Task<IActionResult> ProcessMessage([FromBody] EnvelopeEvent request)
     {
-        var messageId     = request?.MessageId ?? Guid.NewGuid().ToString();
+        var messageId     = request?.Msgid ?? Guid.NewGuid().ToString();
         var correlationId = Request.Headers["X-Correlation-ID"].FirstOrDefault()
-                            ?? request?.CorrelationId
+                            ?? request?.Msgcorrelationid
                             ?? HttpContext.TraceIdentifier;
-        var xmlContent = request?.XmlContent ?? request?.Xml ?? string.Empty;
+        var xmlContent = request?.Msgpayload ?? string.Empty;
         var receivedAt = DateTime.UtcNow;
 
         Response.Headers["X-Correlation-ID"] = correlationId;
@@ -63,22 +63,24 @@ public class MessagesController : ControllerBase
             // ── Kolom 1 – Event Handler (1A-1F) ─────────────────────────
             _logger.LogInformation("[{MessageId}] === KOLOM 1: EVENT HANDLER (1A-1F) ===", messageId);
 
-            // 1A: MessageId aanwezig
-            if (string.IsNullOrWhiteSpace(request?.MessageId))
+            // 1A: Msgid aanwezig
+            if (string.IsNullOrWhiteSpace(request?.Msgid))
             {
-                errors.Add(new ValidationError("001", "MessageId is verplicht", "1A"));
+                errors.Add(new ValidationError("001", "Msgid is verplicht", "1A"));
                 return BuildFailedResult(messageId, correlationId, steps, errors, receivedAt, sw);
             }
-            _logger.LogInformation("[{MessageId}] ✓ 1A: Ontvang event", messageId);
+            _logger.LogInformation("[{MessageId}] ✓ 1A: Ontvang event (source={Source}, type={Type})",
+                messageId, request.Source ?? "?", request.Type ?? "?");
             steps.Add(("1A", "Ontvang event"));
 
-            // 1B: Content aanwezig
+            // 1B: Msgpayload aanwezig
             if (string.IsNullOrWhiteSpace(xmlContent))
             {
-                errors.Add(new ValidationError("001", "XmlContent is verplicht", "1B"));
+                errors.Add(new ValidationError("001", "Msgpayload is verplicht", "1B"));
                 return BuildFailedResult(messageId, correlationId, steps, errors, receivedAt, sw);
             }
-            _logger.LogInformation("[{MessageId}] ✓ 1B: Technische ontvangstbevestiging", messageId);
+            _logger.LogInformation("[{MessageId}] ✓ 1B: Technische ontvangstbevestiging (sender={Sender}, receiver={Receiver})",
+                messageId, request.Msgsender ?? "?", request.Msgreceiver ?? "?");
             steps.Add(("1B", "Technische ontvangstbevestiging"));
 
             // 1C: XML parsen
@@ -96,20 +98,21 @@ public class MessagesController : ControllerBase
             _logger.LogInformation("[{MessageId}] ✓ 1D: Ontvangsttijd: {ReceivedAt:O}", messageId, receivedAt);
             steps.Add(("1D", "Logging van ontvangsttijd"));
 
-            // 1E: Berichttype
-            var messageType = DetermineMessageType(xmlContent);
+            // 1E: Berichttype uit envelope (msgtype + msgsubtype)
+            var messageType = DetermineMessageTypeFromEnvelope(request.Msgtype, xmlContent);
             using var typeScope = LogContext.PushProperty("MessageType", messageType.ToString());
             if (messageType == MessageType.Unknown)
             {
-                errors.Add(new ValidationError("001", "Onbekend berichttype", "1E"));
+                errors.Add(new ValidationError("001", $"Onbekend berichttype: {request.Msgtype}", "1E"));
                 return BuildFailedResult(messageId, correlationId, steps, errors, receivedAt, sw);
             }
-            _logger.LogInformation("[{MessageId}] ✓ 1E: Berichttype: {Type}", messageId, messageType);
+            _logger.LogInformation("[{MessageId}] ✓ 1E: Berichttype: {Type} (msgsubtype={Subtype})",
+                messageId, messageType, request.Msgsubtype ?? "?");
             steps.Add(("1E", $"Berichttype geïdentificeerd: {messageType}"));
 
             // 1F: Root-element check
             var rootName = xmlDoc.Root?.Name.LocalName ?? string.Empty;
-            if (!rootName.Contains(messageType.ToString(), StringComparison.OrdinalIgnoreCase))
+            if (!IsRootElementValid(messageType, rootName))
             {
                 errors.Add(new ValidationError("001", $"Root-element <{rootName}> matcht berichttype niet", "1F"));
                 return BuildFailedResult(messageId, correlationId, steps, errors, receivedAt, sw);
@@ -131,7 +134,25 @@ public class MessagesController : ControllerBase
                 DocumentId    = ExtractField(xmlContent, "DocumentID"),
                 Quantity      = ExtractDecimal(xmlContent, "Quantity"),
                 StartDateTime = ExtractDateTime(xmlContent, "StartDateTime"),
-                EndDateTime   = ExtractDateTime(xmlContent, "EndDateTime")
+                EndDateTime   = ExtractDateTime(xmlContent, "EndDateTime"),
+                // Volledige envelope doorsturen
+                EnvelopeId                         = request.Id,
+                EnvelopeType                       = request.Type,
+                EnvelopeCreatetime                 = request.Createtime,
+                EnvelopeSource                     = request.Source,
+                EnvelopeMsgsender                  = request.Msgsender,
+                EnvelopeMsgsenderrole              = request.Msgsenderrole,
+                EnvelopeMsgreceiver                = request.Msgreceiver,
+                EnvelopeMsgreceiverrole            = request.Msgreceiverrole,
+                EnvelopeMsgsubtype                 = request.Msgsubtype,
+                EnvelopeMsgcreationtime            = request.Msgcreationtime,
+                EnvelopeMsgversion                 = request.Msgversion,
+                EnvelopeMsgpayloadid               = request.Msgpayloadid,
+                EnvelopeMsgcontenttype             = request.Msgcontenttype,
+                EnvelopeEntemsendacknowledgement   = request.Entemsendacknowledgement,
+                EnvelopeEntemsendtooutput           = request.Entemsendtooutput,
+                EnvelopeEntemvalidationresult       = request.Entemvalidationresult?.Select(v => new { v.Code, v.Text }).ToList(),
+                EnvelopeEntemtimestamp              = request.Entemtimestamp
             });
             phase2Req.Headers.Add("X-Correlation-ID", correlationId);
 
@@ -310,13 +331,17 @@ public class MessagesController : ControllerBase
             return NotFound(new ErrorResponse("004", $"Bericht {messageId} niet gevonden"));
 
         // Verwerk opnieuw met een nieuw suffix
-        var reprocessRequest = new ProcessMessageRequest(
-            MessageId:   messageId + "-retry",
-            XmlContent:  null,
-            Xml:         null,
-            CorrelationId: existing.CorrelationId
-        );
-        return await ProcessMessage(reprocessRequest);
+        var reprocessEnvelope = new EnvelopeEvent
+        {
+            Id            = Guid.NewGuid().ToString(),
+            Type          = "mma.msg.new",
+            Source        = "ENTEM",
+            Msgid         = messageId + "-retry",
+            Msgcorrelationid = existing.CorrelationId,
+            Msgtype       = existing.Type.ToString(),
+            Msgpayload    = string.Empty
+        };
+        return await ProcessMessage(reprocessEnvelope);
     }
 
     // ── Private helpers ───────────────────────────────────────────────────
@@ -357,6 +382,39 @@ public class MessagesController : ControllerBase
         if (xml.Contains("AllocationSeries", StringComparison.OrdinalIgnoreCase))
             return MessageType.AllocationSeries;
         return MessageType.Unknown;
+    }
+
+    private static MessageType DetermineMessageTypeFromEnvelope(string? msgtype, string? xmlContent)
+    {
+        // Probeer eerst het envelope msgtype-veld
+        if (!string.IsNullOrWhiteSpace(msgtype))
+        {
+            if (msgtype.Equals("AllocationServiceNotification", StringComparison.OrdinalIgnoreCase))
+                return MessageType.AllocationServiceNotification;
+            if (msgtype.Equals("AllocationSeries", StringComparison.OrdinalIgnoreCase))
+                return MessageType.AllocationSeries;
+            if (msgtype.Equals("AllocationFactorSeries", StringComparison.OrdinalIgnoreCase))
+                return MessageType.AllocationFactorSeries;
+            if (msgtype.Equals("AggregatedAllocationSeries", StringComparison.OrdinalIgnoreCase))
+                return MessageType.AggregatedAllocationSeries;
+        }
+
+        // Fallback: bepaal type uit XML content
+        if (!string.IsNullOrWhiteSpace(xmlContent))
+            return DetermineMessageType(xmlContent);
+
+        return MessageType.Unknown;
+    }
+
+    private static bool IsRootElementValid(MessageType type, string rootName)
+    {
+        if (string.IsNullOrWhiteSpace(rootName)) return false;
+        return type switch
+        {
+            MessageType.AllocationServiceNotification =>
+                rootName.Contains("Allocation", StringComparison.OrdinalIgnoreCase),
+            _ => rootName.Contains(type.ToString(), StringComparison.OrdinalIgnoreCase)
+        };
     }
 
     private static string DetermineColumn(string stepId)

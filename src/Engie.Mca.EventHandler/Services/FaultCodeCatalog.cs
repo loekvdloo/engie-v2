@@ -25,6 +25,7 @@ public static class FaultCodeCatalog
         { "680", "Ongeldig numeriek formaat" },
 
         // Business Rule Errors
+        { "683", "Ongeldige combinatie herkomstaanduiding, validatiestatus en herstelmethode" },
         { "686", "Ongeldige EAN-code" },
         { "687", "Ongeldige leverancierscode" },
         { "688", "Onbekende markt/segment" },

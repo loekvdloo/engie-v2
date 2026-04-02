@@ -211,6 +211,20 @@ public class ValidatorController : ControllerBase
                 _logger.LogWarning("[{MessageId}]   ⚠ Forced test error codes toegepast: {Codes}", messageId, string.Join(",", forcedCodes));
             }
 
+            // Neem entemvalidationresult fouten over uit de envelope
+            if (request.EnvelopeEntemvalidationresult != null && request.EnvelopeEntemvalidationresult.Count > 0)
+            {
+                foreach (var entemError in request.EnvelopeEntemvalidationresult)
+                {
+                    if (!string.IsNullOrWhiteSpace(entemError.Code) && !errors.Contains(entemError.Code))
+                    {
+                        errors.Add(entemError.Code);
+                        _logger.LogWarning("[{MessageId}]   ⚠ ENTEM validatie-error overgenomen: {Code} — {Text}",
+                            messageId, entemError.Code, entemError.Text);
+                    }
+                }
+            }
+
             using var aggregatedErrorCodesScope = LogContext.PushProperty("ErrorCodes", string.Join(",", errors));
 
             _logger.LogInformation("[{MessageId}] ✓ Step 3G: Herbruikbare validatieregels", messageId);
@@ -227,7 +241,25 @@ public class ValidatorController : ControllerBase
                 MessageType   = request.MessageType,
                 HasErrors     = !isValid,
                 ErrorCode     = errors.Count > 0 ? errors[0] : (string?)null,
-                ErrorCodes    = errors
+                ErrorCodes    = errors,
+                // Envelope doorsturen
+                EnvelopeId                         = request.EnvelopeId,
+                EnvelopeType                       = request.EnvelopeType,
+                EnvelopeCreatetime                 = request.EnvelopeCreatetime,
+                EnvelopeSource                     = request.EnvelopeSource,
+                EnvelopeMsgsender                  = request.EnvelopeMsgsender,
+                EnvelopeMsgsenderrole              = request.EnvelopeMsgsenderrole,
+                EnvelopeMsgreceiver                = request.EnvelopeMsgreceiver,
+                EnvelopeMsgreceiverrole            = request.EnvelopeMsgreceiverrole,
+                EnvelopeMsgsubtype                 = request.EnvelopeMsgsubtype,
+                EnvelopeMsgcreationtime            = request.EnvelopeMsgcreationtime,
+                EnvelopeMsgversion                 = request.EnvelopeMsgversion,
+                EnvelopeMsgpayloadid               = request.EnvelopeMsgpayloadid,
+                EnvelopeMsgcontenttype             = request.EnvelopeMsgcontenttype,
+                EnvelopeEntemsendacknowledgement   = request.EnvelopeEntemsendacknowledgement,
+                EnvelopeEntemsendtooutput           = request.EnvelopeEntemsendtooutput,
+                EnvelopeEntemvalidationresult       = request.EnvelopeEntemvalidationresult,
+                EnvelopeEntemtimestamp              = request.EnvelopeEntemtimestamp
             });
             p4Req.Headers.Add("X-Correlation-ID", request.CorrelationId ?? messageId);
             _logger.LogInformation("[{MessageId}] → Doorgeven aan MessageProcessor/phase4", messageId);
@@ -297,6 +329,24 @@ public class ValidatorRequest
     public string Content { get; set; } = string.Empty;
     public string? CorrelationId { get; set; }
     public string? MessageType { get; set; }
+    // Volledige envelope-velden
+    public string? EnvelopeId { get; set; }
+    public string? EnvelopeType { get; set; }
+    public string? EnvelopeCreatetime { get; set; }
+    public string? EnvelopeSource { get; set; }
+    public string? EnvelopeMsgsender { get; set; }
+    public string? EnvelopeMsgsenderrole { get; set; }
+    public string? EnvelopeMsgreceiver { get; set; }
+    public string? EnvelopeMsgreceiverrole { get; set; }
+    public string? EnvelopeMsgsubtype { get; set; }
+    public string? EnvelopeMsgcreationtime { get; set; }
+    public string? EnvelopeMsgversion { get; set; }
+    public string? EnvelopeMsgpayloadid { get; set; }
+    public string? EnvelopeMsgcontenttype { get; set; }
+    public bool EnvelopeEntemsendacknowledgement { get; set; }
+    public bool EnvelopeEntemsendtooutput { get; set; }
+    public List<ValidatorEnvelopeValidationItem>? EnvelopeEntemvalidationresult { get; set; }
+    public string? EnvelopeEntemtimestamp { get; set; }
 
     // Common aliases used by other payloads/scripts.
     [JsonPropertyName("ean")]
@@ -334,4 +384,10 @@ public class ValidatorRequest
             }
         }
     }
+}
+
+public class ValidatorEnvelopeValidationItem
+{
+    public string Code { get; set; } = string.Empty;
+    public string Text { get; set; } = string.Empty;
 }

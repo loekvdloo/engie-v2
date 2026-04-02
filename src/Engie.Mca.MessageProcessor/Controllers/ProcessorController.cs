@@ -36,7 +36,8 @@ public class ProcessorController : ControllerBase
     {
         "AllocationSeries",
         "AllocationFactorSeries",
-        "AggregatedAllocationSeries"
+        "AggregatedAllocationSeries",
+        "AllocationServiceNotification"
     };
 
     // 4D — Registratie van validatieresultaat per bericht.
@@ -136,7 +137,25 @@ public class ProcessorController : ControllerBase
                 Quantity      = request.Quantity,
                 StartDateTime = request.StartDateTime,
                 EndDateTime   = request.EndDateTime,
-                Content       = request.XmlContent
+                Content       = request.XmlContent,
+                // Envelope doorsturen
+                EnvelopeId                         = request.EnvelopeId,
+                EnvelopeType                       = request.EnvelopeType,
+                EnvelopeCreatetime                 = request.EnvelopeCreatetime,
+                EnvelopeSource                     = request.EnvelopeSource,
+                EnvelopeMsgsender                  = request.EnvelopeMsgsender,
+                EnvelopeMsgsenderrole              = request.EnvelopeMsgsenderrole,
+                EnvelopeMsgreceiver                = request.EnvelopeMsgreceiver,
+                EnvelopeMsgreceiverrole            = request.EnvelopeMsgreceiverrole,
+                EnvelopeMsgsubtype                 = request.EnvelopeMsgsubtype,
+                EnvelopeMsgcreationtime            = request.EnvelopeMsgcreationtime,
+                EnvelopeMsgversion                 = request.EnvelopeMsgversion,
+                EnvelopeMsgpayloadid               = request.EnvelopeMsgpayloadid,
+                EnvelopeMsgcontenttype             = request.EnvelopeMsgcontenttype,
+                EnvelopeEntemsendacknowledgement   = request.EnvelopeEntemsendacknowledgement,
+                EnvelopeEntemsendtooutput           = request.EnvelopeEntemsendtooutput,
+                EnvelopeEntemvalidationresult       = request.EnvelopeEntemvalidationresult,
+                EnvelopeEntemtimestamp              = request.EnvelopeEntemtimestamp
             });
             valReq.Headers.Add("X-Correlation-ID", request.CorrelationId ?? messageId);
             _logger.LogInformation("[{MessageId}] → Doorgeven aan MessageValidator", messageId);
@@ -260,7 +279,26 @@ public class ProcessorController : ControllerBase
                 MessageId     = messageId,
                 CorrelationId = request.CorrelationId,
                 Response      = responseType,
-                ErrorCodes    = normalizedCodes
+                ErrorCodes    = normalizedCodes,
+                // Envelope doorsturen
+                EnvelopeId                         = request.EnvelopeId,
+                EnvelopeType                       = request.EnvelopeType,
+                EnvelopeCreatetime                 = request.EnvelopeCreatetime,
+                EnvelopeSource                     = request.EnvelopeSource,
+                EnvelopeMsgsender                  = request.EnvelopeMsgsender,
+                EnvelopeMsgsenderrole              = request.EnvelopeMsgsenderrole,
+                EnvelopeMsgreceiver                = request.EnvelopeMsgreceiver,
+                EnvelopeMsgreceiverrole            = request.EnvelopeMsgreceiverrole,
+                EnvelopeMsgtype                    = request.MessageType,
+                EnvelopeMsgsubtype                 = request.EnvelopeMsgsubtype,
+                EnvelopeMsgcreationtime            = request.EnvelopeMsgcreationtime,
+                EnvelopeMsgversion                 = request.EnvelopeMsgversion,
+                EnvelopeMsgpayloadid               = request.EnvelopeMsgpayloadid,
+                EnvelopeMsgcontenttype             = request.EnvelopeMsgcontenttype,
+                EnvelopeEntemsendacknowledgement   = request.EnvelopeEntemsendacknowledgement,
+                EnvelopeEntemsendtooutput           = request.EnvelopeEntemsendtooutput,
+                EnvelopeEntemvalidationresult       = request.EnvelopeEntemvalidationresult,
+                EnvelopeEntemtimestamp              = request.EnvelopeEntemtimestamp
             });
             nackReq.Headers.Add("X-Correlation-ID", request.CorrelationId ?? messageId);
             _logger.LogInformation("[{MessageId}] → Doorgeven aan NackHandler", messageId);
@@ -297,4 +335,28 @@ public class ProcessorRequest
     public decimal? Quantity { get; set; }
     public DateTime? StartDateTime { get; set; }
     public DateTime? EndDateTime { get; set; }
+    // Volledige envelope-velden (doorgestuurd door de hele keten)
+    public string? EnvelopeId { get; set; }
+    public string? EnvelopeType { get; set; }
+    public string? EnvelopeCreatetime { get; set; }
+    public string? EnvelopeSource { get; set; }
+    public string? EnvelopeMsgsender { get; set; }
+    public string? EnvelopeMsgsenderrole { get; set; }
+    public string? EnvelopeMsgreceiver { get; set; }
+    public string? EnvelopeMsgreceiverrole { get; set; }
+    public string? EnvelopeMsgsubtype { get; set; }
+    public string? EnvelopeMsgcreationtime { get; set; }
+    public string? EnvelopeMsgversion { get; set; }
+    public string? EnvelopeMsgpayloadid { get; set; }
+    public string? EnvelopeMsgcontenttype { get; set; }
+    public bool EnvelopeEntemsendacknowledgement { get; set; }
+    public bool EnvelopeEntemsendtooutput { get; set; }
+    public List<EnvelopeValidationItem>? EnvelopeEntemvalidationresult { get; set; }
+    public string? EnvelopeEntemtimestamp { get; set; }
+}
+
+public class EnvelopeValidationItem
+{
+    public string Code { get; set; } = string.Empty;
+    public string Text { get; set; } = string.Empty;
 }

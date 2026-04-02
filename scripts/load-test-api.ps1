@@ -37,9 +37,17 @@ function New-LoadRequestBody {
 "@
 
     return @{
-        messageId = $messageId
-        correlationId = "corr-$messageId"
-        xmlContent = $xml
+        id                       = [guid]::NewGuid().ToString()
+        type                     = "mma.msg.new"
+        source                   = "ENTEM"
+        msgtype                  = "AllocationServiceNotification"
+        msgsubtype               = "N101"
+        msgid                    = $messageId
+        msgcorrelationid         = "corr-$messageId"
+        msgpayload               = $xml
+        entemsendacknowledgement = $true
+        entemsendtooutput        = $true
+        entemvalidationresult    = @()
     } | ConvertTo-Json -Depth 5
 }
 
@@ -48,9 +56,17 @@ $jobScript = {
 
     $headers = @{ "Content-Type" = "application/json"; "X-Correlation-ID" = "load-corr-$Index" }
     $body = @{
-        messageId = "load-$Index"
-        correlationId = "load-corr-$Index"
-        xmlContent = "<AllocationSeries><DocumentID>LOAD-$Index</DocumentID><EAN>8712345678901</EAN><Quantity>100</Quantity><StartDateTime>2026-03-20T10:00:00Z</StartDateTime><EndDateTime>2026-03-20T11:00:00Z</EndDateTime></AllocationSeries>"
+        id                       = [guid]::NewGuid().ToString()
+        type                     = "mma.msg.new"
+        source                   = "ENTEM"
+        msgtype                  = "AllocationServiceNotification"
+        msgsubtype               = "N101"
+        msgid                    = "load-$Index"
+        msgcorrelationid         = "load-corr-$Index"
+        msgpayload               = "<AllocationSeries><DocumentID>LOAD-$Index</DocumentID><EAN>8712345678901</EAN><Quantity>100</Quantity><StartDateTime>2026-03-20T10:00:00Z</StartDateTime><EndDateTime>2026-03-20T11:00:00Z</EndDateTime></AllocationSeries>"
+        entemsendacknowledgement = $true
+        entemsendtooutput        = $true
+        entemvalidationresult    = @()
     } | ConvertTo-Json -Depth 5
 
     $sw = [System.Diagnostics.Stopwatch]::StartNew()

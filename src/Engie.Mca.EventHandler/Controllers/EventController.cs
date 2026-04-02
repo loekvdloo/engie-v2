@@ -17,7 +17,8 @@ public class EventController : ControllerBase
     {
         "AllocationSeries",
         "AllocationFactorSeries",
-        "AggregatedAllocationSeries"
+        "AggregatedAllocationSeries",
+        "AllocationServiceNotification"
     };
 
     private readonly ILogger<EventController> _logger;
