@@ -50,12 +50,6 @@ data:
 
     echo "Autoscaler run $(date -u +%FT%TZ) namespace=${NAMESPACE}"
 
-    current_replicas=""
-    any_metrics=0
-    any_above=0
-    all_below=1
-    max_util=0
-
     for dep in $DEPLOYMENTS; do
       dep_replicas=$(kubectl -n "$NAMESPACE" get deployment "$dep" -o jsonpath='{.spec.replicas}' 2>/dev/null || echo "")
       request_cpu=$(kubectl -n "$NAMESPACE" get deployment "$dep" -o jsonpath='{.spec.template.spec.containers[0].resources.requests.cpu}' 2>/dev/null || echo "")
@@ -71,10 +65,6 @@ data:
         dep_replicas="$MAX_REPLICAS"
       fi
 
-      if [ -z "$current_replicas" ]; then
-        current_replicas="$dep_replicas"
-      fi
-
       request_millicores=${request_cpu%m}
       if [ -z "$request_millicores" ] || [ "$request_millicores" -le 0 ]; then
         echo "skip $dep (invalid cpu request: $request_cpu)"
@@ -87,8 +77,6 @@ data:
         continue
       fi
 
-      any_metrics=1
-
       sum_m=$(echo "$top_output" | awk '{cpu=$2; gsub("m","",cpu); s+=cpu} END{print s+0}')
       pod_count=$(echo "$top_output" | awk 'NF>0 {c++} END{print c+0}')
 
@@ -99,42 +87,21 @@ data:
 
       avg_m=$((sum_m / pod_count))
       util_pct=$((avg_m * 100 / request_millicores))
-
-      if [ "$util_pct" -gt "$max_util" ]; then
-        max_util="$util_pct"
-      fi
-
-      if [ "$util_pct" -gt "$SCALE_UP_THRESHOLD" ]; then
-        any_above=1
-      fi
-
-      if [ "$util_pct" -ge "$SCALE_DOWN_THRESHOLD" ]; then
-        all_below=0
-      fi
-
       echo "$dep util=${util_pct}% avg=${avg_m}m request=${request_millicores}m replicas=${dep_replicas}"
-    done
 
-    if [ -z "$current_replicas" ]; then
-      echo "no deployments found"
-      exit 0
-    fi
+      desired_replicas="$dep_replicas"
+      if [ "$util_pct" -gt "$SCALE_UP_THRESHOLD" ] && [ "$dep_replicas" -lt "$MAX_REPLICAS" ]; then
+        desired_replicas=$((dep_replicas + 1))
+      elif [ "$util_pct" -lt "$SCALE_DOWN_THRESHOLD" ] && [ "$dep_replicas" -gt "$MIN_REPLICAS" ]; then
+        desired_replicas=$((dep_replicas - 1))
+      fi
 
-    desired_replicas="$current_replicas"
-    if [ "$any_metrics" -eq 1 ] && [ "$any_above" -eq 1 ] && [ "$current_replicas" -lt "$MAX_REPLICAS" ]; then
-      desired_replicas=$((current_replicas + 1))
-    elif [ "$any_metrics" -eq 1 ] && [ "$all_below" -eq 1 ] && [ "$current_replicas" -gt "$MIN_REPLICAS" ]; then
-      desired_replicas=$((current_replicas - 1))
-    fi
-
-    echo "decision current=${current_replicas} desired=${desired_replicas} maxUtil=${max_util}% anyAbove=${any_above} allBelow=${all_below}"
-
-    if [ "$desired_replicas" -ne "$current_replicas" ]; then
-      for dep in $DEPLOYMENTS; do
+      echo "decision $dep current=${dep_replicas} desired=${desired_replicas} util=${util_pct}%"
+      if [ "$desired_replicas" -ne "$dep_replicas" ]; then
         echo "scale $dep -> $desired_replicas"
         kubectl -n "$NAMESPACE" scale deployment "$dep" --replicas="$desired_replicas"
-      done
-    fi
+      fi
+    done
 ---
 apiVersion: batch/v1
 kind: CronJob
