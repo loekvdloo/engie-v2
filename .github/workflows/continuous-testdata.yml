@@ -10,11 +10,11 @@ on:
       min_per_minute:
         description: Min aantal berichten per minuut
         required: true
-        default: "180"
+        default: "380"
       max_per_minute:
         description: Max aantal berichten per minuut
         required: true
-        default: "320"
+        default: "520"
       duplicate_rate_percent:
         description: Percentage duplicate messageId's (0-100)
         required: true
