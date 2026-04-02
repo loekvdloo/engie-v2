@@ -2,18 +2,30 @@ Write-Host "=== TESTING UPDATED API WITH FILE LOGGING ===" -ForegroundColor Cyan
 
 # Test 1: Valid message
 Write-Host "`n[01/04] Processing VALID message..." -ForegroundColor Yellow
+$logStart = ([DateTime]::UtcNow.AddDays(-5)).ToString('yyyy-MM-ddTHH:mm:ssZ')
+$logEnd   = ([DateTime]::UtcNow.AddDays(-1)).ToString('yyyy-MM-ddTHH:mm:ssZ')
 $body1 = @{
     id                       = [guid]::NewGuid().ToString()
     type                     = "mma.msg.new"
+    createtime               = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
     source                   = "ENTEM"
-    msgtype                  = "AllocationServiceNotification"
-    msgsubtype               = "N101"
+    msgsender                = "8716867000016"
+    msgsenderrole            = "ZV"
+    msgreceiver              = "8716800000085"
+    msgreceiverrole          = "LV"
+    msgtype                  = "AllocationSeries"
+    msgsubtype               = "E35"
     msgid                    = "test-logging-valid"
     msgcorrelationid         = "test-logging-valid"
-    msgpayload               = '<?xml version="1.0"?><AllocationSeries><EAN>8714568009996</EAN><Quantity>100</Quantity></AllocationSeries>'
+    msgcreationtime          = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
+    msgversion               = "4.0"
+    msgpayloadid             = [guid]::NewGuid().ToString()
+    msgcontenttype           = "application/xml"
+    msgpayload               = "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>DOC-LOG-VALID</DocumentID><EAN>871234567890100000</EAN><StartDateTime>$logStart</StartDateTime><EndDateTime>$logEnd</EndDateTime><Quantity>100</Quantity></AllocationSeries>"
     entemsendacknowledgement = $true
     entemsendtooutput        = $true
     entemvalidationresult    = @()
+    entemtimestamp           = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
 } | ConvertTo-Json
 
 Start-Sleep -Seconds 1
@@ -26,15 +38,25 @@ Write-Host "`n[02/04] Processing INVALID message (bad EAN)..." -ForegroundColor 
 $body2 = @{
     id                       = [guid]::NewGuid().ToString()
     type                     = "mma.msg.new"
+    createtime               = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
     source                   = "ENTEM"
-    msgtype                  = "AllocationServiceNotification"
-    msgsubtype               = "N101"
+    msgsender                = "8716867000016"
+    msgsenderrole            = "ZV"
+    msgreceiver              = "8716800000085"
+    msgreceiverrole          = "LV"
+    msgtype                  = "AllocationSeries"
+    msgsubtype               = "E35"
     msgid                    = "test-logging-invalid"
     msgcorrelationid         = "test-logging-invalid"
-    msgpayload               = '<?xml version="1.0"?><AllocationSeries><EAN>BADEAN</EAN></AllocationSeries>'
+    msgcreationtime          = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
+    msgversion               = "4.0"
+    msgpayloadid             = [guid]::NewGuid().ToString()
+    msgcontenttype           = "application/xml"
+    msgpayload               = "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>DOC-LOG-INVALID</DocumentID><EAN>BADEAN</EAN><StartDateTime>$logStart</StartDateTime><EndDateTime>$logEnd</EndDateTime><Quantity>100</Quantity></AllocationSeries>"
     entemsendacknowledgement = $true
     entemsendtooutput        = $true
     entemvalidationresult    = @()
+    entemtimestamp           = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
 } | ConvertTo-Json
 
 $r2 = Invoke-WebRequest -Uri "http://localhost:5001/api/messages" -Method POST -ContentType "application/json" -Body $body2

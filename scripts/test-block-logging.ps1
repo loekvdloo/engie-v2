@@ -13,15 +13,25 @@ function Send-TestMessage {
     $body = @{
         id                       = [guid]::NewGuid().ToString()
         type                     = "mma.msg.new"
+        createtime               = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
         source                   = "ENTEM"
-        msgtype                  = "AllocationServiceNotification"
-        msgsubtype               = "N101"
+        msgsender                = "8716867000016"
+        msgsenderrole            = "ZV"
+        msgreceiver              = "8716800000085"
+        msgreceiverrole          = "LV"
+        msgtype                  = "AllocationSeries"
+        msgsubtype               = "E35"
         msgid                    = $MessageId
         msgcorrelationid         = $MessageId
+        msgcreationtime          = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
+        msgversion               = "4.0"
+        msgpayloadid             = [guid]::NewGuid().ToString()
+        msgcontenttype           = "application/xml"
         msgpayload               = $XmlContent
         entemsendacknowledgement = $true
         entemsendtooutput        = $true
         entemvalidationresult    = @()
+        entemtimestamp           = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
     } | ConvertTo-Json
 
     try {
@@ -70,8 +80,10 @@ function Show-BlockLogs {
 $validId = "block-valid-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
 $invalidId = "block-invalid-$(Get-Date -Format 'yyyyMMdd-HHmmss')"
 
-$validXml = '<?xml version="1.0"?><AllocationSeries><EAN>8714568009996</EAN><Quantity>100</Quantity></AllocationSeries>'
-$invalidXml = '<?xml version="1.0"?><AllocationSeries><EAN></EAN><Quantity>100</Quantity></AllocationSeries>'
+$start = ([DateTime]::UtcNow.AddDays(-5)).ToString('yyyy-MM-ddTHH:mm:ssZ')
+$end   = ([DateTime]::UtcNow.AddDays(-1)).ToString('yyyy-MM-ddTHH:mm:ssZ')
+$validXml   = "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>DOC-VALID-$(Get-Date -Format 'HHmmss')</DocumentID><EAN>871234567890100000</EAN><StartDateTime>$start</StartDateTime><EndDateTime>$end</EndDateTime><Quantity>150</Quantity></AllocationSeries>"
+$invalidXml = "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>DOC-INVALID-$(Get-Date -Format 'HHmmss')</DocumentID><EAN>BADEAN</EAN><StartDateTime>$start</StartDateTime><EndDateTime>$end</EndDateTime><Quantity>100</Quantity></AllocationSeries>"
 
 Write-Host "Running per-block logging test" -ForegroundColor Green
 Write-Host "API: $apiUrl"

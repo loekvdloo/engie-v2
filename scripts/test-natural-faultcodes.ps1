@@ -16,7 +16,7 @@ function New-RequestBody {
     )
 
     $xml = @"
-<AllocationSeries>
+<AllocationSeries xmlns='urn:ediel:org:allocation:v4'>
   <DocumentID>$DocumentId</DocumentID>
   <EAN>$Ean</EAN>
   <Quantity>$Quantity</Quantity>
@@ -28,15 +28,25 @@ function New-RequestBody {
     return @{
         id                       = [guid]::NewGuid().ToString()
         type                     = "mma.msg.new"
+        createtime               = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
         source                   = "ENTEM"
-        msgtype                  = "AllocationServiceNotification"
-        msgsubtype               = "N101"
+        msgsender                = "8716867000016"
+        msgsenderrole            = "ZV"
+        msgreceiver              = "8716800000085"
+        msgreceiverrole          = "LV"
+        msgtype                  = "AllocationSeries"
+        msgsubtype               = "E35"
         msgid                    = $MessageId
         msgcorrelationid         = "natural-$MessageId"
+        msgcreationtime          = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
+        msgversion               = "4.0"
+        msgpayloadid             = [guid]::NewGuid().ToString()
+        msgcontenttype           = "application/xml"
         msgpayload               = $xml
         entemsendacknowledgement = $true
         entemsendtooutput        = $true
         entemvalidationresult    = @()
+        entemtimestamp           = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
     } | ConvertTo-Json -Depth 5
 }
 

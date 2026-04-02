@@ -26,16 +26,16 @@ function Invoke-Message {
         type                     = "mma.msg.new"
         createtime               = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
         source                   = "ENTEM"
-        msgsender                = "8712423009196"
-        msgsenderrole            = "DDK"
-        msgreceiver              = "8716867999990"
-        msgreceiverrole          = "DDM"
-        msgtype                  = "AllocationServiceNotification"
-        msgsubtype               = "N101"
+        msgsender                = "8716867000016"
+        msgsenderrole            = "ZV"
+        msgreceiver              = "8716800000085"
+        msgreceiverrole          = "LV"
+        msgtype                  = "AllocationSeries"
+        msgsubtype               = "E35"
         msgid                    = $MessageId
         msgcorrelationid         = "corr-$MessageId"
         msgcreationtime          = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
-        msgversion               = "1.2"
+        msgversion               = "4.0"
         msgpayloadid             = [guid]::NewGuid().ToString()
         msgcontenttype           = "application/xml"
         msgpayload               = $Xml
@@ -101,7 +101,7 @@ $Cases = @(
         Name           = "Geldig bericht door alle 29 stappen"
         ExpectedStatus = "Delivered"
         ExpectedCodes  = @()
-        Xml            = "<AllocationSeries><DocumentID>DOC-OK-$Stamp</DocumentID><EAN>$ValidEan</EAN><Quantity>150</Quantity><StartDateTime>${Today}T08:00:00Z</StartDateTime><EndDateTime>${Today}T09:00:00Z</EndDateTime></AllocationSeries>"
+        Xml            = "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>DOC-OK-$Stamp</DocumentID><EAN>$ValidEan</EAN><Quantity>150</Quantity><StartDateTime>${Today}T08:00:00Z</StartDateTime><EndDateTime>${Today}T09:00:00Z</EndDateTime></AllocationSeries>"
     }
 
     # -- STAP 1: EVENTHANDLER --
@@ -185,7 +185,7 @@ $Cases = @(
         Name           = "Tweede geldig bericht (ander tijdstip)"
         ExpectedStatus = "Delivered"
         ExpectedCodes  = @()
-        Xml            = "<AllocationSeries><DocumentID>DOC-OK2-$Stamp</DocumentID><EAN>$ValidEan</EAN><Quantity>250</Quantity><StartDateTime>${Today}T10:00:00Z</StartDateTime><EndDateTime>${Today}T11:00:00Z</EndDateTime></AllocationSeries>"
+        Xml            = "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>DOC-OK2-$Stamp</DocumentID><EAN>$ValidEan</EAN><Quantity>250</Quantity><StartDateTime>${Today}T10:00:00Z</StartDateTime><EndDateTime>${Today}T11:00:00Z</EndDateTime></AllocationSeries>"
     }
 )
 

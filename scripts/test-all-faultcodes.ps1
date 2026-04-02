@@ -31,16 +31,16 @@ function Send-Msg([string]$id, [string]$xml) {
         type                     = "mma.msg.new"
         createtime               = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
         source                   = "ENTEM"
-        msgsender                = "8712423009196"
-        msgsenderrole            = "DDK"
-        msgreceiver              = "8716867999990"
-        msgreceiverrole          = "DDM"
-        msgtype                  = "AllocationServiceNotification"
-        msgsubtype               = "N101"
+        msgsender                = "8716867000016"
+        msgsenderrole            = "ZV"
+        msgreceiver              = "8716800000085"
+        msgreceiverrole          = "LV"
+        msgtype                  = "AllocationSeries"
+        msgsubtype               = "E35"
         msgid                    = $id
         msgcorrelationid         = $id
         msgcreationtime          = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
-        msgversion               = "1.2"
+        msgversion               = "4.0"
         msgpayloadid             = [guid]::NewGuid().ToString()
         msgcontenttype           = "application/xml"
         msgpayload               = $xml
@@ -58,7 +58,7 @@ function Send-Msg([string]$id, [string]$xml) {
 }
 
 function Valid-Xml([string]$docId, [string]$ean, [string]$s, [string]$e, [decimal]$qty, [string]$type="AllocationSeries", [string]$extra="") {
-    return "<$type><DocumentID>$docId</DocumentID><EAN>$ean</EAN><StartDateTime>$s</StartDateTime><EndDateTime>$e</EndDateTime><Period><Point><Quantity>$qty</Quantity></Point></Period>$extra</$type>"
+    return "<$type xmlns='urn:ediel:org:allocation:v4'><DocumentID>$docId</DocumentID><EAN>$ean</EAN><StartDateTime>$s</StartDateTime><EndDateTime>$e</EndDateTime><Period><Point><Quantity>$qty</Quantity></Point></Period>$extra</$type>"
 }
 
 function Force-Xml([string]$docId, [string]$code) {

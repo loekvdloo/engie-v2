@@ -26,28 +26,40 @@ function New-LoadRequestBody {
     param([int]$Index)
 
     $messageId = "load-$Index-$(Get-Date -Format 'yyyyMMddHHmmssfff')"
+    $loadStart = ([DateTime]::UtcNow.AddDays(-5)).ToString('yyyy-MM-ddTHH:mm:ssZ')
+    $loadEnd   = ([DateTime]::UtcNow.AddDays(-1)).ToString('yyyy-MM-ddTHH:mm:ssZ')
     $xml = @"
-<AllocationSeries>
+<AllocationSeries xmlns='urn:ediel:org:allocation:v4'>
   <DocumentID>LOAD-$Index</DocumentID>
-  <EAN>8712345678901</EAN>
+  <EAN>871234567890100000</EAN>
   <Quantity>100</Quantity>
-  <StartDateTime>2026-03-20T10:00:00Z</StartDateTime>
-  <EndDateTime>2026-03-20T11:00:00Z</EndDateTime>
+  <StartDateTime>$loadStart</StartDateTime>
+  <EndDateTime>$loadEnd</EndDateTime>
 </AllocationSeries>
 "@
 
     return @{
         id                       = [guid]::NewGuid().ToString()
         type                     = "mma.msg.new"
+        createtime               = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
         source                   = "ENTEM"
-        msgtype                  = "AllocationServiceNotification"
-        msgsubtype               = "N101"
+        msgsender                = "8716867000016"
+        msgsenderrole            = "ZV"
+        msgreceiver              = "8716800000085"
+        msgreceiverrole          = "LV"
+        msgtype                  = "AllocationSeries"
+        msgsubtype               = "E35"
         msgid                    = $messageId
         msgcorrelationid         = "corr-$messageId"
+        msgcreationtime          = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
+        msgversion               = "4.0"
+        msgpayloadid             = [guid]::NewGuid().ToString()
+        msgcontenttype           = "application/xml"
         msgpayload               = $xml
         entemsendacknowledgement = $true
         entemsendtooutput        = $true
         entemvalidationresult    = @()
+        entemtimestamp           = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
     } | ConvertTo-Json -Depth 5
 }
 
@@ -59,11 +71,11 @@ $jobScript = {
         id                       = [guid]::NewGuid().ToString()
         type                     = "mma.msg.new"
         source                   = "ENTEM"
-        msgtype                  = "AllocationServiceNotification"
-        msgsubtype               = "N101"
+        msgtype                  = "AllocationSeries"
+        msgsubtype               = "E35"
         msgid                    = "load-$Index"
         msgcorrelationid         = "load-corr-$Index"
-        msgpayload               = "<AllocationSeries><DocumentID>LOAD-$Index</DocumentID><EAN>8712345678901</EAN><Quantity>100</Quantity><StartDateTime>2026-03-20T10:00:00Z</StartDateTime><EndDateTime>2026-03-20T11:00:00Z</EndDateTime></AllocationSeries>"
+        msgpayload               = "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>LOAD-$Index</DocumentID><EAN>871234567890100000</EAN><Quantity>100</Quantity><StartDateTime>2026-03-20T10:00:00Z</StartDateTime><EndDateTime>2026-03-20T11:00:00Z</EndDateTime></AllocationSeries>"
         entemsendacknowledgement = $true
         entemsendtooutput        = $true
         entemvalidationresult    = @()

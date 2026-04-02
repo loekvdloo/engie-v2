@@ -35,16 +35,16 @@ function Send-Message {
         type                     = "mma.msg.new"
         createtime               = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
         source                   = "ENTEM"
-        msgsender                = "8712423009196"
-        msgsenderrole            = "DDK"
-        msgreceiver              = "8716867999990"
-        msgreceiverrole          = "DDM"
-        msgtype                  = "AllocationServiceNotification"
-        msgsubtype               = "N101"
+        msgsender                = "8716867000016"
+        msgsenderrole            = "ZV"
+        msgreceiver              = "8716800000085"
+        msgreceiverrole          = "LV"
+        msgtype                  = "AllocationSeries"
+        msgsubtype               = "E35"
         msgid                    = $MessageId
         msgcorrelationid         = $MessageId
         msgcreationtime          = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
-        msgversion               = "1.2"
+        msgversion               = "4.0"
         msgpayloadid             = [guid]::NewGuid().ToString()
         msgcontenttype           = "application/xml"
         msgpayload               = $Xml
@@ -76,22 +76,22 @@ function New-ValidXml {
         [decimal]$Qty
     )
 
-    return "<AllocationSeries><DocumentID>$DocId</DocumentID><EAN>$Ean</EAN><StartDateTime>$Start</StartDateTime><EndDateTime>$End</EndDateTime><Period><Point><Quantity>$Qty</Quantity></Point></Period></AllocationSeries>"
+    return "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>$DocId</DocumentID><EAN>$Ean</EAN><StartDateTime>$Start</StartDateTime><EndDateTime>$End</EndDateTime><Period><Point><Quantity>$Qty</Quantity></Point></Period></AllocationSeries>"
 }
 
 function New-InvalidEanXml {
     param([string]$DocId, [string]$Start, [string]$End)
-    return "<AllocationSeries><DocumentID>$DocId</DocumentID><EAN>INVALID</EAN><StartDateTime>$Start</StartDateTime><EndDateTime>$End</EndDateTime><Period><Point><Quantity>100</Quantity></Point></Period></AllocationSeries>"
+    return "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>$DocId</DocumentID><EAN>INVALID</EAN><StartDateTime>$Start</StartDateTime><EndDateTime>$End</EndDateTime><Period><Point><Quantity>100</Quantity></Point></Period></AllocationSeries>"
 }
 
 function New-FutureDateXml {
     param([string]$DocId, [string]$FutureStart, [string]$FutureEnd)
-    return "<AllocationSeries><DocumentID>$DocId</DocumentID><EAN>871685900012345678</EAN><StartDateTime>$FutureStart</StartDateTime><EndDateTime>$FutureEnd</EndDateTime><Period><Point><Quantity>100</Quantity></Point></Period></AllocationSeries>"
+    return "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>$DocId</DocumentID><EAN>871685900012345678</EAN><StartDateTime>$FutureStart</StartDateTime><EndDateTime>$FutureEnd</EndDateTime><Period><Point><Quantity>100</Quantity></Point></Period></AllocationSeries>"
 }
 
 function New-MissingDocXml {
     param([string]$Start, [string]$End)
-    return "<AllocationSeries><EAN>871685900012345678</EAN><StartDateTime>$Start</StartDateTime><EndDateTime>$End</EndDateTime><Period><Point><Quantity>100</Quantity></Point></Period></AllocationSeries>"
+    return "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><EAN>871685900012345678</EAN><StartDateTime>$Start</StartDateTime><EndDateTime>$End</EndDateTime><Period><Point><Quantity>100</Quantity></Point></Period></AllocationSeries>"
 }
 
 $runUntil = (Get-Date).ToUniversalTime().AddMinutes($DurationMinutes)
