@@ -8,6 +8,7 @@ namespace Engie.Mca.EventHandler.Services;
 public class MessageStore
 {
     private readonly Dictionary<string, MessageContext> _messages = new();
+    private readonly Dictionary<string, EnvelopeEvent> _envelopes = new();
     private readonly object _lock = new();
 
     public void Save(MessageContext context)
@@ -15,6 +16,22 @@ public class MessageStore
         lock (_lock)
         {
             _messages[context.MessageId] = context;
+        }
+    }
+
+    public void SaveEnvelope(string messageId, EnvelopeEvent envelope)
+    {
+        lock (_lock)
+        {
+            _envelopes[messageId] = envelope;
+        }
+    }
+
+    public EnvelopeEvent? GetEnvelope(string messageId)
+    {
+        lock (_lock)
+        {
+            return _envelopes.TryGetValue(messageId, out var env) ? env : null;
         }
     }
 

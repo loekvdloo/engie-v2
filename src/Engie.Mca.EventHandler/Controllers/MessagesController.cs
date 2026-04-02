@@ -60,6 +60,10 @@ public class MessagesController : ControllerBase
 
         try
         {
+            // Sla volledige envelope op zodat hij later opvraagbaar is via GET /api/messages/{id}/envelope
+            if (request != null)
+                _store.SaveEnvelope(messageId, request);
+
             // ── Kolom 1 – Event Handler (1A-1F) ─────────────────────────
             _logger.LogInformation("[{MessageId}] === KOLOM 1: EVENT HANDLER (1A-1F) ===", messageId);
 
@@ -215,6 +219,17 @@ public class MessagesController : ControllerBase
         ));
     }
 
+    // GET api/messages/{messageId}/envelope — geeft de volledige originele Engie JSON envelope terug
+    [HttpGet("{messageId}/envelope")]
+    public IActionResult GetMessageEnvelope(string messageId)
+    {
+        var envelope = _store.GetEnvelope(messageId);
+        if (envelope == null)
+            return NotFound(new ErrorResponse("004", $"Envelope voor bericht {messageId} niet gevonden"));
+
+        return Ok(envelope);
+    }
+
     // GET api/messages/{messageId}/steps
     [HttpGet("{messageId}/steps")]
     public IActionResult GetMessageSteps(string messageId)
@@ -259,11 +274,40 @@ public class MessagesController : ControllerBase
     public IActionResult GetAllMessages()
     {
         var msgs = _store.GetAll();
-        return Ok(msgs.Select(m => new MessageResponseDto(
-            m.MessageId, m.CorrelationId,
-            m.Status.ToString(), m.ResponseType?.ToString() ?? "Unknown",
-            m.Errors.Count, m.Errors.Select(e => e.Code).ToList()
-        )).ToList());
+        return Ok(msgs.Select(m =>
+        {
+            var env = _store.GetEnvelope(m.MessageId);
+            return new
+            {
+                m.MessageId,
+                m.CorrelationId,
+                Status       = m.Status.ToString(),
+                ResponseType = m.ResponseType?.ToString() ?? "Unknown",
+                m.Errors.Count,
+                ErrorCodes   = m.Errors.Select(e => e.Code).ToList(),
+                ReceivedAt   = m.ReceivedAt,
+                // Envelope-samenvatting zodat je direct de context ziet
+                Envelope = env == null ? null : new
+                {
+                    env.Id,
+                    env.Type,
+                    env.Source,
+                    env.Msgsender,
+                    env.Msgsenderrole,
+                    env.Msgreceiver,
+                    env.Msgreceiverrole,
+                    env.Msgtype,
+                    env.Msgsubtype,
+                    env.Msgid,
+                    env.Msgcorrelationid,
+                    env.Msgcreationtime,
+                    env.Entemsendacknowledgement,
+                    env.Entemsendtooutput,
+                    env.Entemvalidationresult,
+                    EnvelopeLink = $"/api/messages/{m.MessageId}/envelope"
+                }
+            };
+        }).ToList());
     }
 
     // GET api/messages/stats/summary
