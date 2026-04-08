@@ -6,7 +6,8 @@ param(
     [int]$DurationMinutes = 120,
     [switch]$IncludeFullFaultCatalog,
     [string]$EnvelopeTemplateFile = (Join-Path $PSScriptRoot "..\test-envelope.json"),
-    [switch]$IncludeTemplateValidationResults
+    [switch]$IncludeTemplateValidationResults,
+    [bool]$EnsureAllNackCodes = $true
 )
 
 Set-StrictMode -Version Latest
@@ -97,6 +98,17 @@ function New-MissingDocXml {
     return "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><EAN>871685900012345678</EAN><StartDateTime>$Start</StartDateTime><EndDateTime>$End</EndDateTime><Period><Point><Quantity>100</Quantity></Point></Period></AllocationSeries>"
 }
 
+function New-ForcedCodeXml {
+    param(
+        [string]$DocId,
+        [string]$Code,
+        [string]$Start,
+        [string]$End
+    )
+
+    return "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>$DocId</DocumentID><EAN>871685900012345678</EAN><StartDateTime>$Start</StartDateTime><EndDateTime>$End</EndDateTime><Period><Point><Quantity>100</Quantity></Point></Period><ForceErrorCodes>$Code</ForceErrorCodes></AllocationSeries>"
+}
+
 $runUntil = (Get-Date).ToUniversalTime().AddMinutes($DurationMinutes)
 $minuteLoop = 0
 $total = 0
@@ -105,11 +117,46 @@ $nack = 0
 $errors = 0
 $knownMessageIds = [System.Collections.Generic.List[string]]::new()
 
+$allFaultCodes = @(
+    "650","651","652","653",
+    "654","655","656",
+    "676","677","678","679","680",
+    "683","686","687","688","689",
+    "700","701","702",
+    "754","755","756",
+    "758","759","760",
+    "772","773","774","775",
+    "780","781","782",
+    "999"
+)
+
 Write-Host "Start stream standaard testdata"
 Write-Host "ApiBase: $ApiBase"
 Write-Host "Load: random $MinPerMinute-$MaxPerMinute berichten per minuut"
 Write-Host "Duplicate-rate: $DuplicateRatePercent%"
 Write-Host "Duur: $DurationMinutes min"
+
+if ($EnsureAllNackCodes) {
+    Write-Host ""
+    Write-Host "NACK catalogus seeding (alle foutcodes minimaal 1x)..." -ForegroundColor Cyan
+    $seedStart = (Get-Date).AddDays(-5).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+    $seedEnd = (Get-Date).AddDays(-1).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
+    $seedStamp = Get-Date -Format "yyyyMMddHHmmss"
+    foreach ($code in $allFaultCodes) {
+        $seedId = "seed-$code-$seedStamp"
+        $seedXml = New-ForcedCodeXml "DOC-$seedId" $code $seedStart $seedEnd
+        $seedRes = Send-Message -MessageId $seedId -Xml $seedXml
+        $total++
+
+        if ($seedRes.responseType -eq "Ack") { $ack++ }
+        elseif ($seedRes.responseType -eq "Nack") { $nack++ }
+        else { $errors++ }
+
+        $seedCodes = if ($seedRes.errorCodes) { @($seedRes.errorCodes) -join "," } else { "" }
+        $ok = ($seedRes.responseType -eq "Nack") -and (@($seedRes.errorCodes) -contains $code)
+        Write-Host "[seed/$code] $seedId -> $($seedRes.responseType) [$seedCodes] $(if ($ok) { 'OK' } else { 'CHECK' })"
+    }
+}
 
 while ((Get-Date).ToUniversalTime() -lt $runUntil) {
     $minuteLoop++
@@ -117,9 +164,9 @@ while ((Get-Date).ToUniversalTime() -lt $runUntil) {
     $targetCount = Get-Random -Minimum $MinPerMinute -Maximum ($MaxPerMinute + 1)
     $stamp = Get-Date -Format "yyyyMMddHHmmss"
     $profile = switch ($minuteLoop % 3) {
-        1 { "nack-heavy" }
+        1 { "ack-heavy" }
         2 { "balanced" }
-        default { "ack-heavy" }
+        default { "nack-heavy" }
     }
 
     Write-Host ""
@@ -140,7 +187,8 @@ while ((Get-Date).ToUniversalTime() -lt $runUntil) {
         }
 
         $roll = Get-Random -Minimum 1 -Maximum 101
-        $ackThreshold = if ($profile -eq "ack-heavy") { 75 } elseif ($profile -eq "nack-heavy") { 35 } else { 55 }
+        # Hogere ACK-bias voor continue tests, met nog steeds voldoende NACK-variatie.
+        $ackThreshold = if ($profile -eq "ack-heavy") { 88 } elseif ($profile -eq "nack-heavy") { 58 } else { 74 }
 
         if ($roll -le $ackThreshold) {
             $xml = New-ValidXml "DOC-$messageId" "871685900012345678" $start $end (Get-Random -Minimum 1 -Maximum 1000)
