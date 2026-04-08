@@ -1,0 +1,25 @@
+{
+  "id": "evt-test-004",
+  "type": "mma.msg.new",
+  "createtime": "2025-03-19T10:30:00Z",
+  "source": "ENTEM",
+  "msgsender": "8716867000016",
+  "msgsenderrole": "ZV",
+  "msgreceiver": "8716800000085",
+  "msgreceiverrole": "LV",
+  "msgtype": "AllocationSeries",
+  "msgsubtype": "E35",
+  "msgid": "MSG-OCP-003",
+  "msgcorrelationid": "COR-OCP-003",
+  "msgcreationtime": "2025-03-19T10:29:00Z",
+  "msgversion": "4.0",
+  "msgpayloadid": "PL-004",
+  "msgcontenttype": "application/xml",
+  "msgpayload": "<AllocationSeries xmlns='urn:ediel:org:allocation:v4'><DocumentID>DOC-004</DocumentID><EAN>871686700001600001</EAN><StartDateTime>2025-03-01T00:00:00Z</StartDateTime><EndDateTime>2025-03-02T00:00:00Z</EndDateTime><Quantity>1234.56</Quantity></AllocationSeries>",
+  "entemsendacknowledgement": true,
+  "entemsendtooutput": true,
+  "entemvalidationresult": [
+    { "code": "100", "text": "Voorvalidatie OK" }
+  ],
+  "entemtimestamp": "2025-03-19T10:28:00Z"
+}

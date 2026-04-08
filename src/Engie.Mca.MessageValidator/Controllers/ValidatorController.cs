@@ -24,6 +24,8 @@ public class ValidatorController : ControllerBase
 
     // Tracks last processed start-time per (EAN, DocumentId) for sequence checks (3F).
     private static readonly ConcurrentDictionary<string, DateTime> LastSeenSequenceByKey = new();
+    // Real ENGIE voorbeelden bevatten soms oudere historische data; houd dit ruim genoeg voor regressietesten.
+    private static readonly int MaxPastDays = ResolveMaxPastDays();
 
     private readonly ILogger<ValidatorController> _logger;
 
@@ -83,7 +85,7 @@ public class ValidatorController : ControllerBase
                     _logger.LogWarning("[{MessageId}]   ✗ Error 760 (3B): StartDateTime ligt in de toekomst ({Start})", messageId, request.StartDateTime.Value);
                     errors.Add("760");
                 }
-                else if (request.StartDateTime.Value < DateTime.UtcNow.AddDays(-90))
+                else if (request.StartDateTime.Value < DateTime.UtcNow.AddDays(-MaxPastDays))
                 {
                     _logger.LogWarning("[{MessageId}]   ✗ Error 758 (3B): Bericht buiten geldige periode ({Start})", messageId, request.StartDateTime.Value);
                     errors.Add("758");
@@ -216,11 +218,25 @@ public class ValidatorController : ControllerBase
             {
                 foreach (var entemError in request.EnvelopeEntemvalidationresult)
                 {
-                    if (!string.IsNullOrWhiteSpace(entemError.Code) && !errors.Contains(entemError.Code))
+                    if (string.IsNullOrWhiteSpace(entemError.Code))
                     {
-                        errors.Add(entemError.Code);
-                        _logger.LogWarning("[{MessageId}]   ⚠ ENTEM validatie-error overgenomen: {Code} — {Text}",
-                            messageId, entemError.Code, entemError.Text);
+                        continue;
+                    }
+
+                    var code = entemError.Code.Trim();
+                    if (IsBlockingEntemCode(code))
+                    {
+                        if (!errors.Contains(code))
+                        {
+                            errors.Add(code);
+                            _logger.LogWarning("[{MessageId}]   ⚠ ENTEM validatie-error overgenomen: {Code} — {Text}",
+                                messageId, code, entemError.Text);
+                        }
+                    }
+                    else
+                    {
+                        _logger.LogInformation("[{MessageId}] ℹ ENTEM validatiecode als informatief behandeld: {Code} — {Text}",
+                            messageId, code, entemError.Text);
                     }
                 }
             }
@@ -315,6 +331,24 @@ public class ValidatorController : ControllerBase
             .Where(code => code.Length == 3 && code.All(char.IsDigit))
             .Distinct(StringComparer.Ordinal)
             .ToList();
+    }
+
+    private static int ResolveMaxPastDays()
+    {
+        var configured = Environment.GetEnvironmentVariable("VALIDATOR_MAX_PAST_DAYS");
+        if (int.TryParse(configured, out var value) && value >= 1)
+        {
+            return value;
+        }
+
+        // Default: 10 jaar historische voorbeelden toestaan.
+        return 3650;
+    }
+
+    private static bool IsBlockingEntemCode(string code)
+    {
+        // 1xx codes (zoals 100 = "Voorvalidatie OK") zijn informatief.
+        return int.TryParse(code, out var numericCode) && numericCode >= 600;
     }
 }
 

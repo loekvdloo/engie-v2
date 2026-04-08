@@ -111,9 +111,9 @@ public class EventController : ControllerBase
             _logger.LogInformation("[{MessageId}] ✓ Step 1E: Berichttype geïdentificeerd: {MessageType}", messageId, request.MessageType);
             await Task.Delay(5);
 
-            // Step 1F: Bereid verwerking voor — check root-element komt overeen met berichttype
+            // Step 1F: Bereid verwerking voor — check root-element compatibel met berichttype
             var rootName = xmlDoc.Root.Name.LocalName;
-            if (!rootName.Contains(request.MessageType, StringComparison.OrdinalIgnoreCase))
+            if (!IsRootElementCompatible(request.MessageType, rootName))
             {
                 _logger.LogWarning("[{MessageId}] ✗ Step 1F: Root-element <{RootElement}> komt niet overeen met berichttype {MessageType}",
                     messageId, rootName, request.MessageType);
@@ -339,6 +339,31 @@ window.addEventListener('load', () => { initCharts(); refresh(); setInterval(ref
 """;
         return new ContentResult { Content = html, ContentType = "text/html", StatusCode = 200 };
     }
+
+      private static bool IsRootElementCompatible(string messageType, string rootName)
+      {
+        if (string.IsNullOrWhiteSpace(messageType) || string.IsNullOrWhiteSpace(rootName))
+        {
+          return false;
+        }
+
+        if (messageType.Equals("AllocationServiceNotification", StringComparison.OrdinalIgnoreCase))
+        {
+          // In echte ENGIE voorbeelden kan ASN verpakt zijn met AllocationSeries payload.
+          return rootName.Contains("AllocationServiceNotification", StringComparison.OrdinalIgnoreCase)
+            || rootName.Contains("AllocationSeries", StringComparison.OrdinalIgnoreCase)
+            || rootName.Contains("Allocation", StringComparison.OrdinalIgnoreCase);
+        }
+
+        if (messageType.Equals("AllocationFactorSeries", StringComparison.OrdinalIgnoreCase)
+          || messageType.Equals("AggregatedAllocationSeries", StringComparison.OrdinalIgnoreCase))
+        {
+          return rootName.Contains(messageType, StringComparison.OrdinalIgnoreCase)
+            || rootName.Contains("AllocationSeries", StringComparison.OrdinalIgnoreCase);
+        }
+
+        return rootName.Contains(messageType, StringComparison.OrdinalIgnoreCase);
+      }
 }
 
 public class EventHandlerRequest

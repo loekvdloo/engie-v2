@@ -79,19 +79,19 @@ POST /api/messages
 Content-Type: application/json
 
 Body:
-{
-  "messageId": "optional-uuid-or-auto-generated",
-  "xmlContent": "<xml>...</xml>"
-}
+Gebruik het volledige ENGIE envelope-voorbeeld uit `test-envelope.json`.
 
 Response:
-{
-  "messageId": "uuid",
-  "status": "Delivered|Failed|Processing",
-  "responseType": "Ack|Nack",
-  "errorCount": 0,
-  "errorCodes": ["code1", "code2"]
-}
+Gebruik als referentie `test-response.json`.
+```
+
+Voor lokaal testen:
+
+```powershell
+Get-Content .\test-envelope.json -Raw | Invoke-RestMethod `
+  -Uri "http://localhost:5001/api/messages" `
+  -Method Post `
+  -ContentType "application/json"
 ```
 
 ### Get Message Status

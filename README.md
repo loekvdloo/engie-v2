@@ -128,12 +128,10 @@ http://localhost:5001
 
 ### Request voorbeeld
 
-```json
-{
-  "messageId": "optional-id",
-  "correlationId": "optional-correlation-id",
-  "xmlContent": "<AllocationSeries>...</AllocationSeries>"
-}
+Gebruik als standaard het echte envelope-voorbeeld uit `test-envelope.json`.
+
+```powershell
+Get-Content .\test-envelope.json -Raw
 ```
 
 ### Header voor correlatie
@@ -144,15 +142,10 @@ X-Correlation-ID: corr-001
 
 ### Response voorbeeld
 
-```json
-{
-  "messageId": "msg-001",
-  "correlationId": "corr-001",
-  "status": "Delivered",
-  "responseType": "Ack",
-  "errorCount": 0,
-  "errorCodes": []
-}
+Gebruik als referentie de echte response uit `test-response.json`.
+
+```powershell
+Get-Content .\test-response.json -Raw
 ```
 
 ## Postman collectie

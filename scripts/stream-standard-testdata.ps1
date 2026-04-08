@@ -4,7 +4,8 @@ param(
     [int]$MaxPerMinute = 200,
     [int]$DuplicateRatePercent = 10,
     [int]$DurationMinutes = 120,
-    [switch]$IncludeFullFaultCatalog
+    [switch]$IncludeFullFaultCatalog,
+    [string]$EnvelopeTemplateFile = (Join-Path $PSScriptRoot "..\test-envelope.json")
 )
 
 Set-StrictMode -Version Latest
@@ -22,7 +23,12 @@ if ($DuplicateRatePercent -lt 0 -or $DuplicateRatePercent -gt 100) {
     throw "DuplicateRatePercent moet tussen 0 en 100 liggen."
 }
 
+if (-not (Test-Path $EnvelopeTemplateFile)) {
+    throw "EnvelopeTemplateFile niet gevonden: $EnvelopeTemplateFile"
+}
+
 $apiUrl = "$ApiBase/api/messages"
+$script:EnvelopeTemplate = Get-Content -Path $EnvelopeTemplateFile -Raw | ConvertFrom-Json
 
 function Send-Message {
     param(
@@ -30,29 +36,20 @@ function Send-Message {
         [string]$Xml
     )
 
-    $payload = @{
-        id                       = [guid]::NewGuid().ToString()
-        type                     = "mma.msg.new"
-        createtime               = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
-        source                   = "ENTEM"
-        msgsender                = "8716867000016"
-        msgsenderrole            = "ZV"
-        msgreceiver              = "8716800000085"
-        msgreceiverrole          = "LV"
-        msgtype                  = "AllocationSeries"
-        msgsubtype               = "E35"
-        msgid                    = $MessageId
-        msgcorrelationid         = $MessageId
-        msgcreationtime          = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
-        msgversion               = "4.0"
-        msgpayloadid             = [guid]::NewGuid().ToString()
-        msgcontenttype           = "application/xml"
-        msgpayload               = $Xml
-        entemsendacknowledgement = $true
-        entemsendtooutput        = $true
-        entemvalidationresult    = @()
-        entemtimestamp            = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
-    } | ConvertTo-Json -Compress
+    $nowUtc = (Get-Date).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ss.ffffffZ")
+
+    # Clone de voorbeeld-envelope zodat elk bericht het echte ENGIE formaat behoudt.
+    $payloadEnvelope = $script:EnvelopeTemplate | ConvertTo-Json -Depth 10 | ConvertFrom-Json
+    $payloadEnvelope.id = [guid]::NewGuid().ToString()
+    $payloadEnvelope.msgid = $MessageId
+    $payloadEnvelope.msgcorrelationid = $MessageId
+    $payloadEnvelope.createtime = $nowUtc
+    $payloadEnvelope.msgcreationtime = $nowUtc
+    $payloadEnvelope.msgpayloadid = [guid]::NewGuid().ToString()
+    $payloadEnvelope.msgpayload = $Xml
+    $payloadEnvelope.entemtimestamp = $nowUtc
+
+    $payload = $payloadEnvelope | ConvertTo-Json -Compress -Depth 10
 
     try {
         $resp = Invoke-WebRequest -Uri $apiUrl -Method Post -ContentType "application/json" -Body $payload -UseBasicParsing -TimeoutSec 20

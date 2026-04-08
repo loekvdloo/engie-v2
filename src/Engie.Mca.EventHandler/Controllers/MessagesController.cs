@@ -419,6 +419,8 @@ public class MessagesController : ControllerBase
 
     private static MessageType DetermineMessageType(string xml)
     {
+        if (xml.Contains("AllocationServiceNotification", StringComparison.OrdinalIgnoreCase))
+            return MessageType.AllocationServiceNotification;
         if (xml.Contains("AllocationFactorSeries", StringComparison.OrdinalIgnoreCase))
             return MessageType.AllocationFactorSeries;
         if (xml.Contains("AggregatedAllocationSeries", StringComparison.OrdinalIgnoreCase))
@@ -456,7 +458,15 @@ public class MessagesController : ControllerBase
         return type switch
         {
             MessageType.AllocationServiceNotification =>
-                rootName.Contains("Allocation", StringComparison.OrdinalIgnoreCase),
+                rootName.Contains("AllocationServiceNotification", StringComparison.OrdinalIgnoreCase)
+                || rootName.Contains("AllocationSeries", StringComparison.OrdinalIgnoreCase)
+                || rootName.Contains("Allocation", StringComparison.OrdinalIgnoreCase),
+            MessageType.AllocationFactorSeries =>
+                rootName.Contains("AllocationFactorSeries", StringComparison.OrdinalIgnoreCase)
+                || rootName.Contains("AllocationSeries", StringComparison.OrdinalIgnoreCase),
+            MessageType.AggregatedAllocationSeries =>
+                rootName.Contains("AggregatedAllocationSeries", StringComparison.OrdinalIgnoreCase)
+                || rootName.Contains("AllocationSeries", StringComparison.OrdinalIgnoreCase),
             _ => rootName.Contains(type.ToString(), StringComparison.OrdinalIgnoreCase)
         };
     }
