@@ -138,10 +138,13 @@ Write-Host "Duur: $DurationMinutes min"
 
 if ($EnsureAllNackCodes) {
     Write-Host ""
-    Write-Host "NACK catalogus seeding (alle foutcodes minimaal 1x)..." -ForegroundColor Cyan
+    Write-Host "NACK/ACK catalogus seeding (interleaved, alle foutcodes minimaal 1x)..." -ForegroundColor Cyan
     $seedStart = (Get-Date).AddDays(-5).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
     $seedEnd = (Get-Date).AddDays(-1).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
     $seedStamp = Get-Date -Format "yyyyMMddHHmmss"
+    $ackEans = @("871685900012345678", "871685900087654321", "871685900055667788")
+    $ackCursor = 0
+
     foreach ($code in $allFaultCodes) {
         $seedId = "seed-$code-$seedStamp"
         $seedXml = New-ForcedCodeXml "DOC-$seedId" $code $seedStart $seedEnd
@@ -155,6 +158,21 @@ if ($EnsureAllNackCodes) {
         $seedCodes = if ($seedRes.errorCodes) { @($seedRes.errorCodes) -join "," } else { "" }
         $ok = ($seedRes.responseType -eq "Nack") -and (@($seedRes.errorCodes) -contains $code)
         Write-Host "[seed/$code] $seedId -> $($seedRes.responseType) [$seedCodes] $(if ($ok) { 'OK' } else { 'CHECK' })"
+
+        # Interleave: na elke geforceerde NACK direct een geldige ACK sturen.
+        $ackSeedId = "seed-ack-$code-$seedStamp"
+        $ackEan = $ackEans[$ackCursor % $ackEans.Count]
+        $ackCursor++
+        $ackSeedXml = New-ValidXml "DOC-$ackSeedId" $ackEan $seedStart $seedEnd (Get-Random -Minimum 1 -Maximum 1000)
+        $ackSeedRes = Send-Message -MessageId $ackSeedId -Xml $ackSeedXml
+        $total++
+
+        if ($ackSeedRes.responseType -eq "Ack") { $ack++ }
+        elseif ($ackSeedRes.responseType -eq "Nack") { $nack++ }
+        else { $errors++ }
+
+        $ackSeedCodes = if ($ackSeedRes.errorCodes) { @($ackSeedRes.errorCodes) -join "," } else { "" }
+        Write-Host "[seed/ack] $ackSeedId -> $($ackSeedRes.responseType) [$ackSeedCodes]"
     }
 }
 
