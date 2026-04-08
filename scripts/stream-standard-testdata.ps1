@@ -5,7 +5,8 @@ param(
     [int]$DuplicateRatePercent = 10,
     [int]$DurationMinutes = 120,
     [switch]$IncludeFullFaultCatalog,
-    [string]$EnvelopeTemplateFile = (Join-Path $PSScriptRoot "..\test-envelope.json")
+    [string]$EnvelopeTemplateFile = (Join-Path $PSScriptRoot "..\test-envelope.json"),
+    [switch]$IncludeTemplateValidationResults
 )
 
 Set-StrictMode -Version Latest
@@ -48,6 +49,11 @@ function Send-Message {
     $payloadEnvelope.msgpayloadid = [guid]::NewGuid().ToString()
     $payloadEnvelope.msgpayload = $Xml
     $payloadEnvelope.entemtimestamp = $nowUtc
+
+    if (-not $IncludeTemplateValidationResults) {
+        # Voorkom dat statische template-codes (zoals 100) alle berichten onnodig naar NACK sturen.
+        $payloadEnvelope.entemvalidationresult = @()
+    }
 
     $payload = $payloadEnvelope | ConvertTo-Json -Compress -Depth 10
 
