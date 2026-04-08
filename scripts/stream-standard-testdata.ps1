@@ -6,6 +6,7 @@ param(
     [int]$DurationMinutes = 120,
     [switch]$IncludeFullFaultCatalog,
     [string]$EnvelopeTemplateFile = (Join-Path $PSScriptRoot "..\test-envelope.json"),
+    [string]$SampleXmlDirectory = (Join-Path $PSScriptRoot "..\samples\onedrive_1_4-7-2026"),
     [switch]$IncludeTemplateValidationResults,
     [bool]$EnsureAllNackCodes = $true
 )
@@ -31,6 +32,60 @@ if (-not (Test-Path $EnvelopeTemplateFile)) {
 
 $apiUrl = "$ApiBase/api/messages"
 $script:EnvelopeTemplate = Get-Content -Path $EnvelopeTemplateFile -Raw | ConvertFrom-Json
+$script:SampleSeeds = [System.Collections.Generic.List[pscustomobject]]::new()
+
+function Get-FirstRegexValue {
+    param(
+        [string]$InputText,
+        [string]$Pattern
+    )
+
+    $m = [System.Text.RegularExpressions.Regex]::Match(
+        $InputText,
+        $Pattern,
+        [System.Text.RegularExpressions.RegexOptions]::IgnoreCase -bor [System.Text.RegularExpressions.RegexOptions]::Singleline
+    )
+
+    if ($m.Success) {
+        return $m.Groups[1].Value.Trim()
+    }
+
+    return $null
+}
+
+if (Test-Path $SampleXmlDirectory) {
+    $sampleFiles = Get-ChildItem -Path $SampleXmlDirectory -Filter "*.xml" -File -ErrorAction SilentlyContinue
+    foreach ($sampleFile in $sampleFiles) {
+        try {
+            $rawXml = Get-Content -Path $sampleFile.FullName -Raw
+
+            # Pak representatieve waarden uit de echte voorbeeldberichten.
+            $ean = Get-FirstRegexValue -InputText $rawXml -Pattern "<mRID>\s*(\d{18})\s*</mRID>"
+            $qtyText = Get-FirstRegexValue -InputText $rawXml -Pattern "<quantity>\s*([0-9]+(?:\.[0-9]+)?)\s*</quantity>"
+
+            if ([string]::IsNullOrWhiteSpace($ean)) {
+                continue
+            }
+
+            $qty = 100.0
+            if (-not [string]::IsNullOrWhiteSpace($qtyText)) {
+                [double]$parsedQty = 0.0
+                if ([double]::TryParse($qtyText, [System.Globalization.NumberStyles]::Any, [System.Globalization.CultureInfo]::InvariantCulture, [ref]$parsedQty)) {
+                    $qty = [Math]::Max($parsedQty, 0.001)
+                }
+            }
+
+            $script:SampleSeeds.Add([PSCustomObject]@{
+                Ean = $ean
+                Quantity = $qty
+                SourceFile = $sampleFile.Name
+            })
+        }
+        catch {
+            Write-Host "Sample XML overslaan ($($sampleFile.Name)): $($_.Exception.Message)" -ForegroundColor DarkYellow
+        }
+    }
+}
 
 function Send-Message {
     param(
@@ -135,6 +190,8 @@ Write-Host "ApiBase: $ApiBase"
 Write-Host "Load: random $MinPerMinute-$MaxPerMinute berichten per minuut"
 Write-Host "Duplicate-rate: $DuplicateRatePercent%"
 Write-Host "Duur: $DurationMinutes min"
+Write-Host "Sample XML map: $SampleXmlDirectory"
+Write-Host "Loaded sample seeds: $($script:SampleSeeds.Count)"
 
 if ($EnsureAllNackCodes) {
     Write-Host ""
@@ -142,7 +199,6 @@ if ($EnsureAllNackCodes) {
     $seedStart = (Get-Date).AddDays(-5).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
     $seedEnd = (Get-Date).AddDays(-1).ToUniversalTime().ToString("yyyy-MM-ddTHH:mm:ssZ")
     $seedStamp = Get-Date -Format "yyyyMMddHHmmss"
-    $ackEans = @("871685900012345678", "871685900087654321", "871685900055667788")
     $ackCursor = 0
 
     foreach ($code in $allFaultCodes) {
@@ -161,9 +217,17 @@ if ($EnsureAllNackCodes) {
 
         # Interleave: na elke geforceerde NACK direct een geldige ACK sturen.
         $ackSeedId = "seed-ack-$code-$seedStamp"
-        $ackEan = $ackEans[$ackCursor % $ackEans.Count]
+        if ($script:SampleSeeds.Count -gt 0) {
+            $ackSeed = $script:SampleSeeds[$ackCursor % $script:SampleSeeds.Count]
+            $ackEan = $ackSeed.Ean
+            $ackQty = $ackSeed.Quantity
+        }
+        else {
+            $ackEan = "871685900012345678"
+            $ackQty = (Get-Random -Minimum 1 -Maximum 1000)
+        }
         $ackCursor++
-        $ackSeedXml = New-ValidXml "DOC-$ackSeedId" $ackEan $seedStart $seedEnd (Get-Random -Minimum 1 -Maximum 1000)
+        $ackSeedXml = New-ValidXml "DOC-$ackSeedId" $ackEan $seedStart $seedEnd $ackQty
         $ackSeedRes = Send-Message -MessageId $ackSeedId -Xml $ackSeedXml
         $total++
 
@@ -209,7 +273,13 @@ while ((Get-Date).ToUniversalTime() -lt $runUntil) {
         $ackThreshold = if ($profile -eq "ack-heavy") { 88 } elseif ($profile -eq "nack-heavy") { 58 } else { 74 }
 
         if ($roll -le $ackThreshold) {
-            $xml = New-ValidXml "DOC-$messageId" "871685900012345678" $start $end (Get-Random -Minimum 1 -Maximum 1000)
+            if ($script:SampleSeeds.Count -gt 0) {
+                $seed = $script:SampleSeeds[(Get-Random -Minimum 0 -Maximum $script:SampleSeeds.Count)]
+                $xml = New-ValidXml "DOC-$messageId" $seed.Ean $start $end $seed.Quantity
+            }
+            else {
+                $xml = New-ValidXml "DOC-$messageId" "871685900012345678" $start $end (Get-Random -Minimum 1 -Maximum 1000)
+            }
         } elseif ($roll -le ($ackThreshold + 15)) {
             $xml = New-InvalidEanXml "DOC-$messageId" $start $end
         } elseif ($roll -le ($ackThreshold + 30)) {
