@@ -1,0 +1,10 @@
+﻿{
+    "messageId":  "test-show-json-001",
+    "correlationId":  "test-show-json-001",
+    "status":  "Failed",
+    "responseType":  "Nack",
+    "errorCount":  1,
+    "errorCodes":  [
+                       "002"
+                   ]
+}

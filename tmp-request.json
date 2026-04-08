@@ -1,0 +1,25 @@
+﻿{
+    "createtime":  "2026-04-02T07:01:08.579835Z",
+    "msgsender":  "8712423009196",
+    "msgcreationtime":  "2026-04-02T07:01:08.579835Z",
+    "id":  "d9d4a01c-0df2-427d-b3d9-0caec6a2c32a",
+    "msgsenderrole":  "DDK",
+    "msgreceiver":  "8716867999990",
+    "msgtype":  "AllocationServiceNotification",
+    "entemtimestamp":  "2026-04-02T07:01:08.579835Z",
+    "entemvalidationresult":  [
+
+                              ],
+    "msgcontenttype":  "application/xml",
+    "entemsendacknowledgement":  true,
+    "msgreceiverrole":  "DDM",
+    "msgversion":  "1.2",
+    "type":  "mma.msg.new",
+    "msgpayload":  "\u003cAllocationSeries\u003e\u003cDocumentID\u003eDOC-SHOW-001\u003c/DocumentID\u003e\u003cEAN\u003e871234567890100000\u003c/EAN\u003e\u003cQuantity\u003e150\u003c/Quantity\u003e\u003cStartDateTime\u003e2026-03-28T08:00:00Z\u003c/StartDateTime\u003e\u003cEndDateTime\u003e2026-03-28T09:00:00Z\u003c/EndDateTime\u003e\u003c/AllocationSeries\u003e",
+    "source":  "ENTEM",
+    "entemsendtooutput":  true,
+    "msgid":  "test-show-json-001",
+    "msgcorrelationid":  "test-show-json-001",
+    "msgpayloadid":  "9dd95e4c-c95a-4764-be95-af343c616e77",
+    "msgsubtype":  "N101"
+}
