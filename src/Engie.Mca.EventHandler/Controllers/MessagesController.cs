@@ -339,14 +339,14 @@ public class MessagesController : ControllerBase
     [HttpGet("/api/metrics")]
     public IActionResult GetMetrics()
     {
-        var snap = _metrics.GetSnapshot();
+            var snap = _metrics.GetSnapshot();
         var all = _store.GetAll();
         var delivered = all.Count(m => m.Status == ProcessingStatus.Delivered);
         var failed = all.Count(m => m.Status == ProcessingStatus.Failed);
         var ack = all.Count(m => m.ResponseType == ResponseType.Ack);
         var nack = all.Count(m => m.ResponseType == ResponseType.Nack);
         var rate = all.Count > 0 ? (decimal)delivered / all.Count * 100 : 0;
-
+s
         return Ok(new
         {
             TotalMessages               = all.Count,
