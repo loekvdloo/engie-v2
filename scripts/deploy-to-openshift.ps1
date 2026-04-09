@@ -1,14 +1,19 @@
 #!/usr/bin/env pwsh
 # deploy-to-openshift.ps1
-# Volledig lokaal deployment script voor OpenShift project loek-engie
-# Gebruik: .\scripts\deploy-to-openshift.ps1
+# Volledig lokaal deployment script voor OpenShift project
+# Gebruik: .\scripts\deploy-to-openshift.ps1 [-Namespace loek-engie] [-GitUrl https://github.com/loekvdloo/engie-v2.git]
+
+param(
+    [string]$Namespace = "loek-engie",
+    [string]$GitUrl = "https://github.com/loekvdloo/engie-v2.git"
+)
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
 $OC = "$env:USERPROFILE\bin\oc.exe"
-$NAMESPACE = "loek-engie"
-$GIT_URL = "https://github.com/loekvdloo/engie-v2.git"
+$NAMESPACE = $Namespace
+$GIT_URL = $GitUrl
 $SERVICES = @("event-handler", "message-processor", "message-validator", "nack-handler", "output-handler")
 
 function Invoke-Oc {
@@ -49,20 +54,33 @@ Write-Host "`n[1/5] Project instellen..." -ForegroundColor Cyan
 Invoke-Oc "project", $NAMESPACE | Out-Null
 Write-Host "  Project: $NAMESPACE" -ForegroundColor Green
 
-# Patch buildconfigs.yaml met echte git URL
+# Patch manifests met echte git URL en namespace
 Write-Host "`n[2/5] Manifests toepassen..." -ForegroundColor Cyan
 $buildconfigsRaw = Get-Content "$PSScriptRoot\..\openshift\buildconfigs.yaml" -Raw
 $buildconfigsPatched = $buildconfigsRaw -replace "REPLACE_WITH_YOUR_GIT_URL", $GIT_URL
-$tempFile = [System.IO.Path]::GetTempFileName() + ".yaml"
-$buildconfigsPatched | Set-Content $tempFile -Encoding UTF8
 
-Invoke-Oc "apply", "-f", $tempFile | ForEach-Object { Write-Host "  $_" }
-Remove-Item $tempFile -Force
+$deploymentsRaw = Get-Content "$PSScriptRoot\..\openshift\deployments.yaml" -Raw
+$registryPrefix = "image-registry.openshift-image-registry.svc:5000/$NAMESPACE/"
+$deploymentsPatched = $deploymentsRaw -replace "image-registry\.openshift-image-registry\.svc:5000/loek-engie/", $registryPrefix
 
+$autoscalerRaw = Get-Content "$PSScriptRoot\..\openshift\autoscaler-70-40.yaml" -Raw
+$autoscalerPatched = $autoscalerRaw -replace 'NAMESPACE="\$\{NAMESPACE:-loek-engie\}"', ('NAMESPACE="${NAMESPACE:-{0}}"' -f $NAMESPACE)
+
+$tempBuildConfigs = [System.IO.Path]::GetTempFileName() + ".yaml"
+$tempDeployments = [System.IO.Path]::GetTempFileName() + ".yaml"
+$tempAutoscaler = [System.IO.Path]::GetTempFileName() + ".yaml"
+
+$buildconfigsPatched | Set-Content $tempBuildConfigs -Encoding UTF8
+$deploymentsPatched | Set-Content $tempDeployments -Encoding UTF8
+$autoscalerPatched | Set-Content $tempAutoscaler -Encoding UTF8
+
+Invoke-Oc "apply", "-f", $tempBuildConfigs | ForEach-Object { Write-Host "  $_" }
 Invoke-Oc "apply", "-f", "$PSScriptRoot\..\openshift\configmap.yaml" | ForEach-Object { Write-Host "  $_" }
-Invoke-Oc "apply", "-f", "$PSScriptRoot\..\openshift\deployments.yaml" | ForEach-Object { Write-Host "  $_" }
-Invoke-Oc "apply", "-f", "$PSScriptRoot\..\openshift\autoscaler-70-40.yaml" | ForEach-Object { Write-Host "  $_" }
+Invoke-Oc "apply", "-f", $tempDeployments | ForEach-Object { Write-Host "  $_" }
+Invoke-Oc "apply", "-f", $tempAutoscaler | ForEach-Object { Write-Host "  $_" }
 Invoke-Oc "delete", "hpa", "engie-mca-event-handler", "engie-mca-message-processor", "engie-mca-message-validator", "engie-mca-nack-handler", "engie-mca-output-handler", "--ignore-not-found=true" | ForEach-Object { Write-Host "  $_" }
+
+Remove-Item $tempBuildConfigs, $tempDeployments, $tempAutoscaler -Force
 Write-Host "  Manifests toegepast" -ForegroundColor Green
 
 # Start builds

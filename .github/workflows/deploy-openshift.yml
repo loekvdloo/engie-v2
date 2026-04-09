@@ -13,6 +13,8 @@ on:
 
 env:
   OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+  DEPLOY_REF: ${{ github.event.inputs.deploy_ref || github.ref_name }}
+  REPOSITORY_URL: https://github.com/${{ github.repository }}.git
 
 jobs:
   ci-gate:
@@ -55,7 +57,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
-        ref: ${{ github.event.inputs.deploy_ref || github.ref_name }}
+        ref: ${{ env.DEPLOY_REF }}
 
     - name: Install oc CLI
       uses: redhat-actions/openshift-tools-installer@v1
@@ -67,21 +69,33 @@ jobs:
       with:
         openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
         openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
-        namespace: ${{ secrets.OPENSHIFT_NAMESPACE }}
+        namespace: ${{ env.OPENSHIFT_NAMESPACE }}
         insecure_skip_tls_verify: true
 
-    - name: Prepare BuildConfig with repository URL
+    - name: Verify OpenShift context
+      run: |
+        test -n "${OPENSHIFT_NAMESPACE}"
+        oc whoami
+        oc project "${OPENSHIFT_NAMESPACE}"
+        oc status
+
+    - name: Prepare namespace-aware manifests
       run: |
         cp openshift/buildconfigs.yaml /tmp/buildconfigs.yaml
-        REPO_URL="https://github.com/${{ github.repository }}.git"
-        sed -i "s|REPLACE_WITH_YOUR_GIT_URL|${REPO_URL}|g" /tmp/buildconfigs.yaml
+        cp openshift/deployments.yaml /tmp/deployments.yaml
+        cp openshift/autoscaler-70-40.yaml /tmp/autoscaler-70-40.yaml
+
+        sed -i "s|REPLACE_WITH_YOUR_GIT_URL|${REPOSITORY_URL}|g" /tmp/buildconfigs.yaml
+        sed -i "s|ref: main|ref: ${DEPLOY_REF}|g" /tmp/buildconfigs.yaml
+        sed -i "s|image-registry.openshift-image-registry.svc:5000/loek-engie/|image-registry.openshift-image-registry.svc:5000/${OPENSHIFT_NAMESPACE}/|g" /tmp/deployments.yaml
+        sed -i "s|NAMESPACE=\"\${NAMESPACE:-loek-engie}\"|NAMESPACE=\"\${NAMESPACE:-${OPENSHIFT_NAMESPACE}}\"|g" /tmp/autoscaler-70-40.yaml
 
     - name: Apply build and runtime manifests
       run: |
         oc apply -f /tmp/buildconfigs.yaml
         oc apply -f openshift/configmap.yaml
-        oc apply -f openshift/deployments.yaml
-        oc apply -f openshift/autoscaler-70-40.yaml
+        oc apply -f /tmp/deployments.yaml
+        oc apply -f /tmp/autoscaler-70-40.yaml
 
     - name: Disable old HPA (use 70/40 autoscaler)
       run: |
@@ -115,3 +129,14 @@ jobs:
       run: |
         HOST=$(oc get route engie-mca-event-handler -o jsonpath='{.spec.host}')
         curl -fsS "http://${HOST}/api/event/health"
+
+    - name: Dump deploy diagnostics on failure
+      if: failure()
+      run: |
+        oc whoami || true
+        oc project || true
+        oc get builds,pods,deployment,route -o wide || true
+        for build in $(oc get builds --sort-by=.metadata.creationTimestamp -o name | tail -n 5); do
+          echo "=== ${build} ==="
+          oc logs "${build}" --tail=100 || true
+        done

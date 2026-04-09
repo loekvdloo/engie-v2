@@ -370,6 +370,12 @@ oc login <openshift-api-url>
 oc new-project engie-mca
 ```
 
+Belangrijk voor GitHub Actions en het lokale deployscript:
+
+- de namespace in GitHub secret `OPENSHIFT_NAMESPACE` moet exact gelijk zijn aan het OpenShift project waarin je deployed
+- de workflow en `scripts/deploy-to-openshift.ps1` patchen de manifests nu runtime naar de gekozen namespace
+- hierdoor hoef je `openshift/deployments.yaml` niet meer handmatig aan te passen voor image-registry paden
+
 ### 2. Build configs aanmaken
 
 1. Pas eerst in `openshift/buildconfigs.yaml` de waarde `REPLACE_WITH_YOUR_GIT_URL` aan naar je echte Git repository URL.
