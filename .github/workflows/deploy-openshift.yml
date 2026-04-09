@@ -12,7 +12,9 @@ on:
     - main
 
 env:
+  OPENSHIFT_SERVER: ${{ secrets.OPENSHIFT_SERVER }}
   OPENSHIFT_NAMESPACE: ${{ secrets.OPENSHIFT_NAMESPACE }}
+  OPENSHIFT_TOKEN: ${{ secrets.OPENSHIFT_TOKEN }}
   DEPLOY_REF: ${{ github.event.inputs.deploy_ref || github.ref_name }}
   REPOSITORY_URL: https://github.com/${{ github.repository }}.git
 
@@ -64,13 +66,15 @@ jobs:
       with:
         oc: latest
 
+    - name: Validate required OpenShift secrets
+      run: |
+        test -n "${OPENSHIFT_SERVER}" || (echo "OPENSHIFT_SERVER is empty" && exit 1)
+        test -n "${OPENSHIFT_TOKEN}" || (echo "OPENSHIFT_TOKEN is empty" && exit 1)
+        test -n "${OPENSHIFT_NAMESPACE}" || (echo "OPENSHIFT_NAMESPACE is empty" && exit 1)
+
     - name: Login to OpenShift
-      uses: redhat-actions/oc-login@v1
-      with:
-        openshift_server_url: ${{ secrets.OPENSHIFT_SERVER }}
-        openshift_token: ${{ secrets.OPENSHIFT_TOKEN }}
-        namespace: ${{ env.OPENSHIFT_NAMESPACE }}
-        insecure_skip_tls_verify: true
+      run: |
+        oc login --token="${OPENSHIFT_TOKEN}" --server="${OPENSHIFT_SERVER}" --insecure-skip-tls-verify=true
 
     - name: Verify OpenShift context
       run: |
