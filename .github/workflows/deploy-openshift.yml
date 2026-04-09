@@ -83,11 +83,22 @@ jobs:
         fi
         [ "$missing" -eq 0 ]
 
+    - name: Normalize OpenShift token
+      run: |
+        # Accept accidental pastes like "Your API token is ..." and strip whitespace/newlines.
+        token_compact=$(printf '%s' "${OPENSHIFT_TOKEN}" | tr -d '\r\n\t ')
+        token_clean=$(printf '%s' "${token_compact}" | sed -n 's/.*\(sha256~[A-Za-z0-9._~-]*\).*/\1/p')
+        if [ -z "${token_clean}" ]; then
+          echo "Could not parse a valid sha256~ token from OPENSHIFT_TOKEN"
+          exit 1
+        fi
+        echo "OPENSHIFT_TOKEN_CLEAN=${token_clean}" >> "$GITHUB_ENV"
+
     - name: Login to OpenShift
       run: |
         echo "Testing API reachability for ${OPENSHIFT_SERVER}"
         code=$(curl -ksS -o /tmp/oc-whoami.json -w "%{http_code}" \
-          -H "Authorization: Bearer ${OPENSHIFT_TOKEN}" \
+          -H "Authorization: Bearer ${OPENSHIFT_TOKEN_CLEAN}" \
           "${OPENSHIFT_SERVER}/apis/user.openshift.io/v1/users/~")
         echo "OpenShift user API HTTP status: ${code}"
         if [ "${code}" != "200" ]; then
@@ -96,7 +107,7 @@ jobs:
           exit 1
         fi
 
-        oc login --token="${OPENSHIFT_TOKEN}" --server="${OPENSHIFT_SERVER}" --insecure-skip-tls-verify=true
+        oc login --token="${OPENSHIFT_TOKEN_CLEAN}" --server="${OPENSHIFT_SERVER}" --insecure-skip-tls-verify=true
 
     - name: Verify OpenShift context
       run: |
