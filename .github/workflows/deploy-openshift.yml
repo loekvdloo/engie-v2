@@ -68,9 +68,20 @@ jobs:
 
     - name: Validate required OpenShift secrets
       run: |
-        test -n "${OPENSHIFT_SERVER}" || (echo "OPENSHIFT_SERVER is empty" && exit 1)
-        test -n "${OPENSHIFT_TOKEN}" || (echo "OPENSHIFT_TOKEN is empty" && exit 1)
-        test -n "${OPENSHIFT_NAMESPACE}" || (echo "OPENSHIFT_NAMESPACE is empty" && exit 1)
+        missing=0
+        if [ -z "${OPENSHIFT_SERVER}" ]; then
+          echo "OPENSHIFT_SERVER is empty"
+          missing=1
+        fi
+        if [ -z "${OPENSHIFT_TOKEN}" ]; then
+          echo "OPENSHIFT_TOKEN is empty"
+          missing=1
+        fi
+        if [ -z "${OPENSHIFT_NAMESPACE}" ]; then
+          echo "OPENSHIFT_NAMESPACE is empty"
+          missing=1
+        fi
+        [ "$missing" -eq 0 ]
 
     - name: Login to OpenShift
       run: |
