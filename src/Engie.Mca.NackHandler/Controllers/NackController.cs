@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Engie.Mca.Common.Configuration;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -17,8 +18,7 @@ namespace Engie.Mca.NackHandler.Controllers;
 public class NackController : ControllerBase
 {
     private static readonly string OutputHandlerBaseUrl =
-        Environment.GetEnvironmentVariable("OUTPUT_HANDLER_BASE_URL")
-        ?? "http://engie-mca-output-handler:8080";
+        RuntimeSettings.GetServiceBaseUrl("OUTPUT_HANDLER_BASE_URL", "http://engie-mca-output-handler:8080");
 
     private static readonly HashSet<string> AllowedResponses = new(StringComparer.OrdinalIgnoreCase)
     {
@@ -138,7 +138,7 @@ public class NackController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "[{MessageId}] N-ACK handling failed", messageId);
-            return BadRequest(new { error = ex.Message });
+            return StatusCode(500, new { error = "Interne fout in nack handler" });
         }
     }
 

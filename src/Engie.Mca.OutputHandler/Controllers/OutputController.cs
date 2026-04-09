@@ -1,5 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Engie.Mca.Common.Configuration;
+using Engie.Mca.Common.Execution;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -13,6 +15,8 @@ namespace Engie.Mca.OutputHandler.Controllers;
 [Route("api/[controller]")]
 public class OutputController : ControllerBase
 {
+    private static readonly int StepDelayMs = RuntimeSettings.GetNonNegativeInt("STEP_DELAY_MS", 0);
+
     private static readonly HashSet<string> AllowedStatuses = new(StringComparer.OrdinalIgnoreCase)
     {
         "Delivered",
@@ -70,7 +74,7 @@ public class OutputController : ControllerBase
             }
 
             _logger.LogInformation("[{MessageId}] ✓ Step 6A: Doorzetten naar raw-layer — status: {Status}", messageId, status);
-            await Task.Delay(5);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 6B: Registreer afleverstatus — sla op in register met timestamp.
             var deliveredAt = DateTime.UtcNow;
@@ -120,7 +124,7 @@ public class OutputController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "[{MessageId}] Output handling failed", messageId);
-            return BadRequest(new { step = "unknown", error = ex.Message });
+            return StatusCode(500, new { step = "unknown", error = "Interne fout bij output handling" });
         }
     }
 
@@ -129,6 +133,7 @@ public class OutputController : ControllerBase
     {
         return Ok(new { service = "OutputHandler", status = "healthy" });
     }
+
 }
 
 public class OutputRequest

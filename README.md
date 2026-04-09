@@ -15,6 +15,8 @@ Het systeem verwerkt marktberichten via een orchestrated pipeline van 29 stappen
 ## Inhoud
 
 - Architectuur
+- Code map
+- Aanpasbare instellingen
 - Services en poorten
 - Functionele flow (29 stappen)
 - Starten en stoppen
@@ -42,6 +44,97 @@ Het landschap bestaat uit 1 API orchestrator en 5 worker services.
 De API houdt context, status en processing steps bij en exposeert status-, step- en metrics endpoints.
 
 Zie ook: MICROSERVICES_ARCHITECTURE.md
+
+## Code map
+
+Als je iets wilt aanpassen, begin dan hier in plaats van willekeurig door de services te zoeken.
+
+### Centrale, herbruikbare basis
+
+- `src/Engie.Mca.Common/Hosting/EngieServiceHostExtensions.cs`
+  - gedeelde service bootstrap
+  - Serilog configuratie
+  - correlation-id middleware
+  - standaard `AddControllers` en `AddHttpClient`
+- `src/Engie.Mca.Common/Configuration/RuntimeSettings.cs`
+  - centrale env-var helpers
+  - base URLs, log directory, int parsing met defaults
+- `src/Engie.Mca.Common/Execution/StepDelay.cs`
+  - gedeelde stapvertraging voor pipeline simulatie en tests
+
+### Service-ingangen
+
+- `src/Engie.Mca.EventHandler/Controllers/MessagesController.cs`
+  - hoofd-entrypoint van de pipeline
+  - keten naar processor, validator, nack en output
+  - status, metrics en reprocess endpoints
+- `src/Engie.Mca.EventHandler/Controllers/EventController.cs`
+  - losse intake-validatie van kolom 1
+- `src/Engie.Mca.MessageProcessor/Controllers/ProcessorController.cs`
+  - fase 2 en fase 4 verwerking
+- `src/Engie.Mca.MessageValidator/Controllers/ValidatorController.cs`
+  - business validatieregels en fault-code bepaling
+- `src/Engie.Mca.NackHandler/Controllers/NackController.cs`
+  - NACK-flow en aflevering naar output
+- `src/Engie.Mca.OutputHandler/Controllers/OutputController.cs`
+  - finale delivery-registratie
+
+### Domein- en ondersteunende code
+
+- `src/Engie.Mca.EventHandler/Services/FaultCodeCatalog.cs`
+  - centrale fault-code catalogus
+- `src/Engie.Mca.EventHandler/Services/MessageStore.cs`
+  - in-memory message status opslag
+- `src/Engie.Mca.EventHandler/Services/MetricsAggregator.cs`
+  - metrics aggregatie en Redis-koppeling
+- `src/Engie.Mca.EventHandler/Models/Models.cs`
+  - gedeelde envelope- en response-modellen voor de orchestrator
+
+### Operationeel en deployment
+
+- `openshift/autoscaler-70-40.yaml`
+  - custom up/downscaler thresholds en replica-limieten
+- `openshift/deployments.yaml`
+  - OpenShift deployments en env-vars
+- `scripts/`
+  - lokale smoke tests, load tests, API tests en deployment helpers
+- `tests/`
+  - contract tests per servicegrens
+
+## Aanpasbare instellingen
+
+De repo is nu zo ingericht dat je runtime-gedrag op een vaste plek terugvindt.
+
+### Eerst hier kijken
+
+- gedeelde env-var parsing: `src/Engie.Mca.Common/Configuration/RuntimeSettings.cs`
+- gedeelde startup/logging: `src/Engie.Mca.Common/Hosting/EngieServiceHostExtensions.cs`
+- OpenShift runtime waarden: `openshift/deployments.yaml`
+- autoscaling grenzen: `openshift/autoscaler-70-40.yaml`
+
+### Belangrijkste env-vars
+
+- `STEP_DELAY_MS`
+  - centrale vertraging voor pipeline-stappen
+  - gebruikt via `StepDelay.DelayAsync(...)`
+- `MESSAGE_PROCESSOR_BASE_URL`
+- `MESSAGE_VALIDATOR_BASE_URL`
+- `NACK_HANDLER_BASE_URL`
+- `OUTPUT_HANDLER_BASE_URL`
+  - service discovery tussen microservices
+- `VALIDATOR_MAX_PAST_DAYS`
+  - historische validatieruimte voor voorbeelden en regressietests
+- `LOGS_DIRECTORY`
+  - centrale locatie voor block logs
+- `REDIS_URL`
+  - metrics persistence voor de orchestrator
+
+### Aanpasregels voor onderhoud
+
+- nieuwe gedeelde runtime-logica gaat eerst naar `Engie.Mca.Common`
+- service-specifieke businessregels blijven in de betreffende controller of service-map
+- als een env-var door meer dan 1 service wordt gebruikt, registreer en resolve hem centraal via `RuntimeSettings`
+- als startupgedrag door meer dan 1 service wordt gebruikt, zet het in `EngieServiceHostExtensions`
 
 ## Services en poorten
 

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Engie.Mca.Common.Configuration;
 using Engie.Mca.EventHandler.Models;
 using Engie.Mca.EventHandler.Services;
 using Serilog.Context;
@@ -20,8 +21,7 @@ namespace Engie.Mca.EventHandler.Controllers;
 public class MessagesController : ControllerBase
 {
     private static readonly string MessageProcessorBaseUrl =
-        Environment.GetEnvironmentVariable("MESSAGE_PROCESSOR_BASE_URL")
-        ?? "http://engie-mca-message-processor:8080";
+        RuntimeSettings.GetServiceBaseUrl("MESSAGE_PROCESSOR_BASE_URL", "http://engie-mca-message-processor:8080");
 
     private readonly MessageStore _store;
     private readonly IHttpClientFactory _httpClientFactory;
@@ -92,7 +92,8 @@ public class MessagesController : ControllerBase
             try { xmlDoc = XDocument.Parse(xmlContent); }
             catch (Exception xmlEx)
             {
-                errors.Add(new ValidationError("001", $"XML ongeldig: {xmlEx.Message}", "1C"));
+                _logger.LogWarning(xmlEx, "[{MessageId}] XML parse mislukt", messageId);
+                errors.Add(new ValidationError("001", "XML ongeldig", "1C"));
                 return BuildFailedResult(messageId, correlationId, steps, errors, receivedAt, sw);
             }
             _logger.LogInformation("[{MessageId}] ✓ 1C: XML geldig — root <{Root}>", messageId, xmlDoc.Root?.Name.LocalName);
@@ -103,7 +104,7 @@ public class MessagesController : ControllerBase
             steps.Add(("1D", "Logging van ontvangsttijd"));
 
             // 1E: Berichttype uit envelope (msgtype + msgsubtype)
-            var messageType = DetermineMessageTypeFromEnvelope(request.Msgtype, xmlContent);
+            var messageType = DetermineMessageTypeFromEnvelope(request.Msgtype, request.Msgsubtype, xmlContent);
             using var typeScope = LogContext.PushProperty("MessageType", messageType.ToString());
             if (messageType == MessageType.Unknown)
             {
@@ -115,7 +116,7 @@ public class MessagesController : ControllerBase
             steps.Add(("1E", $"Berichttype geïdentificeerd: {messageType}"));
 
             // 1F: Root-element check
-            var rootName = xmlDoc.Root?.Name.LocalName ?? string.Empty;
+            var rootName = GetBusinessRootElementName(xmlDoc);
             if (!IsRootElementValid(messageType, rootName))
             {
                 errors.Add(new ValidationError("001", $"Root-element <{rootName}> matcht berichttype niet", "1F"));
@@ -134,11 +135,11 @@ public class MessagesController : ControllerBase
                 CorrelationId = correlationId,
                 MessageType   = messageType.ToString(),
                 XmlContent    = xmlContent,
-                EanCode       = ExtractField(xmlContent, "EAN") ?? string.Empty,
-                DocumentId    = ExtractField(xmlContent, "DocumentID"),
-                Quantity      = ExtractDecimal(xmlContent, "Quantity"),
-                StartDateTime = ExtractDateTime(xmlContent, "StartDateTime"),
-                EndDateTime   = ExtractDateTime(xmlContent, "EndDateTime"),
+                EanCode       = ExtractEanCode(xmlContent) ?? string.Empty,
+                DocumentId    = ExtractDocumentId(xmlContent),
+                Quantity      = ExtractQuantity(xmlContent),
+                StartDateTime = ExtractStartDateTime(xmlContent),
+                EndDateTime   = ExtractEndDateTime(xmlContent),
                 // Volledige envelope doorsturen
                 EnvelopeId                         = request.Id,
                 EnvelopeType                       = request.Type,
@@ -198,7 +199,7 @@ public class MessagesController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "[{MessageId}] Pipeline mislukt", messageId);
-            errors.Add(new ValidationError("999", ex.Message, "Pipeline"));
+            errors.Add(new ValidationError("999", "Interne fout in pipeline", "Pipeline"));
             return BuildFailedResult(messageId, correlationId, steps, errors, receivedAt, sw);
         }
     }
@@ -340,15 +341,19 @@ public class MessagesController : ControllerBase
     {
         var snap = _metrics.GetSnapshot();
         var all = _store.GetAll();
-        var rate = snap.Total > 0 ? (decimal)snap.Delivered / snap.Total * 100 : 0;
+        var delivered = all.Count(m => m.Status == ProcessingStatus.Delivered);
+        var failed = all.Count(m => m.Status == ProcessingStatus.Failed);
+        var ack = all.Count(m => m.ResponseType == ResponseType.Ack);
+        var nack = all.Count(m => m.ResponseType == ResponseType.Nack);
+        var rate = all.Count > 0 ? (decimal)delivered / all.Count * 100 : 0;
 
         return Ok(new
         {
-            TotalMessages               = snap.Total,
-            DeliveredMessages          = snap.Delivered,
-            FailedMessages             = snap.Failed,
-            AckMessages                = snap.Ack,
-            NackMessages               = snap.Nack,
+            TotalMessages               = all.Count,
+            DeliveredMessages          = delivered,
+            FailedMessages             = failed,
+            AckMessages                = ack,
+            NackMessages               = nack,
             SuccessRate                = Math.Round(rate, 2),
             AverageProcessingDurationMs = Math.Round(snap.AvgDurationMs, 2),
             P95ProcessingDurationMs    = Math.Round(snap.P95DurationMs, 2),
@@ -374,17 +379,18 @@ public class MessagesController : ControllerBase
         if (existing == null)
             return NotFound(new ErrorResponse("004", $"Bericht {messageId} niet gevonden"));
 
-        // Verwerk opnieuw met een nieuw suffix
-        var reprocessEnvelope = new EnvelopeEvent
-        {
-            Id            = Guid.NewGuid().ToString(),
-            Type          = "mma.msg.new",
-            Source        = "ENTEM",
-            Msgid         = messageId + "-retry",
-            Msgcorrelationid = existing.CorrelationId,
-            Msgtype       = existing.Type.ToString(),
-            Msgpayload    = string.Empty
-        };
+        var existingEnvelope = _store.GetEnvelope(messageId);
+        if (existingEnvelope == null)
+            return NotFound(new ErrorResponse("004", $"Originele envelope voor {messageId} niet gevonden"));
+
+        // Verwerk opnieuw met een nieuw suffix op de originele envelope inclusief payload.
+        var reprocessEnvelope = JsonSerializer.Deserialize<EnvelopeEvent>(JsonSerializer.Serialize(existingEnvelope))
+            ?? throw new InvalidOperationException("Kan envelope niet kopieren voor reprocess");
+
+        reprocessEnvelope.Id = Guid.NewGuid().ToString();
+        reprocessEnvelope.Msgid = messageId + "-retry";
+        reprocessEnvelope.Msgcorrelationid = existing.CorrelationId;
+
         return await ProcessMessage(reprocessEnvelope);
     }
 
@@ -430,7 +436,7 @@ public class MessagesController : ControllerBase
         return MessageType.Unknown;
     }
 
-    private static MessageType DetermineMessageTypeFromEnvelope(string? msgtype, string? xmlContent)
+    private static MessageType DetermineMessageTypeFromEnvelope(string? msgtype, string? msgsubtype, string? xmlContent)
     {
         // Probeer eerst het envelope msgtype-veld
         if (!string.IsNullOrWhiteSpace(msgtype))
@@ -443,6 +449,12 @@ public class MessagesController : ControllerBase
                 return MessageType.AllocationFactorSeries;
             if (msgtype.Equals("AggregatedAllocationSeries", StringComparison.OrdinalIgnoreCase))
                 return MessageType.AggregatedAllocationSeries;
+        }
+
+        if (!string.IsNullOrWhiteSpace(msgsubtype)
+            && msgsubtype.Equals("N101", StringComparison.OrdinalIgnoreCase))
+        {
+            return MessageType.AllocationServiceNotification;
         }
 
         // Fallback: bepaal type uit XML content
@@ -484,9 +496,7 @@ public class MessagesController : ControllerBase
 
     private static string? ExtractField(string? xml, string tag)
     {
-        if (string.IsNullOrEmpty(xml)) return null;
-        var m = System.Text.RegularExpressions.Regex.Match(xml, $"<{tag}>(.*?)</{tag}>");
-        return m.Success ? m.Groups[1].Value.Trim() : null;
+        return ExtractFirstByLocalName(xml, tag);
     }
 
     private static decimal? ExtractDecimal(string? xml, string tag)
@@ -504,5 +514,100 @@ public class MessagesController : ControllerBase
         return DateTime.TryParse(val, null,
             System.Globalization.DateTimeStyles.RoundtripKind,
             out var dt) ? dt : null;
+    }
+
+    private static string GetBusinessRootElementName(XDocument xmlDoc)
+    {
+        var rootName = xmlDoc.Root?.Name.LocalName ?? string.Empty;
+        if (!rootName.Equals("Envelope", StringComparison.OrdinalIgnoreCase))
+        {
+            return rootName;
+        }
+
+        var body = xmlDoc.Descendants().FirstOrDefault(e => e.Name.LocalName.Equals("Body", StringComparison.OrdinalIgnoreCase));
+        var business = body?.Elements().FirstOrDefault();
+        return business?.Name.LocalName ?? rootName;
+    }
+
+    private static string? ExtractFirstByLocalName(string? xml, params string[] localNames)
+    {
+        if (string.IsNullOrWhiteSpace(xml) || localNames.Length == 0)
+        {
+            return null;
+        }
+
+        try
+        {
+            var doc = XDocument.Parse(xml);
+            foreach (var name in localNames)
+            {
+                var el = doc.Descendants().FirstOrDefault(d => d.Name.LocalName.Equals(name, StringComparison.OrdinalIgnoreCase));
+                if (el != null && !string.IsNullOrWhiteSpace(el.Value))
+                {
+                    return el.Value.Trim();
+                }
+            }
+        }
+        catch
+        {
+            return null;
+        }
+
+        return null;
+    }
+
+    private static decimal? ExtractDecimalByLocalNames(string? xml, params string[] localNames)
+    {
+        var value = ExtractFirstByLocalName(xml, localNames);
+        return decimal.TryParse(value,
+            System.Globalization.NumberStyles.Any,
+            System.Globalization.CultureInfo.InvariantCulture,
+            out var d) ? d : null;
+    }
+
+    private static DateTime? ExtractDateTimeByLocalNames(string? xml, params string[] localNames)
+    {
+        var value = ExtractFirstByLocalName(xml, localNames);
+        return DateTime.TryParse(value, null,
+            System.Globalization.DateTimeStyles.RoundtripKind,
+            out var dt) ? dt : null;
+    }
+
+    private static string? ExtractEanCode(string? xml)
+    {
+        var fromTag = ExtractFirstByLocalName(xml, "EAN");
+        if (!string.IsNullOrWhiteSpace(fromTag))
+        {
+            return fromTag;
+        }
+
+        var marketEan = ExtractFirstByLocalName(xml, "ReceiverID", "SenderID", "mRID");
+        if (string.IsNullOrWhiteSpace(marketEan))
+        {
+            return null;
+        }
+
+        var digits = new string(marketEan.Where(char.IsDigit).ToArray());
+        return digits.Length >= 18 ? digits[..18] : digits;
+    }
+
+    private static string? ExtractDocumentId(string? xml)
+    {
+        return ExtractFirstByLocalName(xml, "DocumentID", "MessageID", "mRID");
+    }
+
+    private static decimal? ExtractQuantity(string? xml)
+    {
+        return ExtractDecimalByLocalNames(xml, "Quantity", "quantity");
+    }
+
+    private static DateTime? ExtractStartDateTime(string? xml)
+    {
+        return ExtractDateTimeByLocalNames(xml, "StartDateTime", "startDateTime");
+    }
+
+    private static DateTime? ExtractEndDateTime(string? xml)
+    {
+        return ExtractDateTimeByLocalNames(xml, "EndDateTime", "endDateTime");
     }
 }

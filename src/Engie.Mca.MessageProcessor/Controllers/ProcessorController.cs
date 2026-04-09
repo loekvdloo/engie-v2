@@ -1,5 +1,6 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Engie.Mca.Common.Configuration;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -18,12 +19,10 @@ namespace Engie.Mca.MessageProcessor.Controllers;
 public class ProcessorController : ControllerBase
 {
     private static readonly string MessageValidatorBaseUrl =
-        Environment.GetEnvironmentVariable("MESSAGE_VALIDATOR_BASE_URL")
-        ?? "http://engie-mca-message-validator:8080";
+        RuntimeSettings.GetServiceBaseUrl("MESSAGE_VALIDATOR_BASE_URL", "http://engie-mca-message-validator:8080");
 
     private static readonly string NackHandlerBaseUrl =
-        Environment.GetEnvironmentVariable("NACK_HANDLER_BASE_URL")
-        ?? "http://engie-mca-nack-handler:8080";
+        RuntimeSettings.GetServiceBaseUrl("NACK_HANDLER_BASE_URL", "http://engie-mca-nack-handler:8080");
 
     // 2C — Slagboom: max 5 berichten worden gelijktijdig verwerkt; overige wachten
     private static readonly SemaphoreSlim _gate = new SemaphoreSlim(5, 5);
@@ -166,7 +165,7 @@ public class ProcessorController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "[{MessageId}] Message processor phase 2 failed", messageId);
-            return BadRequest(new { step = "unknown", error = ex.Message });
+            return StatusCode(500, new { step = "unknown", error = "Interne fout in processor phase2" });
         }
         finally
         {
@@ -309,7 +308,7 @@ public class ProcessorController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "[{MessageId}] Message processor phase 4 failed", messageId);
-            return BadRequest(new { error = ex.Message });
+            return StatusCode(500, new { error = "Interne fout in processor phase4" });
         }
     }
 

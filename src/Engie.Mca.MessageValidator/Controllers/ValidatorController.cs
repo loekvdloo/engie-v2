@@ -1,5 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Engie.Mca.Common.Configuration;
+using Engie.Mca.Common.Execution;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -18,14 +20,15 @@ namespace Engie.Mca.MessageValidator.Controllers;
 [Route("api/[controller]")]
 public class ValidatorController : ControllerBase
 {
+    private static readonly int StepDelayMs = RuntimeSettings.GetNonNegativeInt("STEP_DELAY_MS", 0);
+
     private static readonly string MessageProcessorBaseUrl =
-        Environment.GetEnvironmentVariable("MESSAGE_PROCESSOR_BASE_URL")
-        ?? "http://engie-mca-message-processor:8080";
+        RuntimeSettings.GetServiceBaseUrl("MESSAGE_PROCESSOR_BASE_URL", "http://engie-mca-message-processor:8080");
 
     // Tracks last processed start-time per (EAN, DocumentId) for sequence checks (3F).
     private static readonly ConcurrentDictionary<string, DateTime> LastSeenSequenceByKey = new();
     // Real ENGIE voorbeelden bevatten soms oudere historische data; houd dit ruim genoeg voor regressietesten.
-    private static readonly int MaxPastDays = ResolveMaxPastDays();
+    private static readonly int MaxPastDays = RuntimeSettings.GetPositiveInt("VALIDATOR_MAX_PAST_DAYS", 3650);
 
     private readonly ILogger<ValidatorController> _logger;
 
@@ -70,7 +73,7 @@ public class ValidatorController : ControllerBase
             {
                 _logger.LogInformation("[{MessageId}] ✓ Step 3A: Geldige EAN-code", messageId);
             }
-            await Task.Delay(10);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 3B: Datum/tijd check (760 = in toekomst, 758 = buiten geldige periode)
             if (!request.StartDateTime.HasValue)
@@ -95,7 +98,7 @@ public class ValidatorController : ControllerBase
                     _logger.LogInformation("[{MessageId}] ✓ Step 3B: Controleer datum/tijd", messageId);
                 }
             }
-            await Task.Delay(10);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 3C: Verplichte velden check (676 = vereist veld ontbreekt)
             if (string.IsNullOrWhiteSpace(request.DocumentId))
@@ -112,7 +115,7 @@ public class ValidatorController : ControllerBase
             {
                 _logger.LogInformation("[{MessageId}] ✓ Step 3C: Controleer verplichte velden", messageId);
             }
-            await Task.Delay(10);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 3D: Hoeveelheid validatie (772 = negatief, 774 = nul, 773 = boven limiet)
             if (!request.Quantity.HasValue)
@@ -142,7 +145,7 @@ public class ValidatorController : ControllerBase
                     _logger.LogInformation("[{MessageId}] ✓ Step 3D: Validatieregels zijn configureerbaar", messageId);
                 }
             }
-            await Task.Delay(10);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 3E: Tijdvenster check (758 = buiten geldige periode)
             if (!request.EndDateTime.HasValue || !request.StartDateTime.HasValue)
@@ -167,7 +170,7 @@ public class ValidatorController : ControllerBase
                     _logger.LogInformation("[{MessageId}] ✓ Step 3E: Controleer tijdvenster", messageId);
                 }
             }
-            await Task.Delay(10);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 3F: Volgordelijkheid check (754 = ongeldige sequence)
             if (!string.IsNullOrWhiteSpace(request.DocumentId) && request.DocumentId.Contains("DUP", StringComparison.OrdinalIgnoreCase))
@@ -194,7 +197,7 @@ public class ValidatorController : ControllerBase
             {
                 _logger.LogInformation("[{MessageId}] ✓ Step 3F: Controleer volgordelijkheid", messageId);
             }
-            await Task.Delay(10);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 3G: Herbruikbare validatieregels
             var forcedCodes = ExtractForcedErrorCodes(request.Content);
@@ -244,7 +247,7 @@ public class ValidatorController : ControllerBase
             using var aggregatedErrorCodesScope = LogContext.PushProperty("ErrorCodes", string.Join(",", errors));
 
             _logger.LogInformation("[{MessageId}] ✓ Step 3G: Herbruikbare validatieregels", messageId);
-            await Task.Delay(10);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             bool isValid = errors.Count == 0;
 
@@ -286,7 +289,7 @@ public class ValidatorController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "[{MessageId}] Validation failed", messageId);
-            return BadRequest(new { error = ex.Message });
+            return StatusCode(500, new { error = "Interne fout bij validatie" });
         }
     }
 
@@ -331,18 +334,6 @@ public class ValidatorController : ControllerBase
             .Where(code => code.Length == 3 && code.All(char.IsDigit))
             .Distinct(StringComparer.Ordinal)
             .ToList();
-    }
-
-    private static int ResolveMaxPastDays()
-    {
-        var configured = Environment.GetEnvironmentVariable("VALIDATOR_MAX_PAST_DAYS");
-        if (int.TryParse(configured, out var value) && value >= 1)
-        {
-            return value;
-        }
-
-        // Default: 10 jaar historische voorbeelden toestaan.
-        return 3650;
     }
 
     private static bool IsBlockingEntemCode(string code)

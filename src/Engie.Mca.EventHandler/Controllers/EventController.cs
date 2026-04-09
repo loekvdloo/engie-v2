@@ -1,5 +1,7 @@
 
 using Microsoft.AspNetCore.Mvc;
+using Engie.Mca.Common.Configuration;
+using Engie.Mca.Common.Execution;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,6 +15,8 @@ namespace Engie.Mca.EventHandler.Controllers;
 [Route("api/[controller]")]
 public class EventController : ControllerBase
 {
+  private static readonly int StepDelayMs = RuntimeSettings.GetNonNegativeInt("STEP_DELAY_MS", 0);
+
     private static readonly HashSet<string> KnownMessageTypes = new(StringComparer.OrdinalIgnoreCase)
     {
         "AllocationSeries",
@@ -57,7 +61,7 @@ public class EventController : ControllerBase
                 return BadRequest(new { step = "1A", error = "MessageId is verplicht" });
             }
             _logger.LogInformation("[{MessageId}] ✓ Step 1A: Ontvang event — request aanwezig, MessageId: {MessageId}", messageId, messageId);
-            await Task.Delay(5);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 1B: Technische ontvangstbevestiging — check alle verplichte JSON-velden
             var missingFields = new List<string>();
@@ -70,7 +74,7 @@ public class EventController : ControllerBase
                 return BadRequest(new { step = "1B", error = "Verplichte JSON-velden ontbreken", missingFields });
             }
             _logger.LogInformation("[{MessageId}] ✓ Step 1B: Technische ontvangstbevestiging — alle velden aanwezig", messageId);
-            await Task.Delay(5);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 1C: Technische validatie XML — daadwerkelijk parsen als XML
             XDocument xmlDoc;
@@ -81,7 +85,7 @@ public class EventController : ControllerBase
             catch (Exception xmlEx)
             {
                 _logger.LogWarning("[{MessageId}] ✗ Step 1C: XML parse mislukt: {Error}", messageId, xmlEx.Message);
-                return BadRequest(new { step = "1C", error = "Content is geen geldige XML", detail = xmlEx.Message });
+              return BadRequest(new { step = "1C", error = "Content is geen geldige XML" });
             }
 
             if (xmlDoc.Root == null)
@@ -90,11 +94,11 @@ public class EventController : ControllerBase
                 return BadRequest(new { step = "1C", error = "XML heeft geen root-element" });
             }
             _logger.LogInformation("[{MessageId}] ✓ Step 1C: XML geldig — root-element: <{RootElement}>", messageId, xmlDoc.Root.Name.LocalName);
-            await Task.Delay(5);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 1D: Logging van ontvangsttijd
             _logger.LogInformation("[{MessageId}] ✓ Step 1D: Ontvangstijd vastgelegd: {ReceivedAt:O}", messageId, receivedAt);
-            await Task.Delay(5);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 1E: Berichttype identificeren — check tegen bekende types
             if (!KnownMessageTypes.Contains(request.MessageType))
@@ -109,7 +113,7 @@ public class EventController : ControllerBase
                 });
             }
             _logger.LogInformation("[{MessageId}] ✓ Step 1E: Berichttype geïdentificeerd: {MessageType}", messageId, request.MessageType);
-            await Task.Delay(5);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             // Step 1F: Bereid verwerking voor — check root-element compatibel met berichttype
             var rootName = xmlDoc.Root.Name.LocalName;
@@ -125,7 +129,7 @@ public class EventController : ControllerBase
             }
             _logger.LogInformation("[{MessageId}] ✓ Step 1F: Bereid verwerking voor — root <{RootElement}> matcht {MessageType}",
                 messageId, rootName, request.MessageType);
-            await Task.Delay(5);
+            await StepDelay.DelayAsync(StepDelayMs);
 
             return Ok(new
             {
@@ -141,7 +145,7 @@ public class EventController : ControllerBase
         catch (Exception ex)
         {
             _logger.LogError(ex, "[{MessageId}] Event handling failed", messageId);
-            return BadRequest(new { step = "unknown", error = ex.Message });
+          return StatusCode(500, new { step = "unknown", error = "Interne fout bij event handling" });
         }
     }
 
@@ -364,6 +368,7 @@ window.addEventListener('load', () => { initCharts(); refresh(); setInterval(ref
 
         return rootName.Contains(messageType, StringComparison.OrdinalIgnoreCase);
       }
+
 }
 
 public class EventHandlerRequest
