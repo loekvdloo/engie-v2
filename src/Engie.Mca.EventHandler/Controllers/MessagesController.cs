@@ -339,7 +339,7 @@ public class MessagesController : ControllerBase
     [HttpGet("/api/metrics")]
     public IActionResult GetMetrics()
     {
-           var snap = _metrics.GetSnapshot();
+        var snap = _metrics.GetSnapshot();
         var all = _store.GetAll();
         var delivered = all.Count(m => m.Status == ProcessingStatus.Delivered);
         var failed = all.Count(m => m.Status == ProcessingStatus.Failed);
