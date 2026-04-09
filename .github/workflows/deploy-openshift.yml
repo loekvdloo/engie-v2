@@ -85,6 +85,17 @@ jobs:
 
     - name: Login to OpenShift
       run: |
+        echo "Testing API reachability for ${OPENSHIFT_SERVER}"
+        code=$(curl -ksS -o /tmp/oc-whoami.json -w "%{http_code}" \
+          -H "Authorization: Bearer ${OPENSHIFT_TOKEN}" \
+          "${OPENSHIFT_SERVER}/apis/user.openshift.io/v1/users/~")
+        echo "OpenShift user API HTTP status: ${code}"
+        if [ "${code}" != "200" ]; then
+          echo "Token check failed before oc login"
+          cat /tmp/oc-whoami.json || true
+          exit 1
+        fi
+
         oc login --token="${OPENSHIFT_TOKEN}" --server="${OPENSHIFT_SERVER}" --insecure-skip-tls-verify=true
 
     - name: Verify OpenShift context
